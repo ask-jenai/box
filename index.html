@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JenAI | GPTs</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"> <!-- Playfair Display for class, DM Sans for body -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"> <!-- Playfair Display for classy fonts -->
     <style>
         * {
             box-sizing: border-box;
@@ -23,14 +23,12 @@
             align-items: center;
             min-height: 100vh;
             flex-direction: column;
-            background-image: url('your-background-image.jpg'); /* Add background image if needed */
-            background-size: cover;
-            background-position: center;
+            background-image: none; /* Removed the background image for simplicity */
         }
 
         header {
             background-color: #4F364B; /* Eggplant */
-            padding: 40px;
+            padding: 30px 0;
             text-align: center;
             color: white;
             font-family: 'Playfair Display', serif;
@@ -39,13 +37,13 @@
         }
 
         header h1 {
-            font-size: 4em;
+            font-size: 3.5em;
             margin: 0;
             font-weight: 700;
         }
 
         header p {
-            font-size: 1.5em;
+            font-size: 1.3em;
             margin-top: 10px;
             font-weight: bold;
             text-transform: uppercase;
@@ -57,7 +55,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            padding: 30px 20px;
+            text-align: center;
         }
 
         .section-title {
@@ -70,20 +69,20 @@
 
         .gpt-card {
             background-color: #CABAD7; /* Lavender Gray */
-            border-radius: 15px;
-            padding: 30px;
+            border-radius: 10px;
+            padding: 20px;
             width: 100%;
             max-width: 350px;
             margin: 20px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease-in-out;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
             text-align: center;
             transform: scale(1);
+            transition: all 0.3s ease-in-out;
         }
 
         .gpt-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 12px 18px rgba(0, 0, 0, 0.2);
         }
 
         .gpt-card h3 {
@@ -145,11 +144,11 @@
 
             .gpt-card {
                 max-width: 100%;
-                padding: 20px;
+                padding: 15px;
             }
 
             .cta-button {
-                font-size: 1.1em;
+                font-size: 1.2em;
             }
         }
 
@@ -160,11 +159,11 @@
 
             .gpt-card {
                 max-width: 100%;
-                padding: 15px;
+                padding: 10px;
             }
 
             .cta-button {
-                font-size: 1em;
+                font-size: 1.1em;
             }
         }
     </style>
@@ -179,7 +178,7 @@
         <section>
             <div class="section-title">Explore Our GPTs</div>
             <div class="gpt-card">
-                <img src="dripped_logo.jpg" alt="Dripped Logo" class="logo"> <!-- Dripped logo -->
+                <img src="dripped_logo.jpg" alt="Dripped Logo" class="logo" style="max-width: 100%; height: auto; border-radius: 5px;"> <!-- Dripped logo -->
                 <h3>Dripped GPT</h3>
                 <p>Meet Dripped, your ultimate AI assistant for mastering fashion and style. Tailored to keep you on top of the latest trends and find your perfect fit.</p>
                 <a href="https://chatgpt.com/g/g-677ddf2b2c74819199e9040b0fa15a8c-dripped" class="cta-button">Discover Dripped</a>
