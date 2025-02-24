@@ -3,104 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JenAI | GPTs & Dripped</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet"> <!-- DM Sans font -->
+    <title>JenAI | GPTs</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"> <!-- Playfair Display for a classy, vintage feel -->
     <style>
         body {
             font-family: 'DM Sans', sans-serif;
-            background-color: #F8F8F8;
+            background-color: #F7E9DE; /* Albescent White for a clean, approachable background */
             margin: 0;
             padding: 0;
-            color: #333333;
+            color: #333333; /* Charcoal Gray for text */
         }
 
         header {
-            background-color: #2AC6B2;
-            padding: 20px;
+            background-color: #4F364B; /* Eggplant for a deep, fashion-forward header */
+            padding: 30px;
             text-align: center;
             color: white;
+            font-family: 'Playfair Display', serif; /* Elegant, vintage font for the title */
+            letter-spacing: 2px;
         }
 
         header h1 {
-            font-size: 3em;
+            font-size: 4em;
             margin: 0;
         }
 
+        header p {
+            font-size: 1.5em;
+            margin-top: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
         .content {
-            padding: 30px;
+            padding: 50px 30px;
             text-align: center;
         }
 
         .section-title {
-            font-size: 2em;
-            color: #4B0082;
-            margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #DB3E1D; /* Cinnabar for section titles */
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif; /* Vintage serif font for class */
         }
 
         .gpt-card {
             display: inline-block;
-            background-color: #E3D5F5;
-            border-radius: 10px;
-            padding: 20px;
-            width: 250px;
-            margin: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #CABAD7; /* Lavender Gray for the card background */
+            border-radius: 15px;
+            padding: 30px;
+            width: 300px;
+            margin: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .gpt-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
         }
 
         .gpt-card h3 {
-            font-size: 1.5em;
+            font-size: 1.8em;
             color: #333333;
+            margin: 10px 0;
         }
 
         .gpt-card p {
             color: #333333;
-            font-size: 1em;
+            font-size: 1.1em;
             margin-top: 10px;
         }
 
         footer {
-            background-color: #4B0082;
-            padding: 15px;
+            background-color: #4F364B; /* Eggplant for footer */
+            padding: 20px;
             text-align: center;
             color: white;
+            font-family: 'Playfair Display', serif;
         }
 
         footer p {
             margin: 0;
+            font-size: 1.2em;
         }
 
         .cta-button {
-            background-color: #FF847C;
-            padding: 12px 25px;
+            background-color: #F9C6B5; /* Peach for buttons */
+            padding: 15px 30px;
             border-radius: 5px;
             text-decoration: none;
-            color: white;
-            font-size: 1.2em;
+            color: #4F364B; /* Eggplant text */
+            font-size: 1.3em;
             margin-top: 20px;
             display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
         }
 
         .cta-button:hover {
-            background-color: #F5E6CC;
-            color: #4B0082;
+            background-color: #DB3E1D; /* Cinnabar on hover */
+            color: white;
         }
 
         .gpt-description {
-            margin-top: 15px;
+            margin-top: 20px;
             font-style: italic;
         }
 
         .logo {
             width: 100%;
-            max-width: 200px;
-            margin-bottom: 15px;
+            max-width: 250px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>JenAI GPTs & Dripped</h1>
-        <p>Empowering your life with intelligent solutions</p>
+        <h1>JenAI</h1>
+        <p>Explore Our GPTs</p>
     </header>
 
     <div class="content">
@@ -113,7 +136,6 @@
                 <a href="https://your-dripped-link.com" class="cta-button">Discover Dripped</a> <!-- Replace with your actual Dripped link -->
                 <p class="gpt-description">An AI that brings you the latest in fashion, combining style with personalization.</p>
             </div>
-            <!-- Add more GPT cards as needed -->
         </section>
 
         <section>
