@@ -8,11 +8,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #6D4A67;
-      --secondary: #DB3E1D;
+      --graphite: #5A4A45;
+      --eggplant: #6D4A67;
       --lavender: #CABAD7;
-      --light: #F7E9DE;
-      --services-bg: #F1A293;
+      --red: #DB3E1D;
+      --linen: #F7E9DE;
       --font: 'Epilogue', sans-serif;
     }
 
@@ -24,34 +24,9 @@
 
     body {
       font-family: var(--font);
-      background-color: var(--light);
-      color: var(--primary);
+      background-color: var(--linen);
+      color: var(--graphite);
       line-height: 1.6;
-    }
-
-    header {
-      padding: 3rem 2rem;
-      text-align: center;
-      background: var(--lavender);
-    }
-
-    header img {
-      width: 150px;
-      border-radius: 100px;
-      margin-bottom: 1rem;
-    }
-
-    header h1 {
-      font-size: 2.8rem;
-      font-weight: 900;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      margin-top: 1rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     section {
@@ -65,6 +40,7 @@
       font-weight: 900;
       margin-bottom: 1.5rem;
       text-align: center;
+      color: var(--graphite);
     }
 
     .about, .fiona {
@@ -74,6 +50,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      color: var(--graphite);
     }
 
     .about img, .fiona img {
@@ -83,13 +60,15 @@
     }
 
     .services {
-      background: var(--services-bg);
-      border-radius: 10px;
+      background: var(--linen);
+      border-left: 6px solid var(--eggplant);
       padding: 2rem;
+      border-radius: 10px;
+      color: var(--graphite);
     }
 
-    .service-item {
-      margin-bottom: 2rem;
+    .service-item h3 {
+      color: var(--eggplant);
     }
 
     .cta {
@@ -98,18 +77,20 @@
     }
 
     .cta button {
-      background: var(--secondary);
+      background: var(--red);
       color: white;
       border: none;
       padding: 1rem 2rem;
       font-size: 1rem;
       border-radius: 5px;
       cursor: pointer;
+      font-family: var(--font);
+      font-weight: 700;
     }
 
     footer {
-      background: var(--primary);
-      color: var(--light);
+      background: var(--graphite);
+      color: var(--linen);
       text-align: center;
       padding: 2rem 1rem;
       margin-top: 4rem;
@@ -124,7 +105,7 @@
 
     footer button {
       margin-left: 0.5rem;
-      background: var(--secondary);
+      background: var(--red);
       border: none;
       padding: 0.75rem 1.5rem;
       color: white;
@@ -132,41 +113,34 @@
       border-radius: 5px;
       cursor: pointer;
     }
-  </style>
+</style>
 </head>
-<body>
 
-  
+  <body>
 
-<header style="background: #5A4A45; padding: 6rem 2rem; text-align: center;">
-  <h1 style="font-family: 'Epilogue', sans-serif; font-size: 4rem; font-weight: 900; line-height: 1.2; color: #CABAD7; font-style: italic;">
-    TURNING YOU<br>INTO AN AI<br><span style='color:#DB3E1D'>ROCKSTAR</span>
-  </h1>
-  <p style="font-family: 'Epilogue', sans-serif; font-size: 1.25rem; font-weight: 700; margin-top: 2rem; font-style: italic; color: #F7E9DE;">
-    ONE PROMPT AT A TIME
-  </p>
-  <div style="margin-top: 2rem;">
-    <a href="#contact" style="display: inline-block; padding: 1rem 2rem; border: 2px solid #F7E9DE; text-decoration: none; font-weight: 600; font-family: 'Epilogue', sans-serif; font-size: 1rem; color: #F7E9DE; border-radius: 50px;">
-      LET'S DO THIS ➝
-    </a>
-  </div>
-</header>
-
-
-    <img src="assets/logo.png" alt="JenAI Logo" style="width:120px; margin-bottom: 1rem;">
-    <img src="assets/jen.jpg" alt="JenAI - Jen">
-    <h1>Your Brand. Amplified by AI.</h1>
-    <p>Helping small and mid-sized businesses grow smarter with human-centered, cheeky, and results-driven AI consulting.</p>
+  <header style="background: var(--graphite); padding: 6rem 2rem; text-align: center;">
+    <img src="assets/logo.png" alt="JenAI Logo" style="width: 120px; margin-bottom: 2rem;">
+    <h1 style="font-family: 'Epilogue', sans-serif; font-size: 4rem; font-weight: 900; line-height: 1.2; color: var(--lavender); font-style: italic;">
+      TURNING YOU<br>INTO AN AI<br><span style='color:var(--red)'>ROCKSTAR</span>
+    </h1>
+    <p style="font-family: 'Epilogue', sans-serif; font-size: 1.25rem; font-weight: 700; margin-top: 2rem; font-style: italic; color: var(--linen);">
+      ONE PROMPT AT A TIME
+    </p>
+    <div style="margin-top: 2rem;">
+      <a href="#contact" style="display: inline-block; padding: 1rem 2rem; border: 2px solid var(--linen); text-decoration: none; font-weight: 600; font-family: 'Epilogue', sans-serif; font-size: 1rem; color: var(--linen); border-radius: 50px;">
+        LET'S DO THIS ➝
+      </a>
+    </div>
   </header>
 
   <section class="about">
-    <img src="assets/jen.jpg" alt="Jen Portrait">
+    <img src="assets/jen.jpeg" alt="Jen Portrait">
     <h2 class="section-title">Meet Jen – Your AI Hype Woman</h2>
-    <p>With over a decade of marketing and agency experience—and a mad obsession with AI—I help you make impossible-feeling goals totally achievable. We keep it smart, strategic, and (let’s be honest) fun.</p>
+    <p style="max-width: 700px; text-align: center;">With over a decade of marketing and agency experience—and a mad obsession with AI—I help small and mid-sized businesses make impossible-feeling goals totally achievable. We keep it smart, strategic, and (let’s be honest) fun.</p>
   </section>
 
   <section class="services">
-    <h2 class="section-title">Services</h2>
+    <h2 class="section-title">What I Can Help You With</h2>
     <div class="service-item">
       <h3>🔍 AI-Powered Audits</h3>
       <p>We uncover inefficiencies and untapped potential hiding in your marketing workflows.</p>
@@ -190,9 +164,9 @@
   </section>
 
   <section class="fiona">
-    <img src="assets/fiona.jpg" alt="Fiona - Chief Vibe Officer">
+    <img src="assets/fiona.jpeg" alt="Fiona - Chief Vibe Officer">
     <h2 class="section-title">Fiona – Chief Vibe Officer</h2>
-    <p>Meet Fiona, the heart and floof of JenAI. She reminds us to pause, play, and approach everything with good energy. Cuddles optional but encouraged.</p>
+    <p style="max-width: 700px; text-align: center;">Meet Fiona, the heart and floof of JenAI. She reminds us to pause, play, and approach everything with good energy. Cuddles optional but encouraged.</p>
   </section>
 
   <div class="cta">
@@ -210,4 +184,5 @@
   </footer>
 
 </body>
+
 </html>
