@@ -3,186 +3,238 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JenAI Consulting</title>
-  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --graphite: #5A4A45;
-      --eggplant: #6D4A67;
-      --lavender: #CABAD7;
-      --red: #DB3E1D;
       --linen: #F7E9DE;
+      --red: #DB3E1D;
       --font: 'Epilogue', sans-serif;
     }
-
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
     }
-
     body {
+      margin: 0;
       font-family: var(--font);
-      background-color: var(--linen);
-      color: var(--graphite);
-      line-height: 1.6;
-    }
-
-    section {
-      padding: 4rem 2rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      font-size: 2rem;
-      font-weight: 900;
-      margin-bottom: 1.5rem;
-      text-align: center;
+      background: var(--linen);
       color: var(--graphite);
     }
-
-    .about, .fiona {
-      background: white;
-      border-radius: 10px;
-      padding: 2rem;
+    nav {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      color: var(--graphite);
+      padding: 1.5rem 2rem;
+      background: var(--graphite);
+      color: var(--linen);
     }
-
-    .about img, .fiona img {
-      max-width: 200px;
-      border-radius: 12px;
+    nav img {
+      width: 90px;
+    }
+    nav a {
+      color: var(--linen);
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5rem 2rem;
+      background: var(--linen);
+      flex-wrap: wrap;
+    }
+    header .text {
+      flex: 1;
+      max-width: 500px;
+    }
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
       margin-bottom: 1rem;
     }
-
-    .services {
-      background: var(--linen);
-      border-left: 6px solid var(--eggplant);
-      padding: 2rem;
-      border-radius: 10px;
-      color: var(--graphite);
+    header p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
     }
-
-    .service-item h3 {
-      color: var(--eggplant);
+    header img {
+      width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
-
-    .cta {
-      text-align: center;
-      margin-top: 3rem;
-    }
-
-    .cta button {
-      background: var(--red);
-      color: white;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      font-family: var(--font);
-      font-weight: 700;
-    }
-
-    footer {
+    .pillars {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      padding: 3rem 2rem;
       background: var(--graphite);
       color: var(--linen);
       text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 4rem;
     }
-
-    footer input[type="email"] {
-      padding: 0.75rem;
-      border: none;
-      border-radius: 5px;
-      margin-top: 1rem;
+    .pillars div {
+      flex: 1;
+      min-width: 200px;
+      margin: 1rem;
     }
-
-    footer button {
-      margin-left: 0.5rem;
-      background: var(--red);
-      border: none;
-      padding: 0.75rem 1.5rem;
-      color: white;
+    .pillars h3 { font-size: 1.1rem; margin: 0.5rem 0;
+      font-size: 1.5rem;
       font-weight: 700;
-      border-radius: 5px;
-      cursor: pointer;
     }
+    .offenders {
+      background: var(--red);
+      padding: 5rem 2rem;
+      color: white;
+    }
+    .offenders h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 3rem;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+    .cards div {
+      background: white;
+      color: var(--graphite);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    section {
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    .btn {
+      background: var(--red);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      border-radius: 30px;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+  
+@keyframes slideUp {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.slide {
+  animation: slideUp 1s ease-out;
+}
+
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+  .pillars {
+    flex-direction: column !important;
+    padding: 1.5rem 1rem !important;
+    gap: 1rem;
+    text-align: center;
+  }
+  .pillars div {
+    margin: 0.5rem 0 !important;
+  }
+  .cards {
+    grid-template-columns: 1fr !important;
+  }
+  section {
+    padding: 3rem 1.5rem !important;
+  }
+  .btn {
+    font-size: 1rem !important;
+    padding: 0.6rem 1.25rem !important;
+  }
+  footer {
+    padding: 1.5rem !important;
+  }
+}
+
 </style>
 </head>
+<body>
 
-  <body>
-
-  <header style="background: var(--graphite); padding: 6rem 2rem; text-align: center;">
-    <img src="assets/logo.png" alt="JenAI Logo" style="width: 120px; margin-bottom: 2rem;">
-    <h1 style="font-family: 'Epilogue', sans-serif; font-size: 4rem; font-weight: 900; line-height: 1.2; color: var(--lavender); font-style: italic;">
-      TURNING YOU<br>INTO AN AI<br><span style='color:var(--red)'>ROCKSTAR</span>
-    </h1>
-    <p style="font-family: 'Epilogue', sans-serif; font-size: 1.25rem; font-weight: 700; margin-top: 2rem; font-style: italic; color: var(--linen);">
-      ONE PROMPT AT A TIME
-    </p>
-    <div style="margin-top: 2rem;">
-      <a href="#contact" style="display: inline-block; padding: 1rem 2rem; border: 2px solid var(--linen); text-decoration: none; font-weight: 600; font-family: 'Epilogue', sans-serif; font-size: 1rem; color: var(--linen); border-radius: 50px;">
-        LET'S DO THIS ➝
-      </a>
-    </div>
-  </header>
-
-  <section class="about">
-    <img src="assets/jen.jpeg" alt="Jen Portrait">
-    <h2 class="section-title">Meet Jen – Your AI Hype Woman</h2>
-    <p style="max-width: 700px; text-align: center;">With over a decade of marketing and agency experience—and a mad obsession with AI—I help small and mid-sized businesses make impossible-feeling goals totally achievable. We keep it smart, strategic, and (let’s be honest) fun.</p>
-  </section>
-
-  <section class="services">
-    <h2 class="section-title">What I Can Help You With</h2>
-    <div class="service-item">
-      <h3>🔍 AI-Powered Audits</h3>
-      <p>We uncover inefficiencies and untapped potential hiding in your marketing workflows.</p>
-    </div>
-    <div class="service-item">
-      <h3>🛠️ AI Integration Strategy</h3>
-      <p>Custom-built automation and optimization plans tailored to your brand's growth goals.</p>
-    </div>
-    <div class="service-item">
-      <h3>👥 1-on-1 Coaching</h3>
-      <p>Especially for mentors and founders ready to scale their systems and impact—with AI as their co-pilot.</p>
-    </div>
-    <div class="service-item">
-      <h3>💬 Prompt Engineering for Teams</h3>
-      <p>Equip your team to think like prompt pros and scale creative output with less effort.</p>
-    </div>
-    <div class="service-item">
-      <h3>📆 AI-Powered Content Planning</h3>
-      <p>We build your content calendar with your brand voice in mind—and AI doing the heavy lifting.</p>
-    </div>
-  </section>
-
-  <section class="fiona">
-    <img src="assets/fiona.jpeg" alt="Fiona - Chief Vibe Officer">
-    <h2 class="section-title">Fiona – Chief Vibe Officer</h2>
-    <p style="max-width: 700px; text-align: center;">Meet Fiona, the heart and floof of JenAI. She reminds us to pause, play, and approach everything with good energy. Cuddles optional but encouraged.</p>
-  </section>
-
-  <div class="cta">
-    <button onclick="window.location.href='mailto:hello@jenai.com'">Let's Chat</button>
+<nav>
+  <img src="assets/logo.png" alt="JenAI logo">
+  <div>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
   </div>
+</nav>
 
-  <footer>
-    <h3>Stay in the loop</h3>
-    <p>Weekly-ish tips on AI, automation, and building a brand you actually enjoy running.</p>
-    <form>
-      <input type="email" placeholder="Your email">
-      <button type="submit">Subscribe</button>
-    </form>
-    <p style="margin-top: 2rem;">© 2025 JenAI Consulting. All rights reserved.</p>
-  </footer>
 
+<header style="text-align: center; padding: 6rem 2rem;">
+  <p style="letter-spacing: 2px; font-size: 0.9rem; font-weight: 600; color: var(--linen);">AI CONSULTING FOR MODERN BRANDS</p>
+  <h1 class="slide" style="font-size: 3.2rem; font-weight: 900; max-width: 900px; margin: 2rem auto; text-transform: uppercase; line-height: 1.2;">
+    Turning you <br> and your teams <br> into an AI <span style="font-style: italic;">ROCKSTARS</span><br><span style="display: block; font-style: italic; font-weight: 600; font-size: 1.25rem; margin-top: 1rem;">One prompt at a time</span>
+  </h1>
+  <a href="#contact" class="btn slide" style="background: transparent; border: 2px solid var(--linen); color: var(--linen); padding: 0.75rem 2rem; border-radius: 40px; font-weight: 600;">
+    LET'S DO THIS →
+  </a>
+</header>
+
+
+<div class="pillars" style="padding: 1.5rem 1rem;">
+  <div><h3>AI Systems, Done Right</h3></div>
+  <div><h3>Private Coaching</h3></div>
+  <div><h3>AI-Powered Marketing</h3></div>
+</div>
+
+<div class="offenders">
+  <h2>Your Workflow’s Worst Offenders</h2>
+  <div class="cards">
+    <div><h4>🌀 Content Hamster Wheel</h4><p>Stuck writing, posting, and praying—on repeat. → Let’s scale smarter.</p></div>
+    <div><h4>🛠 Too Many Tools</h4><p>Signed up for 9 platforms? Let’s simplify what works and ditch the rest.</p></div>
+    <div><h4>🤹 CEO & Everything-Else-O</h4><p>Doing it all solo? That’s burnout math. Let’s delegate to workflows.</p></div>
+    <div><h4>🔁 Manual Processes</h4><p>Still copying + pasting? Time to automate the rinse & repeat.</p></div>
+    <div><h4>📣 Consistent Branding & Messaging</h4><p>Let’s lock in your brand and automate across your marketing workflows.</p></div>
+    <div><h4>🧍 “I Need a Clone” Syndrome</h4><p>We’ll turn your brain into a workflow—so you can scale with ease.</p></div>
+  </div>
+</div>
+
+<section id="about">
+  <img src="assets/jen.jpeg" alt="Jen" style="width:120px; border-radius: 50%; margin-bottom: 1rem;">
+  <h2>Hello, I'm Jen!</h2>
+  
+<p style="max-width: 680px; margin: 2rem auto 0; color: var(--graphite); font-size: 1.1rem; line-height: 1.7;">
+  I started JenAI because every time I discover the right AI solution, it feels like I’ve just pulled off a little magic trick—
+  except it’s real, repeatable, and wildly empowering.<br><br>
+
+  Truth is, most small business owners are drowning in marketing mayhem. You're juggling content, clients, systems, socials...
+  and maybe even a dog with a better work-life balance than you.<br><br>
+
+  When you work with JenAI, you don’t just get prompts or tools. You get your time back. You get your edge back. 
+  You get to focus on connection—the human kind—while AI handles the rinse-and-repeat.<br><br>
+
+  My clients leave with their time back, their stress down, and a newfound sense of “wow—I can actually do this.”
+</p>
+
+</section>
+
+<section id="contact" style="background: var(--red); color: white;">
+  <h2 style="color: white;">Ready to Amplify Your Marketing?</h2>
+  <p style="color: white;">Let’s hop on a call. Whether or not we work together, you’ll walk away with clarity and quick wins.</p>
+  <a href="mailto:hello@jenai.com" class="btn" style="background: white; color: var(--red); padding: 1rem 2rem; font-size: 1.1rem; border-radius: 40px; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.3s ease;">Let’s Chat →</a>
+</section>
+
+
+<footer style="text-align: center; padding: 2rem; background: var(--graphite); color: var(--linen); font-size: 0.9rem; line-height: 1.6;">
+  <p>&copy; 2025 JenAI Consulting. All rights reserved.</p>
+  <p><a href="https://www.freeprivacypolicy.com/live/35e68ac2-b107-41ee-83aa-4f8f5cfcc327" style="color: var(--linen); text-decoration: underline;">Privacy Policy</a></p>
+</footer>
 </body>
-
 </html>
+
