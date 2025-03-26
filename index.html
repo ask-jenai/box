@@ -1,200 +1,213 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JenAI | GPTs</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"> <!-- Playfair Display for classy fonts -->
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JenAI Consulting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6D4A67;
+      --secondary: #DB3E1D;
+      --lavender: #CABAD7;
+      --light: #F7E9DE;
+      --services-bg: #F1A293;
+      --font: 'Epilogue', sans-serif;
+    }
 
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background-color: #F7E9DE; /* Albescent White */
-            color: #333333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            flex-direction: column;
-            background-image: none; /* Removed the background image for simplicity */
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        header {
-            background-color: #4F364B; /* Eggplant */
-            padding: 30px 0;
-            text-align: center;
-            color: white;
-            font-family: 'Playfair Display', serif;
-            letter-spacing: 2px;
-            width: 100%;
-        }
+    body {
+      font-family: var(--font);
+      background-color: var(--light);
+      color: var(--primary);
+      line-height: 1.6;
+    }
 
-        header h1 {
-            font-size: 3.5em;
-            margin: 0;
-            font-weight: 700;
-        }
+    header {
+      padding: 3rem 2rem;
+      text-align: center;
+      background: var(--lavender);
+    }
 
-        header p {
-            font-size: 1.3em;
-            margin-top: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
+    header img {
+      width: 150px;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
 
-        .content {
-            width: 90%;
-            max-width: 1200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px 20px;
-            text-align: center;
-        }
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+    }
 
-        .section-title {
-            font-size: 2.5em;
-            color: #DB3E1D; /* Cinnabar */
-            margin-bottom: 30px;
-            font-family: 'Playfair Display', serif;
-            text-transform: uppercase;
-        }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-        .gpt-card {
-            background-color: #CABAD7; /* Lavender Gray */
-            border-radius: 10px;
-            padding: 20px;
-            width: 100%;
-            max-width: 350px;
-            margin: 20px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transform: scale(1);
-            transition: all 0.3s ease-in-out;
-        }
+    section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
 
-        .gpt-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 18px rgba(0, 0, 0, 0.2);
-        }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
 
-        .gpt-card h3 {
-            font-size: 1.8em;
-            color: #333333;
-            margin: 10px 0;
-        }
+    .about, .fiona {
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-        .gpt-card p {
-            color: #333333;
-            font-size: 1.1em;
-            margin-top: 10px;
-        }
+    .about img, .fiona img {
+      max-width: 200px;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
 
-        .cta-button {
-            background-color: #F9C6B5; /* Peach */
-            padding: 15px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            color: #4F364B; /* Eggplant */
-            font-size: 1.3em;
-            margin-top: 20px;
-            display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: bold;
-            transition: background-color 0.3s ease-in-out;
-        }
+    .services {
+      background: var(--services-bg);
+      border-radius: 10px;
+      padding: 2rem;
+    }
 
-        .cta-button:hover {
-            background-color: #DB3E1D; /* Cinnabar */
-            color: white;
-        }
+    .service-item {
+      margin-bottom: 2rem;
+    }
 
-        footer {
-            background-color: #4F364B; /* Eggplant */
-            padding: 20px;
-            text-align: center;
-            color: white;
-            font-family: 'Playfair Display', serif;
-            width: 100%;
-            position: fixed;
-            bottom: 0;
-        }
+    .cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
 
-        footer p {
-            font-size: 1.2em;
-        }
+    .cta button {
+      background: var(--secondary);
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 3em;
-            }
+    footer {
+      background: var(--primary);
+      color: var(--light);
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
+    }
 
-            .section-title {
-                font-size: 2em;
-            }
+    footer input[type="email"] {
+      padding: 0.75rem;
+      border: none;
+      border-radius: 5px;
+      margin-top: 1rem;
+    }
 
-            .gpt-card {
-                max-width: 100%;
-                padding: 15px;
-            }
-
-            .cta-button {
-                font-size: 1.2em;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 2.5em;
-            }
-
-            .gpt-card {
-                max-width: 100%;
-                padding: 10px;
-            }
-
-            .cta-button {
-                font-size: 1.1em;
-            }
-        }
-    </style>
+    footer button {
+      margin-left: 0.5rem;
+      background: var(--secondary);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      color: white;
+      font-weight: 700;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>JenAI</h1>
-        <p>Explore Our GPTs</p>
-    </header>
 
-    <div class="content">
-        <section>
-            <div class="section-title">Explore Our GPTs</div>
-            <div class="gpt-card">
-                <img src="dripped_logo.jpg" alt="Dripped Logo" class="logo" style="max-width: 100%; height: auto; border-radius: 5px;"> <!-- Dripped logo -->
-                <h3>Dripped GPT</h3>
-                <p>Meet Dripped, your ultimate AI assistant for mastering fashion and style. Tailored to keep you on top of the latest trends and find your perfect fit.</p>
-                <a href="https://chatgpt.com/g/g-677ddf2b2c74819199e9040b0fa15a8c-dripped" class="cta-button">Discover Dripped</a>
-                <p class="gpt-description">An AI that brings you the latest in fashion, combining style with personalization.</p>
-            </div>
-        </section>
+  
 
-        <section>
-            <div class="cta-section">
-                <a href="https://your-all-gpts-link.com" class="cta-button">Discover All GPTs</a> <!-- Replace with your actual link -->
-            </div>
-        </section>
+<header style="background: #5A4A45; padding: 6rem 2rem; text-align: center;">
+  <h1 style="font-family: 'Epilogue', sans-serif; font-size: 4rem; font-weight: 900; line-height: 1.2; color: #CABAD7; font-style: italic;">
+    TURNING YOU<br>INTO AN AI<br><span style='color:#DB3E1D'>ROCKSTAR</span>
+  </h1>
+  <p style="font-family: 'Epilogue', sans-serif; font-size: 1.25rem; font-weight: 700; margin-top: 2rem; font-style: italic; color: #F7E9DE;">
+    ONE PROMPT AT A TIME
+  </p>
+  <div style="margin-top: 2rem;">
+    <a href="#contact" style="display: inline-block; padding: 1rem 2rem; border: 2px solid #F7E9DE; text-decoration: none; font-weight: 600; font-family: 'Epilogue', sans-serif; font-size: 1rem; color: #F7E9DE; border-radius: 50px;">
+      LET'S DO THIS ➝
+    </a>
+  </div>
+</header>
+
+
+    <img src="assets/logo.png" alt="JenAI Logo" style="width:120px; margin-bottom: 1rem;">
+    <img src="assets/jen.jpg" alt="JenAI - Jen">
+    <h1>Your Brand. Amplified by AI.</h1>
+    <p>Helping small and mid-sized businesses grow smarter with human-centered, cheeky, and results-driven AI consulting.</p>
+  </header>
+
+  <section class="about">
+    <img src="assets/jen.jpg" alt="Jen Portrait">
+    <h2 class="section-title">Meet Jen – Your AI Hype Woman</h2>
+    <p>With over a decade of marketing and agency experience—and a mad obsession with AI—I help you make impossible-feeling goals totally achievable. We keep it smart, strategic, and (let’s be honest) fun.</p>
+  </section>
+
+  <section class="services">
+    <h2 class="section-title">Services</h2>
+    <div class="service-item">
+      <h3>🔍 AI-Powered Audits</h3>
+      <p>We uncover inefficiencies and untapped potential hiding in your marketing workflows.</p>
     </div>
+    <div class="service-item">
+      <h3>🛠️ AI Integration Strategy</h3>
+      <p>Custom-built automation and optimization plans tailored to your brand's growth goals.</p>
+    </div>
+    <div class="service-item">
+      <h3>👥 1-on-1 Coaching</h3>
+      <p>Especially for mentors and founders ready to scale their systems and impact—with AI as their co-pilot.</p>
+    </div>
+    <div class="service-item">
+      <h3>💬 Prompt Engineering for Teams</h3>
+      <p>Equip your team to think like prompt pros and scale creative output with less effort.</p>
+    </div>
+    <div class="service-item">
+      <h3>📆 AI-Powered Content Planning</h3>
+      <p>We build your content calendar with your brand voice in mind—and AI doing the heavy lifting.</p>
+    </div>
+  </section>
 
-    <footer>
-        <p>&copy; 2025 JenAI | All Rights Reserved</p>
-    </footer>
+  <section class="fiona">
+    <img src="assets/fiona.jpg" alt="Fiona - Chief Vibe Officer">
+    <h2 class="section-title">Fiona – Chief Vibe Officer</h2>
+    <p>Meet Fiona, the heart and floof of JenAI. She reminds us to pause, play, and approach everything with good energy. Cuddles optional but encouraged.</p>
+  </section>
+
+  <div class="cta">
+    <button onclick="window.location.href='mailto:hello@jenai.com'">Let's Chat</button>
+  </div>
+
+  <footer>
+    <h3>Stay in the loop</h3>
+    <p>Weekly-ish tips on AI, automation, and building a brand you actually enjoy running.</p>
+    <form>
+      <input type="email" placeholder="Your email">
+      <button type="submit">Subscribe</button>
+    </form>
+    <p style="margin-top: 2rem;">© 2025 JenAI Consulting. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
