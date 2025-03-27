@@ -37,7 +37,7 @@
     }
 
     header img {
-      height: 30px;
+      height: 50px;
     }
 
     nav a {
@@ -298,6 +298,27 @@
     transform: translateY(-10px);
     transition: transform 0.3s ease;
   }
+  .service-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .service-bar span {
+    margin: 0 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .service-bar {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .service-bar span {
+      display: none;
+    }
+  }
 </style>
 </head>
 <body>
@@ -315,12 +336,12 @@
     <a href="mailto:Hello@jenai.ca" class="cta-button">Let’s chat →</a>
   </section>
 
-  <section class="section-nav" style="margin-bottom: 3rem;">
-  <div style="text-align: center;">
+  <section class="section-nav">
+  <div class="service-bar">
     <strong>AI-powered Marketing Strategies</strong>
-    <span style="margin: 0 1rem;">|</span>
+    <span>|</span>
     <strong>1:1 Coaching</strong>
-    <span style="margin: 0 1rem;">|</span>
+    <span>|</span>
     <strong>AI Optimization</strong>
   </div>
 </section>
