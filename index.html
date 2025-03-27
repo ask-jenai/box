@@ -1,340 +1,325 @@
-<!--DOCTYP
-<html lang="en"-->
+<!DOCTYPE html>
+<html lang="en">
 <head>
- <meta charset="utf-8"/>
- <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
- <title>
-  JenAI Consulting
- </title>
- <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
- <style>
-  :root {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Consulting for Small Businesses | JenAI</title>
+  <meta name="description" content="Human-centered, results-driven AI marketing consulting. Automate, optimize, and scale your business without losing your creative edge." />
+  <meta name="keywords" content="AI consulting, small business AI, AI marketing, marketing automation, AI strategy, AI optimization, prompt engineering, content automation" />
+  <meta name="author" content="JenAI" />
+  <link rel="icon" type="image/png" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --white: #ffffff;
       --graphite: #5A4A45;
+      --eggplant: #6D4A67;
+      --lavender: #CABAD7;
+      --chili-red: #DB3E1D;
       --linen: #F7E9DE;
-      --red: #DB3E1D;
-      --font: 'Epilogue', sans-serif;
     }
-    * {
-      box-sizing: border-box;
-    }
+
     body {
       margin: 0;
-      font-family: var(--font);
-      background: var(--linen);
+      font-family: 'Epilogue', sans-serif;
+      background-color: var(--white);
       color: var(--graphite);
     }
-    nav {
+
+    header {
+      background-color: var(--eggplant);
+      color: var(--white);
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 2rem;
-      background: var(--graphite);
-      color: var(--linen);
     }
-    nav img {
-      width: 90px;
+
+    header img {
+      height: 30px;
     }
+
     nav a {
-      color: var(--linen);
       margin-left: 1.5rem;
+      color: var(--white);
       text-decoration: none;
       font-weight: 600;
     }
-    header {
+
+    .hero {
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      background-color: var(--white);
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.2;
+      color: var(--black);
+    }
+    }
+
+    .hero em {
+      font-style: italic;
+      font-weight: 700;
+      color: var(--chili-red);
+    }
+
+    .hero p {
+      margin-top: 1rem;
+      font-weight: 500;
+      font-size: 1.2rem;
+      color: var(--graphite);
+    }
+
+    .hero .cta-button {
+      display: inline-block;
+      background: var(--chili-red);
+      color: var(--white);
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 1.5rem;
+    }
+
+    .section-nav {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 5rem 2rem;
-      background: var(--linen);
+      justify-content: center;
       flex-wrap: wrap;
+      gap: 2rem;
+      padding: 1.5rem;
+      background-color: var(--eggplant);
+      color: var(--white);
+      font-weight: 600;
     }
-    header .text {
-      flex: 1;
-      max-width: 500px;
+
+    .offenders {
+      background-color: var(--chili-red);
+      color: var(--white);
+      padding-top: 6rem;
+      padding: 4rem 1rem;
+      text-align: center;
     }
-    header h1 {
-      font-size: 2.8rem;
-      font-weight: 900;
+
+    .offenders h2 {
+      font-size: 2rem;
+      color: var(--chili-red);
+      margin-bottom: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background-color: var(--white);
+      color: var(--graphite);
+      padding: 1.5rem;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .about {
+      background-color: var(--linen);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .about img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 50%;
       margin-bottom: 1rem;
     }
-    header p {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-    }
-    header img {
-      width: 300px;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    }
-    .pillars {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
+
+    .cta {
+      background-color: var(--chili-red);
+      color: var(--white);
+      text-align: center;
       padding: 3rem 2rem;
-      background: var(--graphite);
-      color: var(--linen);
-      text-align: center;
     }
-    .pillars div {
-      flex: 1;
-      min-width: 200px;
-      margin: 1rem;
-    }
-    .pillars h3 { font-size: 1.1rem; margin: 0.5rem 0;
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-    .offenders {
-      background: var(--red);
-      padding: 5rem 2rem;
-      color: white;
-    }
-    .offenders h2 {
-      text-align: center;
-      font-size: 2.2rem;
-      font-weight: 800;
-      margin-bottom: 3rem;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-    }
-    .cards div {
-      background: white;
-      color: var(--graphite);
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    section {
-      padding: 5rem 2rem;
-      text-align: center;
-    }
-    .btn {
-      background: var(--red);
-      color: white;
-      padding: 0.75rem 1.5rem;
-      font-weight: 700;
-      border-radius: 30px;
+
+    .cta a {
       display: inline-block;
-      margin-top: 2rem;
+      background: var(--white);
+      color: var(--graphite);
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: 1rem;
     }
-  
-@keyframes slideUp {
-  0% {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-.slide {
-  animation: slideUp 1s ease-out;
-}
 
+    footer {
+      background-color: var(--eggplant);
+      color: var(--white);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+    }
+      
 
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 2rem;
-  }
-  .pillars {
-    flex-direction: column !important;
-    padding: 1.5rem 1rem !important;
-    gap: 1rem;
-    text-align: center;
-  }
-  .pillars div {
-    margin: 0.5rem 0 !important;
-  }
-  .cards {
-    grid-template-columns: 1fr !important;
-  }
-  section {
-    padding: 3rem 1.5rem !important;
-  }
-  .btn {
-    font-size: 1rem !important;
-    padding: 0.6rem 1.25rem !important;
-  }
-  footer {
-    padding: 1.5rem !important;
-  }
-}
+    /* Animation Keyframes */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
 
-@keyframes slideLeft {
-  0% { transform: translateX(-50px); opacity: 0; }
-  100% { transform: translateX(0); opacity: 1; }
-}
-.slide-left {
-  animation: slideLeft 1s ease-out;
-}
- </style>
- <link href="logo.png" rel="icon" type="image/png"/>
- <!-- Open Graph / Facebook -->
- <meta content="website" property="og:type"/>
- <meta content="https://jenai.ca/" property="og:url"/>
- <meta content="JenAI — AI Systems. Coaching. Marketing That Works." property="og:title"/>
- <meta content="Turning you and your teams into AI rockstars — one prompt at a time." property="og:description"/>
- <meta content="social-preview.jpg" property="og:image"/>
- <!-- Twitter -->
- <meta content="summary_large_image" property="twitter:card"/>
- <meta content="https://jenai.ca/" property="twitter:url"/>
- <meta content="JenAI — AI Systems. Coaching. Marketing That Works." property="twitter:title"/>
- <meta content="Turning you and your teams into AI rockstars — one prompt at a time." property="twitter:description"/>
- <meta content="social-preview.jpg" property="twitter:image"/>
+    .hero h1 {
+      animation: fadeUp 1s ease-out forwards;
+    }
+
+    .hero p {
+      animation: fadeUp 1s ease-out forwards;
+      animation-delay: 0.4s;
+    }
+
+    .hero .cta-button {
+      animation: fadeUp 1s ease-out forwards;
+      animation-delay: 0.8s;
+    }
+
+    .card {
+      animation: slideInRight 0.6s ease-out both;
+    }
+
+    .card:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .card:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    .card:nth-child(4) {
+      animation-delay: 0.6s;
+    }
+
+    .card:nth-child(5) {
+      animation-delay: 0.8s;
+    }
+
+    .card:nth-child(6) {
+      animation-delay: 1s;
+    }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 40px;
+    }
+
+    .section-nav div {
+      flex-direction: column;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .card {
+      padding: 1rem;
+      font-size: 1rem;
+    }
+
+    .about img {
+      width: 120px;
+      height: 120px;
+    }
+
+    .about {
+      padding: 3rem 1rem;
+    }
+
+    .cta {
+      padding: 2rem 1rem;
+    }
+  }
+</style>
 </head>
 <body>
- <nav>
-  <img alt="JenAI logo" src="logo.png"/>
-  <div>
-   <a href="#about">
-    About
-   </a>
-   <a href="#contact">
-    Contact
-   </a>
+  <header>
+    <img src="logo.png" alt="JenAI Logo - AI Consulting for Small Businesses">
+    <nav>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Turning you<br>and your teams<br>into AI <em style="color: var(--chili-red);">ROCKSTARS</em></h1>
+    <p>One prompt at a time</p>
+    <a href="#contact" class="cta-button">Let’s chat →</a>
+  </section>
+
+  <section class="section-nav" style="margin-bottom: 3rem;">
+  <div style="text-align: center;">
+    <strong>AI-powered Marketing Strategies</strong>
+    <span style="margin: 0 1rem;">|</span>
+    <strong>1:1 Coaching</strong>
+    <span style="margin: 0 1rem;">|</span>
+    <strong>AI Optimization</strong>
   </div>
- </nav>
- <header style="text-align: center; padding: 6rem 2rem;">
-  <p style="letter-spacing: 2px; font-size: 0.9rem; font-weight: 600; color: var(--linen);">
-   AI CONSULTING FOR MODERN BRANDS
-  </p>
-  <h1 class="slide" style="font-size: 3.2rem; font-weight: 900; max-width: 900px; margin: 2rem auto; text-transform: uppercase; line-height: 1.2;">
-   Turning you
-   <br/>
-   and your teams
-   <br/>
-   into AI
-   <span style="font-style: italic;">
-    ROCKSTARS
-   </span>
-   <br/>
-   <span class="slide-left" style="display: block; font-style: italic; font-weight: 600; font-size: 1.25rem; margin-top: 1rem;">
-    One prompt at a time
-   </span>
-  </h1>
-  <a class="btn slide" href="#contact" style="background: transparent; border: 2px solid var(--linen); color: var(--linen); padding: 0.75rem 2rem; border-radius: 40px; font-weight: 600;">
-   LET'S DO THIS →
-  </a>
- </header>
- <div class="pillars" style="padding: 1.5rem 1rem;">
-  <div>
-   <h3>
-    AI Systems, Done Right
-   </h3>
-  </div>
-  <div>
-   <h3>
-    Private Coaching
-   </h3>
-  </div>
-  <div>
-   <h3>
-    AI-Powered Marketing
-   </h3>
-  </div>
- </div>
- <div class="offenders">
-  <h2>
-   Your Workflow’s Worst Offenders
-  </h2>
-  <div class="cards">
-   <div>
-    <h4>
-     🌀 Content Hamster Wheel
-    </h4>
-    <p>
-     Stuck writing, posting, and praying—on repeat. → Let’s scale smarter.
-    </p>
-   </div>
-   <div>
-    <h4>
-     🛠 Too Many Tools
-    </h4>
-    <p>
-     Signed up for 9 platforms? Let’s simplify what works and ditch the rest.
-    </p>
-   </div>
-   <div>
-    <h4>
-     🤹 CEO &amp; Everything-Else-O
-    </h4>
-    <p>
-     Doing it all solo? That’s burnout math. Let’s delegate to workflows.
-    </p>
-   </div>
-   <div>
-    <h4>
-     🔁 Manual Processes
-    </h4>
-    <p>
-     Still copying + pasting? Time to automate the rinse &amp; repeat.
-    </p>
-   </div>
-   <div>
-    <h4>
-     📣 Consistent Branding &amp; Messaging
-    </h4>
-    <p>
-     Let’s lock in your brand and automate across your marketing workflows.
-    </p>
-   </div>
-   <div>
-    <h4>
-     🧍 “I Need a Clone” Syndrome
-    </h4>
-    <p>
-     We’ll turn your brain into a workflow—so you can scale with ease.
-    </p>
-   </div>
-  </div>
- </div>
- <section id="about">
-  <img alt="Jen" src="jen.png" style="width:500px; border-radius: 50%; margin-bottom: 1rem;"/>
-  <h2>
-   Hello, I'm Jen!
-  </h2>
-  <p style="max-width: 680px; margin: 2rem auto 0; color: var(--graphite); font-size: 1.1rem; line-height: 1.7;">
-   I started JenAI because every time I discover the right AI solution, it feels like I’ve just pulled off a little magic trick—
-  except it’s real, repeatable, and wildly empowering.
-   <br/>
-   <br/>
-   Truth is, most small business owners are drowning in marketing mayhem. You're juggling content, clients, systems, socials...
-  and maybe even a dog with a better work-life balance than you.
-   <br/>
-   <br/>
-   When you work with JenAI, you don’t just get prompts or tools. You get your time back. You get your edge back. 
-  You get to focus on connection—the human kind—while AI handles the rinse-and-repeat.
-   <br/>
-   <br/>
-   My clients leave with their time back, their stress down, and a newfound sense of “wow—I can actually do this.”
-  </p>
- </section>
- <section id="contact" style="background: var(--red); color: white;">
-  <h2 style="color: white;">
-   Ready to Amplify Your Marketing?
-  </h2>
-  <p style="color: white;">
-   Let’s hop on a call. Whether or not we work together, you’ll walk away with clarity and quick wins.
-  </p>
-  <a class="btn" href="mailto:hello@jenai.com" style="background: white; color: var(--red); padding: 1rem 2rem; font-size: 1.1rem; border-radius: 40px; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: all 0.3s ease;">
-   Let’s Chat →
-  </a>
- </section>
- <footer style="text-align: center; padding: 2rem; background: var(--graphite); color: var(--linen); font-size: 0.9rem; line-height: 1.6;">
-  <p>
-   © 2025 JenAI. All rights reserved.
-  </p>
-  <p>
-   <a href="https://jenai.ca/privacy-policy" style="color: var(--linen); text-decoration: underline;">
-    Privacy Policy
-   </a>
-  </p>
- </footer>
-</body>
- </div>
 </section>
+
+  <section class="offenders" style="margin-top: 2rem;">
+    <h2 style="color: var(--white);">Your workflows’ worst offenders</h2>
+    
+    <div class="grid">
+      <div class="card">🌀 <strong>Content Hamster Wheel</strong><br><small>Stuck writing, posting, and praying–on repeat. → Let’s scale smarter.</small></div>
+      <div class="card">⚙️ <strong>Too Many Tools</strong><br><small>Signed up for 9 platforms? Let’s simplify what works and ditch the rest.</small></div>
+      <div class="card">🧠 <strong>CEO & Everything-Else-O</strong><br><small>Doing it all solo? That’s burnout math. Let’s delegate to workflows.</small></div>
+      <div class="card">📋 <strong>Manual Processes</strong><br><small>Still copying + pasting? Time to automate the rinse & repeat.</small></div>
+      <div class="card">📣 <strong>Consistent Branding & Messaging</strong><br><small>Let’s lock in your brand and automate across your marketing workflows.</small></div>
+      <div class="card">🧍 <strong>“I Need a Clone” Syndrome</strong><br><small>We’ll turn your brain into a workflow–so you can scale with ease.</small></div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <img src="jen.png" alt="Jen - AI Consultant and Marketing Expert">
+    <h3>Hello, I’m Jen!</h3>
+    <p>I started JenAI because every time I discover the right AI solution, it feels like I’ve just pulled off a little magic trick—except it’s real, repeatable, and wildly empowering.</p>
+    <p>When you work with JenAI, you don’t just get prompts or tools. You get your time back. You get your edge back. You get to focus on connection—the human kind—while AI handles the rinse-and-repeat.</p>
+    <p>My clients leave with their time back, their stress down, and a newfound sense of “wow—I can actually do this.”</p>
+  </section>
+
+  <section class="cta" id="contact">
+    <h2>Ready to scale smarter with AI-powered marketing?</h2>
+    <p>Let’s hop on a call. Whether or not we work together, you’ll walk away with clarity and quick wins.</p>
+    <a href="#">Let’s Chat →</a>
+  </section>
+
+  <footer>
+    <p>© 2025 JenAI. All rights reserved. <a href="https://jenai.ca/privacy-policy">Privacy Policy</a></p>
+  </footer>
+</body>
+</html>
+
