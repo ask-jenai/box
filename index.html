@@ -28,7 +28,7 @@
     }
 
     header {
-      background-color: var(--eggplant);
+      background-color: var(--graphite);
       color: var(--white);
       padding: 1rem 2rem;
       display: flex;
@@ -58,7 +58,7 @@
       font-weight: 700;
       margin: 0;
       line-height: 1.2;
-      color: var(--black);
+      color: var(--graphite);
     }
     }
 
@@ -169,12 +169,7 @@
     }
       
 
-    /* Animation Keyframes */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
+    
       to {
         opacity: 1;
         transform: translateY(0);
@@ -193,8 +188,12 @@
     }
 
     .hero h1 {
-      animation: fadeUp 1s ease-out forwards;
-    }
+      font-size: 60px;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.2;
+      color: var(--graphite);
+      }
 
     .hero p {
       animation: fadeUp 1s ease-out forwards;
@@ -263,6 +262,38 @@
       padding: 2rem 1rem;
     }
   }
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero em {
+    animation: slideIn 1s ease-out forwards;
+    display: inline-block;
+  }
+
+  .hero .cta-button {
+    animation: slideUp 1s ease-out forwards;
+    animation-delay: 0.5s;
+    display: inline-block;
+  }
 </style>
 </head>
 <body>
@@ -276,8 +307,8 @@
 
   <section class="hero">
     <h1>Turning you<br>and your teams<br>into AI <em style="color: var(--chili-red);">ROCKSTARS</em></h1>
-    <p>One prompt at a time</p>
-    <a href="#contact" class="cta-button">Let’s chat →</a>
+    <p style="color: var(--graphite);">One prompt at a time</p>
+    <a href="mailto:Hello@jenai.ca" class="cta-button">Let’s chat →</a>
   </section>
 
   <section class="section-nav" style="margin-bottom: 3rem;">
@@ -314,7 +345,7 @@
   <section class="cta" id="contact">
     <h2>Ready to scale smarter with AI-powered marketing?</h2>
     <p>Let’s hop on a call. Whether or not we work together, you’ll walk away with clarity and quick wins.</p>
-    <a href="#">Let’s Chat →</a>
+    <a href="mailto:Hello@jenai.ca">Let’s chat →</a>
   </section>
 
   <footer>
@@ -322,4 +353,3 @@
   </footer>
 </body>
 </html>
-
