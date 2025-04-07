@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>80s Pop Culture Quiz</title>
+  <style>
+    body {
+      background: black;
+      color: #39ff14;
+      font-family: 'Courier New', Courier, monospace;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .question {
+      font-size: 1.3em;
+      margin: 20px 0;
+    }
+    .answers button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      background-color: #ff00cc;
+      border: none;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .answers button:hover {
+      background-color: #cc00aa;
+    }
+    #result {
+      font-size: 1.5em;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎮 80s Pop Culture Quiz Adventure 🎉</h1>
+  <div id="quiz-container">
+    <div class="question" id="question"></div>
+    <div class="answers" id="answers"></div>
+  </div>
+  <div id="result"></div>
+
+  <script>
+    const questions = [
+      {
+        question: "What song begins with the lyrics: 'Just a small town girl, living in a lonely world'?",
+        answers: ["Eye of the Tiger", "Billie Jean", "Don't Stop Believin'", "Take On Me"],
+        correct: 2,
+      },
+      {
+        question: "In which movie did Marty McFly travel through time in a DeLorean?",
+        answers: ["The Breakfast Club", "Ferris Bueller's Day Off", "Ghostbusters", "Back to the Future"],
+        correct: 3,
+      },
+      {
+        question: "What is the name of the classic arcade game with a yellow circle eating dots?",
+        answers: ["Pac-Man", "Donkey Kong", "Space Invaders", "Frogger"],
+        correct: 0,
+      },
+      {
+        question: "Who was famous for wearing a red leather jacket and dancing with zombies?",
+        answers: ["Prince", "George Michael", "Michael Jackson", "David Bowie"],
+        correct: 2,
+      },
+      {
+        question: "What show featured four women living together in Miami?",
+        answers: ["Cheers", "The Golden Girls", "Full House", "Who's the Boss?"],
+        correct: 1,
+      },
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    function showQuestion() {
+      const q = questions[currentQuestion];
+      document.getElementById("question").textContent = q.question;
+      const answersContainer = document.getElementById("answers");
+      answersContainer.innerHTML = "";
+      q.answers.forEach((answer, index) => {
+        const btn = document.createElement("button");
+        btn.textContent = answer;
+        btn.onclick = () => handleAnswer(index);
+        answersContainer.appendChild(btn);
+      });
+    }
+
+    function handleAnswer(selected) {
+      if (selected === questions[currentQuestion].correct) {
+        alert("✅ Righteous! You're totally radical!");
+        score++;
+      } else {
+        alert("❌ Bummer! That wasn't it.");
+      }
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        showQuestion();
+      } else {
+        endGame();
+      }
+    }
+
+    function endGame() {
+      document.getElementById("quiz-container").style.display = "none";
+      let resultText = `You got ${score} out of ${questions.length}!\n\n`;
+      if (score === questions.length) {
+        resultText += "YOU SAVED THE 80s! ✨";
+      } else if (score >= 3) {
+        resultText += "Pretty tubular! You've got 80s spirit. ✨";
+      } else {
+        resultText += "That was gnarly... better brush up on your 80s, dude! 😅";
+      }
+      document.getElementById("result").textContent = resultText;
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
