@@ -55,15 +55,75 @@
 
   <script>
     const questions = [
-      {
-        question: "Madonna's first big hit in 1983 was:",
-        answers: ["Like a Virgin", "Holiday", "Material Girl", "Into the Groove"],
-        correct: 1,
-      },
-      {
-        question: "In 'Scarface', what is Tony Montana's famous line?",
-        answers: ["Make my day.", "Here's Johnny!", "Say hello to my little friend!", "I'm king of the world!"],
-        correct: 2,
-      },
-      {
-        question: "Which Prince album features the song 'Purple
+      { question: "Madonna's first big hit in 1983 was:", answers: ["Like a Virgin", "Holiday", "Material Girl", "Into the Groove"], correct: 1 },
+      { question: "In 'Scarface', what is Tony Montana's famous line?", answers: ["Make my day.", "Here's Johnny!", "Say hello to my little friend!", "I'm king of the world!"], correct: 2 },
+      { question: "Which Prince album features the song 'Purple Rain'?", answers: ["1999", "Purple Rain", "Sign o' the Times", "Around the World in a Day"], correct: 1 },
+      { question: "Which Madonna music video featured a wedding dress and a performance at the MTV VMAs?", answers: ["Material Girl", "Like a Prayer", "Like a Virgin", "Lucky Star"], correct: 2 },
+      { question: "Which movie had the song 'Eye of the Tiger'?", answers: ["Rocky III", "Top Gun", "Footloose", "Karate Kid"], correct: 0 },
+      { question: "Prince starred in which semi-autobiographical movie in 1984?", answers: ["Purple Rain", "Graffiti Bridge", "Sign o' the Times", "Batdance"], correct: 0 },
+      { question: "Which 80s movie featured a talking car named KITT?", answers: ["Knight Rider", "Back to the Future", "The A-Team", "Short Circuit"], correct: 0 },
+      { question: "Which artist sang 'Like a Prayer'?", answers: ["Cyndi Lauper", "Janet Jackson", "Madonna", "Whitney Houston"], correct: 2 },
+      { question: "Which movie had a time-traveling DeLorean?", answers: ["Back to the Future", "Blade Runner", "The Last Starfighter", "Weird Science"], correct: 0 },
+      { question: "Who played the Goblin King in 'Labyrinth'?", answers: ["Prince", "David Bowie", "Michael Jackson", "Boy George"], correct: 1 },
+      { question: "What year was MTV launched?", answers: ["1979", "1980", "1981", "1982"], correct: 2 },
+      { question: "Which band released the song 'Take On Me'?", answers: ["A-ha", "Tears for Fears", "The Cure", "Wham!"], correct: 0 },
+      { question: "What is the name of Madonna’s 1985 film debut?", answers: ["Who's That Girl", "Desperately Seeking Susan", "Shanghai Surprise", "Swept Away"], correct: 1 },
+      { question: "Which song is NOT by Prince?", answers: ["When Doves Cry", "Kiss", "Let’s Dance", "1999"], correct: 2 },
+      { question: "What video game became a phenomenon in arcades during the 80s?", answers: ["Pac-Man", "Tetris", "Minecraft", "Street Fighter II"], correct: 0 },
+      { question: "Which film included the line: 'Nobody puts Baby in a corner'?", answers: ["Flashdance", "Dirty Dancing", "Footloose", "Pretty in Pink"], correct: 1 },
+      { question: "In 'The Goonies', what are the kids searching for?", answers: ["A pirate ship", "A secret map", "A treasure", "A time machine"], correct: 2 },
+      { question: "What is the real name of the artist known as Prince?", answers: ["Prince Nelson", "Roger Prince", "Prince Rogers Nelson", "Nelson Rogers"], correct: 2 },
+      { question: "Which device was commonly used to listen to music in the 80s?", answers: ["CD player", "Walkman", "iPod", "Bluetooth speaker"], correct: 1 },
+      { question: "What’s the name of the 80s cartoon with Lion-O and the Sword of Omens?", answers: ["He-Man", "Thundercats", "Voltron", "Transformers"], correct: 1 }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    function showQuestion() {
+      const q = questions[currentQuestion];
+      document.getElementById("question").textContent = q.question;
+      const answersContainer = document.getElementById("answers");
+      answersContainer.innerHTML = "";
+      q.answers.forEach((answer, index) => {
+        const btn = document.createElement("button");
+        btn.textContent = answer;
+        btn.onclick = () => handleAnswer(index);
+        answersContainer.appendChild(btn);
+      });
+    }
+
+    function handleAnswer(selected) {
+      if (selected === questions[currentQuestion].correct) {
+        alert("✅ Righteous job, Alessio! You're an 80s wizard!");
+        score++;
+      } else {
+        alert("❌ Bummer! That wasn't it, but you’re still cool.");
+      }
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        showQuestion();
+      } else {
+        endGame();
+      }
+    }
+
+    function endGame() {
+      document.getElementById("quiz-container").style.display = "none";
+      let resultText = `Alessio, you got ${score} out of ${questions.length}!\n\n`;
+      if (score === questions.length) {
+        resultText += "🌟 YOU RULE THE 80s! The world is safe thanks to you. 🚀";
+      } else if (score >= 15) {
+        resultText += "✨ Tubular! You've got totally excellent 80s vibes. 🎶";
+      } else if (score >= 10) {
+        resultText += "👏 Solid job! Keep those 80s jams playing! 🎧";
+      } else {
+        resultText += "🚫 Uh-oh! Time to hit rewind and study up, Alessio. 📚";
+      }
+      document.getElementById("result").textContent = resultText;
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
