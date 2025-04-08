@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>80s Pop Culture Quiz for Alessio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      background: #000000 url('https://www.transparenttextures.com/patterns/purty-wood.png');
+      color: #39ff14;
+      font-family: 'Press Start 2P', cursive;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px #fuchsia;
+    }
+    .question {
+      font-size: 1em;
+      margin: 20px 0;
+    }
+    .answers button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      background-color: #ff00cc;
+      border: 2px solid #00ffff;
+      color: #fff;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 5px;
+      font-family: 'Press Start 2P', cursive;
+    }
+    .answers button:hover {
+      background-color: #00ffff;
+      color: #000;
+    }
+    #result {
+      font-size: 1.2em;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎶 80s Pop Culture Challenge for Alessio! 🕺</h1>
+  <div id="quiz-container">
+    <div class="question" id="question"></div>
+    <div class="answers" id="answers"></div>
+  </div>
+  <div id="result"></div>
+
+  <script>
+    const questions = [/* same questions as before */];
+
+    const correctMessages = [
+      "Totally tubular, Alessio! 🛼",
+      "Gnarly! You nailed it! 🤘",
+      "Radical! You're rocking this! 🎸",
+      "Far out! The 80s are proud of you! ✨",
+      "Like, totally awesome! 💾",
+      "You’re so cool, even Max Headroom would approve! 😎"
+    ];
+
+    const wrongMessages = [
+      "Bogus! But don’t sweat it. ☹️",
+      "No dice, dude! But you’re still fly. 🕶️",
+      "Oops! That answer was totally whack. 😬",
+      "Not quite... better rewind the mixtape! 🔁",
+      "That answer was bogus, but you're still rad. 💔",
+      "Missed it, but you're still rockin’! 🎤"
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    function showQuestion() {
+      const q = questions[currentQuestion];
+      document.getElementById("question").textContent = q.question;
+      const answersContainer = document.getElementById("answers");
+      answersContainer.innerHTML = "";
+      q.answers.forEach((answer, index) => {
+        const btn = document.createElement("button");
+        btn.textContent = answer;
+        btn.onclick = () => handleAnswer(index);
+        answersContainer.appendChild(btn);
+      });
+    }
+
+    function getRandomMessage(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function handleAnswer(selected) {
+      if (selected === questions[currentQuestion].correct) {
+        alert(getRandomMessage(correctMessages));
+        score++;
+      } else {
+        alert(getRandomMessage(wrongMessages));
+      }
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        showQuestion();
+      } else {
+        endGame();
+      }
+    }
+
+    function endGame() {
+      document.getElementById("quiz-container").style.display = "none";
+      let resultText = `Alessio, you got ${score} out of ${questions.length}!\n\n`;
+      if (score === questions.length) {
+        resultText += "🌟 YOU RULE THE 80s! The world is safe thanks to you. 🚀";
+      } else if (score >= 15) {
+        resultText += "✨ Tubular! You've got totally excellent 80s vibes. 🎶";
+      } else if (score >= 10) {
+        resultText += "👏 Solid job! Keep those 80s jams playing! 🎧";
+      } else {
+        resultText += "🚫 Uh-oh! Time to hit rewind and study up, Alessio. 📚";
+      }
+      document.getElementById("result").textContent = resultText;
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>
