@@ -8,21 +8,26 @@
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
     body {
-      background: #000000 url('https://www.transparenttextures.com/patterns/purty-wood.png');
+      background: #000000;
       color: #39ff14;
       font-family: 'Press Start 2P', cursive;
       text-align: center;
       padding: 30px;
+      overflow-x: hidden;
     }
+
     h1 {
       font-size: 1.5em;
       margin-bottom: 20px;
       text-shadow: 2px 2px #fuchsia;
+      animation: glitch 1.5s infinite;
     }
+
     .question {
       font-size: 1em;
       margin: 20px 0;
     }
+
     .answers button {
       display: block;
       margin: 10px auto;
@@ -35,13 +40,24 @@
       border-radius: 5px;
       font-family: 'Press Start 2P', cursive;
     }
+
     .answers button:hover {
       background-color: #00ffff;
       color: #000;
     }
+
     #result {
       font-size: 1.2em;
       margin-top: 30px;
+    }
+
+    @keyframes glitch {
+      0% { transform: skew(0deg); text-shadow: 2px 0 #f00, -2px 0 #0ff; }
+      20% { transform: skew(5deg); text-shadow: -2px -2px #0ff, 2px 2px #f00; }
+      40% { transform: skew(-5deg); text-shadow: -2px 2px #0ff, 2px -2px #f00; }
+      60% { transform: skew(5deg); text-shadow: 2px -2px #f00, -2px 2px #0ff; }
+      80% { transform: skew(-5deg); text-shadow: 0 2px #0ff, 0 -2px #f00; }
+      100% { transform: skew(0deg); text-shadow: 2px 0 #f00, -2px 0 #0ff; }
     }
   </style>
 </head>
@@ -54,7 +70,28 @@
   <div id="result"></div>
 
   <script>
-    const questions = [/* same questions as before */];
+    const questions = [
+  { question: "Which year did 'Thriller' release?", answers: ["1982", "1984", "1980", "1985"], correct: 0 },
+  { question: "What was Madonna’s debut single?", answers: ["Holiday", "Everybody", "Lucky Star", "Borderline"], correct: 1 },
+  { question: "Who directed 'E.T. the Extra-Terrestrial'?", answers: ["George Lucas", "Steven Spielberg", "James Cameron", "John Hughes"], correct: 1 },
+  { question: "What arcade game featured barrels and a giant ape?", answers: ["Pac-Man", "Space Invaders", "Donkey Kong", "Q*bert"], correct: 2 },
+  { question: "Which Prince song begins with the lyric 'Dearly beloved, we are gathered here today'?", answers: ["Let's Go Crazy", "When Doves Cry", "1999", "Purple Rain"], correct: 0 },
+  { question: "What is the name of the high school in 'The Breakfast Club'?", answers: ["Shermer High", "Bayside High", "Ridgemont High", "Rydell High"], correct: 0 },
+  { question: "What was the name of Madonna's 1987 world tour?", answers: ["Blonde Ambition", "Like a Virgin Tour", "Who's That Girl Tour", "True Blue Tour"], correct: 2 },
+  { question: "Which actor played Ferris Bueller?", answers: ["Tom Cruise", "Matthew Broderick", "Michael J. Fox", "Judd Nelson"], correct: 1 },
+  { question: "Who had a hit with 'I Wanna Dance with Somebody'?", answers: ["Whitney Houston", "Paula Abdul", "Madonna", "Cyndi Lauper"], correct: 0 },
+  { question: "What film features the quote 'This is your brain on drugs'?", answers: ["Say Anything", "The Lost Boys", "Reefer Madness", "Anti-drug PSA"], correct: 3 },
+  { question: "Which album made Prince a global star?", answers: ["Controversy", "1999", "Purple Rain", "Lovesexy"], correct: 2 },
+  { question: "What TV show starred David Hasselhoff and a talking car?", answers: ["Baywatch", "Airwolf", "Knight Rider", "Street Hawk"], correct: 2 },
+  { question: "Who was the lead singer of Culture Club?", answers: ["George Michael", "Boy George", "Freddie Mercury", "Rick Astley"], correct: 1 },
+  { question: "In what film does Al Pacino play Tony Montana?", answers: ["Heat", "The Godfather", "Scarface", "Dog Day Afternoon"], correct: 2 },
+  { question: "Which Madonna song featured religious imagery and sparked controversy?", answers: ["Like a Virgin", "La Isla Bonita", "Like a Prayer", "Crazy for You"], correct: 2 },
+  { question: "What 80s horror movie featured Freddy Krueger?", answers: ["Friday the 13th", "Poltergeist", "Nightmare on Elm Street", "The Shining"], correct: 2 },
+  { question: "What was the name of Prince’s backup band?", answers: ["The Power Station", "The Time", "The Revolution", "The Jets"], correct: 2 },
+  { question: "Which song by a-ha became a massive hit?", answers: ["Take On Me", "Forever Young", "Major Tom", "Don't You Want Me"], correct: 0 },
+  { question: "Who sang 'Girls Just Want to Have Fun'?", answers: ["Madonna", "Whitney Houston", "Cyndi Lauper", "Joan Jett"], correct: 2 },
+  { question: "What toy line inspired the show 'More Than Meets the Eye'?", answers: ["He-Man", "Thundercats", "Transformers", "GI Joe"], correct: 2 }
+];
 
     const correctMessages = [
       "Totally tubular, Alessio! 🛼",
