@@ -29,7 +29,7 @@ body{
   margin:0; color:var(--charcoal); background:var(--warmwhite);
   font-family:"Lato",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans";
   line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-  overflow-x:hidden; /* prevent sideways scroll */
+  overflow-x:hidden;
 }
 img{max-width:100%; height:auto}
 .section{width:100%}
@@ -83,7 +83,11 @@ img.block{display:block; width:100%; height:auto; border-radius:var(--radius)}
   border:1px solid rgba(0,0,0,.06); padding:10px 16px; border-radius:999px; font-weight:800; font-size:14px; box-shadow:0 2px 6px rgba(0,0,0,.06)}
 .chip svg{width:18px; height:18px; display:block}
 
+/* Accommodations */
 .acc-card{background:#ffffff; color:var(--charcoal); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; min-height:var(--accH)}
+.acc-card h2{color:var(--cyclade)}           /* blue H2 */
+.acc-card h3{color:var(--charcoal)}          /* visible H3s on white card */
+
 .carousel{position:relative; min-height:var(--accH); overflow:hidden;}
 .track{display:flex; gap:14px; overflow:auto; scroll-snap-type:x mandatory; height:100%; padding-bottom:6px}
 .track::-webkit-scrollbar{height:8px}
@@ -96,13 +100,15 @@ img.block{display:block; width:100%; height:auto; border-radius:var(--radius)}
 .ctrl:disabled{opacity:.4; cursor:default}
 .ctrl.prev{left:8px} .ctrl.next{right:8px}
 
+/* Gallery */
 .gallery{display:grid; gap:14px}
-@media(min-width:1000px){.gallery{grid-template-columns:repeat(5,1fr)}}
-@media(min-width:700px) and (max-width:999px){.gallery{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:1200px){.gallery{grid-template-columns:repeat(6,1fr)}} /* 12 images = 6x2 on wide */
+@media(min-width:700px) and (max-width:1199px){.gallery{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:699px){.gallery{grid-template-columns:repeat(2,1fr)}}
 .gallery .tile{aspect-ratio:4/3; overflow:hidden; border-radius:12px; background:#e6ebf1; cursor:zoom-in}
 .gallery img{width:100%; height:100%; object-fit:cover; display:block}
 
+/* Lightbox */
 .lightbox{position:fixed; inset:0; background:rgba(0,0,0,.92); display:none; align-items:center; justify-content:center; z-index:2000}
 .lightbox.open{display:flex}
 .lightbox img{max-width:92vw; max-height:88vh; border-radius:10px}
@@ -114,6 +120,7 @@ img.block{display:block; width:100%; height:auto; border-radius:var(--radius)}
 .lightbox .lb-prev{left:24px}
 .lightbox .lb-next{right:24px}
 
+/* FAQ */
 .faq-list{border-top:1px solid rgba(0,0,0,.12)}
 .faq-item{border-bottom:1px solid rgba(0,0,0,.12)}
 .faq-q{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:18px 0; cursor:pointer; font-weight:800}
@@ -133,7 +140,7 @@ img.block{display:block; width:100%; height:auto; border-radius:var(--radius)}
 footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
 .small{font-size:13px; opacity:.9}
 
-/* Reveal animations (progressive enhancement) */
+/* Reveal (progressive enhancement) */
 .reveal{opacity:1; transform:none;}
 .has-js .reveal{opacity:0; transform:translateY(22px);}
 .reveal.in{opacity:1; transform:none;}
@@ -143,7 +150,6 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
 }
 </style>
 
-<!-- mark that JS is enabled so reveal can enhance (content still shows if JS fails) -->
 <script>document.documentElement.classList.add('has-js');</script>
 </head>
 <body>
@@ -172,6 +178,7 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
   <h1>Escape to North Baptiste Lake Retreat in Maynooth, Ontario</h1>
 </section>
 
+<!-- ABOUT -->
 <section id="about" class="section sec--warm">
   <div class="container">
     <div class="grid g-2">
@@ -179,44 +186,66 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
         <h2>About the Retreat</h2>
         <p>North Baptiste Lake Retreat is nestled on the shores of beautiful Baptiste Lake, between the charming villages of Bancroft and Maynooth, just south of Algonquin Park, making it the perfect halfway escape between Ottawa and Toronto. Surrounded by natural beauty and local charm, guests can explore Maynooth’s antique shops, visit the Saturday Farmers Market, or enjoy swimming at Papineau Beach and Lake St. Peter Provincial Park. Whether you’re here for lakeside relaxation, outdoor adventure, or cozy nights spent playing games and watching movies, our retreat offers the perfect balance of charm, comfort, and nature.</p>
 
+        <!-- Feature chips with new icons -->
         <div class="features" role="list" aria-label="Retreat highlights">
           <span class="chip" role="listitem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"></path></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M2 15c3 0 3-2 6-2s3 2 6 2 3-2 6-2 3 2 6 2" />
+            </svg>
             Lakeside tranquility
           </span>
           <span class="chip" role="listitem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M3 10.5L12 3l9 7.5" /><path d="M5 10v10h14V10" />
+            </svg>
             Cozy yet modern comforts
           </span>
           <span class="chip" role="listitem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l4 6h-3l3 4h-3l4 6H7l4-6H8l3-4H8l4-6z"></path><path d="M12 22v-4"></path></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 2l4 6h-3l3 4h-3l4 6H7l4-6H8l3-4H8l4-6z" /><path d="M12 22v-4" />
+            </svg>
             Forest & wildlife
           </span>
-          <span class="chip" role="listitem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c3 4-1 5 0 8 1-2 3-2 4-1 2 2 2 6-4 9-6-3-6-7-4-9 1-1 3-1 4 1 1-3-3-4 0-8z"/></svg>
+
+          <!-- New, more relevant icons -->
+          <span class="chip" role="listitem" title="Firepit">
+            <!-- Campfire in a fire ring -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 2c2 3-1 4 0 7 1-2 3-2 4-1 2 2 2 6-4 8-6-2-6-6-4-8 1-1 3-1 4 1z"/>
+              <ellipse cx="12" cy="20" rx="7" ry="2"/>
+            </svg>
             Firepit
           </span>
-          <span class="chip" role="listitem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 18h16M4 6h16"/></svg>
+          <span class="chip" role="listitem" title="Deck">
+            <!-- Deck boards -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M3 7h18M3 12h18M3 17h18"/>
+              <path d="M6 7v10M12 7v10M18 7v10"/>
+            </svg>
             Deck
           </span>
-          <span class="chip" role="listitem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="8" width="16" height="10" rx="2"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="chip" role="listitem" title="BBQ">
+            <!-- Kettle grill -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M5 9h14a7 7 0 1 1-14 0Z"/><path d="M12 16v3"/><path d="M7 19h10"/><path d="M9 6s.5-2 3-2 3 2 3 2"/>
+            </svg>
             BBQ
           </span>
         </div>
       </div>
 
+      <!-- About image placeholder; replace with <img src="about.jpg" ...> when ready -->
       <figure class="reveal"><div class="ph tall" data-label="Add lake/cottage photo"></div></figure>
     </div>
   </div>
 </section>
 
+<!-- ACCOMMODATIONS -->
 <section id="accommodations" class="section sec--cyclade">
   <div class="container">
     <div class="grid g-2">
       <article class="acc-card reveal">
-        <h2 style="color:var(--cyclade)">Accommodations</h2>
+        <h2>Accommodations</h2>
         <h3>Bedrooms</h3>
         <p>Sleeps 8 adults. 3 Queen beds, 2 baths.</p>
         <h3 style="margin-top:16px">Living Space</h3>
@@ -225,15 +254,16 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
         <p>Fully equipped kitchen, washer/dryer, WiFi, BBQ, games.</p>
       </article>
 
+      <!-- 6-image carousel -->
       <div class="carousel reveal" aria-label="Accommodations gallery">
         <button class="ctrl prev" id="accPrev" aria-label="Previous photo">‹</button>
         <div class="track" id="accTrack">
-          <div class="slide"><img class="block" src="acc-1.jpg" alt="Bedroom" loading="lazy" width="1200" height="800" /></div>
-          <div class="slide"><img class="block" src="acc-2.jpg" alt="Living area" loading="lazy" width="1200" height="800" /></div>
-          <div class="slide"><img class="block" src="acc-3.jpg" alt="Kitchen" loading="lazy" width="1200" height="800" /></div>
-          <div class="slide"><img class="block" src="acc-4.jpg" alt="Bathroom" loading="lazy" width="1200" height="800" /></div>
-          <div class="slide"><img class="block" src="acc-5.jpg" alt="Workspace / desk" loading="lazy" width="1200" height="800" /></div>
-          <div class="slide"><img class="block" src="acc-6.jpg" alt="Cozy detail" loading="lazy" width="1200" height="800" /></div>
+          <div class="slide"><img class="block" src="acc-1.jpg" alt="Bedroom with queen bed and window light" loading="lazy" width="1200" height="800" /></div>
+          <div class="slide"><img class="block" src="acc-2.jpg" alt="Living room with sofa and fireplace" loading="lazy" width="1200" height="800" /></div>
+          <div class="slide"><img class="block" src="acc-3.jpg" alt="Kitchen overview" loading="lazy" width="1200" height="800" /></div>
+          <div class="slide"><img class="block" src="acc-4.jpg" alt="Bathroom with modern finishes" loading="lazy" width="1200" height="800" /></div>
+          <div class="slide"><img class="block" src="acc-5.jpg" alt="Powder room detail" loading="lazy" width="1200" height="800" /></div>
+          <div class="slide"><img class="block" src="acc-6.jpg" alt="Second bedroom with queen bed" loading="lazy" width="1200" height="800" /></div>
         </div>
         <button class="ctrl next" id="accNext" aria-label="Next photo">›</button>
       </div>
@@ -241,6 +271,7 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
   </div>
 </section>
 
+<!-- OUTDOORS -->
 <section id="outdoors" class="section sec--tennis">
   <div class="container">
     <div class="grid g-2">
@@ -258,25 +289,29 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
   </div>
 </section>
 
+<!-- GALLERY (12 images) -->
 <section id="gallery" class="section sec--warm">
   <div class="container">
     <h2 class="reveal">See the Retreat</h2>
     <p class="reveal">Natural beauty at every turn.</p>
     <div class="gallery" aria-label="Photo gallery" id="galleryGrid">
-      <div class="tile reveal"><img src="gal-1.jpg" alt="Lake view" loading="lazy" width="1200" height="900" /></div>
-      <div class="tile reveal"><img src="gal-2.jpg" alt="Cottage exterior" loading="lazy" width="1200" height="900" /></div>
-      <div class="tile reveal"><img src="gal-3.jpg" alt="Bedroom detail" loading="lazy" width="1200" height="900" /></div>
-      <div class="tile reveal"><img src="gal-4.jpg" alt="Living space" loading="lazy" width="1200" height="900" /></div>
-      <div class="tile reveal"><img src="gal-5.jpg" alt="Deck and trees" loading="lazy" width="1200" height="900" /></div>
-      <div class="tile reveal"><img src="gal-6.jpg" alt="Kitchen detail" loading="lazy" width="1200" height="900" /></div>
-      <div class="tile reveal"><img src="gal-7.jpg" alt="Dock at sunset" loading="lazy" width="1200" height="900" /></div>
-      <div class="tile reveal"><img src="gal-8.jpg" alt="Firepit" loading="lazy" width="1200" height="900" /></div>
-      <div class="tile reveal"><img src="gal-9.jpg" alt="Forest trail" loading="lazy" width="1200" height="900" /></div>
-      <div class="tile reveal"><img src="gal-10.jpg" alt="Aerial lake view" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-1.jpg"  alt="Aerial view of cottage and Baptiste Lake shoreline" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-2.jpg"  alt="Entry hallway with hooks and mirror" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-3.jpg"  alt="Cozy reading nook by the window" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-4.jpg"  alt="Bright sunroom and living area with skylights" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-5.jpg"  alt="Living room with sectional sofa and TV" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-6.jpg"  alt="Kitchen with stainless appliances" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-7.jpg"  alt="Kitchen island and dining area" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-8.jpg"  alt="Dining room with table set for a meal" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-9.jpg"  alt="Compact home gym and fitness space" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-10.jpg" alt="Deck with lake view and seating" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-11.jpg" alt="Covered patio with fire table" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-12.jpg" alt="Back exterior of cottage with raised deck" loading="lazy" width="1200" height="900" /></div>
     </div>
   </div>
 </section>
 
+<!-- FAQ -->
 <section id="faq" class="section sec--faq">
   <div class="container">
     <h2 class="reveal">Frequently Asked Questions</h2>
@@ -330,6 +365,7 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
   </div>
 </section>
 
+<!-- FOOTER CTA -->
 <section id="booking" class="footer-cta" aria-label="Your Lakeside Escape awaits">
   <div class="inner">
     <h2>Your Lakeside Escape awaits</h2>
@@ -435,9 +471,7 @@ function moveLB(delta){
   lbImg.src = src; lbImg.alt = alt;
 }
 for(var g=0; g<galleryImgs.length; g++){
-  (function(i){
-    galleryImgs[i].addEventListener('click', function(){ openLB(i); });
-  })(g);
+  (function(i){ galleryImgs[i].addEventListener('click', function(){ openLB(i); }); })(g);
 }
 lbClose.addEventListener('click', closeLB);
 lb.addEventListener('click', function(e){ if(e.target===lb) closeLB(); });
