@@ -35,7 +35,10 @@ img{max-width:100%; height:auto}
 .section{width:100%}
 .container{max-width:var(--maxw); margin:auto; padding:64px 20px}
 .grid{display:grid; gap:28px}
-@media(min-width:900px){.g-2{grid-template-columns:1.1fr .9fr; align-items:stretch}}
+@media(min-width:900px){
+  .g-2{grid-template-columns:1.1fr .9fr; align-items:stretch}
+  .g-2-accom{grid-template-columns:1fr 1.2fr; align-items:stretch} /* wider images on accommodations */
+}
 
 .nav{position:sticky; top:0; z-index:1000; background:#fff; border-bottom:1px solid rgba(0,0,0,.06); backdrop-filter:saturate(150%) blur(6px)}
 .nav-inner{max-width:var(--maxw); margin:auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px}
@@ -85,25 +88,28 @@ img.block{display:block; width:100%; height:auto; border-radius:var(--radius)}
 
 /* Accommodations */
 .acc-card{background:#ffffff; color:var(--charcoal); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; min-height:var(--accH)}
-.acc-card h2{color:var(--cyclade)}           /* blue H2 */
-.acc-card h3{color:var(--charcoal)}          /* visible H3s on white card */
+.acc-card h2{color:var(--cyclade)}
+.acc-card h3{color:var(--charcoal)}
+.btn{display:inline-block; padding:12px 18px; border-radius:999px; font-weight:800; text-decoration:none; background:#111; color:#fff; box-shadow:var(--shadow); margin-top:14px}
+.btn-custard{background:var(--custard); color:#111}
 
+/* Carousel (clickable to lightbox) */
 .carousel{position:relative; min-height:var(--accH); overflow:hidden;}
 .track{display:flex; gap:14px; overflow:auto; scroll-snap-type:x mandatory; height:100%; padding-bottom:6px}
 .track::-webkit-scrollbar{height:8px}
 .track::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15); border-radius:8px}
-.slide{min-width:66%; scroll-snap-align:center; height:100%}
-@media(min-width:800px){.slide{min-width:32%}}
-.slide img{width:100%; height:100%; object-fit:cover; border-radius:var(--radius)}
+.slide{min-width:70%; scroll-snap-align:center; height:100%}
+@media(min-width:800px){.slide{min-width:36%}}
+.slide img{width:100%; height:100%; object-fit:cover; border-radius:var(--radius); cursor:zoom-in}
 .ctrl{position:absolute; top:50%; transform:translateY(-50%); background:#fff; border:1px solid rgba(0,0,0,.1); border-radius:999px;
   box-shadow:var(--shadow); width:42px; height:42px; display:grid; place-items:center; cursor:pointer}
 .ctrl:disabled{opacity:.4; cursor:default}
 .ctrl.prev{left:8px} .ctrl.next{right:8px}
 
-/* Gallery */
+/* Gallery – 4 columns x 3 rows on desktop */
 .gallery{display:grid; gap:14px}
-@media(min-width:1200px){.gallery{grid-template-columns:repeat(6,1fr)}} /* 12 images = 6x2 on wide */
-@media(min-width:700px) and (max-width:1199px){.gallery{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:1000px){.gallery{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:700px) and (max-width:999px){.gallery{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:699px){.gallery{grid-template-columns:repeat(2,1fr)}}
 .gallery .tile{aspect-ratio:4/3; overflow:hidden; border-radius:12px; background:#e6ebf1; cursor:zoom-in}
 .gallery img{width:100%; height:100%; object-fit:cover; display:block}
@@ -135,7 +141,6 @@ img.block{display:block; width:100%; height:auto; border-radius:var(--radius)}
 .footer-cta .inner{position:relative; text-align:center; color:#fff; padding:40px 16px}
 .footer-cta h2{margin:0; font-family:"Playfair Display",serif; font-size:44px; color:#fff}
 @media(max-width:900px){.footer-cta h2{font-size:34px}}
-.btn{display:inline-block; padding:12px 18px; border-radius:999px; font-weight:800; text-decoration:none; background:#111; color:#fff; box-shadow:var(--shadow); margin-top:14px}
 
 footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
 .small{font-size:13px; opacity:.9}
@@ -186,7 +191,7 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
         <h2>About the Retreat</h2>
         <p>North Baptiste Lake Retreat is nestled on the shores of beautiful Baptiste Lake, between the charming villages of Bancroft and Maynooth, just south of Algonquin Park, making it the perfect halfway escape between Ottawa and Toronto. Surrounded by natural beauty and local charm, guests can explore Maynooth’s antique shops, visit the Saturday Farmers Market, or enjoy swimming at Papineau Beach and Lake St. Peter Provincial Park. Whether you’re here for lakeside relaxation, outdoor adventure, or cozy nights spent playing games and watching movies, our retreat offers the perfect balance of charm, comfort, and nature.</p>
 
-        <!-- Feature chips with new icons -->
+        <!-- Feature chips with icons -->
         <div class="features" role="list" aria-label="Retreat highlights">
           <span class="chip" role="listitem">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -206,10 +211,7 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
             </svg>
             Forest & wildlife
           </span>
-
-          <!-- New, more relevant icons -->
           <span class="chip" role="listitem" title="Firepit">
-            <!-- Campfire in a fire ring -->
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M12 2c2 3-1 4 0 7 1-2 3-2 4-1 2 2 2 6-4 8-6-2-6-6-4-8 1-1 3-1 4 1z"/>
               <ellipse cx="12" cy="20" rx="7" ry="2"/>
@@ -217,7 +219,6 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
             Firepit
           </span>
           <span class="chip" role="listitem" title="Deck">
-            <!-- Deck boards -->
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M3 7h18M3 12h18M3 17h18"/>
               <path d="M6 7v10M12 7v10M18 7v10"/>
@@ -225,7 +226,6 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
             Deck
           </span>
           <span class="chip" role="listitem" title="BBQ">
-            <!-- Kettle grill -->
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M5 9h14a7 7 0 1 1-14 0Z"/><path d="M12 16v3"/><path d="M7 19h10"/><path d="M9 6s.5-2 3-2 3 2 3 2"/>
             </svg>
@@ -234,8 +234,13 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
         </div>
       </div>
 
-      <!-- About image placeholder; replace with <img src="about.jpg" ...> when ready -->
-      <figure class="reveal"><div class="ph tall" data-label="Add lake/cottage photo"></div></figure>
+      <!-- About image -->
+      <figure class="reveal">
+        <img class="block"
+             src="about.jpg"
+             alt="Baptiste Lake view from the retreat deck"
+             width="1200" height="900" loading="lazy" />
+      </figure>
     </div>
   </div>
 </section>
@@ -243,7 +248,7 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
 <!-- ACCOMMODATIONS -->
 <section id="accommodations" class="section sec--cyclade">
   <div class="container">
-    <div class="grid g-2">
+    <div class="grid g-2-accom">
       <article class="acc-card reveal">
         <h2>Accommodations</h2>
         <h3>Bedrooms</h3>
@@ -252,9 +257,10 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
         <p>Cozy seating, lake views, fireplace, desk, smart TV.</p>
         <h3 style="margin-top:16px">Kitchen &amp; Amenities</h3>
         <p>Fully equipped kitchen, washer/dryer, WiFi, BBQ, games.</p>
+        <a href="#booking" class="btn btn-custard" aria-label="Book your retreat">Book your retreat</a>
       </article>
 
-      <!-- 6-image carousel -->
+      <!-- Wider, clickable carousel -->
       <div class="carousel reveal" aria-label="Accommodations gallery">
         <button class="ctrl prev" id="accPrev" aria-label="Previous photo">‹</button>
         <div class="track" id="accTrack">
@@ -275,7 +281,9 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
 <section id="outdoors" class="section sec--tennis">
   <div class="container">
     <div class="grid g-2">
-      <figure class="reveal"><div class="ph tall" data-label="Dock / outdoor image placeholder"></div></figure>
+      <figure class="reveal">
+        <img class="block" src="gal-10.jpg" alt="Deck with lake view and seating" width="1200" height="900" loading="lazy" />
+      </figure>
       <div class="reveal">
         <h2>Outdoors &amp; Experiences</h2>
         <h3>Lake Access</h3>
@@ -289,7 +297,7 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
   </div>
 </section>
 
-<!-- GALLERY (12 images) -->
+<!-- GALLERY (4x3 on desktop) -->
 <section id="gallery" class="section sec--warm">
   <div class="container">
     <h2 class="reveal">See the Retreat</h2>
@@ -440,9 +448,12 @@ if(track){
   updateCtrl();
 }
 
-// Lightbox
+// Lightbox (gallery + accommodations)
 var galleryImgs = document.querySelectorAll('#galleryGrid img');
+var accImgs = document.querySelectorAll('#accTrack img');
 var lbIndex = 0;
+var currentSet = []; // NodeList of current collection
+
 var lb = document.createElement('div');
 lb.className = 'lightbox';
 lb.innerHTML = '<button class="lb-close" aria-label="Close">×</button>\
@@ -455,24 +466,31 @@ var lbClose = lb.querySelector('.lb-close');
 var lbPrev = lb.querySelector('.lb-prev');
 var lbNext = lb.querySelector('.lb-next');
 
-function openLB(i){
+function openLB(i, set){
+  currentSet = set;
   lbIndex = i;
-  var src = galleryImgs[lbIndex].getAttribute('src');
-  var alt = galleryImgs[lbIndex].getAttribute('alt') || '';
+  var src = currentSet[lbIndex].getAttribute('src');
+  var alt = currentSet[lbIndex].getAttribute('alt') || '';
   lbImg.src = src; lbImg.alt = alt;
   lb.classList.add('open');
   document.body.style.overflow='hidden';
 }
 function closeLB(){ lb.classList.remove('open'); document.body.style.overflow=''; }
 function moveLB(delta){
-  lbIndex = (lbIndex + delta + galleryImgs.length) % galleryImgs.length;
-  var src = galleryImgs[lbIndex].getAttribute('src');
-  var alt = galleryImgs[lbIndex].getAttribute('alt') || '';
+  lbIndex = (lbIndex + delta + currentSet.length) % currentSet.length;
+  var src = currentSet[lbIndex].getAttribute('src');
+  var alt = currentSet[lbIndex].getAttribute('alt') || '';
   lbImg.src = src; lbImg.alt = alt;
 }
-for(var g=0; g<galleryImgs.length; g++){
-  (function(i){ galleryImgs[i].addEventListener('click', function(){ openLB(i); }); })(g);
+
+// bind clicks
+for(let i=0;i<galleryImgs.length;i++){
+  galleryImgs[i].addEventListener('click', function(){ openLB(i, galleryImgs); });
 }
+for(let i=0;i<accImgs.length;i++){
+  accImgs[i].addEventListener('click', function(){ openLB(i, accImgs); });
+}
+
 lbClose.addEventListener('click', closeLB);
 lb.addEventListener('click', function(e){ if(e.target===lb) closeLB(); });
 lbPrev.addEventListener('click', function(){ moveLB(-1); });
