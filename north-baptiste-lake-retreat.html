@@ -7,136 +7,147 @@
 <meta name="description" content="Escape to North Baptiste Lake Retreat in Maynooth, Ontario. Lakeside charm, cozy comforts, nearby beaches, markets, and year-round nature experiences." />
 <link rel="canonical" href="https://example.com/" />
 
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
 
-<!-- Preload hero -->
-<link rel="preload" as="image" href="hero.webp" imagesrcset="hero.webp 2000w, hero.jpg 2000w" />
+<link rel="preload" as="image" href="hero.jpg" imagesrcset="hero.jpg 2000w" />
 
 <style>
 :root{
-  /* Palette */
   --custard:#DC9F2A; --cyclade:#8399B9; --tennis:#475418;
   --warmwhite:#F7F6F2; --charcoal:#2E2E2E;
-  --faqbg:#FBFAF7; /* lighter than warmwhite for separation */
+  --faqbg:#FBFAF7;
   --maxw:1180px; --radius:16px; --shadow:0 10px 25px rgba(0,0,0,.08);
+  --accH: 360px;
 }
+@media (min-width:1200px){ :root{ --accH: 400px; } }
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;color:var(--charcoal);background:var(--warmwhite);
-  font-family:"Lato",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans";line-height:1.6;
-  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{
+  margin:0; color:var(--charcoal); background:var(--warmwhite);
+  font-family:"Lato",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans";
+  line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden; /* prevent sideways scroll */
+}
+img{max-width:100%; height:auto}
 .section{width:100%}
-.container{max-width:var(--maxw);margin:auto;padding:64px 20px}
-.grid{display:grid;gap:28px}
-@media(min-width:900px){.g-2{grid-template-columns:1.1fr .9fr}}
+.container{max-width:var(--maxw); margin:auto; padding:64px 20px}
+.grid{display:grid; gap:28px}
+@media(min-width:900px){.g-2{grid-template-columns:1.1fr .9fr; align-items:stretch}}
 
- /* NAV (single instance) */
-.nav{position:sticky;top:0;z-index:1000;background:#fff;border-bottom:1px solid rgba(0,0,0,.06);backdrop-filter:saturate(150%) blur(6px)}
-.nav-inner{max-width:var(--maxw);margin:auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{font-family:"Playfair Display",serif;color:var(--tennis);font-weight:700;letter-spacing:.3px;line-height:1.05;font-size:40px}
+.nav{position:sticky; top:0; z-index:1000; background:#fff; border-bottom:1px solid rgba(0,0,0,.06); backdrop-filter:saturate(150%) blur(6px)}
+.nav-inner{max-width:var(--maxw); margin:auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px}
+.brand{font-family:"Playfair Display",serif; color:var(--tennis); font-weight:700; letter-spacing:.3px; line-height:1.05; font-size:40px}
 @media(min-width:1024px){.brand{font-size:48px}}
-.links{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
-.links a{color:var(--charcoal);text-decoration:none;font-weight:700;font-size:14px}
-.cta-nav{padding:10px 16px;border-radius:999px;background:var(--custard);color:#111;box-shadow:var(--shadow)}
-.burger{display:none;background:none;border:0;font-size:22px}
+.links{display:flex; gap:18px; align-items:center; flex-wrap:wrap}
+.links a{color:var(--charcoal); text-decoration:none; font-weight:700; font-size:14px}
+.cta-nav{padding:10px 16px; border-radius:999px; background:var(--custard); color:#111; box-shadow:var(--shadow)}
+.burger{display:none; background:none; border:0; font-size:22px}
 @media(max-width:900px){
-  .links{display:none;position:absolute;left:0;right:0;top:64px;background:#fff;border-bottom:1px solid rgba(0,0,0,.06)}
+  .links{display:none; position:absolute; left:0; right:0; top:64px; background:#fff; border-bottom:1px solid rgba(0,0,0,.06)}
   .links.open{display:block}
-  .links a{display:block;padding:14px 20px;border-top:1px solid rgba(0,0,0,.05)}
-  .links .cta-nav{margin:12px 20px;display:inline-block}
+  .links a{display:block; padding:14px 20px; border-top:1px solid rgba(0,0,0,.05)}
+  .links .cta-nav{margin:12px 20px; display:inline-block}
   .burger{display:block}
 }
 
- /* HERO */
-.hero{position:relative;height:60vh;min-height:440px;overflow:hidden;background:#cbd5e1}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.38),rgba(0,0,0,.08))}
-.hero img{width:100%;height:100%;object-fit:cover}
-.hero-credit{position:absolute;bottom:8px;right:10px;font-size:12px;color:#fff;opacity:.75;z-index:2}
+.hero{position:relative; height:60vh; min-height:440px; overflow:hidden; background:#cbd5e1}
+.hero::after{content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.38), rgba(0,0,0,.08))}
+.hero img{width:100%; height:100%; object-fit:cover}
+.hero-credit{position:absolute; bottom:8px; right:10px; font-size:12px; color:#fff; opacity:.75; z-index:2}
 
-/* Cyclade band */
-.band{background:var(--cyclade);color:#fff;text-align:center;padding:42px 16px}
-.band h1{margin:0;font-family:"Playfair Display",serif;font-weight:700;font-size:52px;line-height:1.15}
+.band{background:var(--cyclade); color:#fff; text-align:center; padding:42px 16px}
+.band h1{margin:0; font-family:"Playfair Display",serif; font-weight:700; font-size:52px; line-height:1.15}
 @media(max-width:900px){.band h1{font-size:40px}}
 
- /* Section themes */
 .sec--warm{background:var(--warmwhite)}
-.sec--cyclade{background:var(--cyclade);color:#fff}
-.sec--tennis{background:var(--tennis);color:var(--warmwhite)}
+.sec--cyclade{background:var(--cyclade); color:#fff}
+.sec--tennis{background:var(--tennis); color:var(--warmwhite)}
 .sec--custard{background:var(--custard)}
 .sec--faq{background:var(--faqbg)}
 .sec--cyclade h2,.sec--cyclade h3,.sec--tennis h2,.sec--tennis h3{color:#fff}
 
- /* Type */
-h2,h3{font-family:"Playfair Display",serif;line-height:1.2;margin:0 0 12px}
-h2{font-size:36px;color:var(--tennis)}
+h2,h3{font-family:"Playfair Display",serif; line-height:1.2; margin:0 0 12px}
+h2{font-size:36px; color:var(--tennis)}
 h3{font-size:24px}
 p{margin:0 0 14px}
 
- /* Placeholders / images */
-.ph{background:#e6ebf1;border:1px dashed rgba(0,0,0,.2);border-radius:var(--radius);display:grid;place-items:center;color:#6b7280;aspect-ratio:16/10}
+.ph{background:#e6ebf1; border:1px dashed rgba(0,0,0,.2); border-radius:var(--radius); display:grid; place-items:center; color:#6b7280; aspect-ratio:16/10}
 .ph.tall{aspect-ratio:4/3}
-img.block{display:block;width:100%;height:auto;border-radius:var(--radius)}
+img.block{display:block; width:100%; height:auto; border-radius:var(--radius)}
 
- /* Feature chips with simple icons */
-.features{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
-.chip{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--charcoal);
-  border:1px solid rgba(0,0,0,.06);padding:10px 16px;border-radius:999px;font-weight:800;font-size:14px;
-  box-shadow:0 2px 6px rgba(0,0,0,.06)}
-.chip svg{width:18px;height:18px;display:block}
+.features{display:flex; flex-wrap:wrap; gap:12px; margin-top:16px}
+.chip{display:inline-flex; align-items:center; gap:10px; background:#fff; color:var(--charcoal);
+  border:1px solid rgba(0,0,0,.06); padding:10px 16px; border-radius:999px; font-weight:800; font-size:14px; box-shadow:0 2px 6px rgba(0,0,0,.06)}
+.chip svg{width:18px; height:18px; display:block}
 
- /* Accommodations carousel */
-.carousel{position:relative}
-.track{display:flex;gap:14px;overflow:auto;scroll-snap-type:x mandatory;padding-bottom:6px}
+.acc-card{background:#ffffff; color:var(--charcoal); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; min-height:var(--accH)}
+.carousel{position:relative; min-height:var(--accH); overflow:hidden;}
+.track{display:flex; gap:14px; overflow:auto; scroll-snap-type:x mandatory; height:100%; padding-bottom:6px}
 .track::-webkit-scrollbar{height:8px}
-.track::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:8px}
-.slide{min-width:66%;scroll-snap-align:center}
+.track::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15); border-radius:8px}
+.slide{min-width:66%; scroll-snap-align:center; height:100%}
 @media(min-width:800px){.slide{min-width:32%}}
-.ctrl{position:absolute;top:50%;transform:translateY(-50%);background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:999px;
-  box-shadow:var(--shadow);width:42px;height:42px;display:grid;place-items:center;cursor:pointer}
-.ctrl:disabled{opacity:.4;cursor:default}
-.ctrl.prev{left:-6px} .ctrl.next{right:-6px}
+.slide img{width:100%; height:100%; object-fit:cover; border-radius:var(--radius)}
+.ctrl{position:absolute; top:50%; transform:translateY(-50%); background:#fff; border:1px solid rgba(0,0,0,.1); border-radius:999px;
+  box-shadow:var(--shadow); width:42px; height:42px; display:grid; place-items:center; cursor:pointer}
+.ctrl:disabled{opacity:.4; cursor:default}
+.ctrl.prev{left:8px} .ctrl.next{right:8px}
 
- /* Gallery (symmetrical grid, neutral white) */
-.gallery{display:grid;gap:14px}
+.gallery{display:grid; gap:14px}
 @media(min-width:1000px){.gallery{grid-template-columns:repeat(5,1fr)}}
 @media(min-width:700px) and (max-width:999px){.gallery{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:699px){.gallery{grid-template-columns:repeat(2,1fr)}}
-.gallery .tile{aspect-ratio:4/3;overflow:hidden;border-radius:12px;background:#e6ebf1}
-.gallery img{width:100%;height:100%;object-fit:cover;display:block}
+.gallery .tile{aspect-ratio:4/3; overflow:hidden; border-radius:12px; background:#e6ebf1; cursor:zoom-in}
+.gallery img{width:100%; height:100%; object-fit:cover; display:block}
 
- /* FAQ rows with + icon */
+.lightbox{position:fixed; inset:0; background:rgba(0,0,0,.92); display:none; align-items:center; justify-content:center; z-index:2000}
+.lightbox.open{display:flex}
+.lightbox img{max-width:92vw; max-height:88vh; border-radius:10px}
+.lightbox .lb-close,.lightbox .lb-prev,.lightbox .lb-next{
+  position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.3);
+  color:#fff; border-radius:999px; width:46px; height:46px; display:grid; place-items:center; font-size:22px; cursor:pointer
+}
+.lightbox .lb-close{top:24px; right:24px; transform:none; width:42px; height:42px}
+.lightbox .lb-prev{left:24px}
+.lightbox .lb-next{right:24px}
+
 .faq-list{border-top:1px solid rgba(0,0,0,.12)}
 .faq-item{border-bottom:1px solid rgba(0,0,0,.12)}
-.faq-q{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0;cursor:pointer;font-weight:800}
-.faq-q .icon{font-size:22px;line-height:1;opacity:.75;transition:transform .25s ease}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
-.faq-a-inner{padding:0 0 18px;color:#3f3f3f}
+.faq-q{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:18px 0; cursor:pointer; font-weight:800}
+.faq-q .icon{font-size:22px; line-height:1; opacity:.75; transition:transform .25s ease}
+.faq-a{max-height:0; overflow:hidden; transition:max-height .35s ease}
+.faq-a-inner{padding:0 0 18px; color:#3f3f3f}
 .faq-item.open .faq-a{max-height:520px}
 .faq-item.open .icon{transform:rotate(45deg)}
 
- /* Footer full-width image + CTA */
-.footer-cta{position:relative;width:100%;min-height:420px;background:#cbd5e1 url('footer-cta.webp') center/cover no-repeat;display:grid;place-items:center;overflow:hidden}
-.footer-cta::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.35)}
-.footer-cta .inner{position:relative;text-align:center;color:#fff;padding:40px 16px}
-.footer-cta h2{margin:0;font-family:"Playfair Display",serif;font-size:44px;color:#fff}
+.footer-cta{position:relative; width:100%; min-height:420px; background:#cbd5e1 url('footer-cta.jpg') center/cover no-repeat; display:grid; place-items:center; overflow:hidden}
+.footer-cta::before{content:""; position:absolute; inset:0; background:rgba(0,0,0,.35)}
+.footer-cta .inner{position:relative; text-align:center; color:#fff; padding:40px 16px}
+.footer-cta h2{margin:0; font-family:"Playfair Display",serif; font-size:44px; color:#fff}
 @media(max-width:900px){.footer-cta h2{font-size:34px}}
-.btn{display:inline-block;padding:12px 18px;border-radius:999px;font-weight:800;text-decoration:none;background:#111;color:#fff;box-shadow:var(--shadow);margin-top:14px}
+.btn{display:inline-block; padding:12px 18px; border-radius:999px; font-weight:800; text-decoration:none; background:#111; color:#fff; box-shadow:var(--shadow); margin-top:14px}
 
-footer{padding:18px 20px;text-align:center;color:#4b5563;background:#fff}
-.small{font-size:13px;opacity:.9}
+footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
+.small{font-size:13px; opacity:.9}
 
-/* Reveal animations */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
-.reveal.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none}}
+/* Reveal animations (progressive enhancement) */
+.reveal{opacity:1; transform:none;}
+.has-js .reveal{opacity:0; transform:translateY(22px);}
+.reveal.in{opacity:1; transform:none;}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1; transform:none}
+}
 </style>
+
+<!-- mark that JS is enabled so reveal can enhance (content still shows if JS fails) -->
+<script>document.documentElement.classList.add('has-js');</script>
 </head>
 <body>
 
-<!-- NAV -->
 <header class="nav" role="navigation" aria-label="Primary">
   <div class="nav-inner">
     <div class="brand">North Baptiste Lake Retreat</div>
@@ -152,21 +163,15 @@ footer{padding:18px 20px;text-align:center;color:#4b5563;background:#fff}
   </div>
 </header>
 
-<!-- HERO -->
 <section class="section hero" role="img" aria-label="Lakeside retreat hero image">
-  <picture>
-    <source srcset="hero.webp" type="image/webp" />
-    <img src="hero.jpg" alt="North Baptiste Lake and dock at sunset" width="2400" height="1350" fetchpriority="high" decoding="async" />
-  </picture>
+  <img src="hero.jpg" alt="North Baptiste Lake and dock at sunset" width="2400" height="1350" fetchpriority="high" decoding="async" />
   <div class="hero-credit">Header Image Placeholder</div>
 </section>
 
-<!-- BAND -->
 <section class="section band">
   <h1>Escape to North Baptiste Lake Retreat in Maynooth, Ontario</h1>
 </section>
 
-<!-- ABOUT -->
 <section id="about" class="section sec--warm">
   <div class="container">
     <div class="grid g-2">
@@ -174,7 +179,6 @@ footer{padding:18px 20px;text-align:center;color:#4b5563;background:#fff}
         <h2>About the Retreat</h2>
         <p>North Baptiste Lake Retreat is nestled on the shores of beautiful Baptiste Lake, between the charming villages of Bancroft and Maynooth, just south of Algonquin Park, making it the perfect halfway escape between Ottawa and Toronto. Surrounded by natural beauty and local charm, guests can explore Maynooth’s antique shops, visit the Saturday Farmers Market, or enjoy swimming at Papineau Beach and Lake St. Peter Provincial Park. Whether you’re here for lakeside relaxation, outdoor adventure, or cozy nights spent playing games and watching movies, our retreat offers the perfect balance of charm, comfort, and nature.</p>
 
-        <!-- Feature chips -->
         <div class="features" role="list" aria-label="Retreat highlights">
           <span class="chip" role="listitem">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"></path></svg>
@@ -189,8 +193,16 @@ footer{padding:18px 20px;text-align:center;color:#4b5563;background:#fff}
             Forest & wildlife
           </span>
           <span class="chip" role="listitem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3c3 4-1 5 0 8 1-2 3-2 4-1 2 2 2 6-4 9-6-3-6-7-4-9 1-1 3-1 4 1 1-3-3-4 0-8z"></path></svg>
-            Firepit • Deck • BBQ
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3c3 4-1 5 0 8 1-2 3-2 4-1 2 2 2 6-4 9-6-3-6-7-4-9 1-1 3-1 4 1 1-3-3-4 0-8z"/></svg>
+            Firepit
+          </span>
+          <span class="chip" role="listitem">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 18h16M4 6h16"/></svg>
+            Deck
+          </span>
+          <span class="chip" role="listitem">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="8" width="16" height="10" rx="2"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+            BBQ
           </span>
         </div>
       </div>
@@ -200,12 +212,11 @@ footer{padding:18px 20px;text-align:center;color:#4b5563;background:#fff}
   </div>
 </section>
 
-<!-- ACCOMMODATIONS -->
 <section id="accommodations" class="section sec--cyclade">
   <div class="container">
     <div class="grid g-2">
-      <article class="reveal" style="background:#ffffff;color:var(--charcoal);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px">
-        <h2 style="color:var(--tennis))">Accommodations</h2>
+      <article class="acc-card reveal">
+        <h2 style="color:var(--cyclade)">Accommodations</h2>
         <h3>Bedrooms</h3>
         <p>Sleeps 8 adults. 3 Queen beds, 2 baths.</p>
         <h3 style="margin-top:16px">Living Space</h3>
@@ -214,13 +225,15 @@ footer{padding:18px 20px;text-align:center;color:#4b5563;background:#fff}
         <p>Fully equipped kitchen, washer/dryer, WiFi, BBQ, games.</p>
       </article>
 
-      <!-- Carousel -->
       <div class="carousel reveal" aria-label="Accommodations gallery">
         <button class="ctrl prev" id="accPrev" aria-label="Previous photo">‹</button>
         <div class="track" id="accTrack">
           <div class="slide"><img class="block" src="acc-1.jpg" alt="Bedroom" loading="lazy" width="1200" height="800" /></div>
           <div class="slide"><img class="block" src="acc-2.jpg" alt="Living area" loading="lazy" width="1200" height="800" /></div>
           <div class="slide"><img class="block" src="acc-3.jpg" alt="Kitchen" loading="lazy" width="1200" height="800" /></div>
+          <div class="slide"><img class="block" src="acc-4.jpg" alt="Bathroom" loading="lazy" width="1200" height="800" /></div>
+          <div class="slide"><img class="block" src="acc-5.jpg" alt="Workspace / desk" loading="lazy" width="1200" height="800" /></div>
+          <div class="slide"><img class="block" src="acc-6.jpg" alt="Cozy detail" loading="lazy" width="1200" height="800" /></div>
         </div>
         <button class="ctrl next" id="accNext" aria-label="Next photo">›</button>
       </div>
@@ -228,7 +241,6 @@ footer{padding:18px 20px;text-align:center;color:#4b5563;background:#fff}
   </div>
 </section>
 
-<!-- OUTDOORS -->
 <section id="outdoors" class="section sec--tennis">
   <div class="container">
     <div class="grid g-2">
@@ -246,12 +258,11 @@ footer{padding:18px 20px;text-align:center;color:#4b5563;background:#fff}
   </div>
 </section>
 
-<!-- GALLERY (neutral white, symmetrical) -->
 <section id="gallery" class="section sec--warm">
   <div class="container">
     <h2 class="reveal">See the Retreat</h2>
     <p class="reveal">Natural beauty at every turn.</p>
-    <div class="gallery" aria-label="Photo gallery">
+    <div class="gallery" aria-label="Photo gallery" id="galleryGrid">
       <div class="tile reveal"><img src="gal-1.jpg" alt="Lake view" loading="lazy" width="1200" height="900" /></div>
       <div class="tile reveal"><img src="gal-2.jpg" alt="Cottage exterior" loading="lazy" width="1200" height="900" /></div>
       <div class="tile reveal"><img src="gal-3.jpg" alt="Bedroom detail" loading="lazy" width="1200" height="900" /></div>
@@ -266,11 +277,9 @@ footer{padding:18px 20px;text-align:center;color:#4b5563;background:#fff}
   </div>
 </section>
 
-<!-- FAQ (lighter background + row style) -->
 <section id="faq" class="section sec--faq">
   <div class="container">
     <h2 class="reveal">Frequently Asked Questions</h2>
-
     <div class="faq-list">
       <div class="faq-item reveal">
         <div class="faq-q">Where is North Baptiste Lake Retreat located? <span class="icon">+</span></div>
@@ -281,42 +290,36 @@ footer{padding:18px 20px;text-align:center;color:#4b5563;background:#fff}
           <p><strong>From Bancroft (20 min):</strong> 62 North for 17 km → left on North Baptiste Lake Road for 9.8 km (keep left at the split) to fire sign #1970, across from Sunrise Road.</p>
         </div></div>
       </div>
-
       <div class="faq-item reveal">
         <div class="faq-q">What activities can guests enjoy at the retreat? <span class="icon">+</span></div>
         <div class="faq-a"><div class="faq-a-inner">
           <p>Swim, canoe, kayak, or paddleboard on Baptiste Lake; visit Papineau Beach or Lake St. Peter Provincial Park for larger sandy beaches. On-site, enjoy projector movie nights, foosball, dart board, yard games, and more. Explore Maynooth’s antique shops or stargaze by the firepit.</p>
         </div></div>
       </div>
-
       <div class="faq-item reveal">
         <div class="faq-q">How many people can the retreat accommodate? <span class="icon">+</span></div>
         <div class="faq-a"><div class="faq-a-inner">
           <p>Up to 8 adults across three bedrooms (each with a queen bed) and two full bathrooms.</p>
         </div></div>
       </div>
-
       <div class="faq-item reveal">
         <div class="faq-q">Is North Baptiste Lake Retreat pet-friendly? <span class="icon">+</span></div>
         <div class="faq-a"><div class="faq-a-inner">
           <p>We love animals, but North Baptiste Lake Retreat is a pet-free space to keep the cottage fresh and comfortable for all guests.</p>
         </div></div>
       </div>
-
       <div class="faq-item reveal">
         <div class="faq-q">What amenities are included with the stay? <span class="icon">+</span></div>
         <div class="faq-a"><div class="faq-a-inner">
           <p>Inside: Wi-Fi, satellite TV, projector TV in games room, and board games. Kitchen essentials plus washer/dryer. Entertainment includes foosball and yard games. Outdoors: deck, firepit, and lake access for swimming and paddling.</p>
         </div></div>
       </div>
-
       <div class="faq-item reveal">
         <div class="faq-q">How do I book North Baptiste Lake Retreat? <span class="icon">+</span></div>
         <div class="faq-a"><div class="faq-a-inner">
           <p>Click the Book Now button below to reserve your dates, or contact us for availability and rates. After confirmation, we’ll share all arrival details.</p>
         </div></div>
       </div>
-
       <div class="faq-item reveal">
         <div class="faq-q">Is the retreat available year-round? <span class="icon">+</span></div>
         <div class="faq-a"><div class="faq-a-inner">
@@ -327,7 +330,6 @@ footer{padding:18px 20px;text-align:center;color:#4b5563;background:#fff}
   </div>
 </section>
 
-<!-- FOOTER CTA -->
 <section id="booking" class="footer-cta" aria-label="Your Lakeside Escape awaits">
   <div class="inner">
     <h2>Your Lakeside Escape awaits</h2>
@@ -339,55 +341,114 @@ footer{padding:18px 20px;text-align:center;color:#4b5563;background:#fff}
   <div class="small">© <span id="year"></span> North Baptiste Lake Retreat — Maynooth, Ontario</div>
 </footer>
 
-<!-- (Optional) FAQ structured data could remain here if you want AEO -->
 <script>
-  // Year
-  document.getElementById('year').textContent = new Date().getFullYear();
+// Year
+var y=document.getElementById('year'); if(y){ y.textContent=new Date().getFullYear(); }
 
-  // Single responsive nav
-  const burger = document.getElementById('burger');
-  const links = document.getElementById('navLinks');
-  burger?.addEventListener('click', () => {
-    const open = links.classList.toggle('open');
+// Nav
+var burger=document.getElementById('burger');
+var links=document.getElementById('navLinks');
+if(burger && links){
+  burger.addEventListener('click', function(){
+    var open=links.classList.toggle('open');
     burger.setAttribute('aria-expanded', String(open));
   });
-  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
-
-  // Reveal-on-scroll
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(!prefersReduced && 'IntersectionObserver' in window){
-    const io = new IntersectionObserver((entries)=>{
-      for(const e of entries){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }
-    }, {threshold:.15});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  } else {
-    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+  var navAs=links.querySelectorAll('a');
+  for(var i=0;i<navAs.length;i++){
+    navAs[i].addEventListener('click', function(){ links.classList.remove('open'); });
   }
+}
 
-  // FAQ accordion (+ rows)
-  document.querySelectorAll('.faq-item .faq-q').forEach(q=>{
-    q.addEventListener('click', ()=> q.parentElement.classList.toggle('open'));
-  });
+// Reveal-on-scroll
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(entries){
+    for(var i=0;i<entries.length;i++){
+      var e=entries[i];
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    }
+  }, {threshold:0.15});
+  var revs=document.querySelectorAll('.reveal');
+  for(var j=0;j<revs.length;j++){ io.observe(revs[j]); }
+} else {
+  var revs2=document.querySelectorAll('.reveal');
+  for(var k=0;k<revs2.length;k++){ revs2[k].classList.add('in'); }
+}
 
-  // Carousel controls
-  const track = document.getElementById('accTrack');
-  const prev = document.getElementById('accPrev');
-  const next = document.getElementById('accNext');
-  function updateCtrl(){
-    prev.disabled = track.scrollLeft <= 0;
-    const max = track.scrollWidth - track.clientWidth - 1;
-    next.disabled = track.scrollLeft >= max;
-  }
-  function scrollByAmt(dir){
-    const amt = Math.min(track.clientWidth, 700) * dir;
-    track.scrollBy({left: amt, behavior: 'smooth'});
-    setTimeout(updateCtrl, 350);
-  }
-  prev?.addEventListener('click', ()=>scrollByAmt(-1));
-  next?.addEventListener('click', ()=>scrollByAmt(1));
-  track?.addEventListener('scroll', updateCtrl, {passive:true});
+// FAQ accordion
+var qs=document.querySelectorAll('.faq-item .faq-q');
+for(var f=0; f<qs.length; f++){
+  qs[f].addEventListener('click', function(){ this.parentElement.classList.toggle('open'); });
+}
+
+// Accommodations carousel
+var track=document.getElementById('accTrack');
+var prev=document.getElementById('accPrev');
+var next=document.getElementById('accNext');
+function updateCtrl(){
+  if(!track || !prev || !next) return;
+  prev.disabled = track.scrollLeft <= 0;
+  var max = track.scrollWidth - track.clientWidth - 1;
+  next.disabled = track.scrollLeft >= max;
+}
+function scrollByAmt(dir){
+  if(!track) return;
+  var amt = Math.min(track.clientWidth, 700) * dir;
+  track.scrollBy({left: amt, behavior: 'smooth'});
+  setTimeout(updateCtrl, 350);
+}
+if(prev) prev.addEventListener('click', function(){ scrollByAmt(-1); });
+if(next) next.addEventListener('click', function(){ scrollByAmt(1); });
+if(track){
+  track.addEventListener('scroll', updateCtrl, {passive:true});
   window.addEventListener('resize', updateCtrl);
   updateCtrl();
+}
+
+// Lightbox
+var galleryImgs = document.querySelectorAll('#galleryGrid img');
+var lbIndex = 0;
+var lb = document.createElement('div');
+lb.className = 'lightbox';
+lb.innerHTML = '<button class="lb-close" aria-label="Close">×</button>\
+<button class="lb-prev" aria-label="Previous">‹</button>\
+<img src="" alt="">\
+<button class="lb-next" aria-label="Next">›</button>';
+document.body.appendChild(lb);
+var lbImg = lb.querySelector('img');
+var lbClose = lb.querySelector('.lb-close');
+var lbPrev = lb.querySelector('.lb-prev');
+var lbNext = lb.querySelector('.lb-next');
+
+function openLB(i){
+  lbIndex = i;
+  var src = galleryImgs[lbIndex].getAttribute('src');
+  var alt = galleryImgs[lbIndex].getAttribute('alt') || '';
+  lbImg.src = src; lbImg.alt = alt;
+  lb.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLB(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+function moveLB(delta){
+  lbIndex = (lbIndex + delta + galleryImgs.length) % galleryImgs.length;
+  var src = galleryImgs[lbIndex].getAttribute('src');
+  var alt = galleryImgs[lbIndex].getAttribute('alt') || '';
+  lbImg.src = src; lbImg.alt = alt;
+}
+for(var g=0; g<galleryImgs.length; g++){
+  (function(i){
+    galleryImgs[i].addEventListener('click', function(){ openLB(i); });
+  })(g);
+}
+lbClose.addEventListener('click', closeLB);
+lb.addEventListener('click', function(e){ if(e.target===lb) closeLB(); });
+lbPrev.addEventListener('click', function(){ moveLB(-1); });
+lbNext.addEventListener('click', function(){ moveLB(1); });
+window.addEventListener('keydown', function(e){
+  if(!lb.classList.contains('open')) return;
+  if(e.key==='Escape') closeLB();
+  if(e.key==='ArrowRight') moveLB(1);
+  if(e.key==='ArrowLeft') moveLB(-1);
+});
 </script>
 </body>
 </html>
