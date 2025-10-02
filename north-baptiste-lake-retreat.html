@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>North Baptiste Lake Retreat | Maynooth, Ontario</title>
 <meta name="description" content="Escape to North Baptiste Lake Retreat in Maynooth, Ontario. Lakeside charm, cozy comforts, nearby beaches, markets, and year-round nature experiences." />
-<link rel="canonical" href="https://example.com/" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,12 +15,15 @@
 <style>
 :root{
   --custard:#DC9F2A; --cyclade:#8399B9; --tennis:#475418;
-  --warmwhite:#F7F6F2; --charcoal:#2E2E2E;
-  --faqbg:#FBFAF7;
+  --warmwhite:#F7F6F2; --charcoal:#2E2E2E; --faqbg:#FBFAF7;
   --maxw:1180px; --radius:16px; --shadow:0 10px 25px rgba(0,0,0,.08);
-  --accH: 360px;
+  --accH:360px;
+
+  /* About chip sizing */
+  --chipH:48px;        /* set pill height here */
+  --icon:18px;         /* icon size */
 }
-@media (min-width:1200px){ :root{ --accH: 400px; } }
+@media(min-width:1200px){ :root{ --accH:400px; } }
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -37,7 +39,7 @@ img{max-width:100%; height:auto}
 .grid{display:grid; gap:28px}
 @media(min-width:900px){
   .g-2{grid-template-columns:1.1fr .9fr; align-items:stretch}
-  .g-2-accom{grid-template-columns:1fr 1.2fr; align-items:stretch} /* wider images on accommodations */
+  .g-2-accom{grid-template-columns:1fr 1.2fr; align-items:stretch}
 }
 
 .nav{position:sticky; top:0; z-index:1000; background:#fff; border-bottom:1px solid rgba(0,0,0,.06); backdrop-filter:saturate(150%) blur(6px)}
@@ -68,7 +70,6 @@ img{max-width:100%; height:auto}
 .sec--warm{background:var(--warmwhite)}
 .sec--cyclade{background:var(--cyclade); color:#fff}
 .sec--tennis{background:var(--tennis); color:var(--warmwhite)}
-.sec--custard{background:var(--custard)}
 .sec--faq{background:var(--faqbg)}
 .sec--cyclade h2,.sec--cyclade h3,.sec--tennis h2,.sec--tennis h3{color:#fff}
 
@@ -76,24 +77,44 @@ h2,h3{font-family:"Playfair Display",serif; line-height:1.2; margin:0 0 12px}
 h2{font-size:36px; color:var(--tennis)}
 h3{font-size:24px}
 p{margin:0 0 14px}
-
-.ph{background:#e6ebf1; border:1px dashed rgba(0,0,0,.2); border-radius:var(--radius); display:grid; place-items:center; color:#6b7280; aspect-ratio:16/10}
-.ph.tall{aspect-ratio:4/3}
 img.block{display:block; width:100%; height:auto; border-radius:var(--radius)}
 
-.features{display:flex; flex-wrap:wrap; gap:12px; margin-top:16px}
-.chip{display:inline-flex; align-items:center; gap:10px; background:#fff; color:var(--charcoal);
-  border:1px solid rgba(0,0,0,.06); padding:10px 16px; border-radius:999px; font-weight:800; font-size:14px; box-shadow:0 2px 6px rgba(0,0,0,.06)}
-.chip svg{width:18px; height:18px; display:block}
+/* ---------- ABOUT FEATURES: identical pill size ---------- */
+#about .features{
+  display:grid;
+  gap:12px;
+  grid-template-columns:repeat(2,1fr);
+  grid-auto-rows:var(--chipH);         /* fixed row height */
+}
+@media(min-width:700px){ #about .features{ grid-template-columns:repeat(3,1fr); } }
+@media(min-width:1000px){ #about .features{ grid-template-columns:repeat(5,1fr); } }
 
-/* Accommodations */
+#about .features .chip{
+  box-sizing:border-box;
+  width:100%;
+  height:var(--chipH);
+  min-height:var(--chipH);
+  padding:0 16px;                      /* horizontal only so height is fixed */
+  display:flex; align-items:center; justify-content:center;
+  gap:10px;
+  border-radius:999px;
+  background:#fff; color:var(--charcoal);
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 2px 6px rgba(0,0,0,.06);
+  font-weight:800; font-size:14px; line-height:1; text-align:center; white-space:nowrap;
+}
+#about .features .chip svg{
+  width:var(--icon); height:var(--icon); flex:0 0 var(--icon); display:block;
+}
+#about .features .chip *{ margin:0; line-height:1; } /* ensure no inner margins */
+
+/* ---------- ACCOMMODATIONS ---------- */
 .acc-card{background:#ffffff; color:var(--charcoal); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; min-height:var(--accH)}
-.acc-card h2{color:var(--cyclade)}
-.acc-card h3{color:var(--charcoal)}
+.acc-card h2{color:var(--cyclade)} .acc-card h3{color:var(--charcoal)}
 .btn{display:inline-block; padding:12px 18px; border-radius:999px; font-weight:800; text-decoration:none; background:#111; color:#fff; box-shadow:var(--shadow); margin-top:14px}
 .btn-custard{background:var(--custard); color:#111}
 
-/* Carousel (clickable to lightbox) */
+/* Carousel */
 .carousel{position:relative; min-height:var(--accH); overflow:hidden;}
 .track{display:flex; gap:14px; overflow:auto; scroll-snap-type:x mandatory; height:100%; padding-bottom:6px}
 .track::-webkit-scrollbar{height:8px}
@@ -101,12 +122,11 @@ img.block{display:block; width:100%; height:auto; border-radius:var(--radius)}
 .slide{min-width:70%; scroll-snap-align:center; height:100%}
 @media(min-width:800px){.slide{min-width:36%}}
 .slide img{width:100%; height:100%; object-fit:cover; border-radius:var(--radius); cursor:zoom-in}
-.ctrl{position:absolute; top:50%; transform:translateY(-50%); background:#fff; border:1px solid rgba(0,0,0,.1); border-radius:999px;
-  box-shadow:var(--shadow); width:42px; height:42px; display:grid; place-items:center; cursor:pointer}
+.ctrl{position:absolute; top:50%; transform:translateY(-50%); background:#fff; border:1px solid rgba(0,0,0,.1); border-radius:999px; box-shadow:var(--shadow); width:42px; height:42px; display:grid; place-items:center; cursor:pointer}
 .ctrl:disabled{opacity:.4; cursor:default}
 .ctrl.prev{left:8px} .ctrl.next{right:8px}
 
-/* Gallery – 4 columns x 3 rows on desktop */
+/* Gallery */
 .gallery{display:grid; gap:14px}
 @media(min-width:1000px){.gallery{grid-template-columns:repeat(4,1fr)}}
 @media(min-width:700px) and (max-width:999px){.gallery{grid-template-columns:repeat(3,1fr)}}
@@ -123,8 +143,7 @@ img.block{display:block; width:100%; height:auto; border-radius:var(--radius)}
   color:#fff; border-radius:999px; width:46px; height:46px; display:grid; place-items:center; font-size:22px; cursor:pointer
 }
 .lightbox .lb-close{top:24px; right:24px; transform:none; width:42px; height:42px}
-.lightbox .lb-prev{left:24px}
-.lightbox .lb-next{right:24px}
+.lightbox .lb-prev{left:24px} .lightbox .lb-next{right:24px}
 
 /* FAQ */
 .faq-list{border-top:1px solid rgba(0,0,0,.12)}
@@ -145,14 +164,11 @@ img.block{display:block; width:100%; height:auto; border-radius:var(--radius)}
 footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
 .small{font-size:13px; opacity:.9}
 
-/* Reveal (progressive enhancement) */
+/* Reveal */
 .reveal{opacity:1; transform:none;}
 .has-js .reveal{opacity:0; transform:translateY(22px);}
 .reveal.in{opacity:1; transform:none;}
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .reveal{opacity:1; transform:none}
-}
+@media(prefers-reduced-motion:reduce){ html{scroll-behavior:auto} .reveal{opacity:1; transform:none} }
 </style>
 
 <script>document.documentElement.classList.add('has-js');</script>
@@ -191,55 +207,56 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
         <h2>About the Retreat</h2>
         <p>North Baptiste Lake Retreat is nestled on the shores of beautiful Baptiste Lake, between the charming villages of Bancroft and Maynooth, just south of Algonquin Park, making it the perfect halfway escape between Ottawa and Toronto. Surrounded by natural beauty and local charm, guests can explore Maynooth’s antique shops, visit the Saturday Farmers Market, or enjoy swimming at Papineau Beach and Lake St. Peter Provincial Park. Whether you’re here for lakeside relaxation, outdoor adventure, or cozy nights spent playing games and watching movies, our retreat offers the perfect balance of charm, comfort, and nature.</p>
 
-        <!-- Feature chips with icons -->
         <div class="features" role="list" aria-label="Retreat highlights">
-          <span class="chip" role="listitem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M2 15c3 0 3-2 6-2s3 2 6 2 3-2 6-2 3 2 6 2" />
-            </svg>
+          <span class="chip" role="listitem" title="Lakeside tranquility">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 15c3 0 3-2 6-2s3 2 6 2 3-2 6-2 3 2 6 2"/></svg>
             Lakeside tranquility
           </span>
-          <span class="chip" role="listitem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M3 10.5L12 3l9 7.5" /><path d="M5 10v10h14V10" />
-            </svg>
-            Cozy yet modern comforts
+          <span class="chip" role="listitem" title="Cozy &amp; modern">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 10v10h14V10"/></svg>
+            Cozy &amp; modern
           </span>
-          <span class="chip" role="listitem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M12 2l4 6h-3l3 4h-3l4 6H7l4-6H8l3-4H8l4-6z" /><path d="M12 22v-4" />
-            </svg>
-            Forest & wildlife
+          <span class="chip" role="listitem" title="Forest &amp; wildlife">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l4 6h-3l3 4h-3l4 6H7l4-6H8l3-4H8l4-6z"/><path d="M12 22v-4"/></svg>
+            Forest &amp; wildlife
           </span>
           <span class="chip" role="listitem" title="Firepit">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M12 2c2 3-1 4 0 7 1-2 3-2 4-1 2 2 2 6-4 8-6-2-6-6-4-8 1-1 3-1 4 1z"/>
-              <ellipse cx="12" cy="20" rx="7" ry="2"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c2 3-1 4 0 7 1-2 3-2 4-1 2 2 2 6-4 8-6-2-6-6-4-8 1-1 3-1 4 1z"/><ellipse cx="12" cy="20" rx="7" ry="2"/></svg>
             Firepit
           </span>
           <span class="chip" role="listitem" title="Deck">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M3 7h18M3 12h18M3 17h18"/>
-              <path d="M6 7v10M12 7v10M18 7v10"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h18"/><path d="M6 7v10M12 7v10M18 7v10"/></svg>
             Deck
           </span>
           <span class="chip" role="listitem" title="BBQ">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M5 9h14a7 7 0 1 1-14 0Z"/><path d="M12 16v3"/><path d="M7 19h10"/><path d="M9 6s.5-2 3-2 3 2 3 2"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 9h14a7 7 0 1 1-14 0Z"/><path d="M12 16v3"/><path d="M7 19h10"/><path d="M9 6s.5-2 3-2 3 2 3 2"/></svg>
             BBQ
+          </span>
+          <span class="chip" role="listitem" title="Fishing">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v7a4 4 0 0 0 8 0V7"/><path d="M14 12c-3 0-6 2-8 4 2 2 5 4 8 4s6-2 8-4c-2-2-5-4-8-4z"/><circle cx="18" cy="12" r="1"/></svg>
+            Fishing
+          </span>
+          <span class="chip" role="listitem" title="Swimming">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="6" r="2"/><path d="M2 16c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"/><path d="M5 12l4-2 3 1 3 2"/></svg>
+            Swimming
+          </span>
+          <span class="chip" role="listitem" title="Snowmobiling">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 16h6l4-3 4 1 3 2"/><path d="M2 19h20"/><circle cx="9" cy="16" r="1.5"/><circle cx="18" cy="16" r="1.5"/></svg>
+            Snowmobiling
+          </span>
+          <span class="chip" role="listitem" title="Canoeing">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 15c4 3 14 3 18 0" />
+              <path d="M4 14c3.5-3 12.5-3 16 0" />
+              <path d="M6 14h12" stroke-linecap="round"/>
+            </svg>
+            Canoeing
           </span>
         </div>
       </div>
 
-      <!-- About image -->
       <figure class="reveal">
-        <img class="block"
-             src="about.jpg"
-             alt="Baptiste Lake view from the retreat deck"
-             width="1200" height="900" loading="lazy" />
+        <img class="block" src="about.jpg" alt="Baptiste Lake view from the retreat deck" width="1200" height="900" loading="lazy" />
       </figure>
     </div>
   </div>
@@ -257,10 +274,9 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
         <p>Cozy seating, lake views, fireplace, desk, smart TV.</p>
         <h3 style="margin-top:16px">Kitchen &amp; Amenities</h3>
         <p>Fully equipped kitchen, washer/dryer, WiFi, BBQ, games.</p>
-        <a href="#booking" class="btn btn-custard" aria-label="Book your retreat">Book your retreat</a>
+        <a href="#booking" class="btn btn-custard">Book your retreat</a>
       </article>
 
-      <!-- Wider, clickable carousel -->
       <div class="carousel reveal" aria-label="Accommodations gallery">
         <button class="ctrl prev" id="accPrev" aria-label="Previous photo">‹</button>
         <div class="track" id="accTrack">
@@ -297,7 +313,7 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
   </div>
 </section>
 
-<!-- GALLERY (4x3 on desktop) -->
+<!-- GALLERY -->
 <section id="gallery" class="section sec--warm">
   <div class="container">
     <h2 class="reveal">See the Retreat</h2>
@@ -315,6 +331,14 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
       <div class="tile reveal"><img src="gal-10.jpg" alt="Deck with lake view and seating" loading="lazy" width="1200" height="900" /></div>
       <div class="tile reveal"><img src="gal-11.jpg" alt="Covered patio with fire table" loading="lazy" width="1200" height="900" /></div>
       <div class="tile reveal"><img src="gal-12.jpg" alt="Back exterior of cottage with raised deck" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-13.jpg" alt="Bedroom detail with soft linens" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-14.jpg" alt="Cozy seating area by large windows" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-15.jpg" alt="Morning light on the dock" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-16.jpg" alt="Pathway through trees toward the lake" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-17.jpg" alt="Games room with projector setup" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-18.jpg" alt="Foosball and family game night" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-19.jpg" alt="Firepit gathering under the stars" loading="lazy" width="1200" height="900" /></div>
+      <div class="tile reveal"><img src="gal-20.jpg" alt="Sunset over Baptiste Lake" loading="lazy" width="1200" height="900" /></div>
     </div>
   </div>
 </section>
@@ -333,36 +357,42 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
           <p><strong>From Bancroft (20 min):</strong> 62 North for 17 km → left on North Baptiste Lake Road for 9.8 km (keep left at the split) to fire sign #1970, across from Sunrise Road.</p>
         </div></div>
       </div>
+
       <div class="faq-item reveal">
         <div class="faq-q">What activities can guests enjoy at the retreat? <span class="icon">+</span></div>
         <div class="faq-a"><div class="faq-a-inner">
           <p>Swim, canoe, kayak, or paddleboard on Baptiste Lake; visit Papineau Beach or Lake St. Peter Provincial Park for larger sandy beaches. On-site, enjoy projector movie nights, foosball, dart board, yard games, and more. Explore Maynooth’s antique shops or stargaze by the firepit.</p>
         </div></div>
       </div>
+
       <div class="faq-item reveal">
         <div class="faq-q">How many people can the retreat accommodate? <span class="icon">+</span></div>
         <div class="faq-a"><div class="faq-a-inner">
           <p>Up to 8 adults across three bedrooms (each with a queen bed) and two full bathrooms.</p>
         </div></div>
       </div>
+
       <div class="faq-item reveal">
         <div class="faq-q">Is North Baptiste Lake Retreat pet-friendly? <span class="icon">+</span></div>
         <div class="faq-a"><div class="faq-a-inner">
           <p>We love animals, but North Baptiste Lake Retreat is a pet-free space to keep the cottage fresh and comfortable for all guests.</p>
         </div></div>
       </div>
+
       <div class="faq-item reveal">
         <div class="faq-q">What amenities are included with the stay? <span class="icon">+</span></div>
         <div class="faq-a"><div class="faq-a-inner">
           <p>Inside: Wi-Fi, satellite TV, projector TV in games room, and board games. Kitchen essentials plus washer/dryer. Entertainment includes foosball and yard games. Outdoors: deck, firepit, and lake access for swimming and paddling.</p>
         </div></div>
       </div>
+
       <div class="faq-item reveal">
         <div class="faq-q">How do I book North Baptiste Lake Retreat? <span class="icon">+</span></div>
         <div class="faq-a"><div class="faq-a-inner">
           <p>Click the Book Now button below to reserve your dates, or contact us for availability and rates. After confirmation, we’ll share all arrival details.</p>
         </div></div>
       </div>
+
       <div class="faq-item reveal">
         <div class="faq-q">Is the retreat available year-round? <span class="icon">+</span></div>
         <div class="faq-a"><div class="faq-a-inner">
@@ -403,104 +433,45 @@ if(burger && links){
   }
 }
 
-// Reveal-on-scroll
+// Reveal
 if('IntersectionObserver' in window){
   var io=new IntersectionObserver(function(entries){
-    for(var i=0;i<entries.length;i++){
-      var e=entries[i];
-      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-    }
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
   }, {threshold:0.15});
-  var revs=document.querySelectorAll('.reveal');
-  for(var j=0;j<revs.length;j++){ io.observe(revs[j]); }
-} else {
-  var revs2=document.querySelectorAll('.reveal');
-  for(var k=0;k<revs2.length;k++){ revs2[k].classList.add('in'); }
-}
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+}else{ document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); }); }
 
-// FAQ accordion
-var qs=document.querySelectorAll('.faq-item .faq-q');
-for(var f=0; f<qs.length; f++){
-  qs[f].addEventListener('click', function(){ this.parentElement.classList.toggle('open'); });
-}
+// FAQ
+document.querySelectorAll('.faq-item .faq-q').forEach(function(q){
+  q.addEventListener('click', function(){ q.parentElement.classList.toggle('open'); });
+});
 
-// Accommodations carousel
-var track=document.getElementById('accTrack');
-var prev=document.getElementById('accPrev');
-var next=document.getElementById('accNext');
-function updateCtrl(){
-  if(!track || !prev || !next) return;
-  prev.disabled = track.scrollLeft <= 0;
-  var max = track.scrollWidth - track.clientWidth - 1;
-  next.disabled = track.scrollLeft >= max;
-}
-function scrollByAmt(dir){
-  if(!track) return;
-  var amt = Math.min(track.clientWidth, 700) * dir;
-  track.scrollBy({left: amt, behavior: 'smooth'});
-  setTimeout(updateCtrl, 350);
-}
-if(prev) prev.addEventListener('click', function(){ scrollByAmt(-1); });
-if(next) next.addEventListener('click', function(){ scrollByAmt(1); });
-if(track){
-  track.addEventListener('scroll', updateCtrl, {passive:true});
-  window.addEventListener('resize', updateCtrl);
-  updateCtrl();
-}
+// Carousel
+var track=document.getElementById('accTrack'), prev=document.getElementById('accPrev'), next=document.getElementById('accNext');
+function updateCtrl(){ if(!track||!prev||!next) return; prev.disabled = track.scrollLeft<=0; var max=track.scrollWidth-track.clientWidth-1; next.disabled = track.scrollLeft>=max; }
+function scrollAmt(dir){ if(!track) return; var amt=Math.min(track.clientWidth,700)*dir; track.scrollBy({left:amt,behavior:'smooth'}); setTimeout(updateCtrl,350); }
+if(prev) prev.addEventListener('click', function(){ scrollAmt(-1); });
+if(next) next.addEventListener('click', function(){ scrollAmt(1); });
+if(track){ track.addEventListener('scroll', updateCtrl, {passive:true}); window.addEventListener('resize', updateCtrl); updateCtrl(); }
 
-// Lightbox (gallery + accommodations)
-var galleryImgs = document.querySelectorAll('#galleryGrid img');
-var accImgs = document.querySelectorAll('#accTrack img');
-var lbIndex = 0;
-var currentSet = []; // NodeList of current collection
-
-var lb = document.createElement('div');
-lb.className = 'lightbox';
-lb.innerHTML = '<button class="lb-close" aria-label="Close">×</button>\
-<button class="lb-prev" aria-label="Previous">‹</button>\
-<img src="" alt="">\
-<button class="lb-next" aria-label="Next">›</button>';
+// Lightbox
+var galleryImgs=document.querySelectorAll('#galleryGrid img');
+var accImgs=document.querySelectorAll('#accTrack img');
+var lb=document.createElement('div'); lb.className='lightbox';
+lb.innerHTML='<button class="lb-close" aria-label="Close">×</button><button class="lb-prev" aria-label="Previous">‹</button><img alt=""><button class="lb-next" aria-label="Next">›</button>';
 document.body.appendChild(lb);
-var lbImg = lb.querySelector('img');
-var lbClose = lb.querySelector('.lb-close');
-var lbPrev = lb.querySelector('.lb-prev');
-var lbNext = lb.querySelector('.lb-next');
-
-function openLB(i, set){
-  currentSet = set;
-  lbIndex = i;
-  var src = currentSet[lbIndex].getAttribute('src');
-  var alt = currentSet[lbIndex].getAttribute('alt') || '';
-  lbImg.src = src; lbImg.alt = alt;
-  lb.classList.add('open');
-  document.body.style.overflow='hidden';
-}
+var lbImg=lb.querySelector('img'), lbClose=lb.querySelector('.lb-close'), lbPrev=lb.querySelector('.lb-prev'), lbNext=lb.querySelector('.lb-next');
+var set=[], idx=0;
+function openLB(i, s){ set=s; idx=i; var el=set[idx]; lbImg.src=el.getAttribute('src'); lbImg.alt=el.getAttribute('alt')||''; lb.classList.add('open'); document.body.style.overflow='hidden'; }
 function closeLB(){ lb.classList.remove('open'); document.body.style.overflow=''; }
-function moveLB(delta){
-  lbIndex = (lbIndex + delta + currentSet.length) % currentSet.length;
-  var src = currentSet[lbIndex].getAttribute('src');
-  var alt = currentSet[lbIndex].getAttribute('alt') || '';
-  lbImg.src = src; lbImg.alt = alt;
-}
-
-// bind clicks
-for(let i=0;i<galleryImgs.length;i++){
-  galleryImgs[i].addEventListener('click', function(){ openLB(i, galleryImgs); });
-}
-for(let i=0;i<accImgs.length;i++){
-  accImgs[i].addEventListener('click', function(){ openLB(i, accImgs); });
-}
-
+function move(n){ idx=(idx+n+set.length)%set.length; var el=set[idx]; lbImg.src=el.getAttribute('src'); lbImg.alt=el.getAttribute('alt')||''; }
+galleryImgs.forEach(function(im,i){ im.addEventListener('click', function(){ openLB(i, galleryImgs); }); });
+accImgs.forEach(function(im,i){ im.addEventListener('click', function(){ openLB(i, accImgs); }); });
 lbClose.addEventListener('click', closeLB);
 lb.addEventListener('click', function(e){ if(e.target===lb) closeLB(); });
-lbPrev.addEventListener('click', function(){ moveLB(-1); });
-lbNext.addEventListener('click', function(){ moveLB(1); });
-window.addEventListener('keydown', function(e){
-  if(!lb.classList.contains('open')) return;
-  if(e.key==='Escape') closeLB();
-  if(e.key==='ArrowRight') moveLB(1);
-  if(e.key==='ArrowLeft') moveLB(-1);
-});
+lbPrev.addEventListener('click', function(){ move(-1); });
+lbNext.addEventListener('click', function(){ move(1); });
+window.addEventListener('keydown', function(e){ if(!lb.classList.contains('open')) return; if(e.key==='Escape') closeLB(); if(e.key==='ArrowRight') move(1); if(e.key==='ArrowLeft') move(-1); });
 </script>
 </body>
 </html>
