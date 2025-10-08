@@ -445,7 +445,6 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
 </div>
 </div>
 </section>
-
 <!-- FOOTER CTA -->
 <section aria-label="Your Lakeside Escape awaits" class="footer-cta" id="booking">
 <div class="inner">
@@ -515,47 +514,67 @@ lbNext.addEventListener('click', function(){ move(1); });
 window.addEventListener('keydown', function(e){ if(!lb.classList.contains('open')) return; if(e.key==='Escape') closeLB(); if(e.key==='ArrowRight') move(1); if(e.key==='ArrowLeft') move(-1); });
 </script>
 
+
 <script>
 /*
-  Google Sheets → CSV → FullCalendar
-  1) In your Google Sheet, have columns: title, start, end (YYYY-MM-DD), status (optional: "Booked").
-  2) File → Share → Anyone with link (Viewer).
-  3) File → Publish to the web → Sheet (tab) → CSV, copy URL and paste below as SHEET_CSV_URL.
+  Google Sheets (Publish to web as HTML) → FullCalendar
+  Uses DOMParser to read the first table on the published page.
+  Expected headers (case-insensitive): Title | start | end | Status
+  Date format: YYYY-MM-DD; end is exclusive.
 */
 document.addEventListener('DOMContentLoaded', function () {
   var calEl = document.getElementById('availability-calendar');
   if (!calEl) return;
 
-  var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/REPLACE_WITH_ID/pub?gid=0&single=1Qf3FQnPdysMZGS5mMWBDH7Nzvy63D_BGp8gX7YpKoSE&output=csv'; // <-- paste your published CSV URL
+  var PUBHTML_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSehGrhheGNeAMROLcAVKPL7eBG5FRAUmkUkhQ4fZxGfmPNMIWgr_XCRQreEqJWg0UwyzaIj_LRSbeT/pubhtml';
 
-  function csvToEvents(csvText) {
-    const lines = csvText.split(/\r?\n/).filter(Boolean);
-    if (lines.length === 0) return [];
-    const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
-    const idxTitle = headers.indexOf('title');
-    const idxStart = headers.indexOf('start');
-    const idxEnd   = headers.indexOf('end');
-    const idxStatus= headers.indexOf('status');
+  function htmlTableToEvents(doc) {
+    // Look for the first table on the page
+    var table = doc.querySelector('table');
+    if (!table) return [];
+    var rows = Array.from(table.querySelectorAll('tr'));
+    if (!rows.length) return [];
 
-    const events = [];
-    for (let i = 1; i < lines.length; i++) {
-      // naive CSV split (works if you avoid commas inside fields; otherwise use a CSV library)
-      const cols = lines[i].split(',').map(c => c.trim());
-      const title = (idxTitle >= 0 ? cols[idxTitle] : 'Booked') || 'Booked';
-      const start = (idxStart >= 0 ? cols[idxStart] : '');
-      let end     = (idxEnd   >= 0 ? cols[idxEnd]   : '');
-      const status= (idxStatus>= 0 ? cols[idxStatus]: '');
+    // Find header row (first row containing th or first tr)
+    var headerCells = rows[0].querySelectorAll('th,td');
+    var headers = Array.from(headerCells).map(c => (c.textContent || '').trim().toLowerCase());
+    var idxTitle  = headers.indexOf('title');
+    var idxStart  = headers.indexOf('start');
+    var idxEnd    = headers.indexOf('end');
+    var idxStatus = headers.indexOf('status');
+
+    var events = [];
+    for (var i = 1; i < rows.length; i++) {
+      var cells = rows[i].querySelectorAll('td');
+      if (!cells || !cells.length) continue;
+      function get(idx) { return idx >= 0 && idx < cells.length ? (cells[idx].textContent || '').trim() : ''; }
+      var title  = get(idxTitle);
+      var start  = get(idxStart);
+      var end    = get(idxEnd);
+      var status = get(idxStatus);
 
       if (!start) continue;
-      // If end missing, make it a single-night exclusive end by adding 1 day
+      // normalize date strings
+      function norm(d) {
+        // try to parse date as YYYY-MM-DD or localized date
+        var iso = d.match(/\d{4}-\d{2}-\d{2}/);
+        if (iso) return iso[0];
+        var dt = new Date(d);
+        if (!isNaN(dt)) return dt.toISOString().slice(0,10);
+        return '';
+      }
+      start = norm(start);
+      end   = norm(end);
+
+      if (!start) continue;
       if (!end) {
-        const d = new Date(start + 'T00:00:00');
-        d.setDate(d.getDate() + 1);
-        end = d.toISOString().slice(0,10);
+        var tmp = new Date(start + 'T00:00:00');
+        tmp.setDate(tmp.getDate() + 1);
+        end = tmp.toISOString().slice(0,10);
       }
 
       events.push({
-        title: status && status.length ? status : title,
+        title: (status || title || 'Booked'),
         start: start,
         end: end
       });
@@ -563,32 +582,39 @@ document.addEventListener('DOMContentLoaded', function () {
     return events;
   }
 
-  fetch(SHEET_CSV_URL, { cache: 'no-store' })
-    .then(r => r.text())
-    .then(csv => {
-      const events = csvToEvents(csv);
-      const calendar = new FullCalendar.Calendar(calEl, {
-        initialView: 'dayGridMonth',
-        height: 'auto',
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: ''
-        },
-        timeZone: 'America/Toronto',
-        navLinks: false,
-        selectable: false,
-        events: events
-      });
-      calendar.render();
+  function renderCalendar(events) {
+    var calendar = new FullCalendar.Calendar(calEl, {
+      initialView: 'dayGridMonth',
+      height: 'auto',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: ''
+      },
+      timeZone: 'America/Toronto',
+      navLinks: false,
+      selectable: false,
+      events: events
+    });
+    calendar.render();
+  }
+
+  fetch(PUBHTML_URL, { cache: 'no-store' })
+    .then(function(res) { return res.text(); })
+    .then(function(html) {
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(html, 'text/html');
+      var events = htmlTableToEvents(doc);
+      if (!events.length) console.warn('No events parsed from published HTML.');
+      renderCalendar(events);
     })
-    .catch(err => {
-      console.error('Failed to load availability CSV:', err);
-      const fallback = document.createElement('div');
-      fallback.style.color = '#b00020';
-      fallback.style.marginTop = '12px';
-      fallback.textContent = 'Availability temporarily unavailable. Please try again later or email us to confirm dates.';
-      calEl.appendChild(fallback);
+    .catch(function(err) {
+      console.error('Failed to load published HTML:', err);
+      var msg = document.createElement('div');
+      msg.style.color = '#b00020';
+      msg.style.marginTop = '12px';
+      msg.textContent = 'Availability temporarily unavailable. Please email us to confirm dates.';
+      calEl.appendChild(msg);
     });
 });
 </script>
