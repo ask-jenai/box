@@ -201,22 +201,61 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
 }s
 </style>
 <script>document.documentElement.classList.add('has-js');</script>
-<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet"/><script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script><style>
-/* Availability calendar styling */
+<style>
+/* --- Booking Modal --- */
+.booking-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,.45);
+  display: none; align-items: center; justify-content: center; z-index: 9998;
+}
+.booking-modal {
+  width: min(720px, 92vw); background: #fff; border-radius: var(--radius, 16px);
+  box-shadow: var(--shadow, 0 20px 60px rgba(0,0,0,.20)); overflow: hidden;
+}
+.booking-head {
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 14px 18px; background: var(--almond, #F7EFE7);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.booking-head h3 { margin: 0; font-size: 1.2rem; }
+.booking-close {
+  appearance:none; border:0; background: transparent; font-size: 1.6rem; line-height:1;
+  cursor: pointer; padding: 4px 8px;
+}
+.booking-body { padding: 18px; }
+#booking-form label { display:flex; flex-direction:column; gap:6px; font-weight:600; }
+#booking-form input, #booking-form textarea, #booking-form select {
+  border:1px solid rgba(0,0,0,.12); border-radius: var(--radius,12px);
+  padding:12px 14px; font:inherit; background:#fff;
+}
+#booking-form .grid { display:grid; gap:16px; grid-template-columns: 1fr 1fr; }
+#booking-form .grid .span-2 { grid-column: 1 / -1; }
+#booking-form .actions { margin-top: 14px; display:flex; gap:12px; flex-wrap:wrap; }
+.btn { display:inline-block; padding:10px 16px; border-radius: var(--radius,12px); border:1px solid transparent; cursor:pointer; }
+.btn-custard { background: var(--honeycomb, #E5A657); color:#2a1f1b; font-weight:700; }
+#bf-error { color:#b00020; display:none; margin-top:8px; }
+#bf-success { display:none; margin-top:12px; color:#0a7f36; font-weight:600; }
+
+@media (max-width: 640px) {
+  #booking-form .grid { grid-template-columns: 1fr; }
+}
+</style><link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet"/><script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script><style>
+#availability .container { padding-top: 48px; padding-bottom: 48px; }
 #availability-calendar {
-  max-width: 1100px;
+  max-width: var(--maxw, 1100px);
   margin: 24px auto 0;
   background: #fff;
   border-radius: var(--radius, 16px);
   box-shadow: var(--shadow, 0 10px 30px rgba(0,0,0,.08));
   padding: 16px;
 }
-.fc .fc-daygrid-event {
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-#availability .container { padding-top: 48px; padding-bottom: 48px; }
+.fc .fc-daygrid-event { border-radius: 10px; font-weight: 700; font-size: 0.9rem; border: 0; }
+.fc-event-booked { background: #e2b203; }
+.fc-event-pending { background: #9aa5b1; }
+.fc .fc-toolbar-title { font-weight: 800; }
+.legend { display:flex; gap:16px; align-items:center; margin-top:10px; font-size:.95rem; }
+.legend b { display:inline-block; padding:0 8px; border-radius:8px; line-height:1.6; color:#1b1b1b; }
+.legend .lb { background:#e2b203; }
+.legend .lp { background:#9aa5b1; }
 </style></head>
 <body>
 <header aria-label="Primary" class="nav" role="navigation">
@@ -434,17 +473,13 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
 <section aria-label="Availability" class="section sec--warm" id="availability">
 <div class="container">
 <h2 class="reveal">Availability</h2>
-<p class="reveal">
-      Dates marked as <strong>Booked</strong> are unavailable. Minimum stay of 2 nights.
-      <br/>
-<small>Managed via Google Sheets → Published CSV feed.</small>
-</p>
+<p class="reveal">Dates marked as <strong>Booked</strong> are unavailable. Minimum stay of 2 nights. <br/>
+<small>This calendar is powered by Google Sheets (published as CSV).</small></p>
 <div class="reveal" id="availability-calendar"></div>
-<div style="text-align:center; margin-top:18px;">
-<a aria-label="Request to book" class="btn btn-custard" href="#booking">Request to Book</a>
-</div>
+<div class="legend reveal"><span><b class="lb">Booked</b></span><span><b class="lp">Pending</b></span></div>
 </div>
 </section>
+
 <!-- FOOTER CTA -->
 <section aria-label="Your Lakeside Escape awaits" class="footer-cta" id="booking">
 <div class="inner">
@@ -513,110 +548,316 @@ lbPrev.addEventListener('click', function(){ move(-1); });
 lbNext.addEventListener('click', function(){ move(1); });
 window.addEventListener('keydown', function(e){ if(!lb.classList.contains('open')) return; if(e.key==='Escape') closeLB(); if(e.key==='ArrowRight') move(1); if(e.key==='ArrowLeft') move(-1); });
 </script>
-
-
+<div aria-hidden="true" class="booking-backdrop" id="booking-backdrop">
+<div aria-labelledby="booking-title" aria-modal="true" class="booking-modal" role="dialog">
+<div class="booking-head">
+<h3 id="booking-title">Request to Book</h3>
+<button aria-label="Close" class="booking-close" id="booking-close">×</button>
+</div>
+<div class="booking-body">
+<p>Minimum stay of <strong>2 nights</strong>. End date is your checkout.</p>
+<form id="booking-form" novalidate="">
+<!-- anti-spam honeypot -->
+<input autocomplete="off" id="bf-company" name="company" style="position:absolute; left:-9999px;" tabindex="-1" type="text"/>
+<div class="grid">
+<label>
+<span>Arrival date</span>
+<input id="arrival" name="arrival" required="" type="date"/>
+</label>
+<label>
+<span>Departure date</span>
+<input id="departure" name="departure" required="" type="date"/>
+</label>
+<label>
+<span>Guests</span>
+<input id="guests" max="8" min="1" name="guests" required="" type="number" value="2"/>
+</label>
+<label>
+<span>Nights</span>
+<input id="nights" name="nights" readonly="" type="number"/>
+</label>
+<label class="span-2">
+<span>Full name</span>
+<input id="name" name="name" placeholder="First &amp; Last" required="" type="text"/>
+</label>
+<label>
+<span>Email</span>
+<input id="email" name="email" placeholder="you@example.com" required="" type="email"/>
+</label>
+<label>
+<span>Phone (optional)</span>
+<input id="phone" name="phone" placeholder="+1 (___) ___-____" type="tel"/>
+</label>
+<label class="span-2">
+<span>Notes (optional)</span>
+<textarea id="notes" name="notes" placeholder="Anything we should know?" rows="4"></textarea>
+</label>
+</div>
+<p id="bf-error"></p>
+<div class="actions">
+<button class="btn btn-custard" type="submit">Send request</button>
+<button aria-label="Send via email" class="btn" id="bf-mailto" type="button">Or email us</button>
+</div>
+<p id="bf-success">Thanks! We received your request and will confirm availability shortly.</p>
+</form>
+</div>
+</div>
+</div>
 <script>
-/*
-  Google Sheets (Publish to web as HTML) → FullCalendar
-  Uses DOMParser to read the first table on the published page.
-  Expected headers (case-insensitive): Title | start | end | Status
-  Date format: YYYY-MM-DD; end is exclusive.
-*/
-document.addEventListener('DOMContentLoaded', function () {
+(function(){
+  const backdrop = document.getElementById('booking-backdrop');
+  const closeBtn = document.getElementById('booking-close');
+  const form = document.getElementById('booking-form');
+  const arrival = document.getElementById('arrival');
+  const departure = document.getElementById('departure');
+  const nights = document.getElementById('nights');
+  const errorEl = document.getElementById('bf-error');
+  const successEl = document.getElementById('bf-success');
+  const mailtoBtn = document.getElementById('bf-mailto');
+
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/yourid"; // replace
+  const MAILTO = "hello@jenai.ca"; // replace
+  const MIN_NIGHTS = 2;
+
+  function openModal(prefill){ 
+    backdrop.style.display = 'flex';
+    backdrop.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    if(prefill && prefill.arrival) arrival.value = prefill.arrival;
+    if(prefill && prefill.departure) departure.value = prefill.departure;
+    updateNights();
+    setTimeout(()=>arrival.focus(), 50);
+  }
+  function closeModal(){
+    backdrop.style.display = 'none';
+    backdrop.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', (e)=>{ if(e.target === backdrop) closeModal(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
+
+  function isBookNow(el){
+    if(!el) return false;
+    const txt = (el.textContent || '').trim().toLowerCase();
+    if (txt.includes('book now')) return true;
+    if (el.dataset && el.dataset.bookNow !== undefined) return true;
+    const href = el.getAttribute && el.getAttribute('href');
+    if (href && (href === '#booking' || href.includes('#book'))) return true;
+    return false;
+  }
+  document.addEventListener('click', function(e){
+    const el = e.target.closest('a,button');
+    if (isBookNow(el)){
+      e.preventDefault();
+      openModal();
+    }
+  });
+
+  const today = new Date().toISOString().slice(0,10);
+  arrival.min = today; departure.min = today;
+
+  function diffNights(a, d){
+    if(!a || !d) return 0;
+    const start = new Date(a + "T00:00:00");
+    const end   = new Date(d + "T00:00:00");
+    return Math.max(0, Math.round((end-start)/(1000*60*60*24)));
+  }
+  function updateNights(){
+    const n = diffNights(arrival.value, departure.value);
+    nights.value = n || '';
+  }
+  arrival.addEventListener('change', ()=>{
+    if(arrival.value){
+      const minDep = new Date(arrival.value + "T00:00:00"); 
+      minDep.setDate(minDep.getDate()+1);
+      departure.min = minDep.toISOString().slice(0,10);
+    }
+    updateNights();
+  });
+  departure.addEventListener('change', updateNights);
+
+  mailtoBtn.addEventListener('click', () => {
+    const params = new URLSearchParams({
+      subject: 'Booking Request - North Baptiste Lake Retreat',
+      body: [
+        `Arrival: ${arrival.value || ''}`,
+        `Departure: ${departure.value || ''}`,
+        `Nights: ${nights.value || ''}`,
+        `Guests: ${document.getElementById('guests').value || ''}`,
+        `Name: ${document.getElementById('name').value || ''}`,
+        `Email: ${document.getElementById('email').value || ''}`,
+        `Phone: ${document.getElementById('phone').value || ''}`,
+        '',
+        `Notes: ${document.getElementById('notes').value || ''}`
+      ].join('%0A')
+    });
+    window.location.href = `mailto:${MAILTO}?${params.toString()}`;
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorEl.style.display = 'none'; successEl.style.display = 'none';
+
+    if (document.getElementById('bf-company').value) { return; }
+
+    const n = diffNights(arrival.value, departure.value);
+    if (n < MIN_NIGHTS) {
+      errorEl.textContent = `Please select at least ${MIN_NIGHTS} nights.`;
+      errorEl.style.display = 'block';
+      return;
+    }
+    if (!form.checkValidity()) {
+      errorEl.textContent = "Please fill in all required fields.";
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    const data = {
+      arrival: arrival.value,
+      departure: departure.value,
+      nights: n,
+      guests: document.getElementById('guests').value,
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      phone: document.getElementById('phone').value,
+      notes: document.getElementById('notes').value,
+      source: 'Website Booking Modal'
+    };
+
+    try {
+      if (!FORMSPREE_ENDPOINT || FORMSPREE_ENDPOINT.endsWith('/yourid')) throw new Error('No Formspree endpoint configured.');
+      const fd = new FormData();
+      Object.entries(data).forEach(([k,v])=>fd.append(k,v));
+      const res = await fetch(FORMSPREE_ENDPOINT, { method:'POST', headers:{ 'Accept':'application/json' }, body: fd });
+      if (!res.ok) throw new Error('Network error');
+      form.reset(); nights.value=''; successEl.style.display = 'block';
+      setTimeout(closeModal, 1500);
+    } catch (err) {
+      const params = new URLSearchParams({
+        subject: 'Booking Request - North Baptiste Lake Retreat',
+        body: [
+          `Arrival: ${data.arrival}`,
+          `Departure: ${data.departure}`,
+          `Nights: ${data.nights}`,
+          `Guests: ${data.guests}`,
+          `Name: ${data.name}`,
+          `Email: ${data.email}`,
+          `Phone: ${data.phone}`,
+          '',
+          `Notes: ${data.notes}`
+        ].join('%0A')
+      });
+      window.location.href = `mailto:${MAILTO}?${params.toString()}`;
+    }
+  });
+
+  window.openBookingModal = openModal;
+  window.closeBookingModal = closeModal;
+})();
+</script><script>
+// FullCalendar + Google Sheets (CSV) loader
+document.addEventListener('DOMContentLoaded', function () {{
   var calEl = document.getElementById('availability-calendar');
   if (!calEl) return;
 
-  var PUBHTML_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSehGrhheGNeAMROLcAVKPL7eBG5FRAUmkUkhQ4fZxGfmPNMIWgr_XCRQreEqJWg0UwyzaIj_LRSbeT/pubhtml';
+  // IMPORTANT: If your data is on another tab, change gid=0 below to that tab's gid.
+  var SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSehGrhheGNeAMROLcAVKPL7eBG5FRAUmkUkhQ4fZxGfmPNMIWgr_XCRQreEqJWg0UwyzaIj_LRSbeT/pub?gid=0&single=true&output=csv";
 
-  function htmlTableToEvents(doc) {
-    // Look for the first table on the page
-    var table = doc.querySelector('table');
-    if (!table) return [];
-    var rows = Array.from(table.querySelectorAll('tr'));
+  function parseCSV(text) {{
+    var rows = [];
+    var i = 0, field = '', row = [], inQuotes = false;
+    function pushField() {{ row.push(field); field=''; }}
+    function pushRow()   {{ if (row.length) rows.push(row); row=[]; }}
+    while (i < text.length) {{
+      var c = text[i];
+      if (inQuotes) {{
+        if (c === '"') {{
+          if (i+1 < text.length && text[i+1] === '"') {{ field += '"'; i++; }}
+          else {{ inQuotes = false; }}
+        }} else {{ field += c; }}
+      }} else {{
+        if (c === '"') inQuotes = true;
+        else if (c === ',') pushField();
+        else if (c === '\n') {{ pushField(); pushRow(); }}
+        else if (c === '\r') {{}}
+        else field += c;
+      }}
+      i++;
+    }}
+    if (field.length || row.length) {{ pushField(); pushRow(); }}
+    return rows;
+  }}
+
+  function csvToEvents(csvText) {{
+    var rows = parseCSV(csvText).filter(r => r.some(x => (x||'').trim().length));
     if (!rows.length) return [];
-
-    // Find header row (first row containing th or first tr)
-    var headerCells = rows[0].querySelectorAll('th,td');
-    var headers = Array.from(headerCells).map(c => (c.textContent || '').trim().toLowerCase());
+    var headers = rows[0].map(h => (h||'').trim().toLowerCase());
     var idxTitle  = headers.indexOf('title');
     var idxStart  = headers.indexOf('start');
     var idxEnd    = headers.indexOf('end');
     var idxStatus = headers.indexOf('status');
 
     var events = [];
-    for (var i = 1; i < rows.length; i++) {
-      var cells = rows[i].querySelectorAll('td');
-      if (!cells || !cells.length) continue;
-      function get(idx) { return idx >= 0 && idx < cells.length ? (cells[idx].textContent || '').trim() : ''; }
-      var title  = get(idxTitle);
-      var start  = get(idxStart);
-      var end    = get(idxEnd);
-      var status = get(idxStatus);
-
+    for (var r=1; r<rows.length; r++) {{
+      var cols = rows[r];
+      var title  = idxTitle  >= 0 ? (cols[idxTitle]  || '').trim() : '';
+      var start  = idxStart  >= 0 ? (cols[idxStart]  || '').trim() : '';
+      var end    = idxEnd    >= 0 ? (cols[idxEnd]    || '').trim() : '';
+      var status = idxStatus >= 0 ? (cols[idxStatus] || '').trim() : '';
       if (!start) continue;
-      // normalize date strings
-      function norm(d) {
-        // try to parse date as YYYY-MM-DD or localized date
-        var iso = d.match(/\d{4}-\d{2}-\d{2}/);
-        if (iso) return iso[0];
-        var dt = new Date(d);
-        if (!isNaN(dt)) return dt.toISOString().slice(0,10);
-        return '';
-      }
+
+      function norm(d) {{
+        var m = (d||'').match(/\d{{4}}-\d{{2}}-\d{{2}}/);
+        if (m) return m[0];
+        var t = new Date(d);
+        return isNaN(t) ? '' : t.toISOString().slice(0,10);
+      }}
       start = norm(start);
       end   = norm(end);
-
       if (!start) continue;
-      if (!end) {
-        var tmp = new Date(start + 'T00:00:00');
-        tmp.setDate(tmp.getDate() + 1);
-        end = tmp.toISOString().slice(0,10);
-      }
+      if (!end) {{
+        var t = new Date(start + 'T00:00:00'); t.setDate(t.getDate()+1); end = t.toISOString().slice(0,10);
+      }}
 
-      events.push({
-        title: (status || title || 'Booked'),
+      var css = 'fc-event-booked';
+      var label = status || title || 'Booked';
+      if ((status || '').toLowerCase().includes('pend')) css = 'fc-event-pending';
+
+      events.push({{
+        title: label,
         start: start,
-        end: end
-      });
-    }
+        end: end,
+        display: 'block',
+        classNames: [css]
+      }});
+    }}
     return events;
-  }
+  }}
 
-  function renderCalendar(events) {
-    var calendar = new FullCalendar.Calendar(calEl, {
+  function renderCalendar(events) {{
+    var calendar = new FullCalendar.Calendar(calEl, {{
       initialView: 'dayGridMonth',
       height: 'auto',
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: ''
-      },
+      headerToolbar: {{ left: 'prev,next today', center: 'title', right: '' }},
       timeZone: 'America/Toronto',
-      navLinks: false,
-      selectable: false,
       events: events
-    });
+    }});
     calendar.render();
-  }
+  }}
 
-  fetch(PUBHTML_URL, { cache: 'no-store' })
-    .then(function(res) { return res.text(); })
-    .then(function(html) {
-      var parser = new DOMParser();
-      var doc = parser.parseFromString(html, 'text/html');
-      var events = htmlTableToEvents(doc);
-      if (!events.length) console.warn('No events parsed from published HTML.');
-      renderCalendar(events);
-    })
-    .catch(function(err) {
-      console.error('Failed to load published HTML:', err);
+  fetch(SHEET_CSV_URL, {{ cache: 'no-store' }})
+    .then(function(r) {{ if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); }})
+    .then(function(csv) {{ renderCalendar(csvToEvents(csv)); }})
+    .catch(function(err) {{
+      console.error('CSV fetch failed. If you used a pubhtml link, switch it to CSV (pub?gid=...&single=true&output=csv).', err);
       var msg = document.createElement('div');
       msg.style.color = '#b00020';
       msg.style.marginTop = '12px';
       msg.textContent = 'Availability temporarily unavailable. Please email us to confirm dates.';
       calEl.appendChild(msg);
-    });
-});
-</script>
-</body>
+    }});
+}});
+</script></body>
 </html>
