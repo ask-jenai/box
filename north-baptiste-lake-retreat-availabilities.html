@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>North Baptiste Lake Retreat | Maynooth, Ontario</title>
+<meta content="Escape to North Baptiste Lake Retreat in Maynooth, Ontario. Lakeside charm, cozy comforts, nearby beaches, markets, and year-round nature experiences." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link as="image" href="hero.jpg" imagesrcset="hero.jpg 2000w" rel="preload"/>
+<style>
+:root{
+  --custard:#DC9F2A; --cyclade:#8399B9; --tennis:#475418;
+  --warmwhite:#F7F6F2; --charcoal:#2E2E2E; --faqbg:#FBFAF7;
+  --maxw:1180px; --radius:16px; --shadow:0 10px 25px rgba(0,0,0,.08);
+  --accH:360px;
+
+  /* About chip sizing */
+  --chipH:48px;        /* set pill height here */
+  --icon:18px;         /* icon size */
+}
+@media(min-width:1200px){ :root{ --accH:400px; } }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--charcoal); background:var(--warmwhite);
+  font-family:"Lato",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans";
+  line-height:1.6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+img{max-width:100%; height:auto}
+.section{width:100%}
+.container{max-width:var(--maxw); margin:auto; padding:64px 20px}
+.grid{display:grid; gap:28px}
+@media(min-width:900px){
+  .g-2{grid-template-columns:1.1fr .9fr; align-items:stretch}
+  .g-2-accom{grid-template-columns:1fr 1.2fr; align-items:stretch}
+}
+
+.nav{position:sticky; top:0; z-index:1000; background:#fff; border-bottom:1px solid rgba(0,0,0,.06); backdrop-filter:saturate(150%) blur(6px)}
+.nav-inner{max-width:var(--maxw); margin:auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px}
+.brand{font-family:"Playfair Display",serif; color:var(--tennis); font-weight:700; letter-spacing:.3px; line-height:1.05; font-size:40px}
+@media(min-width:1024px){.brand{font-size:48px}}
+.links{display:flex; gap:18px; align-items:center; flex-wrap:wrap}
+.links a{color:var(--charcoal); text-decoration:none; font-weight:700; font-size:14px}
+.cta-nav{padding:10px 16px; border-radius:999px; background:var(--custard); color:#111; box-shadow:var(--shadow)}
+.burger{display:none; background:none; border:0; font-size:22px}
+@media(max-width:900px){
+  .links{display:none; position:absolute; left:0; right:0; top:64px; background:#fff; border-bottom:1px solid rgba(0,0,0,.06)}
+  .links.open{display:block}
+  .links a{display:block; padding:14px 20px; border-top:1px solid rgba(0,0,0,.05)}
+  .links .cta-nav{margin:12px 20px; display:inline-block}
+  .burger{display:block}
+}
+
+.hero{position:relative; height:60vh; min-height:440px; overflow:hidden; background:#cbd5e1}
+.hero::after{content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.38), rgba(0,0,0,.08))}
+.hero img{width:100%; height:100%; object-fit:cover}
+.hero-credit{position:absolute; bottom:8px; right:10px; font-size:12px; color:#fff; opacity:.75; z-index:2}
+
+.band{background:var(--cyclade); color:#fff; text-align:center; padding:42px 16px}
+.band h1{margin:0; font-family:"Playfair Display",serif; font-weight:700; font-size:52px; line-height:1.15}
+@media(max-width:900px){.band h1{font-size:40px}}
+
+.sec--warm{background:var(--warmwhite)}
+.sec--cyclade{background:var(--cyclade); color:#fff}
+.sec--tennis{background:var(--tennis); color:var(--warmwhite)}
+.sec--faq{background:var(--faqbg)}
+.sec--cyclade h2,.sec--cyclade h3,.sec--tennis h2,.sec--tennis h3{color:#fff}
+
+h2,h3{font-family:"Playfair Display",serif; line-height:1.2; margin:0 0 12px}
+h2{font-size:36px; color:var(--tennis)}
+h3{font-size:24px}
+p{margin:0 0 14px}
+img.block{display:block; width:100%; height:auto; border-radius:var(--radius)}
+
+/* ---------- ABOUT FEATURES: identical pill size ---------- */
+#about .features{
+  display:grid;
+  gap:12px;
+  grid-template-columns:repeat(2,1fr);
+  grid-auto-rows:var(--chipH);         /* fixed row height */
+}
+@media(min-width:700px){ #about .features{ grid-template-columns:repeat(3,1fr); } }
+@media(min-width:1000px){ #about .features{ grid-template-columns:repeat(5,1fr); } }
+
+#about .features .chip{
+  box-sizing:border-box;
+  width:100%;
+  height:var(--chipH);
+  min-height:var(--chipH);
+  padding:0 16px;                      /* horizontal only so height is fixed */
+  display:flex; align-items:center; justify-content:center;
+  gap:10px;
+  border-radius:999px;
+  background:#fff; color:var(--charcoal);
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 2px 6px rgba(0,0,0,.06);
+  font-weight:800; font-size:14px; line-height:1; text-align:center; white-space:nowrap;
+}
+#about .features .chip svg{
+  width:var(--icon); height:var(--icon); flex:0 0 var(--icon); display:block;
+}
+#about .features .chip *{ margin:0; line-height:1; } /* ensure no inner margins */
+
+/* ---------- ACCOMMODATIONS ---------- */
+.acc-card{background:#ffffff; color:var(--charcoal); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; min-height:var(--accH)}
+.acc-card h2{color:var(--cyclade)} .acc-card h3{color:var(--charcoal)}
+.btn{display:inline-block; padding:12px 18px; border-radius:999px; font-weight:800; text-decoration:none; background:#111; color:#fff; box-shadow:var(--shadow); margin-top:14px}
+.btn-custard{background:var(--custard); color:#111}
+
+/* Carousel */
+.carousel{position:relative; min-height:var(--accH); overflow:hidden;}
+.track{display:flex; gap:14px; overflow:auto; scroll-snap-type:x mandatory; height:100%; padding-bottom:6px}
+.track::-webkit-scrollbar{height:8px}
+.track::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15); border-radius:8px}
+.slide{min-width:70%; scroll-snap-align:center; height:100%}
+@media(min-width:800px){.slide{min-width:36%}}
+.slide img{width:100%; height:100%; object-fit:cover; border-radius:var(--radius); cursor:zoom-in}
+.ctrl{position:absolute; top:50%; transform:translateY(-50%); background:#fff; border:1px solid rgba(0,0,0,.1); border-radius:999px; box-shadow:var(--shadow); width:42px; height:42px; display:grid; place-items:center; cursor:pointer}
+.ctrl:disabled{opacity:.4; cursor:default}
+.ctrl.prev{left:8px} .ctrl.next{right:8px}
+
+/* Gallery */
+.gallery{display:grid; gap:14px}
+@media(min-width:1000px){.gallery{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:700px) and (max-width:999px){.gallery{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:699px){.gallery{grid-template-columns:repeat(2,1fr)}}
+.gallery .tile{aspect-ratio:4/3; overflow:hidden; border-radius:12px; background:#e6ebf1; cursor:zoom-in}
+.gallery img{width:100%; height:100%; object-fit:cover; display:block}
+
+/* Lightbox */
+.lightbox{position:fixed; inset:0; background:rgba(0,0,0,.92); display:none; align-items:center; justify-content:center; z-index:2000}
+.lightbox.open{display:flex}
+.lightbox img{max-width:92vw; max-height:88vh; border-radius:10px}
+.lightbox .lb-close,.lightbox .lb-prev,.lightbox .lb-next{
+  position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.3);
+  color:#fff; border-radius:999px; width:46px; height:46px; display:grid; place-items:center; font-size:22px; cursor:pointer
+}
+.lightbox .lb-close{top:24px; right:24px; transform:none; width:42px; height:42px}
+.lightbox .lb-prev{left:24px} .lightbox .lb-next{right:24px}
+
+/* FAQ */
+.faq-list{border-top:1px solid rgba(0,0,0,.12)}
+.faq-item{border-bottom:1px solid rgba(0,0,0,.12)}
+.faq-q{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:18px 0; cursor:pointer; font-weight:800}
+.faq-q .icon{font-size:22px; line-height:1; opacity:.75; transition:transform .25s ease}
+.faq-a{max-height:0; overflow:hidden; transition:max-height .35s ease}
+.faq-a-inner{padding:0 0 18px; color:#3f3f3f}
+.faq-item.open .faq-a{max-height:520px}
+.faq-item.open .icon{transform:rotate(45deg)}
+
+.footer-cta{position:relative; width:100%; min-height:420px; background:#cbd5e1 url('footer-cta.jpg') center/cover no-repeat; display:grid; place-items:center; overflow:hidden}
+.footer-cta::before{content:""; position:absolute; inset:0; background:rgba(0,0,0,.35)}
+.footer-cta .inner{position:relative; text-align:center; color:#fff; padding:40px 16px}
+.footer-cta h2{margin:0; font-family:"Playfair Display",serif; font-size:44px; color:#fff}
+@media(max-width:900px){.footer-cta h2{font-size:34px}}
+
+footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
+.small{font-size:13px; opacity:.9}
+
+/* Reveal */
+.reveal{opacity:1; transform:none;}
+.has-js .reveal{opacity:0; transform:translateY(22px);}
+.reveal.in{opacity:1; transform:none;}
+@media(prefers-reduced-motion:reduce){ html{scroll-behavior:auto} .reveal{opacity:1; transform:none} }
+
+/* === ABOUT layout & chips (requested tweaks) === */
+
+/* Make the right image larger and nicely balanced */
+@media (min-width: 900px) {
+  #about .grid {
+    grid-template-columns: 1fr 1.25fr; /* text : image */
+    align-items: stretch;
+  }
+  #about figure {
+    align-self: stretch; /* ensure the figure stretches with the text column */
+  }
+  #about figure img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;       /* graceful crop to fill */
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+}
+
+/* Force the feature chips into exactly 3 rows on tablet/desktop */
+@media (min-width: 700px) {
+  #about .features {
+    /* override previous grid settings for this breakpoint+ */
+    grid-template-columns: unset;
+    grid-auto-flow: column;                  /* fill down, then across */
+    grid-template-rows: repeat(3, var(--chipH)); /* exactly 3 rows */
+    grid-auto-columns: 1fr;                  /* even column widths */
+    gap: 12px;
+  }
+}s
+</style>
+<script>document.documentElement.classList.add('has-js');</script>
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet"/><script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script><style>
+/* Availability calendar styling */
+#availability-calendar {
+  max-width: 1100px;
+  margin: 24px auto 0;
+  background: #fff;
+  border-radius: var(--radius, 16px);
+  box-shadow: var(--shadow, 0 10px 30px rgba(0,0,0,.08));
+  padding: 16px;
+}
+.fc .fc-daygrid-event {
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+#availability .container { padding-top: 48px; padding-bottom: 48px; }
+</style></head>
+<body>
+<header aria-label="Primary" class="nav" role="navigation">
+<div class="nav-inner">
+<div class="brand">North Baptiste Lake Retreat</div>
+<nav class="links" id="navLinks">
+<a href="#about">About</a>
+<a href="#accommodations">Accommodations</a>
+<a href="#outdoors">Outdoors</a>
+<a href="#gallery">Gallery</a>
+<a href="#faq">FAQ</a>
+<a class="cta-nav" href="#booking">Book Now</a>
+</nav>
+<button aria-expanded="false" aria-label="Menu" class="burger" id="burger">☰</button>
+</div>
+</header>
+<section aria-label="Lakeside retreat hero image" class="section hero" role="img">
+<img alt="North Baptiste Lake and dock at sunset" decoding="async" fetchpriority="high" height="1350" src="hero.jpg" width="2400"/>
+<div class="hero-credit">Header Image Placeholder</div>
+</section>
+<section class="section band">
+<h1>Escape to North Baptiste Lake Retreat in Maynooth, Ontario</h1>
+</section>
+<!-- ABOUT -->
+<section class="section sec--warm" id="about">
+<div class="container">
+<div class="grid g-2">
+<div class="reveal">
+<h2>About the Retreat</h2>
+<p>North Baptiste Lake Retreat is nestled on the shores of beautiful Baptiste Lake, between the charming villages of Bancroft and Maynooth, just south of Algonquin Park—making it the perfect halfway escape between Ottawa and Toronto. Surrounded by natural beauty and local charm, guests can swim or fish at the lake, explore Maynooth’s antique shops, or head into Bancroft, known as the “Mineral Capital of Canada,” with artisan boutiques, bakeries, family restaurants, and the famous Kawartha Dairy. Whether you’re here for lakeside relaxation, outdoor adventure, or cozy nights by the fire, the retreat offers the perfect balance of comfort, charm, and nature.</p>
+<div aria-label="Retreat highlights" class="features" role="list">
+<span class="chip" role="listitem" title="Lakeside tranquility">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M2 15c3 0 3-2 6-2s3 2 6 2 3-2 6-2 3 2 6 2"></path></svg>
+            Lakeside tranquility
+          </span>
+<span class="chip" role="listitem" title="Cozy &amp; modern">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5"></path><path d="M5 10v10h14V10"></path></svg>
+            Cozy &amp; modern
+          </span>
+<span class="chip" role="listitem" title="Forest &amp; wildlife">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 2l4 6h-3l3 4h-3l4 6H7l4-6H8l3-4H8l4-6z"></path><path d="M12 22v-4"></path></svg>
+            Forest &amp; wildlife
+          </span>
+<span class="chip" role="listitem" title="Firepit">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 2c2 3-1 4 0 7 1-2 3-2 4-1 2 2 2 6-4 8-6-2-6-6-4-8 1-1 3-1 4 1z"></path><ellipse cx="12" cy="20" rx="7" ry="2"></ellipse></svg>
+            Firepit
+          </span>
+<span class="chip" role="listitem" title="BBQ">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 9h14a7 7 0 1 1-14 0Z"></path><path d="M12 16v3"></path><path d="M7 19h10"></path><path d="M9 6s.5-2 3-2 3 2 3 2"></path></svg>
+            BBQ
+          </span>
+<span class="chip" role="listitem" title="Fishing">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M3 3v7a4 4 0 0 0 8 0V7"></path><path d="M14 12c-3 0-6 2-8 4 2 2 5 4 8 4s6-2 8-4c-2-2-5-4-8-4z"></path><circle cx="18" cy="12" r="1"></circle></svg>
+            Fishing
+          </span>
+<span class="chip" role="listitem" title="Swimming">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="7" cy="6" r="2"></circle><path d="M2 16c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2"></path><path d="M5 12l4-2 3 1 3 2"></path></svg>
+            Swimming
+          </span>
+<span class="chip" role="listitem" title="Snowmobiling">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M3 16h6l4-3 4 1 3 2"></path><path d="M2 19h20"></path><circle cx="9" cy="16" r="1.5"></circle><circle cx="18" cy="16" r="1.5"></circle></svg>
+            Snowmobiling
+          </span>
+<span class="chip" role="listitem" title="Canoeing">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3 15c4 3 14 3 18 0"></path>
+<path d="M4 14c3.5-3 12.5-3 16 0"></path>
+<path d="M6 14h12" stroke-linecap="round"></path>
+</svg>
+            Canoeing
+          </span>
+</div>
+</div>
+<figure class="reveal">
+<img alt="Baptiste Lake view from the retreat deck" class="block" height="900" loading="lazy" src="large-house-for-rent-ontario.jpg" width="1200"/>
+</figure>
+</div>
+</div>
+</section>
+<!-- ACCOMMODATIONS -->
+<section class="section sec--cyclade" id="accommodations">
+<div class="container">
+<div class="grid g-2-accom">
+<article class="acc-card reveal">
+<h2>Accommodations</h2>
+<h3>Bedrooms</h3>
+<p>Sleeps 8 individuals across 3 bedrooms (each with a Queen bed) plus 1 double pull-out in the basement. 2 baths.</p>
+<h3 style="margin-top:16px">Living Space</h3>
+<p>Cozy seating, lake views, fireplace, desk, smart TV.</p>
+<h3 style="margin-top:16px">Kitchen &amp; Amenities</h3>
+<p>Fully equipped kitchen, washer/dryer, WiFi, BBQ, games.</p>
+<a class="btn btn-custard" href="#booking">Book your retreat</a>
+</article>
+<div aria-label="Accommodations gallery" class="carousel reveal">
+<button aria-label="Previous photo" class="ctrl prev" id="accPrev">‹</button>
+<div class="track" id="accTrack">
+<div class="slide"><img alt="Bedroom with queen bed and window light" class="block" height="800" loading="lazy" src="acc-1.jpg" width="1200"/></div>
+<div class="slide"><img alt="Living room with sofa and fireplace" class="block" height="800" loading="lazy" src="acc-2.jpg" width="1200"/></div>
+<div class="slide"><img alt="Kitchen overview" class="block" height="800" loading="lazy" src="acc-3.jpg" width="1200"/></div>
+<div class="slide"><img alt="Bathroom with modern finishes" class="block" height="800" loading="lazy" src="acc-4.jpg" width="1200"/></div>
+<div class="slide"><img alt="Powder room detail" class="block" height="800" loading="lazy" src="acc-5.jpg" width="1200"/></div>
+<div class="slide"><img alt="Second bedroom with queen bed" class="block" height="800" loading="lazy" src="acc-6.jpg" width="1200"/></div>
+</div>
+<button aria-label="Next photo" class="ctrl next" id="accNext">›</button>
+</div>
+</div>
+</div>
+</section>
+<!-- OUTDOORS -->
+<section class="section sec--tennis" id="outdoors">
+<div class="container">
+<div class="grid g-2">
+<figure class="reveal">
+<img alt="Canoeing in Ontario" class="block" height="900" loading="lazy" src="canoeing-in-ontario.png" width="1200"/>
+</figure>
+<div class="reveal">
+<h2>Outdoors &amp; Experiences</h2>
+<h3>Lake Access</h3>
+<p>Direct access to the lake with a private dock for swimming. Canoe, kayak, or paddleboard (rental required).</p>
+<h3 style="margin-top:16px">Outdoor Features</h3>
+<p>Firepit, shaded deck, and mature trees for relaxed gatherings.</p>
+<h3 style="margin-top:16px">Seasonal Experiences</h3>
+<p>Beach days, hiking trails, snowshoeing, and stargazing—nature in every season.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- GALLERY -->
+<section class="section sec--warm" id="gallery">
+<div class="container">
+<h2 class="reveal">See the Retreat</h2>
+<p class="reveal">Natural beauty at every turn.</p>
+<div aria-label="Photo gallery" class="gallery" id="galleryGrid">
+<div class="tile reveal"><img alt="Aerial view of cottage and Baptiste Lake shoreline" height="900" loading="lazy" src="gal-1.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Entry hallway with hooks and mirror" height="900" loading="lazy" src="gal-2.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Cozy reading nook by the window" height="900" loading="lazy" src="gal-3.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Bright sunroom and living area with skylights" height="900" loading="lazy" src="gal-4.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Living room with sectional sofa and TV" height="900" loading="lazy" src="gal-5.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Kitchen with stainless appliances" height="900" loading="lazy" src="gal-6.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Kitchen island and dining area" height="900" loading="lazy" src="gal-7.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Dining room with table set for a meal" height="900" loading="lazy" src="gal-8.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Compact home gym and fitness space" height="900" loading="lazy" src="gal-9.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Deck with lake view and seating" height="900" loading="lazy" src="gal-10.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Covered patio with fire table" height="900" loading="lazy" src="gal-11.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Back exterior of cottage with raised deck" height="900" loading="lazy" src="gal-12.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Bedroom detail with soft linens" height="900" loading="lazy" src="gal-13.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Cozy seating area by large windows" height="900" loading="lazy" src="gal-14.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Morning light on the dock" height="900" loading="lazy" src="gal-15.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Pathway through trees toward the lake" height="900" loading="lazy" src="gal-16.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Games room with projector setup" height="900" loading="lazy" src="gal-17.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Foosball and family game night" height="900" loading="lazy" src="gal-18.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Firepit gathering under the stars" height="900" loading="lazy" src="gal-19.jpg" width="1200"/></div>
+<div class="tile reveal"><img alt="Sunset over Baptiste Lake" height="900" loading="lazy" src="gal-20.jpg" width="1200"/></div>
+</div>
+</div>
+</section>
+<!-- FAQ -->
+<section class="section sec--faq" id="faq">
+<div class="container">
+<h2 class="reveal">Frequently Asked Questions</h2>
+<div class="faq-list">
+<div class="faq-item reveal">
+<div class="faq-q">Where is North Baptiste Lake Retreat located? <span class="icon">+</span></div>
+<div class="faq-a"><div class="faq-a-inner">
+<p>North Baptiste Lake Retreat is located on Baptiste Lake between Bancroft and Maynooth in Ontario’s cottage country, just south of Algonquin Park.</p>
+<p><strong>From Toronto:</strong> Hwy 401 East → 115 North → 7 East → 28 North to Bancroft. (Approx. 3 hours)</p>
+<p><strong>From Ottawa/Montreal:</strong> Hwy 417/17 to Renfrew → 132 → 41 to Denbigh → 28 to Bancroft. (Approx. 2.5 hours from Ottawa)</p>
+<p><strong>From Bancroft (20 min):</strong> 62 North for 17 km → left on North Baptiste Lake Road for 8 km (keep left at the split) to fire sign #1787.</p>
+</div></div>
+</div>
+<div class="faq-item reveal">
+<div class="faq-q">What activities can guests enjoy at the retreat? <span class="icon">+</span></div>
+<div class="faq-a"><div class="faq-a-inner">
+<p>Swim, canoe, kayak, or paddleboard on Baptiste Lake; visit Papineau Beach or Lake St. Peter Provincial Park for larger sandy beaches. Explore Maynooth’s antique shops or stargaze by the firepit.</p>
+</div></div>
+</div>
+<div class="faq-item reveal">
+<div class="faq-q">How many people can the retreat accommodate? <span class="icon">+</span></div>
+<div class="faq-a"><div class="faq-a-inner">
+<p>Up to 8 adults across three bedrooms (each with a queen bed) and two full bathrooms.</p>
+</div></div>
+</div>
+<div class="faq-item reveal">
+<div class="faq-q">Is North Baptiste Lake Retreat pet-friendly? <span class="icon">+</span></div>
+<div class="faq-a"><div class="faq-a-inner">
+<p>We love animals, but North Baptiste Lake Retreat is a pet-free space to keep the cottage fresh and comfortable for all guests.</p>
+</div></div>
+</div>
+<div class="faq-item reveal">
+<div class="faq-q">What amenities are included with the stay? <span class="icon">+</span></div>
+<div class="faq-a"><div class="faq-a-inner">
+<p>Wi-Fi and smart TV. Air coniditioning and UV-filtered well water. Kitchen essentials plus washer/dryer. Propane fireplace in basement. Gym.  Outdoors: deck, firepit, and lake access for swimming and paddling.</p>
+</div></div>
+</div>
+<div class="faq-item reveal">
+<div class="faq-q">How do I book North Baptiste Lake Retreat? <span class="icon">+</span></div>
+<div class="faq-a"><div class="faq-a-inner">
+<p>Click the Book Now button below to reserve your dates, or contact us for availability and rates. After confirmation, we’ll share all arrival details.</p>
+</div></div>
+</div>
+<div class="faq-item reveal">
+<div class="faq-q">Is the retreat available year-round? <span class="icon">+</span></div>
+<div class="faq-a"><div class="faq-a-inner">
+<p>Yes—open every season with summer paddling, vibrant autumn colors, cozy winter evenings by the fire, and peaceful spring mornings.</p>
+</div></div></div>
+<div class="faq-item reveal">
+<div class="faq-q"> Can I book the retreat for one night? <span class="icon">+</span></div>
+<div class="faq-a"><div class="faq-a-inner">
+<p>No, the retreat is only available to book for two nights minimum.</p>
+</div></div>
+</div>
+</div>
+</div>
+</section>
+<section aria-label="Availability" class="section sec--warm" id="availability">
+<div class="container">
+<h2 class="reveal">Availability</h2>
+<p class="reveal">
+      Dates marked as <strong>Booked</strong> are unavailable. Minimum stay of 2 nights.
+      <br/>
+<small>Managed via Google Sheets → Published CSV feed.</small>
+</p>
+<div class="reveal" id="availability-calendar"></div>
+<div style="text-align:center; margin-top:18px;">
+<a aria-label="Request to book" class="btn btn-custard" href="#booking">Request to Book</a>
+</div>
+</div>
+</section>
+
+<!-- FOOTER CTA -->
+<section aria-label="Your Lakeside Escape awaits" class="footer-cta" id="booking">
+<div class="inner">
+<h2>Your Lakeside Escape awaits</h2>
+<a aria-label="Book Now" class="btn" href="#">Book Now</a>
+</div>
+</section>
+<footer>
+<div class="small">© <span id="year"></span> North Baptiste Lake Retreat — Maynooth, Ontario</div>
+</footer>
+<script>
+// Year
+var y=document.getElementById('year'); if(y){ y.textContent=new Date().getFullYear(); }
+
+// Nav
+var burger=document.getElementById('burger');
+var links=document.getElementById('navLinks');
+if(burger && links){
+  burger.addEventListener('click', function(){
+    var open=links.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(open));
+  });
+  var navAs=links.querySelectorAll('a');
+  for(var i=0;i<navAs.length;i++){
+    navAs[i].addEventListener('click', function(){ links.classList.remove('open'); });
+  }
+}
+
+// Reveal
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+}else{ document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); }); }
+
+// FAQ
+document.querySelectorAll('.faq-item .faq-q').forEach(function(q){
+  q.addEventListener('click', function(){ q.parentElement.classList.toggle('open'); });
+});
+
+// Carousel
+var track=document.getElementById('accTrack'), prev=document.getElementById('accPrev'), next=document.getElementById('accNext');
+function updateCtrl(){ if(!track||!prev||!next) return; prev.disabled = track.scrollLeft<=0; var max=track.scrollWidth-track.clientWidth-1; next.disabled = track.scrollLeft>=max; }
+function scrollAmt(dir){ if(!track) return; var amt=Math.min(track.clientWidth,700)*dir; track.scrollBy({left:amt,behavior:'smooth'}); setTimeout(updateCtrl,350); }
+if(prev) prev.addEventListener('click', function(){ scrollAmt(-1); });
+if(next) next.addEventListener('click', function(){ scrollAmt(1); });
+if(track){ track.addEventListener('scroll', updateCtrl, {passive:true}); window.addEventListener('resize', updateCtrl); updateCtrl(); }
+
+// Lightbox
+var galleryImgs=document.querySelectorAll('#galleryGrid img');
+var accImgs=document.querySelectorAll('#accTrack img');
+var lb=document.createElement('div'); lb.className='lightbox';
+lb.innerHTML='<button class="lb-close" aria-label="Close">×</button><button class="lb-prev" aria-label="Previous">‹</button><img alt=""><button class="lb-next" aria-label="Next">›</button>';
+document.body.appendChild(lb);
+var lbImg=lb.querySelector('img'), lbClose=lb.querySelector('.lb-close'), lbPrev=lb.querySelector('.lb-prev'), lbNext=lb.querySelector('.lb-next');
+var set=[], idx=0;
+function openLB(i, s){ set=s; idx=i; var el=set[idx]; lbImg.src=el.getAttribute('src'); lbImg.alt=el.getAttribute('alt')||''; lb.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeLB(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+function move(n){ idx=(idx+n+set.length)%set.length; var el=set[idx]; lbImg.src=el.getAttribute('src'); lbImg.alt=el.getAttribute('alt')||''; }
+galleryImgs.forEach(function(im,i){ im.addEventListener('click', function(){ openLB(i, galleryImgs); }); });
+accImgs.forEach(function(im,i){ im.addEventListener('click', function(){ openLB(i, accImgs); }); });
+lbClose.addEventListener('click', closeLB);
+lb.addEventListener('click', function(e){ if(e.target===lb) closeLB(); });
+lbPrev.addEventListener('click', function(){ move(-1); });
+lbNext.addEventListener('click', function(){ move(1); });
+window.addEventListener('keydown', function(e){ if(!lb.classList.contains('open')) return; if(e.key==='Escape') closeLB(); if(e.key==='ArrowRight') move(1); if(e.key==='ArrowLeft') move(-1); });
+</script>
+
+<script>
+/*
+  Google Sheets → CSV → FullCalendar
+  1) In your Google Sheet, have columns: title, start, end (YYYY-MM-DD), status (optional: "Booked").
+  2) File → Share → Anyone with link (Viewer).
+  3) File → Publish to the web → Sheet (tab) → CSV, copy URL and paste below as SHEET_CSV_URL.
+*/
+document.addEventListener('DOMContentLoaded', function () {
+  var calEl = document.getElementById('availability-calendar');
+  if (!calEl) return;
+
+  var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/REPLACE_WITH_ID/pub?gid=0&single=true&output=csv'; // <-- paste your published CSV URL
+
+  function csvToEvents(csvText) {
+    const lines = csvText.split(/\r?\n/).filter(Boolean);
+    if (lines.length === 0) return [];
+    const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+    const idxTitle = headers.indexOf('title');
+    const idxStart = headers.indexOf('start');
+    const idxEnd   = headers.indexOf('end');
+    const idxStatus= headers.indexOf('status');
+
+    const events = [];
+    for (let i = 1; i < lines.length; i++) {
+      // naive CSV split (works if you avoid commas inside fields; otherwise use a CSV library)
+      const cols = lines[i].split(',').map(c => c.trim());
+      const title = (idxTitle >= 0 ? cols[idxTitle] : 'Booked') || 'Booked';
+      const start = (idxStart >= 0 ? cols[idxStart] : '');
+      let end     = (idxEnd   >= 0 ? cols[idxEnd]   : '');
+      const status= (idxStatus>= 0 ? cols[idxStatus]: '');
+
+      if (!start) continue;
+      // If end missing, make it a single-night exclusive end by adding 1 day
+      if (!end) {
+        const d = new Date(start + 'T00:00:00');
+        d.setDate(d.getDate() + 1);
+        end = d.toISOString().slice(0,10);
+      }
+
+      events.push({
+        title: status && status.length ? status : title,
+        start: start,
+        end: end
+      });
+    }
+    return events;
+  }
+
+  fetch(SHEET_CSV_URL, { cache: 'no-store' })
+    .then(r => r.text())
+    .then(csv => {
+      const events = csvToEvents(csv);
+      const calendar = new FullCalendar.Calendar(calEl, {
+        initialView: 'dayGridMonth',
+        height: 'auto',
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: ''
+        },
+        timeZone: 'America/Toronto',
+        navLinks: false,
+        selectable: false,
+        events: events
+      });
+      calendar.render();
+    })
+    .catch(err => {
+      console.error('Failed to load availability CSV:', err);
+      const fallback = document.createElement('div');
+      fallback.style.color = '#b00020';
+      fallback.style.marginTop = '12px';
+      fallback.textContent = 'Availability temporarily unavailable. Please try again later or email us to confirm dates.';
+      calEl.appendChild(fallback);
+    });
+});
+</script>
+</body>
+</html>
