@@ -251,7 +251,7 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
       <a href="#outdoors">Outdoors</a>
       <a href="#gallery">Gallery</a>
       <a href="#faq">FAQ</a>
-      <a class="cta-nav" href="#booking">Book Now</a>
+      <a class="cta-nav js-book-open" href="#bookModal">Book Now</a>
     </nav>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">☰</button>
   </div>
@@ -337,7 +337,7 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
         <p>Cozy seating, lake views, fireplace, smart TV.</p>
         <h3 style="margin-top:16px">Kitchen &amp; Amenities</h3>
         <p>Fully equipped kitchen, washer/dryer, WiFi, gym, and BBQ.</p>
-        <a href="#booking" class="btn btn-custard">Book your retreat</a>
+        <a href="#bookModal" class="btn btn-custard js-book-open">Book your retreat</a>
       </article>
 
       <div class="carousel reveal" aria-label="Accommodations gallery">
@@ -470,6 +470,98 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
     </div>
   </div>
 </section>
+
+
+<!-- AVAILABILITY -->
+<section id="availability" class="section sec--warm">
+  <div class="container">
+    <h2 class="reveal">Availability</h2>
+    <p class="reveal">Dates shown in red are fully booked. Amber indicates owner blocks or holds.</p>
+    <div id="calendar" class="reveal" aria-label="Availability calendar"></div>
+<p id="cal-loading" class="small" style="margin-top:8px;">Loading availability…</p>
+    <div class="cal-legend reveal" aria-hidden="true">
+      <span class="cal-dot cal-booked" title="Booked"></span> Booked
+      <span class="cal-dot cal-blocked" title="Blocked"></span> Blocked/Hold
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER CTA -->
+<section id="booking" class="footer-cta" aria-label="Your Lakeside Escape awaits">
+  <div class="inner">
+    <h2>Your Lakeside Escape awaits</h2>
+    <a class="btn js-book-open" href="#bookModal" aria-label="Book Now">Book Now</a>
+  </div>
+</section>
+
+<footer>
+  <div class="small">© <span id="year"></span> North Baptiste Lake Retreat — Maynooth, Ontario</div>
+</footer>
+
+<script>
+// Year
+var y=document.getElementById('year'); if(y){ y.textContent=new Date().getFullYear(); }
+
+// Nav
+var burger=document.getElementById('burger');
+var links=document.getElementById('navLinks');
+if(burger && links){
+  burger.addEventListener('click', function(){
+    var open=links.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(open));
+  });
+  var navAs=links.querySelectorAll('a');
+  for(var i=0;i<navAs.length;i++){
+    navAs[i].addEventListener('click', function(){ links.classList.remove('open'); });
+  }
+}
+
+// Reveal
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+}else{ document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); }); }
+
+// FAQ
+document.querySelectorAll('.faq-item .faq-q').forEach(function(q){
+  q.addEventListener('click', function(){ q.parentElement.classList.toggle('open'); });
+});
+
+// Carousel
+var track=document.getElementById('accTrack'), prev=document.getElementById('accPrev'), next=document.getElementById('accNext');
+function updateCtrl(){ if(!track||!prev||!next) return; prev.disabled = track.scrollLeft<=0; var max=track.scrollWidth-track.clientWidth-1; next.disabled = track.scrollLeft>=max; }
+function scrollAmt(dir){ if(!track) return; var amt=Math.min(track.clientWidth,700)*dir; track.scrollBy({left:amt,behavior:'smooth'}); setTimeout(updateCtrl,350); }
+if(prev) prev.addEventListener('click', function(){ scrollAmt(-1); });
+if(next) next.addEventListener('click', function(){ scrollAmt(1); });
+if(track){ track.addEventListener('scroll', updateCtrl, {passive:true}); window.addEventListener('resize', updateCtrl); updateCtrl(); }
+
+// Lightbox
+var galleryImgs=document.querySelectorAll('#galleryGrid img');
+var accImgs=document.querySelectorAll('#accTrack img');
+var lb=document.createElement('div'); lb.className='lightbox';
+lb.innerHTML='<button class="lb-close" aria-label="Close">×</button><button class="lb-prev" aria-label="Previous">‹</button><img alt=""><button class="lb-next" aria-label="Next">›</button>';
+document.body.appendChild(lb);
+var lbImg=lb.querySelector('img'), lbClose=lb.querySelector('.lb-close'), lbPrev=lb.querySelector('.lb-prev'), lbNext=lb.querySelector('.lb-next');
+var set=[], idx=0;
+function openLB(i, s){ set=s; idx=i; var el=set[idx]; lbImg.src=el.getAttribute('src'); lbImg.alt=el.getAttribute('alt')||''; lb.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeLB(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+function move(n){ idx=(idx+n+set.length)%set.length; var el=set[idx]; lbImg.src=el.getAttribute('src'); lbImg.alt=el.getAttribute('alt')||''; }
+galleryImgs.forEach(function(im,i){ im.addEventListener('click', function(){ openLB(i, galleryImgs); }); });
+accImgs.forEach(function(im,i){ im.addEventListener('click', function(){ openLB(i, accImgs); }); });
+lbClose.addEventListener('click', closeLB);
+lb.addEventListener('click', function(e){ if(e.target===lb) closeLB(); });
+lbPrev.addEventListener('click', function(){ move(-1); });
+lbNext.addEventListener('click', function(){ move(1); });
+window.addEventListener('keydown', function(e){ if(!lb.classList.contains('open')) return; if(e.key==='Escape') closeLB(); if(e.key==='ArrowRight') move(1); if(e.key==='ArrowLeft') move(-1); });
+</script>
+
+
+
+
+
 
 
 <script>
@@ -680,84 +772,68 @@ footer{padding:18px 20px; text-align:center; color:#4b5563; background:#fff}
 </script>
 
 
-<!-- FOOTER CTA -->
-<section id="booking" class="footer-cta" aria-label="Your Lakeside Escape awaits">
-  <div class="inner">
-    <h2>Your Lakeside Escape awaits</h2>
-    <a class="btn" href="#" aria-label="Book Now">Book Now</a>
-  </div>
-</section>
 
-<footer>
-  <div class="small">© <span id="year"></span> North Baptiste Lake Retreat — Maynooth, Ontario</div>
-</footer>
+<!-- Book Now modal -->
+<div class="nb-modal" id="bookModal" aria-hidden="true">
+  <div class="nb-modal__backdrop" onclick="this.parentElement.setAttribute('aria-hidden','true')"></div>
+
+  <div class="nb-modal__dialog">
+    <button class="nb-modal__close" type="button"
+      onclick="document.getElementById('bookModal').setAttribute('aria-hidden','true')">×</button>
+
+    <h3 class="nb-modal__title">Book your stay</h3>
+    <p class="nb-modal__sub">Fill out your info and we’ll confirm availability by email.</p>
+
+    <form action="https://formspree.io/f/mdkpzkwd" method="POST">
+      <label>
+        Full name:
+        <input type="text" name="name" required>
+      </label>
+
+      <label>
+        Email address:
+        <input type="email" name="email" required>
+      </label>
+
+      <label>
+        Check-in date:
+        <input type="date" name="check_in" required>
+      </label>
+
+      <label>
+        Check-out date:
+        <input type="date" name="check_out" required>
+      </label>
+
+      <button type="submit">Send booking request</button>
+    </form>
+
+    <p class="nb-thanks" hidden id="thanksMsg">Thank you! Your request has been sent. 🌲</p>
+  </div>
+</div>
 
 <script>
-// Year
-var y=document.getElementById('year'); if(y){ y.textContent=new Date().getFullYear(); }
-
-// Nav
-var burger=document.getElementById('burger');
-var links=document.getElementById('navLinks');
-if(burger && links){
-  burger.addEventListener('click', function(){
-    var open=links.classList.toggle('open');
-    burger.setAttribute('aria-expanded', String(open));
+  // Simple open/close logic for all CTAs
+  document.querySelectorAll('.js-book-open').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+      e.preventDefault();
+      document.getElementById('bookModal').setAttribute('aria-hidden','false');
+    });
   });
-  var navAs=links.querySelectorAll('a');
-  for(var i=0;i<navAs.length;i++){
-    navAs[i].addEventListener('click', function(){ links.classList.remove('open'); });
-  }
-}
-
-// Reveal
-if('IntersectionObserver' in window){
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
-  }, {threshold:0.15});
-  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
-}else{ document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); }); }
-
-// FAQ
-document.querySelectorAll('.faq-item .faq-q').forEach(function(q){
-  q.addEventListener('click', function(){ q.parentElement.classList.toggle('open'); });
-});
-
-// Carousel
-var track=document.getElementById('accTrack'), prev=document.getElementById('accPrev'), next=document.getElementById('accNext');
-function updateCtrl(){ if(!track||!prev||!next) return; prev.disabled = track.scrollLeft<=0; var max=track.scrollWidth-track.clientWidth-1; next.disabled = track.scrollLeft>=max; }
-function scrollAmt(dir){ if(!track) return; var amt=Math.min(track.clientWidth,700)*dir; track.scrollBy({left:amt,behavior:'smooth'}); setTimeout(updateCtrl,350); }
-if(prev) prev.addEventListener('click', function(){ scrollAmt(-1); });
-if(next) next.addEventListener('click', function(){ scrollAmt(1); });
-if(track){ track.addEventListener('scroll', updateCtrl, {passive:true}); window.addEventListener('resize', updateCtrl); updateCtrl(); }
-
-// Lightbox
-var galleryImgs=document.querySelectorAll('#galleryGrid img');
-var accImgs=document.querySelectorAll('#accTrack img');
-var lb=document.createElement('div'); lb.className='lightbox';
-lb.innerHTML='<button class="lb-close" aria-label="Close">×</button><button class="lb-prev" aria-label="Previous">‹</button><img alt=""><button class="lb-next" aria-label="Next">›</button>';
-document.body.appendChild(lb);
-var lbImg=lb.querySelector('img'), lbClose=lb.querySelector('.lb-close'), lbPrev=lb.querySelector('.lb-prev'), lbNext=lb.querySelector('.lb-next');
-var set=[], idx=0;
-function openLB(i, s){ set=s; idx=i; var el=set[idx]; lbImg.src=el.getAttribute('src'); lbImg.alt=el.getAttribute('alt')||''; lb.classList.add('open'); document.body.style.overflow='hidden'; }
-function closeLB(){ lb.classList.remove('open'); document.body.style.overflow=''; }
-function move(n){ idx=(idx+n+set.length)%set.length; var el=set[idx]; lbImg.src=el.getAttribute('src'); lbImg.alt=el.getAttribute('alt')||''; }
-galleryImgs.forEach(function(im,i){ im.addEventListener('click', function(){ openLB(i, galleryImgs); }); });
-accImgs.forEach(function(im,i){ im.addEventListener('click', function(){ openLB(i, accImgs); }); });
-lbClose.addEventListener('click', closeLB);
-lb.addEventListener('click', function(e){ if(e.target===lb) closeLB(); });
-lbPrev.addEventListener('click', function(){ move(-1); });
-lbNext.addEventListener('click', function(){ move(1); });
-window.addEventListener('keydown', function(e){ if(!lb.classList.contains('open')) return; if(e.key==='Escape') closeLB(); if(e.key==='ArrowRight') move(1); if(e.key==='ArrowLeft') move(-1); });
 </script>
 
-
-
-
-
-
-
-
+<style>
+  .nb-modal{position:fixed;inset:0;display:none;z-index:1000}
+  .nb-modal[aria-hidden="false"]{display:block}
+  .nb-modal__backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.6)}
+  .nb-modal__dialog{position:relative;max-width:480px;margin:5% auto;background:#fff;
+    padding:24px;border-radius:10px;z-index:1}
+  .nb-modal__close{position:absolute;right:12px;top:12px;font-size:22px;border:none;background:none;cursor:pointer}
+  form label{display:block;margin-bottom:10px;font-weight:600}
+  input,textarea{width:100%;padding:8px;border:1px solid #ccc;border-radius:6px}
+  button{background:#DC9F2A;color:#111;border:none;padding:10px 16px;border-radius:6px;
+    cursor:pointer;font-weight:700}
+</style>
 
 </body>
 </html>
