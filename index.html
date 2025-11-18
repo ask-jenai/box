@@ -126,18 +126,7 @@
 
     @media(min-width:768px){header.hero{padding:0 1.5rem}}
     @media(min-width:1280px){.display{font-size:5rem}.rotating{font-size:5rem}}
-      /* CSS-only headline rotator */
-    .rotating-wrap{display:block}
-  /* ROTATOR FIX — robust stack + peek */
-  :where(.rotate-container){display:inline-block;--rotLine:1.2em;--rotPeek:.3em;--rotDur:21s;--rotSteps:6;height:calc(var(--rotLine) + var(--rotPeek)*2);padding-block:var(--rotPeek);overflow:hidden;vertical-align:baseline}
-  :where(.rotate-inner){display:block;will-change:transform;animation:rotateLines var(--rotDur) steps(7) infinite} :where(.rotate-inner)>span{display:block;line-height:var(--rotLine);white-space:nowrap}
-  :where(.rotate-inner)>span{display:block;line-height:var(--rotLine)}
-  @keyframes rotateLines{to{transform:translateY(calc(-6 * var(--rotLine)))}}
-  /* FORCE single-line crossfade rotator (ignore old stacked rotator rules) */
-  #hero .rotate-container, #hero .rotate-inner{ display:none !important; }
-  #hero .rotating-wrap{ display:block; margin:.25em 0; }
-  #hero #rotating{ display:inline-block; white-space:nowrap; font-weight:800; color:var(--cinnabar); font-size:clamp(2.2rem,10vw,4.5rem); line-height:1.2; letter-spacing:-.02em; transition:opacity .18s ease; }
-  #hero #rotating.is-out{ opacity:0; }
+    
   /* SERVICES — 2025 Refresh */
   section.offers{position:relative;background:var(--almond);padding:clamp(4rem,6vw,8rem) 1.5rem}
   section.offers::before{content:"";position:absolute;inset:-10% -20%;pointer-events:none;background:
