@@ -52,6 +52,24 @@
     .sub{max-width:56ch;color:rgba(58,47,45,.9);font-size:clamp(1rem,2vw,1.25rem);line-height:1.6;margin:2rem auto 0 auto;opacity:0;transform:translateY(20px);transition:all .6s ease}
     .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:1.5rem;opacity:0;transform:translateY(20px);transition:all .6s ease .1s}
     header.hero.show .sub,header.hero.show .hero-ctas{opacity:1;transform:none}
+    
+/* Mobile-safe responsive scaling for rotating headline */
+@media (max-width: 768px){
+  #hero .display{
+    font-size:clamp(1.9rem,7vw,2.6rem);
+  }
+  #hero #rotating{
+    font-size:clamp(1.7rem,6.5vw,2.3rem);
+  }
+}
+@media (max-width: 480px){
+  #hero .display{
+    font-size:clamp(1.6rem,6vw,2.2rem);
+  }
+  #hero #rotating{
+    font-size:clamp(1.4rem,5.5vw,2rem);
+  }
+}
 
     /* Problem Section */
     section.problem{position:relative;background:linear-gradient(180deg,#DB3E1D 0%,#C93518 100%);padding:clamp(4rem,6vw,7rem) 1.5rem;min-height:100vh;display:flex;align-items:center;overflow:hidden}
