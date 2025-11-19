@@ -713,6 +713,38 @@ footer.footer { background:#3A2F2D !important; }
     color: var(--cinnabar) !important;
   }
 </style>
+<style>
+  /* Mobile tuning for hero spacing + buttons */
+  @media (max-width: 640px) {
+
+    /* Slightly tighter hero padding */
+    header.hero{
+      padding-top: 8.5rem;
+      padding-bottom: 4.5rem;
+    }
+
+    /* Make the hero subtext a bit lighter + closer */
+    #hero .sub{
+      margin-top: 1.2rem;
+      font-size: 0.98rem;
+      line-height: 1.55;
+    }
+
+    /* Stack buttons nicely + reduce size */
+    .hero-ctas{
+      margin-top: 1.2rem;
+      gap: 0.75rem;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-ctas .btn{
+      padding: 0.65rem 1.2rem;   /* was taller */
+      font-size: 0.95rem;
+      border-radius: 999px;
+    }
+  }
+</style>
 
 </head>
 <body>
