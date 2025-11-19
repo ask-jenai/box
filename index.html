@@ -371,6 +371,35 @@ section.hello .meet-inner{
 @media(min-width:1000px){
   .meet-photo{ min-height:100% !important; }
 }
+    /* MOBILE NAV FIX (makes logo + nav look balanced on phones) */
+@media (max-width: 600px) {
+
+  .brand-left {
+    top: 48px !important;   /* pushes the logo down */
+    left: 20px !important;
+  }
+
+  .brand-left img {
+    height: 42px !important;  /* slightly smaller logo */
+    width: auto;
+  }
+
+  .nav-right {
+    top: 48px !important;    /* aligns CONTACT with logo */
+    right: 20px !important;
+    gap: 18px !important;    /* more breathing room */
+  }
+
+  .nav-right a {
+    font-size: 0.82rem !important;
+    letter-spacing: 0.11em;
+  }
+
+  .nav-wrap {
+    padding-top: 18px;       /* creates breathing room above everything */
+  }
+}
+
 </style>
 <style>
   :root{
