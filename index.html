@@ -264,6 +264,68 @@
   .hello-photo:hover{transform:rotate(-2deg)}
 </style>
 <style>
+
+    /* COOKIE BANNER */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 1.5rem;
+  box-shadow: 0 -4px 12px rgba(0,0,0,.15);
+  z-index: 99999;
+  opacity: 1;
+  transition: opacity .3s ease;
+}
+
+.cookie-banner.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cookie-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cookie-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: .75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* COOKIE MODAL */
+.cookie-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+}
+
+.cookie-modal.show {
+  display: flex;
+}
+
+.cookie-modal-inner {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 14px;
+  max-width: 480px;
+  width: 100%;
+}
+
+.cookie-toggle {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+
 /* === Fixes for Hello section layout === */
 section.hello{min-height:100vh !important; display:block !important;}
 section.hello .meet-inner{
@@ -1148,5 +1210,50 @@ footer.footer { background:#3A2F2D !important; }
 })();
 
 </script>
+    <!-- Cookie Banner -->
+<div id="cookie-banner" class="cookie-banner">
+  <div class="cookie-content">
+    <h3>We use cookies</h3>
+    <p>
+      We use cookies to improve your experience, analyze site traffic, and help us improve JenAI. 
+      You can accept all, reject all, or customize your preferences.
+    </p>
+
+    <div class="cookie-buttons">
+      <button id="cookie-accept" class="btn cinnabar">Accept all</button>
+      <button id="cookie-reject" class="btn lilac">Reject all</button>
+      <button id="cookie-customize" class="btn neutral">Customize</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie Preferences Modal -->
+<div id="cookie-modal" class="cookie-modal">
+  <div class="cookie-modal-inner">
+    <h3>Cookie Preferences</h3>
+    <p>Select which types of cookies you want to allow.</p>
+
+    <label class="cookie-toggle">
+      <input type="checkbox" id="cookie-essential" checked disabled>
+      <span>Essential Cookies (always active)</span>
+    </label>
+
+    <label class="cookie-toggle">
+      <input type="checkbox" id="cookie-analytics">
+      <span>Analytics Cookies (Google Analytics, etc.)</span>
+    </label>
+
+    <label class="cookie-toggle">
+      <input type="checkbox" id="cookie-marketing">
+      <span>Marketing Cookies (Meta Pixel, ads)</span>
+    </label>
+
+    <label class="cookie-toggle">
+      <input type="checkbox" id="cookie-embed">
+      <span>Embedded Services (Substack, HubSpot forms)</span>
+    </label>
+
+    <div class="cookie-mod
+
 </body>
 </html>
