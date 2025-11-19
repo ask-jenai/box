@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JenAI AI Marketing Consultancy)</title>
+<title>JenAI AI Marketing Consultancy</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -160,6 +160,82 @@
 
     @media(min-width:768px){header.hero{padding:0 1.5rem}}
     @media(min-width:1280px){.display{font-size:5rem}.rotating{font-size:5rem}}
+/* COOKIE BANNER */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 1.5rem;
+  box-shadow: 0 -4px 12px rgba(0,0,0,.15);
+  z-index: 99999;
+  opacity: 1;
+  transition: opacity .3s ease;
+}
+
+.cookie-banner.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cookie-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cookie-buttons {
+  margin-top: 1rem;
+  display: flex;
+  gap: .75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* COOKIE MODAL */
+.cookie-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+}
+
+.cookie-modal.show {
+  display: flex;
+}
+
+.cookie-modal-inner {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 14px;
+  max-width: 480px;
+  width: 100%;
+}
+
+.cookie-toggle {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin: 1rem 0;
+}
+
+.cookie-modal-buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: .75rem;
+  justify-content: flex-end;
+}
+
+/* Neutral button (if your site doesn't have it already) */
+.btn.neutral {
+  background: #eaeaea;
+  color: #333;
+}
+
     
   /* SERVICES — 2025 Refresh */
   section.offers{position:relative;background:var(--almond);padding:clamp(4rem,6vw,8rem) 1.5rem}
@@ -265,76 +341,7 @@
 </style>
 <style>
 
-   /* ===== COOKIE BANNER ===== */
-.cookie-banner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #fff;
-  padding: 1.5rem;
-  box-shadow: 0 -4px 12px rgba(0,0,0,.15);
-  z-index: 999999;
-  transition: opacity .3s ease;
-}
-
-.cookie-banner.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.cookie-content {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.cookie-buttons {
-  margin-top: 1rem;
-  display: flex;
-  gap: .75rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.cookie-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.55);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999999;
-}
-
-.cookie-modal.show {
-  display: flex;
-}
-
-.cookie-modal-inner {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 14px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.cookie-toggle { 
-  display: flex; 
-  align-items: center; 
-  gap: .75rem; 
-  margin: 1rem 0; 
-}
-
-.cookie-modal-buttons {
-  margin-top: 1.5rem;
-  display: flex;
-  gap: .75rem;
-  justify-content: flex-end;
-}
-
-/* Hide French or English depending on selection */
-[data-lang] { display: none; }
+ 
 
 
 /* === Fixes for Hello section layout === */
@@ -1221,136 +1228,87 @@ footer.footer { background:#3A2F2D !important; }
 })();
 
 </script>
-<!-- ========================================= -->
-<!-- BILINGUAL COOKIE BANNER (EN + FR)          -->
-<!-- ========================================= -->
+<!-- COOKIE BANNER (English Only) -->
 <div id="cookie-banner" class="cookie-banner hidden">
   <div class="cookie-content">
-    <h3 data-lang="en">We use cookies</h3>
-    <h3 data-lang="fr">On utilise des cookies</h3>
-
-    <p data-lang="en">
-      We use cookies to improve your experience, understand traffic, and make JenAI better.
-      You can accept all, reject all, or customize your preferences.
-    </p>
-    <p data-lang="fr">
-      On utilise des cookies pour améliorer ton expérience, comprendre le trafic, 
-      et optimiser JenAI. Tu peux tout accepter, tout refuser, ou choisir tes préférences.
+    <h3>We use cookies</h3>
+    <p>
+      We use cookies to improve your experience, understand visitor behavior, 
+      and help make JenAI better. For more information, please consult our 
+      <a href="https://jenai.ca/privacy-policy" target="_blank">Privacy Policy</a>.
     </p>
 
     <div class="cookie-buttons">
- <button id="cookie-accept" class="btn cinnabar">
-  <span data-lang="en">Accept all</span>
-  <span data-lang="fr">Tout accepter</span>
-</button>
-        
-<button id="cookie-customize" class="btn neutral">
-  <span data-lang="en">Customize</span>
-  <span data-lang="fr">Personnaliser</span>
-</button>
-
-<button id="cookie-save" class="btn cinnabar">
-  <span data-lang="en">Save</span>
-  <span data-lang="fr">Enregistrer</span>
-</button>
-<button id="cookie-close" class="btn neutral">
-  <span data-lang="en">Close</span>
-  <span data-lang="fr">Fermer</span>
-</button>
-        
+      <button id="cookie-accept" class="btn cinnabar">Accept all</button>
+      <button id="cookie-reject" class="btn lilac">Reject all</button>
+      <button id="cookie-customize" class="btn neutral">Customize</button>
     </div>
   </div>
 </div>
 
-<!-- ========================================= -->
-<!-- COOKIE PREFERENCES MODAL (EN + FR)        -->
-<!-- ========================================= -->
+<!-- COOKIE PREFERENCES MODAL -->
 <div id="cookie-modal" class="cookie-modal">
   <div class="cookie-modal-inner">
-
-    <h3 data-lang="en">Cookie Preferences</h3>
-    <h3 data-lang="fr">Préférences de cookies</h3>
-
-    <p data-lang="en">Choose which cookies you want to allow.</p>
-    <p data-lang="fr">Choisis les cookies que tu veux activer.</p>
+    <h3>Cookie Preferences</h3>
+    <p>Select which cookies you want to allow.</p>
 
     <label class="cookie-toggle">
-      <input type="checkbox" checked disabled>
-      <span data-lang="en">Essential cookies (always on)</span>
-      <span data-lang="fr">Cookies essentiels (toujours actifs)</span>
+      <input type="checkbox" disabled checked>
+      <span>Essential cookies (always active)</span>
     </label>
 
     <label class="cookie-toggle">
       <input type="checkbox" id="cookie-analytics">
-      <span data-lang="en">Analytics (Google Analytics)</span>
-      <span data-lang="fr">Analytique (Google Analytics)</span>
+      <span>Analytics (Google Analytics)</span>
     </label>
 
     <label class="cookie-toggle">
       <input type="checkbox" id="cookie-marketing">
-      <span data-lang="en">Marketing (Meta Pixel, ads)</span>
-      <span data-lang="fr">Marketing (Pixel Meta, pubs)</span>
+      <span>Marketing (Meta Pixel, ads)</span>
     </label>
 
     <label class="cookie-toggle">
       <input type="checkbox" id="cookie-embed">
-      <span data-lang="en">Embedded tools (Substack, HubSpot forms)</span>
-      <span data-lang="fr">Outils intégrés (Substack, formulaires HubSpot)</span>
+      <span>Embedded tools (Substack, HubSpot forms)</span>
     </label>
 
     <div class="cookie-modal-buttons">
-      <button id="cookie-save" class="btn cinnabar" data-lang="en">Save</button>
-      <button id="cookie-save" class="btn cinnabar" data-lang="fr">Enregistrer</button>
-
-      <button id="cookie-close" class="btn neutral" data-lang="en">Close</button>
-      <button id="cookie-close" class="btn neutral" data-lang="fr">Fermer</button>
+      <button id="cookie-save" class="btn cinnabar">Save</button>
+      <button id="cookie-close" class="btn neutral">Close</button>
     </div>
   </div>
 </div>
 <script>
-// ---- LANGUAGE DETECTION ----
-function getBrowserLang() {
-  return navigator.language.startsWith('fr') ? 'fr' : 'en';
-}
-
-function switchLang(lang) {
-  document.querySelectorAll('[data-lang]').forEach(el => {
-    el.style.display = el.getAttribute('data-lang') === lang ? '' : 'none';
-  });
-}
-
-const lang = getBrowserLang();
-switchLang(lang);
-
-// ---- COOKIE STORAGE ----
 function savePrefs(prefs) {
   localStorage.setItem("cookie-preferences", JSON.stringify(prefs));
 }
+
 function loadPrefs() {
-  const x = localStorage.getItem("cookie-preferences");
-  return x ? JSON.parse(x) : null;
+  const stored = localStorage.getItem("cookie-preferences");
+  return stored ? JSON.parse(stored) : null;
 }
 
+// Elements
 const banner = document.getElementById("cookie-banner");
 const modal = document.getElementById("cookie-modal");
 
-const btnAccept = document.querySelectorAll("#cookie-accept");
-const btnReject = document.querySelectorAll("#cookie-reject");
-const btnCustomize = document.querySelectorAll("#cookie-customize");
-const btnClose = document.querySelectorAll("#cookie-close");
-const btnSave = document.querySelectorAll("#cookie-save");
+const btnAccept = document.getElementById("cookie-accept");
+const btnReject = document.getElementById("cookie-reject");
+const btnCustomize = document.getElementById("cookie-customize");
+const btnSave = document.getElementById("cookie-save");
+const btnClose = document.getElementById("cookie-close");
 
 const analytics = document.getElementById("cookie-analytics");
 const marketing = document.getElementById("cookie-marketing");
 const embed = document.getElementById("cookie-embed");
 
-// Show banner if no prefs
+// Show banner only if no saved preferences
 if (!loadPrefs()) {
   banner.classList.remove("hidden");
 }
 
 // Accept all
-btnAccept.forEach(btn => btn.onclick = () => {
+btnAccept.onclick = () => {
   savePrefs({
     essential: true,
     analytics: true,
@@ -1360,10 +1318,10 @@ btnAccept.forEach(btn => btn.onclick = () => {
   banner.classList.add("hidden");
   modal.classList.remove("show");
   location.reload();
-});
+};
 
 // Reject all
-btnReject.forEach(btn => btn.onclick = () => {
+btnReject.onclick = () => {
   savePrefs({
     essential: true,
     analytics: false,
@@ -1372,15 +1330,15 @@ btnReject.forEach(btn => btn.onclick = () => {
   });
   banner.classList.add("hidden");
   modal.classList.remove("show");
-});
+};
 
 // Customize
-btnCustomize.forEach(btn => btn.onclick = () => {
+btnCustomize.onclick = () => {
   modal.classList.add("show");
-});
+};
 
 // Save preferences
-btnSave.forEach(btn => btn.onclick = () => {
+btnSave.onclick = () => {
   savePrefs({
     essential: true,
     analytics: analytics.checked,
@@ -1390,12 +1348,12 @@ btnSave.forEach(btn => btn.onclick = () => {
   modal.classList.remove("show");
   banner.classList.add("hidden");
   location.reload();
-});
+};
 
 // Close modal
-btnClose.forEach(btn => btn.onclick = () => {
+btnClose.onclick = () => {
   modal.classList.remove("show");
-});
+};
 </script>
 
 </body>
