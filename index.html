@@ -4,6 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>JenAI AI Marketing Consultancy)</title>
+<link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -35,7 +36,7 @@
     .nav-wrap{position:relative;z-index:50}
     .brand-left{position:absolute;top:24px;left:24px;display:flex;align-items:center}
 .brand-left img{
-  height:56px;
+  height:72px;
   width:auto;
 }    .nav-right{position:absolute;top:24px;right:24px;display:flex;align-items:center;gap:24px;text-transform:uppercase;font-weight:700;letter-spacing:.12em;font-size:.9rem}
     .nav-right a{color:var(--espresso);text-decoration:none;opacity:.95;transition:.3s ease opacity}
@@ -508,6 +509,26 @@ footer.footer { background:#3A2F2D !important; }
 }
 #cta .chip svg, #cta .chip img{display:block}
 
+/* Mobile-safe scaling for rotating headline */
+@media (max-width: 768px){
+  .display {
+    font-size: clamp(1.9rem, 7vw, 2.6rem);
+  }
+  #rotating {
+    font-size: clamp(1.7rem, 6.5vw, 2.3rem);
+  }
+}
+
+@media (max-width: 480px){
+  .display {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+  #rotating {
+    font-size: clamp(1.4rem, 5.5vw, 2rem);
+  }
+}
+
+    
 </style>
 
 <!-- PATCH v5: HS modal lavender + hide inline -->
