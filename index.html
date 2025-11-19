@@ -666,6 +666,25 @@ footer.footer { background:#3A2F2D !important; }
 /* Hide any inline HS forms not in the modal */
 .hs-form-frame{display:none}
 #hs-modal .hs-form-frame{display:block}
+/* Center icon + text perfectly inside pills */
+.cta-pill, 
+.chip, 
+.pill, 
+#cta .chips .chip {
+    display: inline-flex;
+    align-items: center;      /* vertical centering */
+    justify-content: center;  /* horizontal centering */
+    gap: 8px;                 /* spacing between icon + text */
+    padding: 12px 20px;       /* balanced padding */
+    border-radius: 32px;      /* pill shape */
+    line-height: 1;           /* prevents vertical misalignment */
+}
+
+.cta-pill svg, 
+.chip svg, 
+.pill svg {
+    display: block;           /* removes unwanted baseline offset */
+}
 
 </style>
 </head>
