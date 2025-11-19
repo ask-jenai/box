@@ -265,7 +265,7 @@
 </style>
 <style>
 
-    /* COOKIE BANNER */
+   /* ===== COOKIE BANNER ===== */
 .cookie-banner {
   position: fixed;
   bottom: 0;
@@ -274,8 +274,7 @@
   background: #fff;
   padding: 1.5rem;
   box-shadow: 0 -4px 12px rgba(0,0,0,.15);
-  z-index: 99999;
-  opacity: 1;
+  z-index: 999999;
   transition: opacity .3s ease;
 }
 
@@ -298,7 +297,6 @@
   flex-wrap: wrap;
 }
 
-/* COOKIE MODAL */
 .cookie-modal {
   position: fixed;
   inset: 0;
@@ -306,7 +304,7 @@
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 999999;
+  z-index: 9999999;
 }
 
 .cookie-modal.show {
@@ -317,14 +315,27 @@
   background: #fff;
   padding: 2rem;
   border-radius: 14px;
-  max-width: 480px;
+  max-width: 500px;
   width: 100%;
 }
 
-.cookie-toggle {
+.cookie-toggle { 
+  display: flex; 
+  align-items: center; 
+  gap: .75rem; 
+  margin: 1rem 0; 
+}
+
+.cookie-modal-buttons {
+  margin-top: 1.5rem;
   display: flex;
-  align-items: center;
   gap: .75rem;
+  justify-content: flex-end;
+}
+
+/* Hide French or English depending on selection */
+[data-lang] { display: none; }
+
 
 /* === Fixes for Hello section layout === */
 section.hello{min-height:100vh !important; display:block !important;}
@@ -1227,33 +1238,171 @@ footer.footer { background:#3A2F2D !important; }
   </div>
 </div>
 
-<!-- Cookie Preferences Modal -->
+<!-- ========================================= -->
+<!-- BILINGUAL COOKIE BANNER (EN + FR)          -->
+<!-- ========================================= -->
+<div id="cookie-banner" class="cookie-banner hidden">
+  <div class="cookie-content">
+    <h3 data-lang="en">We use cookies</h3>
+    <h3 data-lang="fr">On utilise des cookies</h3>
+
+    <p data-lang="en">
+      We use cookies to improve your experience, understand traffic, and make JenAI better.
+      You can accept all, reject all, or customize your preferences.
+    </p>
+    <p data-lang="fr">
+      On utilise des cookies pour améliorer ton expérience, comprendre le trafic, 
+      et optimiser JenAI. Tu peux tout accepter, tout refuser, ou choisir tes préférences.
+    </p>
+
+    <div class="cookie-buttons">
+      <button id="cookie-accept" class="btn cinnabar" data-lang="en">Accept all</button>
+      <button id="cookie-accept" class="btn cinnabar" data-lang="fr">Tout accepter</button>
+
+      <button id="cookie-reject" class="btn lilac" data-lang="en">Reject all</button>
+      <button id="cookie-reject" class="btn lilac" data-lang="fr">Tout refuser</button>
+
+      <button id="cookie-customize" class="btn neutral" data-lang="en">Customize</button>
+      <button id="cookie-customize" class="btn neutral" data-lang="fr">Personnaliser</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================= -->
+<!-- COOKIE PREFERENCES MODAL (EN + FR)        -->
+<!-- ========================================= -->
 <div id="cookie-modal" class="cookie-modal">
   <div class="cookie-modal-inner">
-    <h3>Cookie Preferences</h3>
-    <p>Select which types of cookies you want to allow.</p>
+
+    <h3 data-lang="en">Cookie Preferences</h3>
+    <h3 data-lang="fr">Préférences de cookies</h3>
+
+    <p data-lang="en">Choose which cookies you want to allow.</p>
+    <p data-lang="fr">Choisis les cookies que tu veux activer.</p>
 
     <label class="cookie-toggle">
-      <input type="checkbox" id="cookie-essential" checked disabled>
-      <span>Essential Cookies (always active)</span>
+      <input type="checkbox" checked disabled>
+      <span data-lang="en">Essential cookies (always on)</span>
+      <span data-lang="fr">Cookies essentiels (toujours actifs)</span>
     </label>
 
     <label class="cookie-toggle">
       <input type="checkbox" id="cookie-analytics">
-      <span>Analytics Cookies (Google Analytics, etc.)</span>
+      <span data-lang="en">Analytics (Google Analytics)</span>
+      <span data-lang="fr">Analytique (Google Analytics)</span>
     </label>
 
     <label class="cookie-toggle">
       <input type="checkbox" id="cookie-marketing">
-      <span>Marketing Cookies (Meta Pixel, ads)</span>
+      <span data-lang="en">Marketing (Meta Pixel, ads)</span>
+      <span data-lang="fr">Marketing (Pixel Meta, pubs)</span>
     </label>
 
     <label class="cookie-toggle">
       <input type="checkbox" id="cookie-embed">
-      <span>Embedded Services (Substack, HubSpot forms)</span>
+      <span data-lang="en">Embedded tools (Substack, HubSpot forms)</span>
+      <span data-lang="fr">Outils intégrés (Substack, formulaires HubSpot)</span>
     </label>
 
-    <div class="cookie-mod
+    <div class="cookie-modal-buttons">
+      <button id="cookie-save" class="btn cinnabar" data-lang="en">Save</button>
+      <button id="cookie-save" class="btn cinnabar" data-lang="fr">Enregistrer</button>
+
+      <button id="cookie-close" class="btn neutral" data-lang="en">Close</button>
+      <button id="cookie-close" class="btn neutral" data-lang="fr">Fermer</button>
+    </div>
+  </div>
+</div>
+<script>
+// ---- LANGUAGE DETECTION ----
+function getBrowserLang() {
+  return navigator.language.startsWith('fr') ? 'fr' : 'en';
+}
+
+function switchLang(lang) {
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    el.style.display = el.getAttribute('data-lang') === lang ? '' : 'none';
+  });
+}
+
+const lang = getBrowserLang();
+switchLang(lang);
+
+// ---- COOKIE STORAGE ----
+function savePrefs(prefs) {
+  localStorage.setItem("cookie-preferences", JSON.stringify(prefs));
+}
+function loadPrefs() {
+  const x = localStorage.getItem("cookie-preferences");
+  return x ? JSON.parse(x) : null;
+}
+
+const banner = document.getElementById("cookie-banner");
+const modal = document.getElementById("cookie-modal");
+
+const btnAccept = document.querySelectorAll("#cookie-accept");
+const btnReject = document.querySelectorAll("#cookie-reject");
+const btnCustomize = document.querySelectorAll("#cookie-customize");
+const btnClose = document.querySelectorAll("#cookie-close");
+const btnSave = document.querySelectorAll("#cookie-save");
+
+const analytics = document.getElementById("cookie-analytics");
+const marketing = document.getElementById("cookie-marketing");
+const embed = document.getElementById("cookie-embed");
+
+// Show banner if no prefs
+if (!loadPrefs()) {
+  banner.classList.remove("hidden");
+}
+
+// Accept all
+btnAccept.forEach(btn => btn.onclick = () => {
+  savePrefs({
+    essential: true,
+    analytics: true,
+    marketing: true,
+    embed: true
+  });
+  banner.classList.add("hidden");
+  modal.classList.remove("show");
+  location.reload();
+});
+
+// Reject all
+btnReject.forEach(btn => btn.onclick = () => {
+  savePrefs({
+    essential: true,
+    analytics: false,
+    marketing: false,
+    embed: false
+  });
+  banner.classList.add("hidden");
+  modal.classList.remove("show");
+});
+
+// Customize
+btnCustomize.forEach(btn => btn.onclick = () => {
+  modal.classList.add("show");
+});
+
+// Save preferences
+btnSave.forEach(btn => btn.onclick = () => {
+  savePrefs({
+    essential: true,
+    analytics: analytics.checked,
+    marketing: marketing.checked,
+    embed: embed.checked
+  });
+  modal.classList.remove("show");
+  banner.classList.add("hidden");
+  location.reload();
+});
+
+// Close modal
+btnClose.forEach(btn => btn.onclick = () => {
+  modal.classList.remove("show");
+});
+</script>
 
 </body>
 </html>
