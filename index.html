@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>JenAI AI Marketing Consultancy</title>
-<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/png" href="flavicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -1290,7 +1290,7 @@ function loadPrefs() {
 
 // Elements
 const banner = document.getElementById("cookie-banner");
-const modal = document.getElementById("cookie-modal");
+const cookieModal = document.getElementById("cookie-modal");
 
 const btnAccept = document.getElementById("cookie-accept");
 const btnReject = document.getElementById("cookie-reject");
@@ -1316,7 +1316,7 @@ btnAccept.onclick = () => {
     embed: true
   });
   banner.classList.add("hidden");
-  modal.classList.remove("show");
+  cookieModal.classList.remove("show");
   location.reload();
 };
 
@@ -1329,12 +1329,12 @@ btnReject.onclick = () => {
     embed: false
   });
   banner.classList.add("hidden");
-  modal.classList.remove("show");
+  cookieModal.classList.remove("show");
 };
 
 // Customize
 btnCustomize.onclick = () => {
-  modal.classList.add("show");
+  cookieModal.classList.add("show");
 };
 
 // Save preferences
@@ -1345,16 +1345,17 @@ btnSave.onclick = () => {
     marketing: marketing.checked,
     embed: embed.checked
   });
-  modal.classList.remove("show");
+  cookieModal.classList.remove("show");
   banner.classList.add("hidden");
   location.reload();
 };
 
 // Close modal
 btnClose.onclick = () => {
-  modal.classList.remove("show");
+  cookieModal.classList.remove("show");
 };
 </script>
+
 
 </body>
 </html>
