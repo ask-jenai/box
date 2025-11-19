@@ -690,6 +690,19 @@ footer.footer { background:#3A2F2D !important; }
 }
 
 </style>
+    <style>
+  /* Disable scroll-snap on mobile so the footer is fully scrollable */
+  @media (max-width: 900px) {
+    body {
+      scroll-snap-type: none;
+    }
+    section,
+    header.hero {
+      scroll-snap-align: none;
+    }
+  }
+</style>
+
 </head>
 <body>
 
@@ -698,7 +711,7 @@ footer.footer { background:#3A2F2D !important; }
       <img src="logo.png" alt="JenAI Logo">
     </div>
    <nav class="nav-right" aria-label="Primary">
-  <a href="#hello">ABOUT</a>
+ 
   <a href="https://substack.com/@askjenai" target="_blank" rel="noopener">BLOG</a>
   <a href="#services">SERVICES</a>
   <button class="btn lilac js-open-hs" type="button">CONTACT</button>
