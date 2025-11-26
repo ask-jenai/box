@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mechanical Design & 3D CAD Services | Conception DJG Inc.</title>
+  <meta name="description" content="Mechanical design services, 3D CAD modeling, DFM consulting, and CAD workflow optimization for founders, engineering managers, and manufacturing SMEs." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="canonical" href="https://www.conceptiondjg.com/mechanical-design-cad-services" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Mechanical Design and CAD Support That Keeps Projects Moving" />
+  <meta property="og:description" content="Expert 3D CAD modeling, product development support, DFM consulting, and CAD workflow optimization for founders, engineering teams, and manufacturing SMEs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.conceptiondjg.com/mechanical-design-cad-services" />
+  <meta property="og:image" content="https://www.conceptiondjg.com/assets/og-mechanical-design.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mechanical Design and CAD Support That Keeps Projects Moving" />
+  <meta name="twitter:description" content="Mechanical design, 3D CAD modeling, DFM consulting, and CAD workflow optimization for growing engineering teams." />
+  <meta name="twitter:image" content="https://www.conceptiondjg.com/assets/og-mechanical-design.jpg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-primary: #10243E;
+      --color-secondary-1: #486581;
+      --color-secondary-2: #E96B3C;
+      --color-accent: #C4452F;
+      --color-bg: #FAF6F2;
+      --color-white: #ffffff;
+      --color-border: #dde1ea;
+      --color-muted: #7c8a9c;
+
+      --font-sans: "Work Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --max-width: 1120px;
+      --radius-lg: 16px;
+      --shadow-soft: 0 14px 40px rgba(0, 0, 0, 0.06);
+      --transition-fast: 0.18s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background-color: var(--color-bg);
+      color: var(--color-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.75rem;
+    }
+
+    /* HEADER / NAV */
+
+header {
+  background: var(--color-primary); /* or a solid color */
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 0;
+    }
+
+    .nav__left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nav__left {
+  padding-left: 2rem;
+}
+
+
+    .nav__logo-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, #E96B3C, #10243E);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .nav__brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav__brand-main {
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+    .nav__brand-main {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 1000; /* BLACK */
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+}
+
+.nav__brand-sub {
+  font-weight: 600;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.75);
+}
+
+.nav__brand-main,
+.nav__brand-sub {
+  color: var(--color-white);
+}
+.nav__cta {
+  background: var(--color-secondary-2);
+  color: white;
+}
+
+    .nav__brand-sub {
+      font-weight: 400;
+      font-size: 0.75rem;
+      color: var(--color-muted);
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      font-size: 0.9rem;
+    }
+
+    .nav__link {
+      position: relative;
+      font-weight: 500;
+    }
+/* NAV LINK HOVER COLOR — TURN RED */
+.nav__link {
+  color: #FFFFFF; /* default text color on navy */
+  transition: color 0.2s ease;
+}
+
+.nav__link:hover,
+.nav__link:focus-visible {
+  color: #C4452F; /* your red accent color */
+}
+.nav__link::after {
+  background: #C4452F; /* underline color on hover */
+}
+
+    .nav__link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.25rem;
+      width: 0;
+      height: 2px;
+      background: var(--color-secondary-2);
+      transition: width var(--transition-fast);
+    }
+.nav__link {
+  color: var(--color-white);
+}
+.nav__link::after {
+  background: var(--color-secondary-2);
+}
+ /* FINAL OVERRIDE — NAV LINKS HOVER RED */
+.nav__link:hover,
+.nav__link:focus-visible {
+  outline: none;
+  color: #C4452F !important; /* red */
+}
+
+.nav__link::after {
+  background: #C4452F !important; /* underline also red */
+}
+
+
+    .nav__link:hover::after,
+    .nav__link:focus-visible::after {
+      width: 18px;
+    }
+
+    .nav__cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 1.2rem;
+      border-radius: 999px;
+      background: var(--color-secondary-2);
+      color: var(--color-white);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+      box-shadow: none;
+    }
+
+   .nav__cta:hover,
+.nav__cta:focus-visible {
+  background: var(--color-accent);
+  transform: translateY(-1px);
+  box-shadow: none;
+}
+
+
+    .nav__toggle {
+      display: none;
+    }
+
+    /* HERO */
+
+    main {
+      flex: 1;
+    }
+
+/* FULL-SCREEN HERO — KASSOW ROBOTS STYLE */
+.hero {
+  height: 100vh;
+  min-height: 620px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+}
+
+/* Overlay tint like Kassow */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 36, 62, 0.45);
+  z-index: 0;
+}
+
+/* Ensure content sits above overlay */
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertically centered */
+  max-width: 700px;
+  padding: 0;                /* REMOVE all padding */
+}
+
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 36, 62, 0.55);
+  z-index: 0;
+}
+
+
+.hero__image {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+  background: #eee; /* subtle placeholder background */
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+
+    .hero__inner {
+      display: grid;
+  grid-template-columns: minmax(0, 1fr);
+    }
+    
+
+
+    .hero__eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-secondary-1);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero__title {
+      font-family: var(--font-sans);
+      font-size: clamp(2.3rem, 4vw, 2.9rem);
+      line-height: 1.1;
+      font-weight: 900; /* Work Sans Black */
+      margin: 0 0 1.25rem;
+      color: var(--color-primary);
+    }
+
+    .hero__subtitle {
+      font-size: 1rem;
+      max-width: 36rem;
+      color: var(--color-secondary-1);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero__cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      align-items: center;
+      margin-bottom: 0.9rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background var(--transition-fast), color var(--transition-fast),
+                  transform var(--transition-fast), box-shadow var(--transition-fast),
+                  border-color var(--transition-fast);
+    }
+
+.btn--primary {
+  background: var(--color-secondary-2);
+  color: var(--color-white);
+  box-shadow: none;
+}
+
+
+  .btn--primary:hover,
+.btn--primary:focus-visible {
+  background: var(--color-accent);
+  transform: translateY(-1px);
+  box-shadow: none;
+}
+
+
+    .btn--ghost {
+      background: transparent;
+      border-color: rgba(16, 36, 62, 0.14);
+      color: var(--color-primary);
+    }
+
+    .btn--ghost:hover,
+    .btn--ghost:focus-visible {
+      border-color: var(--color-secondary-1);
+      background: rgba(16, 36, 62, 0.02);
+      outline: none;
+    }
+
+    .hero__subtext {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+    }
+
+    .hero__badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+    }
+
+    .hero__badge {
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(16, 36, 62, 0.08);
+      background: rgba(255, 255, 255, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--color-muted);
+    }
+
+    .hero__badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-secondary-2);
+    }
+
+    .hero__visual {
+      position: relative;
+      height: 100%;
+    }
+
+    .hero__card {
+      position: relative;
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 1.4rem 1.4rem 1.2rem;
+      max-width: 420px;
+      margin-left: auto;
+    }
+
+    .hero__card-heading {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin: 0 0 0.35rem;
+      color: var(--color-secondary-1);
+    }
+
+    .hero__card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 0 0 0.75rem;
+    }
+
+    .hero__card-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero__metric {
+      background: rgba(250, 246, 242, 0.9);
+      border-radius: 10px;
+      padding: 0.55rem 0.7rem;
+    }
+
+    .hero__metric-label {
+      font-size: 0.7rem;
+      color: var(--color-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .hero__metric-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .hero__card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--color-muted);
+    }
+
+    .hero__status-pill {
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(72, 101, 129, 0.08);
+      color: var(--color-secondary-1);
+      font-weight: 500;
+    }
+
+    /* GENERIC SECTION STYLES */
+
+    section {
+      padding: 3.5rem 0;
+    }
+
+    .section__header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-bottom: 2rem;
+    }
+
+    .section__eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-muted);
+    }
+
+    .section__title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .section__intro {
+      font-size: 0.98rem;
+      max-width: 36rem;
+      color: var(--color-secondary-1);
+    }
+
+    /* ABOUT / MEET DAVID */
+
+    .about {
+      background: var(--color-white);
+    }
+
+    .about__inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .about__title {
+      font-size: 1.7rem;
+      font-weight: 900;
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+
+    .about__body p {
+      margin: 0 0 0.85rem;
+      font-size: 0.98rem;
+      color: var(--color-secondary-1);
+    }
+
+    .about__cta {
+      margin-top: 1.3rem;
+    }
+
+    .about__visual {
+      position: relative;
+    }
+
+    .about__photo {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(16, 36, 62, 0.06);
+    }
+
+    .about__photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .about__tag {
+      position: absolute;
+      bottom: 1.1rem;
+      left: 1.1rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(16, 36, 62, 0.88);
+      color: var(--color-white);
+      font-size: 0.78rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .about__tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #45d19e;
+    }
+
+    /* SERVICES */
+
+    .services {
+      background: var(--color-bg);
+    }
+
+    .services__grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      padding: 1.4rem 1.4rem 1.3rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(16, 36, 62, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 190px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .service-card:hover,
+    .service-card:focus-within {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+      border-color: rgba(16, 36, 62, 0.12);
+    }
+
+    .service-card__title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+    }
+
+    .service-card__body {
+      font-size: 0.93rem;
+      color: var(--color-secondary-1);
+      margin-bottom: 1rem;
+    }
+
+    .service-card__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-secondary-2);
+    }
+
+    .service-card__link span {
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    /* OFFER / AUDIT */
+
+.offer {
+  background: #10243E; /* primary navy */
+  padding: 4rem 0;
+  color: #ffffff;
+}
+.offer .section__title,
+.offer h3 {
+  color: #ffffff;
+}
+
+
+    .offer__inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+      gap: 2.25rem;
+      align-items: center;
+    }
+
+    .offer__body p {
+      margin: 0 0 0.9rem;
+      font-size: 0.98rem;
+      color: var(--color-secondary-1);
+    }
+
+    .offer__body p,
+.offer p {
+  color: rgba(255,255,255,0.85);
+}
+
+   .offer__panel {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #ffffff;
+}
+/* ------------------------------------------- */
+/*   WHATS INCLUDED — WHITE CARD STYLE (A)     */
+/* ------------------------------------------- */
+
+.whats-included-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.06);
+  max-width: 420px;
+}
+
+.whats-included-title {
+  font-family: "Work Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #10243E;
+  margin-bottom: 1.4rem;
+}
+
+.whats-included-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.whats-included-list li {
+  position: relative;
+  padding-left: 1.8rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #10243E;
+}
+
+/* Orange checkmarks */
+.whats-included-list li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #E96B3C; /* Orange accent */
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+.whats-included-card h3,
+.whats-included-title {
+  color: #10243E !important;
+}
+
+
+    .offer__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+    }
+
+    .offer__list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+
+ .offer__bullet {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #E96B3C; /* orange outline */
+}
+
+.benefits {
+  background: #FAF6F2; /* off-white */
+  padding: 4rem 0;
+}
+
+.benefits {
+  background: #FAF6F2; /* off-white */
+  padding: 4rem 0;
+}
+
+.cta {
+  background: #E96B3C; /* orange */
+  color: #ffffff;
+  text-align: center;
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.benefits, 
+.cta {
+  width: 100%;
+  display: block;
+}
+
+.benefits .section__header {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.benefits .section__title {
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.9rem;
+  max-width: 650px;
+}
+
+.benefits-list li {
+  font-size: 1rem;
+  color: var(--color-primary);
+  padding-left: 1.6rem;
+  position: relative;
+}
+
+.benefits-list li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.1rem;
+  color: #E96B3C; /* your orange accent */
+  font-weight: 700;
+}
+
+
+    /* PROCESS */
+
+    .process {
+  background: #ffffff; /* pure white */
+}
+
+    .process__grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.4rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .process-step {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      padding: 1.2rem 1.2rem 1.1rem;
+      border: 1px solid rgba(16, 36, 62, 0.06);
+      font-size: 0.93rem;
+    }
+
+    .process-step__label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .process-step__title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 0 0 0.4rem;
+    }
+
+    .process-step p {
+      margin: 0;
+      color: var(--color-secondary-1);
+    }
+
+    .why-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem 1.75rem;
+      font-size: 0.93rem;
+    }
+
+    .why-list li::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--color-secondary-2);
+      margin-right: 0.45rem;
+      transform: translateY(-1px);
+    }
+
+    /* CTA / CONTACT */
+
+   .cta {
+  background: #E96B3C; /* bright orange */
+  color: #ffffff;
+  text-align: center;
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+    .cta__content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .cta__title {
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin: 0 0 0.9rem;
+    }
+
+    .cta__text {
+      font-size: 0.98rem;
+      max-width: 30rem;
+      margin-bottom: 1.6rem;
+    }
+
+.cta__btn-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+
+
+    .btn--light {
+      background: var(--color-white);
+      color: var(--color-primary);
+      border-color: transparent;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+    }
+
+   .btn--light:hover,
+.btn--light:focus-visible {
+  background: #f7f3ee;
+  box-shadow: none;
+}
+
+
+   
+    /* FOOTER */
+
+    footer {
+      background: #0b1829;
+      color: rgba(250, 246, 242, 0.88);
+      padding: 2.3rem 0 2rem;
+      font-size: 0.85rem;
+    }
+
+    .footer__top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .footer__brand {
+      max-width: 18rem;
+    }
+
+    .footer__brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .footer__brand-logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid rgba(250, 246, 242, 0.5);
+    }
+
+    .footer__brand-tagline {
+      color: rgba(250, 246, 242, 0.75);
+      margin: 0;
+    }
+
+    .footer__links,
+    .footer__legal {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .footer__heading {
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer__link a {
+      color: rgba(250, 246, 242, 0.85);
+    }
+
+    .footer__link a:hover {
+      color: #ffffff;
+    }
+
+    .footer__bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      border-top: 1px solid rgba(250, 246, 242, 0.12);
+      padding-top: 1rem;
+      font-size: 0.78rem;
+      color: rgba(250, 246, 242, 0.7);
+    }
+
+    /* COOKIE BANNER */
+
+    .cookie-banner {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(100% - 2rem, 520px);
+      background: var(--color-white);
+      border-radius: 999px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.16);
+      padding: 0.65rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      z-index: 60;
+      border: 1px solid rgba(16, 36, 62, 0.08);
+    }
+
+    .cookie-banner__text {
+      flex: 1;
+      color: var(--color-secondary-1);
+    }
+
+    .cookie-banner__actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .cookie-banner__btn {
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background var(--transition-fast), color var(--transition-fast);
+    }
+
+    .cookie-banner__btn--primary {
+      background: var(--color-secondary-2);
+      color: var(--color-white);
+    }
+
+    .cookie-banner__btn--primary:hover,
+    .cookie-banner__btn--primary:focus-visible {
+      background: var(--color-accent);
+      outline: none;
+    }
+
+    .cookie-banner__btn--secondary {
+      background: transparent;
+      color: var(--color-muted);
+    }
+
+    .cookie-banner__btn--secondary:hover,
+    .cookie-banner__btn--secondary:focus-visible {
+      background: rgba(16, 36, 62, 0.03);
+      outline: none;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 960px) {
+      .hero__inner,
+      .about__inner,
+      .offer__inner,
+.cta__content {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+      .hero__visual {
+        order: -1;
+      }
+
+      .hero__card {
+        margin: 0 auto;
+      }
+
+      .services__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .process__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav__links {
+        display: none;
+      }
+
+      .nav__toggle {
+        display: inline-flex;
+        background: none;
+        border: none;
+        padding: 0.4rem;
+        cursor: pointer;
+        font-size: 1.2rem;
+      }
+
+      .hero__inner {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.4rem;
+      }
+
+      .hero__title {
+        font-size: 2.1rem;
+      }
+
+      .services__grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .process__grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .why-list {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .cta__content {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+      .form-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .cookie-banner {
+        border-radius: 18px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cookie-banner__actions {
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    .benefits,
+.cta {
+  width: 100% !important;
+  max-width: none !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.benefits > .container,
+.cta > .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+/* FULL CENTERED CTA SECTION */
+.cta {
+  background: #E96B3C;
+  padding: 4rem 0;
+  color: #fff;
+  text-align: center;
+}
+
+.cta__content {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* <— This centers everything horizontally */
+  text-align: center;    /* <— This centers text */
+}
+
+.cta__title {
+  text-align: center !important;
+}
+
+.cta__text {
+  text-align: center !important;
+  max-width: 600px;
+}
+
+.cta__btn-row {
+  display:
+
+  </style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="container nav" aria-label="Main navigation">
+      <div class="nav__left">
+        <!-- Replace with actual logo asset -->
+
+        <div class="nav__brand">
+          <span class="nav__brand-main">Conception DJG inc.</span>
+          <span class="nav__brand-sub">Mechanical design &amp; CAD consulting</span>
+        </div>
+      </div>
+
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#services" class="nav__link">Services</a>
+        <a href="#about" class="nav__link">About</a>
+        <a href="#process" class="nav__link">Process</a>
+        <a href="#contact" class="nav__link">Contact</a>
+        <a href="#audit" class="nav__cta">Book an Audit</a>
+      </nav>
+
+      <!-- Simple mobile menu trigger (developer can wire up if needed) -->
+      <button class="nav__toggle" aria-label="Toggle navigation menu">
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="hero" class="hero">
+
+  <!-- VIDEO BACKGROUND -->
+  <video class="hero-video" autoplay muted playsinline loop>
+    <source src="hero.mov" type="video/quicktime">
+    <source src="hero.mp4" type="video/mp4">
+  </video>
+
+  <div class="container hero__inner">
+
+        <div>
+          <div class="hero__eyebrow">Mechanical design &amp; CAD consulting</div>
+          <h1 class="hero__title">Mechanical Design and CAD Support That Keeps Projects Moving</h1>
+          <p class="hero__subtitle">
+            Expert 3D CAD modeling, product development support, DFM consulting, and CAD workflow
+            optimization for founders, engineering teams, and manufacturing SMEs.
+          </p>
+<!-- HERO IMAGE PLACEHOLDER -->
+
+
+          <div class="hero__cta-row">
+            <a href="#audit" class="btn btn--primary">
+              Get a Free 10-10-10 design &amp; CAD audit
+            </a>
+            <a href="#services" class="btn btn--ghost">
+              See Services
+            </a>
+          </div>
+          <p class="hero__subtext">Ten checks. Ten insights. Clear next steps.</p>
+        </div>
+
+
+      </div>
+    </section>
+
+    <!-- OVERVIEW / MEET DAVID -->
+    <section id="about" class="about">
+      <div class="container about__inner">
+        <div>
+          <h2 class="about__title">Meet David, Your Mechanical Design and CAD Optimization Partner</h2>
+          <div class="about__body">
+            <p>
+              I’m David, a senior mechanical designer with more than twenty years of hands-on experience
+              turning ideas into manufacturable products. I specialize in mechanical design, 3D CAD modeling,
+              DFM, and fixing the CAD issues that drain hours from busy teams.
+            </p>
+            <p>
+              Founders work with me when they need a design they can trust in the real world.
+              Engineering managers call when their team is overloaded and buried in rework. SMEs reach out
+              when deadlines are tight and they need expert support that keeps projects moving.
+            </p>
+            <p>
+              My approach is practical and outcome-focused. Clean models, manufacturable designs, and
+              workflows that hold up under pressure. The goal is straightforward: fewer surprises, fewer
+              revisions, and steady progress from concept to production.
+            </p>
+          </div>
+          <div class="about__cta">
+            <a href="#contact" class="btn btn--primary">Work With Me</a>
+          </div>
+        </div>
+
+        <aside class="about__visual">
+          <!-- Replace src with real portrait / workshop photo -->
+          <div class="about__photo">
+            <img src="/assets/david-workshop-placeholder.jpg"
+                 alt="David reviewing a 3D CAD model on screen alongside physical prototypes on a workbench." />
+          </div>
+        
+        </aside>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="services">
+      <div class="container">
+        <div class="section__header">
+          <div class="section__eyebrow">Services</div>
+          <h2 class="section__title">What I Do</h2>
+          <p class="section__intro">
+            Clear, reliable mechanical design and CAD expertise to support your next project.
+            Backed by deep experience in product development and manufacturing.
+          </p>
+        </div>
+
+        <div class="services__grid" aria-label="Mechanical design and CAD services">
+          <article class="service-card">
+            <div>
+              <h3 class="service-card__title">Mechanical Design Services</h3>
+              <p class="service-card__body">
+                Detailed 3D design of components and assemblies built for performance and manufacturability.
+              </p>
+            </div>
+            <a class="service-card__link" href="/mechanical-design-services">
+              <span>→</span> Learn More
+            </a>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <h3 class="service-card__title">3D CAD Modeling Services</h3>
+              <p class="service-card__body">
+                Accurate, high-quality CAD models, drawings, and assemblies ready for prototyping and production.
+              </p>
+            </div>
+            <a class="service-card__link" href="/3d-cad-modeling-services">
+              <span>→</span> Learn More
+            </a>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <h3 class="service-card__title">Product Development Consulting</h3>
+              <p class="service-card__body">
+                Support from concept to prototype with a focus on feasibility, optimization, and real-world constraints.
+              </p>
+            </div>
+            <a class="service-card__link" href="/product-development-consulting">
+              <span>→</span> Learn More
+            </a>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <h3 class="service-card__title">DFM Consultant (Design for Manufacturability)</h3>
+              <p class="service-card__body">
+                Reduce rework, avoid late engineering surprises, and strengthen product reliability through early
+                manufacturability reviews.
+              </p>
+            </div>
+            <a class="service-card__link" href="/dfm-consultant">
+              <span>→</span> Learn More
+            </a>
+          </article>
+
+          <article class="service-card">
+            <div>
+              <h3 class="service-card__title">CAD Workflow Optimization</h3>
+              <p class="service-card__body">
+                Fix slow rebuilds, unstable assemblies, bulky files, outdated templates, and other issues that create
+                delays and cost overruns.
+              </p>
+            </div>
+            <a class="service-card__link" href="/cad-workflow-optimization">
+              <span>→</span> Learn More
+            </a>
+          </article>
+
+          <!-- Empty card to keep grid symmetric on desktop (optional) -->
+          <div class="service-card" aria-hidden="true" style="background: transparent; box-shadow: none; border-style: dashed;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFER: 10-10-10 AUDIT -->
+    <section id="audit" class="offer">
+      <div class="container offer__inner">
+        <div>
+          <div class="section__header">
+            <div class="section__eyebrow">Starting point</div>
+            <h2 class="section__title">Start with a 10-10-10 Audit</h2>
+          </div>
+          <div class="offer__body">
+            <p>
+              Not sure what needs fixing or where your design is getting held up? The 10-10-10 Audit
+              gives you a fast, structured assessment of your mechanical design, CAD setup, and
+              manufacturability risks.
+            </p>
+            <p>
+              You get ten insights, ten file checks, and ten clear recommendations that help you move
+              forward without guessing.
+            </p>
+          </div>
+          <a href="#contact" class="btn btn--primary" style="margin-top: 1.2rem;">
+            Book Your Audit
+          </a>
+        </div>
+<div class="whats-included-card">
+  <h3 class="whats-included-title">What’s included</h3>
+
+  <ul class="whats-included-list">
+    <li>Review of 10 key CAD parts, assemblies, or drawings.</li>
+    <li>Health check on templates, configurations, and file structure.</li>
+    <li>Manufacturability review of critical components.</li>
+    <li>Summary report with ten prioritized recommendations.</li>
+    <li>45-minute walkthrough call with time for Q&A.</li>
+  </ul>
+</div>
+
+      
+    </section>
+
+   <!-- PROCESS -->
+<section id="process" class="process">
+  <div class="container">
+    <div class="section__header">
+      <div class="section__eyebrow">Process</div>
+      <h2 class="section__title">How I Work</h2>
+    </div>
+
+    <div class="process__grid" aria-label="Engagement steps">
+      <article class="process-step">
+        <div class="process-step__label">Step 1</div>
+        <h3 class="process-step__title">Discovery</h3>
+        <p>We meet to discuss your project goals, constraints, and technical challenges.</p>
+      </article>
+
+      <article class="process-step">
+        <div class="process-step__label">Step 2</div>
+        <h3 class="process-step__title">Diagnosis</h3>
+        <p>I review your design files, CAD structure, or workflow to identify issues slowing progress.</p>
+      </article>
+
+      <article class="process-step">
+        <div class="process-step__label">Step 3</div>
+        <h3 class="process-step__title">Design and Optimization</h3>
+        <p>I create or refine mechanical designs, CAD models, documentation, or manufacturability improvements.</p>
+      </article>
+
+      <article class="process-step">
+        <div class="process-step__label">Step 4</div>
+        <h3 class="process-step__title">Delivery</h3>
+        <p>You receive organized files, clean documentation, and clear next steps.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS (now full-width) -->
+<section class="benefits">
+  <div class="container">
+    <div class="section__header">
+      <div class="section__eyebrow">Benefits</div>
+      <h2 class="section__title">Why you should hire Conception DJG Inc.</h2>
+    </div>
+    <ul class="benefits-list">
+      <li>Fewer design iterations</li>
+      <li>Faster time-to-market</li>
+      <li>Manufacturable designs from day one</li>
+      <li>Practical solutions without unnecessary complexity</li>
+      <li>Clear communication and predictable timelines</li>
+      <li>Flexible support for small teams and growing companies</li>
+      <li>Deep CAD and mechanical engineering experience</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA (now full-width) -->
+<section id="contact" class="cta" aria-labelledby="cta-heading">
+  <div class="container cta__content">
+    <div>
+      <h2 id="cta-heading" class="cta__title">Ready to Start Your Project?</h2>
+      <p class="cta__text">
+        Tell me about your project and I’ll recommend the best path forward — whether you need a full
+        design partner, a workflow tune-up, or a manufacturability review.
+      </p>
+      <div class="cta__btn-row">
+        <a href="#contact-form" class="btn btn--light">Book a Consultation</a>
+        <a href="mailto:info@conceptiondjg.com" class="btn btn--ghost" style="border-color: rgba(250,246,242,0.7); color:#FAF6F2;">
+          Email David
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <div class="footer__brand-logo">
+            <!-- Replace with actual logo.png -->
+            <div>
+              <div class="nav__brand-main" style="color:#FAF6F2;">Conception DJG inc.</div>
+              <div class="nav__brand-sub" style="color:rgba(250,246,242,0.7);">Mechanical design &amp; CAD consulting</div>
+            </div>
+          </div>
+          <p class="footer__brand-tagline">
+            Solve problems early, improve your CAD systems, and build products that work in the real world.
+          </p>
+        </div>
+
+        <div class="footer__links">
+          <div class="footer__heading">Site</div>
+          <div class="footer__link"><a href="#hero">Home</a></div>
+          <div class="footer__link"><a href="#services">Services</a></div>
+          <div class="footer__link"><a href="#about">About</a></div>
+        </div>
+
+        <div class="footer__links">
+          <div class="footer__heading">Connect</div>
+          <div class="footer__link">
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <div class="footer__legal">
+          <div class="footer__heading">Legal</div>
+          <div class="footer__link">
+            <a href="/privacy-policy">Privacy Policy</a>
+          </div>
+          <div class="footer__link">
+            <a href="/cookies">Cookie Settings</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>© <span id="year"></span> Conception DJG inc. All rights reserved.</span>
+        <span>Designed for clarity, manufacturability, and momentum.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner" id="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie usage notification">
+    <div class="cookie-banner__text">
+      This site uses cookies and similar technologies to improve your experience and to understand how services are used.
+      See our <a href="/privacy-policy">Privacy Policy</a> for details.
+    </div>
+    <div class="cookie-banner__actions">
+      <button type="button" class="cookie-banner__btn cookie-banner__btn--secondary" id="cookie-decline">
+        Only necessary
+      </button>
+      <button type="button" class="cookie-banner__btn cookie-banner__btn--primary" id="cookie-accept">
+        Accept all
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Dynamic year in footer
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Simple cookie banner logic (can be replaced with full consent tool)
+  (function () {
+    var banner = document.getElementById("cookie-banner");
+    if (!banner) return;
+
+    var consent = localStorage.getItem("cdjg_cookie_consent");
+    if (consent) {
+      banner.style.display = "none";
+      return;
+    }
+
+    function setConsent(value) {
+      localStorage.setItem("cdjg_cookie_consent", value);
+      banner.style.display = "none";
+    }
+
+    document.getElementById("cookie-accept").addEventListener("click", function () {
+      setConsent("all");
+    });
+
+    document.getElementById("cookie-decline").addEventListener("click", function () {
+      setConsent("necessary");
+    });
+  })();
+</script>
+</body>
+</html>
