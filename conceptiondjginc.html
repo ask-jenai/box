@@ -273,14 +273,7 @@ header {
 
 }
 
-/* Overlay tint like Kassow */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(16, 36, 62, 0.45);
-  z-index: 0;
-}
+
 
 /* Ensure content sits above overlay */
 .hero__inner {
@@ -293,16 +286,6 @@ header {
   max-width: 700px;
   padding: 0;                /* REMOVE all padding */
 }
-
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(16, 36, 62, 0.55);
-  z-index: 0;
-}
-
 
 .hero__image {
   width: 100%;
@@ -352,12 +335,6 @@ header {
   justify-content: center;
 }
 
-
-    .hero__inner {
-      display: grid;
-  grid-template-columns: minmax(0, 1fr);
-    }
-    
 
 
     .hero__eyebrow {
@@ -1164,11 +1141,6 @@ header {
         padding: 0.4rem;
         cursor: pointer;
         font-size: 1.2rem;
-      }
-
-      .hero__inner {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 2.4rem;
       }
 
       .hero__title {
