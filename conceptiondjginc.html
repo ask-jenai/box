@@ -583,22 +583,35 @@ header .container.nav {
 
 .impact-subhead {
   font-family: 'Work Sans', sans-serif;
-  font-weight: 500;
-  font-size: 1.9rem;
-  color: #9FB4C9; /* soft desaturated blue-grey */
-  margin-bottom: 2.5rem;
+  font-weight: 300;
+  font-size: 2 rem;   /* MUCH smaller */
+  line-height: 1.45;    /* tighter */
+  max-width: 650px;     /* narrower like the reference */
+  margin: 0 auto 3rem;
+  color: #dce3ea;       /* soft cool tone */
 }
+
+
 
 .impact-support {
   font-family: 'Work Sans', sans-serif;
   font-weight: 300;
-  font-size: 1.1rem;
-  line-height: 1.7;
-  max-width: 750px;
-  margin: 0 auto 5rem;
+  font-size: 0.78rem;   /* noticeably smaller but still readable */
+  line-height: 1.45;
+  max-width: 650px;     /* tighten the width to match the compact layout */
+  margin: 0 auto 4rem;
   color: #dce3ea;
 }
 
+
+@media (max-width: 768px) {
+  .impact-support {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+
+}
 /* Stats Row */
 .impact-stats {
   display: flex;
@@ -906,72 +919,150 @@ header .container.nav {
   border: 2px solid #E96B3C; /* orange outline */
 }
 
-.benefits {
-  background: #FAF6F2; /* off-white */
-  padding: 4rem 0;
-}
+/* ---------- BENEFITS SECTION  ---------- */
 
-.benefits {
-  background: #FAF6F2; /* off-white */
-  padding: 4rem 0;
-}
 
-.cta {
-  background: #E96B3C; /* orange */
-  color: #ffffff;
-  text-align: center;
-  padding: 4rem 0;
+/* BENEFITS BACKGROUND */
+.benefits-section {
   position: relative;
+  padding: 6rem 0;
   overflow: hidden;
+  min-height: 75vh;   /* <- almost full screen */
 }
 
-.benefits, 
-.cta {
-  width: 100%;
-  display: block;
-}
 
-.benefits .section__header {
-  text-align: left;
-  margin-bottom: 1.5rem;
-}
-
-.benefits .section__title {
-  font-size: 1.8rem;
-  font-weight: 900;
-}
-
-.benefits-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 0.9rem;
-  max-width: 650px;
-}
-
-.benefits-list li {
-  font-size: 1rem;
-  color: var(--color-primary);
-  padding-left: 1.6rem;
-  position: relative;
-}
-
-.benefits-list li::before {
-  content: "✔";
+.benefits-bg {
   position: absolute;
-  left: 0;
-  top: 0;
-  font-size: 1.1rem;
-  color: #E96B3C; /* your orange accent */
-  font-weight: 700;
+  inset: 0;
+  background: url('3dcadconsulting.jpg') center/cover no-repeat;
+  opacity: 0.15;
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+.benefits-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.benefits-title {
+  font-size: 2.3rem;
+  font-weight: 800;
+  margin-bottom: 2.5rem;
+  color: #10243E;
+}
+
+/* ONE ROW OF 5 SKINNY CARDS */
+.benefits-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.2rem; /* tighter spacing */
+}
+
+/* SKINNY CARD DESIGN */
+.benefit-card {
+  background: white;
+  flex: 1;                   /* evenly shrink to fit 5 per row */
+  max-width: 210px;          /* keep skinny */
+  min-width: 180px;          /* avoids breaking */
+  padding: 1.5rem 1.2rem;    /* slimmer padding */
+  border-radius: 14px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 24px rgba(0,0,0,0.12);
+}
+
+/* SMALLER ICON */
+.benefit-card img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.75rem;
+  object-fit: contain;
+}
+
+/* SMALLER TEXT */
+.benefit-card p {
+  font-size: 0.95rem;      /* smaller text */
+  font-weight: 600;
+  line-height: 1.35;
+  color: #10243E;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width: 900px) {
+  .benefits-row {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .benefit-card {
+    max-width: 45%;
+  }
+}
+
+@media(max-width: 600px) {
+  .benefit-card {
+    max-width: 100%;
+  }
+}
+
+
+
+/* ---------- RESPONSIVE BREAKPOINTS ---------- */
+
+/* Tablet: 3 per row */
+@media(max-width: 1024px) {
+  .benefits-grid.benefits-five {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Mobile: 1 per row */
+@media(max-width: 600px) {
+  .benefits-grid.benefits-five {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ---------- RESPONSIVE ---------- */
+
+@media(max-width: 1024px) {
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width: 600px) {
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 
     /* PROCESS */
 
-    .process {
-  background: #ffffff; /* pure white */
+  .process {
+  position: relative;
+  background: #10243E;        /* Navy */
+  color: #FFFFFF;    
+  padding: 6rem 0;
+  min-height: 75vh; /* almost full screen */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centers the steps vertically */
 }
 
     .process__grid {
@@ -991,7 +1082,6 @@ header .container.nav {
 
     .process-step__label {
       font-size: 0.78rem;
-      text-transform: uppercase;
       letter-spacing: 0.12em;
       color: var(--color-muted);
       margin-bottom: 0.2rem;
@@ -1007,6 +1097,14 @@ header .container.nav {
       margin: 0;
       color: var(--color-secondary-1);
     }
+
+    .process-step__title {
+  color: #10243E !important;
+}
+
+.process-step p {
+  color: #486581 !important;
+}
 
     .why-list {
       list-style: none;
@@ -1367,7 +1465,13 @@ header .container.nav {
 
 .cta__btn-row {
   display:
-
+  /* FINAL FIX — FORCE SMALLER TEXT */
+.impact-support {
+  font-size: 0.75rem !important;
+  line-height: 1.35 !important;
+  max-width: 620px;
+  color: #dce3ea;
+}
   </style>
 </head>
 <body>
@@ -1434,7 +1538,7 @@ header .container.nav {
 
     <!-- Main Headline -->
     <h2 class="impact-headline">
-      Improve efficiency, reduce rework, and streamline your CAD workflow with reliable mechanical design expertise.
+    Streamline your CAD workflow with reliable mechanical design expertise.
     </h2>
 
     <!-- Secondary Headline -->
@@ -1570,7 +1674,6 @@ header .container.nav {
       <div class="container offer__inner">
         <div>
           <div class="section__header">
-            <div class="section__eyebrow">Starting point</div>
             <h2 class="section__title">Start with a 10-10-10 Audit</h2>
           </div>
           <div class="offer__body">
@@ -1639,20 +1742,41 @@ header .container.nav {
 </section>
 
 <!-- BENEFITS (now full-width) -->
-<section class="benefits">
-  <div class="container">
-    <div class="section__header">
-      <h2 class="section__title">Why you should hire Conception DJG Inc.</h2>
+<section class="benefits-section">
+  <div class="benefits-bg"></div>
+  <div class="benefits-content">
+
+    <h2 class="benefits-title">Why work with Conception DJG Inc.</h2>
+
+    <div class="benefits-row">
+
+      <div class="benefit-card">
+        <img src="deep.png" alt="Deep CAD engineering icon">
+        <p>Deep CAD engineering experience</p>
+      </div>
+
+      <div class="benefit-card">
+        <img src="service.png" alt="Flexible support icon">
+        <p>Flexible support</p>
+      </div>
+
+      <div class="benefit-card">
+        <img src="environment.png" alt="Environmentally conscious icon">
+        <p>Environmentally-conscious</p>
+      </div>
+
+      <div class="benefit-card">
+        <img src="efficient.png" alt="Efficient design icon">
+        <p>Efficient design</p>
+      </div>
+
+      <div class="benefit-card">
+        <img src="timelines.png" alt="Predictable timelines icon">
+        <p>More predictable timelines</p>
+      </div>
+
     </div>
-    <ul class="benefits-list">
-      <li>Fewer design iterations</li>
-      <li>Faster time-to-market</li>
-      <li>Manufacturable designs from day one</li>
-      <li>Practical solutions without unnecessary complexity</li>
-      <li>Clear communication and predictable timelines</li>
-      <li>Flexible support for small teams and growing companies</li>
-      <li>Deep CAD and mechanical engineering experience</li>
-    </ul>
+
   </div>
 </section>
 
