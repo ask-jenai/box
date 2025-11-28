@@ -99,23 +99,35 @@ header {
   top: 0;
   z-index: 999;
 }
-
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.85rem 0;
-    }
-
-    .nav__left {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .nav__left {
-  padding-left: 2rem;
+/* FORCE BRAND FLUSH-LEFT */
+header .container.nav {
+  padding-left: 0 !important;
 }
+
+.nav__left {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.nav__brand {
+  margin-left: 0 !important;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2.5rem;  /* FIX: give the nav breathing room */
+}
+
+
+ .nav__left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding-left: 0.5rem; /* small micro-adjustment */
+}
+
 
 
     .nav__logo-img {
@@ -298,7 +310,7 @@ header {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(16, 36, 62, 0.45);
+  background: rgba(5, 12, 22, 0.72); /* much darker */
   z-index: 1;
 }
 
@@ -527,6 +539,88 @@ header {
       max-width: 36rem;
       color: var(--color-secondary-1);
     }
+/* IMPACT SECTION – Navy, Centered, Clean, Premium */
+
+.impact-section {
+  background: #10243E;
+  color: #ffffff;
+  padding: 12rem 2rem 12rem; /* perfect tall, evenly distributed spacing */
+  text-align: center;
+}
+
+.impact-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+
+.impact-headline {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 800;
+  font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
+.impact-subhead {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 500;
+  font-size: 1.9rem;
+  color: #9FB4C9; /* soft desaturated blue-grey */
+  margin-bottom: 2.5rem;
+}
+
+.impact-support {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 300;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 750px;
+  margin: 0 auto 5rem;
+  color: #dce3ea;
+}
+
+/* Stats Row */
+.impact-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.stat {
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+.stat-number {
+  font-weight: 700;
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-weight: 300;
+  text-transform: lowercase;
+  font-size: 0.95rem;
+  color: #cbd6e2;
+}
+
+/* Divider */
+.stat-divider {
+  width: 1px;
+  height: 3rem;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 720px) {
+  .impact-headline { font-size: 2.2rem; }
+  .impact-subhead { font-size: 1.5rem; }
+  .stat-number { font-size: 2.4rem; }
+  .stat-divider { display: none; }
+}
 
     /* ABOUT / MEET DAVID */
 
@@ -1130,6 +1224,8 @@ header {
         font-size: 2.1rem;
       }
 
+
+
       .services__grid {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -1149,6 +1245,13 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.hero__text-box {
+  background: rgba(5, 12, 22, 0.85); /* darker, cleaner */
+  padding: 2.25rem 2.75rem;
+  border-radius: 14px;
+  max-width: 700px;
+  backdrop-filter: blur(3px);
 }
 
 
@@ -1252,58 +1355,93 @@ header {
 
   <main>
     <!-- HERO -->
-    <section id="hero" class="hero">
+   
+<section id="hero" class="hero">
 
-  <!-- VIDEO BACKGROUND -->
   <video class="hero-video" autoplay muted playsinline loop>
     <source src="hero.mp4" type="video/mp4">
-    Your browser does not support the video tag.
   </video>
 
-        <div>
-          <div class="hero__eyebrow">Mechanical design &amp; CAD consulting</div>
-          <h1 class="hero__title">Mechanical Design and CAD Support That Keeps Projects Moving</h1>
-          <p class="hero__subtitle">
-            Expert 3D CAD modeling, product development support, DFM consulting, and CAD workflow
-            optimization for founders, engineering teams, and manufacturing SMEs.
-          </p>
+  <div class="container hero__inner">
+    <div>
+     <div class="hero__text-box">
+  <div class="hero__eyebrow">Mechanical design & CAD consulting</div>
+  <h1 class="hero__title">Mechanical Design and CAD Support That Keeps Projects Moving</h1>
+  <p class="hero__subtitle">
+    Expert 3D CAD modeling, product development support, DFM consulting, and CAD workflow
+    optimization for founders, engineering teams, and manufacturing SMEs.
+  </p>
+
+  <div class="hero__cta-row">
+    <a href="#audit" class="btn btn--primary">Get a Free 10-10-10 design & CAD audit</a>
+    <a href="#services" class="btn btn--ghost">See Services</a>
+  </div>
+
+  <p class="hero__subtext">Ten checks. Ten insights. Clear next steps.</p>
+</div>
+
+</section>
+</section>   <!-- end of hero -->
 
 
+<section class="impact-section">
+  <div class="impact-container">
 
-          <div class="hero__cta-row">
-            <a href="#audit" class="btn btn--primary">
-              Get a Free 10-10-10 design &amp; CAD audit
-            </a>
-            <a href="#services" class="btn btn--ghost">
-              See Services
-            </a>
-          </div>
-          <p class="hero__subtext">Ten checks. Ten insights. Clear next steps.</p>
-        </div>
+    <!-- Main Headline -->
+    <h2 class="impact-headline">
+      Improve efficiency, reduce rework, and streamline your CAD workflow with reliable mechanical design expertise.
+    </h2>
+
+    <!-- Secondary Headline -->
+    <h3 class="impact-subhead">
+      Get cleaner models, better manufacturability, and faster turnaround so your team can stay ahead of deadlines.
+    </h3>
 
 
+    <!-- Stats Row -->
+    <div class="impact-stats">
+      <div class="stat">
+        <div class="stat-number">25</div>
+        <div class="stat-label">Years of experience</div>
       </div>
-    </section>
+
+      <div class="stat-divider"></div>
+
+      <div class="stat">
+        <div class="stat-number">7+</div>
+        <div class="stat-label">Industries served</div>
+      </div>
+
+      <div class="stat-divider"></div>
+
+      <div class="stat">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Clients served</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
     <!-- OVERVIEW / MEET DAVID -->
     <section id="about" class="about">
       <div class="container about__inner">
         <div>
-          <h2 class="about__title">Meet David, Your Mechanical Design and CAD Optimization Partner</h2>
+          <h2 class="about__title">Your Mechanical Design and CAD Optimization Partner</h2>
           <div class="about__body">
             <p>
-              I’m David, a senior mechanical designer with more than twenty years of hands-on experience
+              I’m David Gagnon, a Senior Mechanical Designer with more than twenty-five years of hands-on experience
               turning ideas into manufacturable products. I specialize in mechanical design, 3D CAD modeling,
               DFM, and fixing the CAD issues that drain hours from busy teams.
             </p>
             <p>
-              Founders work with me when they need a design they can trust in the real world.
               Engineering managers call when their team is overloaded and buried in rework. SMEs reach out
               when deadlines are tight and they need expert support that keeps projects moving.
             </p>
             <p>
               My approach is practical and outcome-focused. Clean models, manufacturable designs, and
-              workflows that hold up under pressure. The goal is straightforward: fewer surprises, fewer
+              workflows that hold up under pressure. My goal is straightforward: fewer surprises, fewer
               revisions, and steady progress from concept to production.
             </p>
           </div>
