@@ -1112,66 +1112,64 @@ header .container.nav {
 
     /* COOKIE BANNER */
 
-    .cookie-banner {
-      position: fixed;
-      bottom: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(100% - 2rem, 520px);
-      background: var(--color-white);
-      border-radius: 999px;
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.16);
-      padding: 0.65rem 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 0.8rem;
-      z-index: 60;
-      border: 1px solid rgba(16, 36, 62, 0.08);
-    }
+  /* COOKIE BANNER */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    padding: 2rem 3rem;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 9999;
+    font-family: 'Work Sans', sans-serif;
+}
 
-    .cookie-banner__text {
-      flex: 1;
-      color: var(--color-secondary-1);
-    }
+.cookie-content {
+    max-width: 70%;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #10243E;
+}
 
-    .cookie-banner__actions {
-      display: flex;
-      gap: 0.5rem;
-      flex-shrink: 0;
-    }
+.cookie-content a {
+    color: #486581;
+    text-decoration: underline;
+}
 
-    .cookie-banner__btn {
-      padding: 0.45rem 0.9rem;
-      border-radius: 999px;
-      border: none;
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background var(--transition-fast), color var(--transition-fast);
-    }
+.cookie-actions {
+    min-width: 140px;
+    text-align: right;
+}
 
-    .cookie-banner__btn--primary {
-      background: var(--color-secondary-2);
-      color: var(--color-white);
-    }
+.cookie-accept {
+    background: #000;
+    color: #fff;
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
 
-    .cookie-banner__btn--primary:hover,
-    .cookie-banner__btn--primary:focus-visible {
-      background: var(--color-accent);
-      outline: none;
-    }
+.cookie-accept:hover {
+    opacity: 0.85;
+}
 
-    .cookie-banner__btn--secondary {
-      background: transparent;
-      color: var(--color-muted);
-    }
+.cookie-close {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.5rem;
+    background: transparent;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
 
-    .cookie-banner__btn--secondary:hover,
-    .cookie-banner__btn--secondary:focus-visible {
-      background: rgba(16, 36, 62, 0.03);
-      outline: none;
-    }
 
     /* RESPONSIVE */
 
@@ -1453,8 +1451,8 @@ header .container.nav {
         <aside class="about__visual">
           <!-- Replace src with real portrait / workshop photo -->
           <div class="about__photo">
-            <img src="/assets/david-workshop-placeholder.jpg"
-                 alt="David reviewing a 3D CAD model on screen alongside physical prototypes on a workbench." />
+            <img src="Mechanical design partner.jpg"
+                 alt="Mechanical Design Consultant, David Gagnon." />
           </div>
         
         </aside>
@@ -1709,21 +1707,25 @@ header .container.nav {
   </footer>
 
   <!-- COOKIE BANNER -->
-  <div class="cookie-banner" id="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie usage notification">
-    <div class="cookie-banner__text">
-      This site uses cookies and similar technologies to improve your experience and to understand how services are used.
-      See our <a href="/privacy-policy">Privacy Policy</a> for details.
+<div id="cookie-banner" class="cookie-banner">
+    <button class="cookie-close" id="cookie-close">&times;</button>
+
+    <div class="cookie-content">
+        <p>
+            This website stores cookies on your computer. These cookies are used to
+            collect information about how you interact with our website and allow us
+            to remember you. We use this information to improve and customize your
+            browsing experience and for analytics and metrics about our visitors.
+            To find out more about the cookies we use, see our 
+            <a href="#">Privacy Policy</a>.
+        </p>
     </div>
-    <div class="cookie-banner__actions">
-      <button type="button" class="cookie-banner__btn cookie-banner__btn--secondary" id="cookie-decline">
-        Only necessary
-      </button>
-      <button type="button" class="cookie-banner__btn cookie-banner__btn--primary" id="cookie-accept">
-        Accept all
-      </button>
+
+    <div class="cookie-actions">
+        <button id="cookie-accept" class="cookie-accept">Accept</button>
     </div>
-  </div>
 </div>
+
 
 <script>
   // Dynamic year in footer
@@ -1754,5 +1756,23 @@ header .container.nav {
     });
   })();
 </script>
+<script>
+    const banner = document.getElementById("cookie-banner");
+    const accept = document.getElementById("cookie-accept");
+    const closeBtn = document.getElementById("cookie-close");
+
+    function hideBanner() {
+        banner.style.display = "none";
+        localStorage.setItem("cookiesAccepted", "true");
+    }
+
+    accept.addEventListener("click", hideBanner);
+    closeBtn.addEventListener("click", hideBanner);
+
+    if (localStorage.getItem("cookiesAccepted") === "true") {
+        banner.style.display = "none";
+    }
+</script>
+
 </body>
 </html>
