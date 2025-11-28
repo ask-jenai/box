@@ -506,6 +506,25 @@ header .container.nav {
 .hero__eyebrow {
   color: #ffffff !important;
 }
+/* SERVICE CARD HOVER POP EFFECT */
+.service-card {
+  background: #E8EFEE;
+  border-radius: 32px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer; /* makes it feel interactive */
+}
+
+/* HOVER STATE – the magic */
+.service-card:hover {
+  transform: translateY(-10px); /* pops up */
+  box-shadow: 0 12px 32px rgba(0,0,0,0.16); /* deeper shadow */
+  background: #F7FAF9; /* subtle brighten */
+}
 
     /* GENERIC SECTION STYLES */
 
@@ -692,72 +711,100 @@ header .container.nav {
 
     /* SERVICES */
 
-    .services {
-      background: var(--color-bg);
-    }
+.services-section {
+  background: #10243E; /* navy */
+  padding: 6rem 2rem;
+  display: flex;
+  flex-direction: column;      /* title on top, grid below */
+  align-items: center;         /* center everything */
+}
 
-    .services__grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.5rem;
-    }
 
-    .service-card {
-      background: var(--color-white);
-      border-radius: var(--radius-lg);
-      padding: 1.4rem 1.4rem 1.3rem;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.03);
-      border: 1px solid rgba(16, 36, 62, 0.04);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 190px;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
-    }
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  max-width: 1200px;
+  width: 100%;
+}
 
-    .service-card:hover,
-    .service-card:focus-within {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
-      border-color: rgba(16, 36, 62, 0.12);
-    }
+.services-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
 
-    .service-card__title {
-      font-size: 1rem;
-      font-weight: 700;
-      margin: 0 0 0.5rem;
-    }
+.services-header h2 {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 800; /* Black weight */
+  font-size: 2.2rem;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
 
-    .service-card__body {
-      font-size: 0.93rem;
-      color: var(--color-secondary-1);
-      margin-bottom: 1rem;
-    }
 
-    .service-card__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--color-secondary-2);
-    }
+.service-card {
+  background: #E8EFEE; /* Like screenshot—soft grey/green */
+  border-radius: 32px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
 
-    .service-card__link span {
-      font-size: 1.1rem;
-      line-height: 1;
-    }
+.service-card h3 {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #10243E;
+  font-weight: 600;
+}
+.service-card p {
+  font-size: 0.95rem;
+  color: #334E68;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+
+.service-card hr {
+  width: 100%;
+  height: 1px;
+  background: #cfd7df;
+  border: none;
+  margin: 0 0 1.5rem 0;
+}
+
+.learn-more {
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #486581;
+}
+
+.learn-more:hover {
+  color: #E96B3C;
+}
+
 
     /* OFFER / AUDIT */
 
 .offer {
-  background: #10243E; /* primary navy */
   padding: 4rem 0;
   color: #ffffff;
 }
 .offer .section__title,
 .offer h3 {
   color: #ffffff;
+}
+/* RESET OFFER TEXT TO NAVY */
+.offer,
+.offer p,
+.offer__body p,
+.offer .section__title,
+.offer h3 {
+  color: #10243E !important; /* navy */
 }
 
 
@@ -1195,9 +1242,10 @@ header .container.nav {
         margin: 0 auto;
       }
 
-      .services__grid {
+         .services-container {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
 
       .process__grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1222,11 +1270,10 @@ header .container.nav {
         font-size: 2.1rem;
       }
 
-
-
-      .services__grid {
+      .services-container {
         grid-template-columns: minmax(0, 1fr);
       }
+
 
       .process__grid {
         grid-template-columns: minmax(0, 1fr);
@@ -1459,87 +1506,64 @@ header .container.nav {
       </div>
     </section>
 
+ <section class="services-section">
+  <div class="services-header">
+    <h2>Services & Expertise</h2>
+  </div>
     <!-- SERVICES -->
-    <section id="services" class="services">
-      <div class="container">
-        <div class="section__header">
-          <div class="section__eyebrow">Services</div>
-          <h2 class="section__title">What I Do</h2>
-          <p class="section__intro">
-            Clear, reliable mechanical design and CAD expertise to support your next project.
-            Backed by deep experience in product development and manufacturing.
-          </p>
-        </div>
+   
 
-        <div class="services__grid" aria-label="Mechanical design and CAD services">
-          <article class="service-card">
-            <div>
-              <h3 class="service-card__title">Mechanical Design Services</h3>
-              <p class="service-card__body">
-                Detailed 3D design of components and assemblies built for performance and manufacturability.
-              </p>
-            </div>
-            <a class="service-card__link" href="/mechanical-design-services">
-              <span>→</span> Learn More
-            </a>
-          </article>
+  <div class="services-container">
 
-          <article class="service-card">
-            <div>
-              <h3 class="service-card__title">3D CAD Modeling Services</h3>
-              <p class="service-card__body">
-                Accurate, high-quality CAD models, drawings, and assemblies ready for prototyping and production.
-              </p>
-            </div>
-            <a class="service-card__link" href="/3d-cad-modeling-services">
-              <span>→</span> Learn More
-            </a>
-          </article>
+    <!-- ROW 1 -->
+    <div class="service-card">
+      <h3>Mechanical Design Services</h3>
+      <p>Detailed 3D design of components and assemblies built for performance and manufacturability.</p>
+      <hr>
+      <a href="#" class="learn-more">Learn More →</a>
+    </div>
 
-          <article class="service-card">
-            <div>
-              <h3 class="service-card__title">Product Development Consulting</h3>
-              <p class="service-card__body">
-                Support from concept to prototype with a focus on feasibility, optimization, and real-world constraints.
-              </p>
-            </div>
-            <a class="service-card__link" href="/product-development-consulting">
-              <span>→</span> Learn More
-            </a>
-          </article>
+    <div class="service-card">
+      <h3>3D CAD Modeling Services</h3>
+      <p>Accurate, high-quality CAD models, drawings, and assemblies ready for prototyping and production.</p>
+      <hr>
+      <a href="#" class="learn-more">Learn More →</a>
+    </div>
 
-          <article class="service-card">
-            <div>
-              <h3 class="service-card__title">DFM Consultant (Design for Manufacturability)</h3>
-              <p class="service-card__body">
-                Reduce rework, avoid late engineering surprises, and strengthen product reliability through early
-                manufacturability reviews.
-              </p>
-            </div>
-            <a class="service-card__link" href="/dfm-consultant">
-              <span>→</span> Learn More
-            </a>
-          </article>
+    <div class="service-card">
+      <h3>Product Development Consulting</h3>
+      <p>Support from concept to prototype with a focus on feasibility, optimization, and real-world constraints.</p>
+      <hr>
+      <a href="#" class="learn-more">Learn More →</a>
+    </div>
 
-          <article class="service-card">
-            <div>
-              <h3 class="service-card__title">CAD Workflow Optimization</h3>
-              <p class="service-card__body">
-                Fix slow rebuilds, unstable assemblies, bulky files, outdated templates, and other issues that create
-                delays and cost overruns.
-              </p>
-            </div>
-            <a class="service-card__link" href="/cad-workflow-optimization">
-              <span>→</span> Learn More
-            </a>
-          </article>
+    <!-- ROW 2 -->
+    <div class="service-card">
+      <h3>DFM Consultant (Design for Manufacturability)</h3>
+      <p>Reduce rework, avoid late engineering surprises, and strengthen product reliability through early review.</p>
+      <hr>
+      <a href="#" class="learn-more">Learn More →</a>
+    </div>
 
-          <!-- Empty card to keep grid symmetric on desktop (optional) -->
-          <div class="service-card" aria-hidden="true" style="background: transparent; box-shadow: none; border-style: dashed;">
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="service-card">
+      <h3>CAD Workflow Optimization</h3>
+      <p>Fix slow rebuilds, unstable assemblies, bulky files, outdated templates, and other workflow issues.</p>
+      <hr>
+      <a href="#" class="learn-more">Learn More →</a>
+    </div>
+
+    <div class="service-card">
+      <h3>Proof of Concept / Prototype Design</h3>
+      <p>Rapid development of early-stage prototypes to validate ideas before full production investment.</p>
+      <hr>
+      <a href="#" class="learn-more">Learn More →</a>
+    </div>
+
+  </div>
+</section>
+¸
+
+
 
     <!-- OFFER: 10-10-10 AUDIT -->
     <section id="audit" class="offer">
