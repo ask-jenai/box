@@ -1538,7 +1538,7 @@ header .container.nav {
 
     <!-- Main Headline -->
     <h2 class="impact-headline">
-    Streamline your CAD workflow with reliable mechanical design expertise.
+    Streamline your CAD workflow with reliable mechanical design expertise
     </h2>
 
     <!-- Secondary Headline -->
@@ -1723,13 +1723,13 @@ header .container.nav {
       <article class="process-step">
         <div class="process-step__label">Step 2</div>
         <h3 class="process-step__title">Diagnosis</h3>
-        <p>I review your design files, CAD structure, or workflow to identify issues slowing progress.</p>
+        <p>We review your design files, CAD structure, or workflow to identify issues slowing progress.</p>
       </article>
 
       <article class="process-step">
         <div class="process-step__label">Step 3</div>
         <h3 class="process-step__title">Design and Optimization</h3>
-        <p>I create or refine mechanical designs, CAD models, documentation, or manufacturability improvements.</p>
+        <p>We create or refine mechanical designs, CAD models, documentation, or manufacturability improvements.</p>
       </article>
 
       <article class="process-step">
@@ -1746,27 +1746,27 @@ header .container.nav {
   <div class="benefits-bg"></div>
   <div class="benefits-content">
 
-    <h2 class="benefits-title">Why work with Conception DJG Inc.</h2>
+    <h2 class="benefits-title">Why work with Conception DJG Inc.?</h2>
 
     <div class="benefits-row">
 
       <div class="benefit-card">
-        <img src="deep.png" alt="Deep CAD engineering icon">
+        <img src="deep.png" alt="Deep CAD engineering">
         <p>Deep CAD engineering experience</p>
       </div>
 
       <div class="benefit-card">
-        <img src="service.png" alt="Flexible support icon">
+        <img src="service.png" alt="Flexible CAD support">
         <p>Flexible support</p>
       </div>
 
       <div class="benefit-card">
-        <img src="environment.png" alt="Environmentally conscious icon">
+        <img src="environment.png" alt="Environmentally conscious">
         <p>Environmentally-conscious</p>
       </div>
 
       <div class="benefit-card">
-        <img src="efficient.png" alt="Efficient design icon">
+        <img src="efficient.png" alt="Efficient design">
         <p>Efficient design</p>
       </div>
 
@@ -1918,6 +1918,44 @@ header .container.nav {
     if (localStorage.getItem("cookiesAccepted") === "true") {
         banner.style.display = "none";
     }
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const counters = document.querySelectorAll('.impact-number');
+
+  const speed = 150; // Lower = faster
+
+  const animateCounters = function () {
+    counters.forEach(counter => {
+      const updateCount = () => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+
+        const increment = Math.ceil(target / speed);
+
+        if (count < target) {
+          counter.innerText = count + increment;
+          requestAnimationFrame(updateCount);
+        } else {
+          counter.innerText = target;
+        }
+      };
+
+      updateCount();
+    });
+  };
+
+  // Trigger when the section is visible
+  const section = document.querySelector('.impact-section');
+  const observer = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      animateCounters();
+      observer.disconnect();
+    }
+  }, { threshold: 0.3 });
+
+  observer.observe(section);
+});
 </script>
 
 </body>
