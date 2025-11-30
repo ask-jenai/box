@@ -1015,17 +1015,34 @@ header .container.nav {
 
 .benefit-card {
   background: white;
-  width: 200px;                 /* fixed width so all equal */
-  height: 180px;                /* fixed height so all equal */
-  padding: 1.5rem 1rem;
-  border-radius: 14px;
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
+  width: 260px;               /* wider */
+  height: 240px;              /* taller */
+  padding: 2rem 1.4rem;       /* more breathing room */
+  border-radius: 16px;
+  box-shadow: 0px 4px 14px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
-  justify-content: center;      /* centers icon + text vertical */
-  align-items: center;          /* centers icon + text horizontal */
+  justify-content: flex-start;     /* align content properly */
+  align-items: center;
   text-align: center;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.benefit-card p {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #10243E;
+}
+
+.benefit-sub {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #486581;
+  font-weight: 400;
+  display: block;
+  max-width: 220px; /* keeps text clean */
 }
 
 
@@ -1068,6 +1085,14 @@ header .container.nav {
   }
 }
 
+.benefit-sub {
+  margin-top: 0.35rem;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: #486581;   /* subtle, professional */
+  font-weight: 400;
+  display: block;
+}
 
 
 /* ---------- RESPONSIVE BREAKPOINTS ---------- */
@@ -1586,14 +1611,14 @@ header .container.nav {
     <div>
      <div class="hero__text-box">
   <div class="hero__eyebrow">Mechanical design & CAD consulting</div>
-  <h1 class="hero__title">Mechanical Design and CAD Support That Keeps Projects Moving</h1>
+  <h1 class="hero__title">Mechanical design and CAD support that doesn’t slow your team down.</h1>
   <p class="hero__subtitle">
-    Expert 3D CAD modeling, product development support, DFM consulting, and CAD workflow
-    optimization for founders, engineering teams, and manufacturing SMEs.
+    We help engineering teams, manufacturing SMEs and founders eliminate CAD issues, 
+    reduce rework, and accelerate real-world builds.
   </p>
 
   <div class="hero__cta-row">
-    <a href="#audit" class="btn btn--primary">Get a Free 10-10-10 design & CAD audit</a>
+    <a href="#audit" class="btn btn--primary">Get a free 10-10-10 design & CAD audit</a>
     <a href="#services" class="btn btn--ghost">See Services</a>
   </div>
 
@@ -1651,7 +1676,7 @@ header .container.nav {
           <h2 class="about__title">Your Mechanical Design and CAD Optimization Partner</h2>
           <div class="about__body">
             <p>
-              I’m David Gagnon, a Senior Mechanical Designer with more than twenty-five years of hands-on experience
+              You don't just need CAD models. You need a design partner who understands how products behave in the real world. I’m David Gagnon, founder of Conception DJG Inc, a Senior Mechanical Designer with more than twenty-five years of hands-on experience
               turning ideas into manufacturable products. I specialize in mechanical design, 3D CAD modeling,
               DFM, and fixing the CAD issues that drain hours from busy teams.
             </p>
@@ -1662,7 +1687,7 @@ header .container.nav {
             <p>
               My approach is practical and outcome-focused. Clean models, manufacturable designs, and
               workflows that hold up under pressure. My goal is straightforward: fewer surprises, fewer
-              revisions, and steady progress from concept to production.
+              revisions, and steady progress from concept to production. My job is to make your job easier and your project more successful.
             </p>
           </div>
           <div class="about__cta">
@@ -1693,21 +1718,21 @@ header .container.nav {
     <!-- ROW 1 -->
     <div class="service-card">
       <h3>Mechanical Design Services</h3>
-      <p>Detailed 3D design of components and assemblies built for performance and manufacturability.</p>
+      <p> End-to-end CAD design that removes bottlenecks and ensures your parts are ready for real-world performance.</p>
       <hr>
       <a href="#" class="learn-more">Learn More →</a>
     </div>
 
     <div class="service-card">
       <h3>3D CAD Modeling Services</h3>
-      <p>Accurate, high-quality CAD models, drawings, and assemblies ready for prototyping and production.</p>
+      <p>Highly detailed, manufacturable models that minimize revisions and keep production moving.p>
       <hr>
       <a href="#" class="learn-more">Learn More →</a>
     </div>
 
     <div class="service-card">
       <h3>Product Development Consulting</h3>
-      <p>Support from concept to prototype with a focus on feasibility, optimization, and real-world constraints.</p>
+      <p>Clear, expert guidance to help you make faster, more confident product decisions.</p>
       <hr>
       <a href="#" class="learn-more">Learn More →</a>
     </div>
@@ -1715,21 +1740,21 @@ header .container.nav {
     <!-- ROW 2 -->
     <div class="service-card">
       <h3>DFM Consultant (Design for Manufacturability)</h3>
-      <p>Reduce rework, avoid late engineering surprises, and strengthen product reliability through early review.</p>
+      <p> Identify issues early, reduce manufacturing costs, and strengthen product reliability.</p>
       <hr>
       <a href="#" class="learn-more">Learn More →</a>
     </div>
 
     <div class="service-card">
       <h3>CAD Workflow Optimization</h3>
-      <p>Fix slow rebuilds, unstable assemblies, bulky files, outdated templates, and other workflow issues.</p>
+      <p>Cleaner models, smarter templates, and a streamlined workflow that frees your team’s time.</p>
       <hr>
       <a href="#" class="learn-more">Learn More →</a>
     </div>
 
     <div class="service-card">
       <h3>Proof of Concept / Prototype Design</h3>
-      <p>Rapid development of early-stage prototypes to validate ideas before full production investment.</p>
+      <p>Build confidence with early-stage prototypes that validate your direction before investing big.</p>
       <hr>
       <a href="#" class="learn-more">Learn More →</a>
     </div>
@@ -1745,13 +1770,11 @@ header .container.nav {
           </div>
           <div class="offer__body">
             <p>
-              Not sure what needs fixing or where your design is getting held up? The 10-10-10 Audit
-              gives you a fast, structured assessment of your mechanical design, CAD setup, and
-              manufacturability risks.
+              If something feels off in your design—or you’re not sure why timelines keep slipping—the 10-10-10 Audit gives you instant clarity.
             </p>
             <p>
               You get ten insights, ten file checks, and ten clear recommendations that help you move
-              forward without guessing.
+              forward without guessing. You’ll know exactly what’s holding you back and what to fix before it costs you more time or budget.
             </p>
           </div>
           <a href="#contact" class="btn btn--primary" style="margin-top: 1.2rem;">
@@ -1784,13 +1807,13 @@ header .container.nav {
       <article class="process-step">
         <div class="process-step__label">Step 1</div>
         <h3 class="process-step__title">Discovery</h3>
-        <p>We meet to discuss your project goals, constraints, and technical challenges.</p>
+        <p>We dig into your project, constraints, and goals to uncover the real blockers.</p>
       </article>
 
       <article class="process-step">
         <div class="process-step__label">Step 2</div>
         <h3 class="process-step__title">Diagnosis</h3>
-        <p>We review your design files, CAD structure, or workflow to identify issues slowing progress.</p>
+        <p>We analyze your models, workflows, and documentation to map out the root causes.</p>
       </article>
 
       <article class="process-step">
@@ -1802,7 +1825,7 @@ header .container.nav {
       <article class="process-step">
         <div class="process-step__label">Step 4</div>
         <h3 class="process-step__title">Delivery</h3>
-        <p>You receive organized files, clean documentation, and clear next steps.</p>
+        <p>You walk away with updated models, recommendations, and next steps you can use immediately.</p>
       </article>
     </div>
   </div>
@@ -1820,26 +1843,31 @@ header .container.nav {
       <div class="benefit-card">
         <img src="deep.png" alt="Deep CAD engineering">
         <p>Deep CAD engineering experience</p>
+         <span class="benefit-sub">Built on decades of real-world problem solving.</span>
       </div>
 
       <div class="benefit-card">
         <img src="service.png" alt="Flexible CAD support">
         <p>Flexible support</p>
+         <span class="benefit-sub">Available when you need help without long-term commitments.</span>
       </div>
 
       <div class="benefit-card">
         <img src="environment.png" alt="Environmentally conscious">
         <p>Environmentally-conscious</p>
+          <span class="benefit-sub">Practical designs that reduce waste and extend product life.</span>
       </div>
 
       <div class="benefit-card">
         <img src="efficient.png" alt="Efficient design">
         <p>Efficient design</p>
+         <span class="benefit-sub">Models that speed up manufacturing instead of slowing it down.</span>
       </div>
 
       <div class="benefit-card">
         <img src="timelines.png" alt="Predictable timelines icon">
         <p>More predictable timelines</p>
+          <span class="benefit-sub">Fewer revisions, less rework, and faster approvals.</span>
       </div>
 
     </div>
@@ -1853,9 +1881,7 @@ header .container.nav {
     <div>
       <h2 id="cta-heading" class="cta__title">Ready to Start Your Project?</h2>
       <p class="cta__text">
-        Tell me about your project and I’ll recommend the best path forward — whether you need a full
-        design partner, a workflow tune-up, or a manufacturability review.
-      </p>
+     Take the next step toward a design you can trust. Whether you need a full CAD overhaul or help validating your prototype, we're here to support your goals.
       <div class="cta__btn-row">
         <a href="#contact-form" class="btn btn--light">Book a Consultation</a>
         <a href="mailto:info@conceptiondjg.com" class="btn btn--ghost" style="border-color: rgba(250,246,242,0.7); color:#FAF6F2;">
@@ -1881,7 +1907,7 @@ header .container.nav {
             </div>
           </div>
           <p class="footer__brand-tagline">
-            Solve problems early, improve your CAD systems, and build products that work in the real world.
+        Build CAD systems that work in the real world.
           </p>
         </div>
 
