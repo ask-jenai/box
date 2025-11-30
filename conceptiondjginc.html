@@ -25,6 +25,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
 
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
   <style>
     :root {
       --color-primary: #10243E;
@@ -104,6 +110,29 @@ header .container.nav {
   padding-left: 0 !important;
 }
 
+/* Default header height */
+header {
+  padding: 0.75rem 0;
+  transition: padding 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Smaller header on scroll */
+header.header--shrink {
+  padding: 0.65rem 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+/* Adjust brand text sizes during shrink */
+.header--shrink .nav__brand-main {
+  font-size: 0.85rem;
+  transition: font-size 0.25s ease;
+}
+
+.header--shrink .nav__brand-sub {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
 .nav__left {
   padding-left: 0 !important;
   margin-left: 0 !important;
@@ -117,7 +146,7 @@ header .container.nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 2.5rem;  /* FIX: give the nav breathing room */
+  padding: 0.75em 1.75rem;  /* FIX: give the nav breathing room */
 }
 
 
@@ -128,6 +157,12 @@ header .container.nav {
   padding-left: 0.5rem; /* small micro-adjustment */
 }
 
+.nav__toggle {
+  color: #ffffff;
+  font-size: 1.6rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+}
 
 
     .nav__logo-img {
@@ -275,6 +310,32 @@ header .container.nav {
       flex: 1;
     }
 
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  background: #10243E;
+  display: none;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 1.2rem;
+  z-index: 999;
+}
+
+.mobile-menu a {
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.mobile-cta {
+  background: #E96B3C;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 600;
+}
 
 .hero__image {
   width: 100%;
@@ -755,7 +816,6 @@ header .container.nav {
   margin: 0;
 }
 
-
 .service-card {
   background: #E8EFEE; /* Like screenshot—soft grey/green */
   border-radius: 32px;
@@ -780,7 +840,6 @@ header .container.nav {
   margin-bottom: 1.5rem;
 }
 
-
 .service-card hr {
   width: 100%;
   height: 1px;
@@ -788,19 +847,37 @@ header .container.nav {
   border: none;
   margin: 0 0 1.5rem 0;
 }
-
 .services-section {
   position: relative;
   background: url('3dmechanicalservices.jpg') center/cover no-repeat;
   padding: 6rem 2rem;
+  z-index: 1;
 }
 
-.services::before {
+.services-section::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(16, 36, 62, 0.65); /* navy overlay for readability */
-  z-index: 1;
+  background: rgba(16, 36, 62, 0.5); /* 50% navy overlay */
+  z-index: 1; /* overlay is above image */
+}
+.services-section * {
+  position: relative;
+  z-index: 2; /* keeps content above the overlay */
+}
+
+
+/* INITIAL STATE — hidden & slightly lowered */
+.service-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* VISIBLE STATE */
+.service-card.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .services * {
@@ -852,17 +929,8 @@ header .container.nav {
       font-size: 0.98rem;
       color: var(--color-secondary-1);
     }
-
-    .offer__body p,
-.offer p {
-  color: rgba(255,255,255,0.85);
 }
 
-   .offer__panel {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: #ffffff;
-}
 /* ------------------------------------------- */
 /*   WHATS INCLUDED — WHITE CARD STYLE (A)     */
 /* ------------------------------------------- */
@@ -1568,6 +1636,11 @@ header .container.nav {
   max-width: 620px;
   color: #dce3ea;
 }
+.learn-more:hover {
+  color: #C4452F;
+  text-decoration: underline;
+}
+
   </style>
 </head>
 <body>
@@ -1597,6 +1670,13 @@ header .container.nav {
       </button>
     </div>
   </header>
+<div id="mobile-menu" class="mobile-menu">
+  <a href="#services">Services</a>
+  <a href="#about">About</a>
+  <a href="#process">Process</a>
+  <a href="#contact">Contact</a>
+  <a href="#audit" class="mobile-cta">Book an Audit</a>
+</div>
 
   <main>
     <!-- HERO -->
@@ -1604,6 +1684,8 @@ header .container.nav {
 <section id="hero" class="hero">
 
   <video class="hero-video" autoplay muted playsinline loop>
+    <video class="hero-video" autoplay muted playsinline loop aria-label="Mechanical CAD modeling and engineering visuals"></video>
+
     <source src="hero.mp4" type="video/mp4">
   </video>
 
@@ -1611,7 +1693,7 @@ header .container.nav {
     <div>
      <div class="hero__text-box">
   <div class="hero__eyebrow">Mechanical design & CAD consulting</div>
-  <h1 class="hero__title">Mechanical design and CAD support that doesn’t slow your team down.</h1>
+  <h1 class="hero__title">Mechanical design and CAD support that doesn’t slow you down.</h1>
   <p class="hero__subtitle">
     We help engineering teams, manufacturing SMEs and founders eliminate CAD issues, 
     reduce rework, and accelerate real-world builds.
@@ -1619,13 +1701,11 @@ header .container.nav {
 
   <div class="hero__cta-row">
     <a href="#audit" class="btn btn--primary">Get a free 10-10-10 design & CAD audit</a>
-    <a href="#services" class="btn btn--ghost">See Services</a>
   </div>
 
   <p class="hero__subtext">Ten checks. Ten insights. Clear next steps.</p>
 </div>
 
-</section>
 </section>   <!-- end of hero -->
 
 
@@ -1699,14 +1779,14 @@ header .container.nav {
           <!-- Replace src with real portrait / workshop photo -->
           <div class="about__photo">
             <img src="Mechanical design partner.jpg"
-                 alt="Mechanical Design Consultant, David Gagnon." />
+                 alt="David Gagnon, senior mechanical designer and CAD consultant at Conception DJG Inc." />
           </div>
         
         </aside>
       </div>
     </section>
 
- <section class="services-section">
+<section id="services" class="services-section">
   <div class="services-header">
     <h2>Services & Expertise</h2>
   </div>
@@ -1725,7 +1805,7 @@ header .container.nav {
 
     <div class="service-card">
       <h3>3D CAD Modeling Services</h3>
-      <p>Highly detailed, manufacturable models that minimize revisions and keep production moving.p>
+      <p>Highly detailed, manufacturable models that minimize revisions and keep production moving.</p>
       <hr>
       <a href="#" class="learn-more">Learn More →</a>
     </div>
@@ -1841,31 +1921,32 @@ header .container.nav {
     <div class="benefits-row">
 
       <div class="benefit-card">
-        <img src="deep.png" alt="Deep CAD engineering">
+        <img src="deep.png" alt="Icon symbolizing deep CAD engineering experience built on decades of mechanical design work"
+">
         <p>Deep CAD engineering experience</p>
          <span class="benefit-sub">Built on decades of real-world problem solving.</span>
       </div>
 
       <div class="benefit-card">
-        <img src="service.png" alt="Flexible CAD support">
+        <img src="service.png" alt="Icon representing flexible CAD support available on demand for engineering teams">
         <p>Flexible support</p>
          <span class="benefit-sub">Available when you need help without long-term commitments.</span>
       </div>
 
       <div class="benefit-card">
-        <img src="environment.png" alt="Environmentally conscious">
+        <img src="environment.png" alt="Icon representing environmentally conscious mechanical design that reduces waste">
         <p>Environmentally-conscious</p>
           <span class="benefit-sub">Practical designs that reduce waste and extend product life.</span>
       </div>
 
       <div class="benefit-card">
-        <img src="efficient.png" alt="Efficient design">
+        <img src="efficient.png" alt="Icon representing efficient CAD modeling that speeds up manufacturing">
         <p>Efficient design</p>
          <span class="benefit-sub">Models that speed up manufacturing instead of slowing it down.</span>
       </div>
 
       <div class="benefit-card">
-        <img src="timelines.png" alt="Predictable timelines icon">
+        <img src="timelines.png" alt="Icon showing predictable design timelines with fewer revisions and faster approvals">
         <p>More predictable timelines</p>
           <span class="benefit-sub">Fewer revisions, less rework, and faster approvals.</span>
       </div>
@@ -1960,9 +2041,13 @@ header .container.nav {
         </p>
     </div>
 
-    <div class="cookie-actions">
-        <button id="cookie-accept" class="cookie-accept">Accept</button>
-    </div>
+   <div class="cookie-actions">
+    <button id="cookie-accept" class="cookie-accept">Accept</button>
+    <button id="cookie-decline" class="cookie-accept" style="background:#ccc; color:#000; margin-left: 0.5rem;">
+        Decline
+    </button>
+</div>
+
 </div>
 
 
@@ -2055,6 +2140,48 @@ document.addEventListener("DOMContentLoaded", function () {
   observer.observe(section);
 });
 </script>
+
+<script>
+  const navToggle = document.querySelector('.nav__toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  navToggle.addEventListener('click', () => {
+    const visible = mobileMenu.style.display === 'flex';
+    mobileMenu.style.display = visible ? 'none' : 'flex';
+  });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const cards = document.querySelectorAll('.service-card');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.25
+  });
+
+  cards.forEach(card => observer.observe(card));
+});
+</script>
+
+<script>
+document.addEventListener("scroll", () => {
+  const header = document.querySelector("header");
+  
+  if (window.scrollY > 40) {
+    header.classList.add("header--shrink");
+  } else {
+    header.classList.remove("header--shrink");
+  }
+});
+</script>
+
 
 </body>
 </html>
