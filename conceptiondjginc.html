@@ -789,6 +789,25 @@ header .container.nav {
   margin: 0 0 1.5rem 0;
 }
 
+.services-section {
+  position: relative;
+  background: url('3dmechanicalservices.jpg') center/cover no-repeat;
+  padding: 6rem 2rem;
+}
+
+.services::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 36, 62, 0.65); /* navy overlay for readability */
+  z-index: 1;
+}
+
+.services * {
+  position: relative;
+  z-index: 2; /* keeps your text and cards ABOVE the overlay */
+}
+
 .learn-more {
   font-size: 0.95rem;
   font-weight: 600;
@@ -926,8 +945,11 @@ header .container.nav {
 .benefits-section {
   position: relative;
   padding: 6rem 0;
-  overflow: hidden;
-  min-height: 75vh;   /* <- almost full screen */
+  min-height: 70vh;            /* gives enough height to center inside */
+  display: flex;               /* turn the whole section into a flexbox */
+  flex-direction: column;
+  justify-content: center;     /* <-- vertical center */
+  align-items: center;         /* <-- horizontal center */
 }
 
 
@@ -940,13 +962,37 @@ header .container.nav {
   pointer-events: none;
 }
 
+.benefits-section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
 
 .benefits-content {
   position: relative;
   z-index: 2;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;          /* center horizontally */
+  text-align: center;
+  width: 100%;
+  gap: 3rem;                    /* space between title and cards */
+}
+
+.benefits-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertical centering */
+  align-items: center;       /* horizontal centering */
+  height: 100%;
+  text-align: center;        /* center the heading text too */
+}
+ 
+.benefits-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;   /* <– critical */
+  text-align: center;    /* centers title too */
 }
 
 .benefits-title {
@@ -956,28 +1002,32 @@ header .container.nav {
   color: #10243E;
 }
 
-/* ONE ROW OF 5 SKINNY CARDS */
 .benefits-row {
   display: flex;
-  justify-content: space-between;
-  gap: 1.2rem; /* tighter spacing */
+  justify-content: center;      /* center horizontally */
+  align-items: center;          /* align vertically */
+  gap: 2rem;                    /* spacing between cards */
+  flex-wrap: nowrap;            /* force 1 row on desktop */
+  margin: 0 auto;               /* center inside container */
+  width: 100%;                  /* full width so flex centering works */
+  max-width: 1200px;            /* keeps row tight */
 }
 
-/* SKINNY CARD DESIGN */
 .benefit-card {
   background: white;
-  flex: 1;                   /* evenly shrink to fit 5 per row */
-  max-width: 210px;          /* keep skinny */
-  min-width: 180px;          /* avoids breaking */
-  padding: 1.5rem 1.2rem;    /* slimmer padding */
+  width: 200px;                 /* fixed width so all equal */
+  height: 180px;                /* fixed height so all equal */
+  padding: 1.5rem 1rem;
   border-radius: 14px;
   box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;      /* centers icon + text vertical */
+  align-items: center;          /* centers icon + text horizontal */
   text-align: center;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+
 
 .benefit-card:hover {
   transform: translateY(-5px);
@@ -1033,6 +1083,27 @@ header .container.nav {
 @media(max-width: 600px) {
   .benefits-grid.benefits-five {
     grid-template-columns: 1fr;
+  }
+}
+/* Tablet – 2 or 3 per row */
+@media(max-width: 1024px) {
+  .benefits-row {
+    flex-wrap: wrap;           /* allow wrapping only on smaller screens */
+  }
+  .benefit-card {
+    width: 30%;
+  }
+}
+
+/* Mobile – 1 per row */
+@media(max-width: 600px) {
+  .benefits-row {
+    flex-wrap: wrap;
+  }
+  .benefit-card {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
   }
 }
 
@@ -1665,10 +1736,6 @@ header .container.nav {
 
   </div>
 </section>
-¸
-
-
-
     <!-- OFFER: 10-10-10 AUDIT -->
     <section id="audit" class="offer">
       <div class="container offer__inner">
@@ -1919,40 +1986,45 @@ header .container.nav {
         banner.style.display = "none";
     }
 </script>
+
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  const counters = document.querySelectorAll('.impact-number');
 
-  const speed = 150; // Lower = faster
+  const counters = document.querySelectorAll('.stat-number');
+  const section = document.querySelector('.impact-section'); // target section
 
-  const animateCounters = function () {
+  let animated = false; // prevent double running
+
+  const animateCounters = () => {
     counters.forEach(counter => {
-      const updateCount = () => {
-        const target = +counter.getAttribute('data-target');
-        const count = +counter.innerText;
+      let finalValue = counter.innerText.replace(/\D/g, "");
+      let suffix = counter.innerText.replace(/[0-9]/g, "");
+      let count = 0;
 
-        const increment = Math.ceil(target / speed);
+      let duration = 9000; // SLOW, PREMIUM ANIMATION
+      let step = Math.ceil(finalValue / (duration / 16));
 
-        if (count < target) {
-          counter.innerText = count + increment;
-          requestAnimationFrame(updateCount);
+      const update = () => {
+        count += step;
+        if (count < finalValue) {
+          counter.innerText = count + suffix;
+          requestAnimationFrame(update);
         } else {
-          counter.innerText = target;
+          counter.innerText = finalValue + suffix;
         }
       };
 
-      updateCount();
+      update();
     });
   };
 
-  // Trigger when the section is visible
-  const section = document.querySelector('.impact-section');
   const observer = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
+    if (entries[0].isIntersecting && !animated) {
+      animated = true;       // ensure it runs only once
       animateCounters();
       observer.disconnect();
     }
-  }, { threshold: 0.3 });
+  }, { threshold: 0.4 });    // 40% of section must be visible
 
   observer.observe(section);
 });
