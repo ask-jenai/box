@@ -25,6 +25,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
 
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
   <style>
     :root {
       --color-primary: #10243E;
@@ -104,6 +110,29 @@ header .container.nav {
   padding-left: 0 !important;
 }
 
+/* Default header height */
+header {
+  padding: 0.75rem 0;
+  transition: padding 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Smaller header on scroll */
+header.header--shrink {
+  padding: 0.65rem 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+/* Adjust brand text sizes during shrink */
+.header--shrink .nav__brand-main {
+  font-size: 0.85rem;
+  transition: font-size 0.25s ease;
+}
+
+.header--shrink .nav__brand-sub {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
 .nav__left {
   padding-left: 0 !important;
   margin-left: 0 !important;
@@ -117,7 +146,7 @@ header .container.nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 2.5rem;  /* FIX: give the nav breathing room */
+  padding: 0.75em 1.75rem;  /* FIX: give the nav breathing room */
 }
 
 
@@ -128,6 +157,12 @@ header .container.nav {
   padding-left: 0.5rem; /* small micro-adjustment */
 }
 
+.nav__toggle {
+  color: #ffffff;
+  font-size: 1.6rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+}
 
 
     .nav__logo-img {
@@ -275,6 +310,32 @@ header .container.nav {
       flex: 1;
     }
 
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  background: #10243E;
+  display: none;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 1.2rem;
+  z-index: 999;
+}
+
+.mobile-menu a {
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.mobile-cta {
+  background: #E96B3C;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 600;
+}
 
 .hero__image {
   width: 100%;
@@ -506,6 +567,25 @@ header .container.nav {
 .hero__eyebrow {
   color: #ffffff !important;
 }
+/* SERVICE CARD HOVER POP EFFECT */
+.service-card {
+  background: #E8EFEE;
+  border-radius: 32px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer; /* makes it feel interactive */
+}
+
+/* HOVER STATE – the magic */
+.service-card:hover {
+  transform: translateY(-10px); /* pops up */
+  box-shadow: 0 12px 32px rgba(0,0,0,0.16); /* deeper shadow */
+  background: #F7FAF9; /* subtle brighten */
+}
 
     /* GENERIC SECTION STYLES */
 
@@ -564,22 +644,35 @@ header .container.nav {
 
 .impact-subhead {
   font-family: 'Work Sans', sans-serif;
-  font-weight: 500;
-  font-size: 1.9rem;
-  color: #9FB4C9; /* soft desaturated blue-grey */
-  margin-bottom: 2.5rem;
+  font-weight: 300;
+  font-size: 2 rem;   /* MUCH smaller */
+  line-height: 1.45;    /* tighter */
+  max-width: 650px;     /* narrower like the reference */
+  margin: 0 auto 3rem;
+  color: #dce3ea;       /* soft cool tone */
 }
+
+
 
 .impact-support {
   font-family: 'Work Sans', sans-serif;
   font-weight: 300;
-  font-size: 1.1rem;
-  line-height: 1.7;
-  max-width: 750px;
-  margin: 0 auto 5rem;
+  font-size: 0.78rem;   /* noticeably smaller but still readable */
+  line-height: 1.45;
+  max-width: 650px;     /* tighten the width to match the compact layout */
+  margin: 0 auto 4rem;
   color: #dce3ea;
 }
 
+
+@media (max-width: 768px) {
+  .impact-support {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+
+}
 /* Stats Row */
 .impact-stats {
   display: flex;
@@ -692,72 +785,135 @@ header .container.nav {
 
     /* SERVICES */
 
-    .services {
-      background: var(--color-bg);
-    }
+.services-section {
+  background: #10243E; /* navy */
+  padding: 6rem 2rem;
+  display: flex;
+  flex-direction: column;      /* title on top, grid below */
+  align-items: center;         /* center everything */
+}
 
-    .services__grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.5rem;
-    }
 
-    .service-card {
-      background: var(--color-white);
-      border-radius: var(--radius-lg);
-      padding: 1.4rem 1.4rem 1.3rem;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.03);
-      border: 1px solid rgba(16, 36, 62, 0.04);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 190px;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
-    }
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  max-width: 1200px;
+  width: 100%;
+}
 
-    .service-card:hover,
-    .service-card:focus-within {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
-      border-color: rgba(16, 36, 62, 0.12);
-    }
+.services-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
 
-    .service-card__title {
-      font-size: 1rem;
-      font-weight: 700;
-      margin: 0 0 0.5rem;
-    }
+.services-header h2 {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 800; /* Black weight */
+  font-size: 2.2rem;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
 
-    .service-card__body {
-      font-size: 0.93rem;
-      color: var(--color-secondary-1);
-      margin-bottom: 1rem;
-    }
+.service-card {
+  background: #E8EFEE; /* Like screenshot—soft grey/green */
+  border-radius: 32px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
 
-    .service-card__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--color-secondary-2);
-    }
+.service-card h3 {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #10243E;
+  font-weight: 600;
+}
+.service-card p {
+  font-size: 0.95rem;
+  color: #334E68;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
 
-    .service-card__link span {
-      font-size: 1.1rem;
-      line-height: 1;
-    }
+.service-card hr {
+  width: 100%;
+  height: 1px;
+  background: #cfd7df;
+  border: none;
+  margin: 0 0 1.5rem 0;
+}
+.services-section {
+  position: relative;
+  background: url('3dmechanicalservices.jpg') center/cover no-repeat;
+  padding: 6rem 2rem;
+  z-index: 1;
+}
+
+.services-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 36, 62, 0.5); /* 50% navy overlay */
+  z-index: 1; /* overlay is above image */
+}
+.services-section * {
+  position: relative;
+  z-index: 2; /* keeps content above the overlay */
+}
+
+
+/* INITIAL STATE — hidden & slightly lowered */
+.service-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* VISIBLE STATE */
+.service-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.services * {
+  position: relative;
+  z-index: 2; /* keeps your text and cards ABOVE the overlay */
+}
+
+.learn-more {
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #486581;
+}
+
+.learn-more:hover {
+  color: #E96B3C;
+}
+
 
     /* OFFER / AUDIT */
 
 .offer {
-  background: #10243E; /* primary navy */
   padding: 4rem 0;
   color: #ffffff;
 }
 .offer .section__title,
 .offer h3 {
   color: #ffffff;
+}
+/* RESET OFFER TEXT TO NAVY */
+.offer,
+.offer p,
+.offer__body p,
+.offer .section__title,
+.offer h3 {
+  color: #10243E !important; /* navy */
 }
 
 
@@ -773,17 +929,8 @@ header .container.nav {
       font-size: 0.98rem;
       color: var(--color-secondary-1);
     }
-
-    .offer__body p,
-.offer p {
-  color: rgba(255,255,255,0.85);
 }
 
-   .offer__panel {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: #ffffff;
-}
 /* ------------------------------------------- */
 /*   WHATS INCLUDED — WHITE CARD STYLE (A)     */
 /* ------------------------------------------- */
@@ -859,72 +1006,227 @@ header .container.nav {
   border: 2px solid #E96B3C; /* orange outline */
 }
 
-.benefits {
-  background: #FAF6F2; /* off-white */
-  padding: 4rem 0;
-}
+/* ---------- BENEFITS SECTION  ---------- */
 
-.benefits {
-  background: #FAF6F2; /* off-white */
-  padding: 4rem 0;
-}
 
-.cta {
-  background: #E96B3C; /* orange */
-  color: #ffffff;
-  text-align: center;
-  padding: 4rem 0;
+/* BENEFITS BACKGROUND */
+.benefits-section {
   position: relative;
-  overflow: hidden;
+  padding: 6rem 0;
+  min-height: 70vh;            /* gives enough height to center inside */
+  display: flex;               /* turn the whole section into a flexbox */
+  flex-direction: column;
+  justify-content: center;     /* <-- vertical center */
+  align-items: center;         /* <-- horizontal center */
 }
 
-.benefits, 
-.cta {
+
+.benefits-bg {
+  position: absolute;
+  inset: 0;
+  background: url('3dcadconsulting.jpg') center/cover no-repeat;
+  opacity: 0.15;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.benefits-section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.benefits-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;          /* center horizontally */
+  text-align: center;
   width: 100%;
+  gap: 3rem;                    /* space between title and cards */
+}
+
+.benefits-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertical centering */
+  align-items: center;       /* horizontal centering */
+  height: 100%;
+  text-align: center;        /* center the heading text too */
+}
+ 
+.benefits-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;   /* <– critical */
+  text-align: center;    /* centers title too */
+}
+
+.benefits-title {
+  font-size: 2.3rem;
+  font-weight: 800;
+  margin-bottom: 2.5rem;
+  color: #10243E;
+}
+
+.benefits-row {
+  display: flex;
+  justify-content: center;      /* center horizontally */
+  align-items: center;          /* align vertically */
+  gap: 2rem;                    /* spacing between cards */
+  flex-wrap: nowrap;            /* force 1 row on desktop */
+  margin: 0 auto;               /* center inside container */
+  width: 100%;                  /* full width so flex centering works */
+  max-width: 1200px;            /* keeps row tight */
+}
+
+.benefit-card {
+  background: white;
+  width: 260px;               /* wider */
+  height: 240px;              /* taller */
+  padding: 2rem 1.4rem;       /* more breathing room */
+  border-radius: 16px;
+  box-shadow: 0px 4px 14px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;     /* align content properly */
+  align-items: center;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.benefit-card p {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #10243E;
+}
+
+.benefit-sub {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #486581;
+  font-weight: 400;
+  display: block;
+  max-width: 220px; /* keeps text clean */
+}
+
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 24px rgba(0,0,0,0.12);
+}
+
+/* SMALLER ICON */
+.benefit-card img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.75rem;
+  object-fit: contain;
+}
+
+/* SMALLER TEXT */
+.benefit-card p {
+  font-size: 0.95rem;      /* smaller text */
+  font-weight: 600;
+  line-height: 1.35;
+  color: #10243E;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width: 900px) {
+  .benefits-row {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .benefit-card {
+    max-width: 45%;
+  }
+}
+
+@media(max-width: 600px) {
+  .benefit-card {
+    max-width: 100%;
+  }
+}
+
+.benefit-sub {
+  margin-top: 0.35rem;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: #486581;   /* subtle, professional */
+  font-weight: 400;
   display: block;
 }
 
-.benefits .section__header {
-  text-align: left;
-  margin-bottom: 1.5rem;
+
+/* ---------- RESPONSIVE BREAKPOINTS ---------- */
+
+/* Tablet: 3 per row */
+@media(max-width: 1024px) {
+  .benefits-grid.benefits-five {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-.benefits .section__title {
-  font-size: 1.8rem;
-  font-weight: 900;
+/* Mobile: 1 per row */
+@media(max-width: 600px) {
+  .benefits-grid.benefits-five {
+    grid-template-columns: 1fr;
+  }
+}
+/* Tablet – 2 or 3 per row */
+@media(max-width: 1024px) {
+  .benefits-row {
+    flex-wrap: wrap;           /* allow wrapping only on smaller screens */
+  }
+  .benefit-card {
+    width: 30%;
+  }
 }
 
-.benefits-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 0.9rem;
-  max-width: 650px;
+/* Mobile – 1 per row */
+@media(max-width: 600px) {
+  .benefits-row {
+    flex-wrap: wrap;
+  }
+  .benefit-card {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
 }
 
-.benefits-list li {
-  font-size: 1rem;
-  color: var(--color-primary);
-  padding-left: 1.6rem;
-  position: relative;
+
+/* ---------- RESPONSIVE ---------- */
+
+@media(max-width: 1024px) {
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.benefits-list li::before {
-  content: "✔";
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-size: 1.1rem;
-  color: #E96B3C; /* your orange accent */
-  font-weight: 700;
+@media(max-width: 600px) {
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 
     /* PROCESS */
 
-    .process {
-  background: #ffffff; /* pure white */
+  .process {
+  position: relative;
+  background: #10243E;        /* Navy */
+  color: #FFFFFF;    
+  padding: 6rem 0;
+  min-height: 75vh; /* almost full screen */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centers the steps vertically */
 }
 
     .process__grid {
@@ -944,7 +1246,6 @@ header .container.nav {
 
     .process-step__label {
       font-size: 0.78rem;
-      text-transform: uppercase;
       letter-spacing: 0.12em;
       color: var(--color-muted);
       margin-bottom: 0.2rem;
@@ -960,6 +1261,14 @@ header .container.nav {
       margin: 0;
       color: var(--color-secondary-1);
     }
+
+    .process-step__title {
+  color: #10243E !important;
+}
+
+.process-step p {
+  color: #486581 !important;
+}
 
     .why-list {
       list-style: none;
@@ -1195,9 +1504,10 @@ header .container.nav {
         margin: 0 auto;
       }
 
-      .services__grid {
+         .services-container {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
 
       .process__grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1222,11 +1532,10 @@ header .container.nav {
         font-size: 2.1rem;
       }
 
-
-
-      .services__grid {
+      .services-container {
         grid-template-columns: minmax(0, 1fr);
       }
+
 
       .process__grid {
         grid-template-columns: minmax(0, 1fr);
@@ -1292,6 +1601,87 @@ header .container.nav {
   margin: 0 auto;
   padding: 0 1.5rem;
 }
+
+/* FAQ SECTION */
+.faq-section {
+  padding: 4rem 0;
+  background: #FAF6F2;
+}
+
+.faq-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.faq-title {
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: #10243E;
+  margin: 0;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faq-item {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid rgba(16,36,62,0.08);
+  padding: 1rem 1.25rem;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s ease;
+}
+
+.faq-item:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #10243E;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.faq-icon {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #E96B3C;
+  transition: transform 0.25s ease;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  line-height: 1.55;
+  transition: max-height 0.35s ease, opacity 0.35s ease;
+}
+
+.faq-answer p {
+  font-size: 0.95rem;
+  color: #486581;
+  margin-top: 1rem;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 400px;
+  opacity: 1;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg);
+}
+
 /* FULL CENTERED CTA SECTION */
 .cta {
   background: #E96B3C;
@@ -1320,6 +1710,17 @@ header .container.nav {
 
 .cta__btn-row {
   display:
+  /* FINAL FIX — FORCE SMALLER TEXT */
+.impact-support {
+  font-size: 0.75rem !important;
+  line-height: 1.35 !important;
+  max-width: 620px;
+  color: #dce3ea;
+}
+.learn-more:hover {
+  color: #C4452F;
+  text-decoration: underline;
+}
 
   </style>
 </head>
@@ -1350,6 +1751,13 @@ header .container.nav {
       </button>
     </div>
   </header>
+<div id="mobile-menu" class="mobile-menu">
+  <a href="#services">Services</a>
+  <a href="#about">About</a>
+  <a href="#process">Process</a>
+  <a href="#contact">Contact</a>
+  <a href="#audit" class="mobile-cta">Book an Audit</a>
+</div>
 
   <main>
     <!-- HERO -->
@@ -1357,6 +1765,8 @@ header .container.nav {
 <section id="hero" class="hero">
 
   <video class="hero-video" autoplay muted playsinline loop>
+    <video class="hero-video" autoplay muted playsinline loop aria-label="Mechanical CAD modeling and engineering visuals"></video>
+
     <source src="hero.mp4" type="video/mp4">
   </video>
 
@@ -1364,21 +1774,19 @@ header .container.nav {
     <div>
      <div class="hero__text-box">
   <div class="hero__eyebrow">Mechanical design & CAD consulting</div>
-  <h1 class="hero__title">Mechanical Design and CAD Support That Keeps Projects Moving</h1>
+  <h1 class="hero__title">Mechanical design and CAD support that doesn’t slow you down.</h1>
   <p class="hero__subtitle">
-    Expert 3D CAD modeling, product development support, DFM consulting, and CAD workflow
-    optimization for founders, engineering teams, and manufacturing SMEs.
+    We help engineering teams, manufacturing SMEs and founders eliminate CAD issues, 
+    reduce rework, and accelerate real-world builds.
   </p>
 
   <div class="hero__cta-row">
-    <a href="#audit" class="btn btn--primary">Get a Free 10-10-10 design & CAD audit</a>
-    <a href="#services" class="btn btn--ghost">See Services</a>
+    <a href="#audit" class="btn btn--primary">Get a free 10-10-10 design & CAD audit</a>
   </div>
 
   <p class="hero__subtext">Ten checks. Ten insights. Clear next steps.</p>
 </div>
 
-</section>
 </section>   <!-- end of hero -->
 
 
@@ -1387,7 +1795,7 @@ header .container.nav {
 
     <!-- Main Headline -->
     <h2 class="impact-headline">
-      Improve efficiency, reduce rework, and streamline your CAD workflow with reliable mechanical design expertise.
+    Streamline your CAD workflow with reliable mechanical design expertise
     </h2>
 
     <!-- Secondary Headline -->
@@ -1429,7 +1837,7 @@ header .container.nav {
           <h2 class="about__title">Your Mechanical Design and CAD Optimization Partner</h2>
           <div class="about__body">
             <p>
-              I’m David Gagnon, a Senior Mechanical Designer with more than twenty-five years of hands-on experience
+              You don't just need CAD models. You need a design partner who understands how products behave in the real world. I’m David Gagnon, founder of Conception DJG Inc, a Senior Mechanical Designer with more than twenty-five years of hands-on experience
               turning ideas into manufacturable products. I specialize in mechanical design, 3D CAD modeling,
               DFM, and fixing the CAD issues that drain hours from busy teams.
             </p>
@@ -1440,7 +1848,7 @@ header .container.nav {
             <p>
               My approach is practical and outcome-focused. Clean models, manufacturable designs, and
               workflows that hold up under pressure. My goal is straightforward: fewer surprises, fewer
-              revisions, and steady progress from concept to production.
+              revisions, and steady progress from concept to production. My job is to make your job easier and your project more successful.
             </p>
           </div>
           <div class="about__cta">
@@ -1452,112 +1860,82 @@ header .container.nav {
           <!-- Replace src with real portrait / workshop photo -->
           <div class="about__photo">
             <img src="Mechanical design partner.jpg"
-                 alt="Mechanical Design Consultant, David Gagnon." />
+                 alt="David Gagnon, senior mechanical designer and CAD consultant at Conception DJG Inc." />
           </div>
         
         </aside>
       </div>
     </section>
 
+<section id="services" class="services-section">
+  <div class="services-header">
+    <h2>Services & Expertise</h2>
+  </div>
     <!-- SERVICES -->
-    <section id="services" class="services">
-      <div class="container">
-        <div class="section__header">
-          <div class="section__eyebrow">Services</div>
-          <h2 class="section__title">What I Do</h2>
-          <p class="section__intro">
-            Clear, reliable mechanical design and CAD expertise to support your next project.
-            Backed by deep experience in product development and manufacturing.
-          </p>
-        </div>
+   
 
-        <div class="services__grid" aria-label="Mechanical design and CAD services">
-          <article class="service-card">
-            <div>
-              <h3 class="service-card__title">Mechanical Design Services</h3>
-              <p class="service-card__body">
-                Detailed 3D design of components and assemblies built for performance and manufacturability.
-              </p>
-            </div>
-            <a class="service-card__link" href="/mechanical-design-services">
-              <span>→</span> Learn More
-            </a>
-          </article>
+  <div class="services-container">
 
-          <article class="service-card">
-            <div>
-              <h3 class="service-card__title">3D CAD Modeling Services</h3>
-              <p class="service-card__body">
-                Accurate, high-quality CAD models, drawings, and assemblies ready for prototyping and production.
-              </p>
-            </div>
-            <a class="service-card__link" href="/3d-cad-modeling-services">
-              <span>→</span> Learn More
-            </a>
-          </article>
+    <!-- ROW 1 -->
+    <div class="service-card">
+      <h3>Mechanical Design Services</h3>
+      <p> End-to-end CAD design that removes bottlenecks and ensures your parts are ready for real-world performance.</p>
+      <hr>
+      <a href="#" class="learn-more">Learn More →</a>
+    </div>
 
-          <article class="service-card">
-            <div>
-              <h3 class="service-card__title">Product Development Consulting</h3>
-              <p class="service-card__body">
-                Support from concept to prototype with a focus on feasibility, optimization, and real-world constraints.
-              </p>
-            </div>
-            <a class="service-card__link" href="/product-development-consulting">
-              <span>→</span> Learn More
-            </a>
-          </article>
+    <div class="service-card">
+      <h3>3D CAD Modeling Services</h3>
+      <p>Highly detailed, manufacturable models that minimize revisions and keep production moving.</p>
+      <hr>
+      <a href="#" class="learn-more">Learn More →</a>
+    </div>
 
-          <article class="service-card">
-            <div>
-              <h3 class="service-card__title">DFM Consultant (Design for Manufacturability)</h3>
-              <p class="service-card__body">
-                Reduce rework, avoid late engineering surprises, and strengthen product reliability through early
-                manufacturability reviews.
-              </p>
-            </div>
-            <a class="service-card__link" href="/dfm-consultant">
-              <span>→</span> Learn More
-            </a>
-          </article>
+    <div class="service-card">
+      <h3>Product Development Consulting</h3>
+      <p>Clear, expert guidance to help you make faster, more confident product decisions.</p>
+      <hr>
+      <a href="#" class="learn-more">Learn More →</a>
+    </div>
 
-          <article class="service-card">
-            <div>
-              <h3 class="service-card__title">CAD Workflow Optimization</h3>
-              <p class="service-card__body">
-                Fix slow rebuilds, unstable assemblies, bulky files, outdated templates, and other issues that create
-                delays and cost overruns.
-              </p>
-            </div>
-            <a class="service-card__link" href="/cad-workflow-optimization">
-              <span>→</span> Learn More
-            </a>
-          </article>
+    <!-- ROW 2 -->
+    <div class="service-card">
+      <h3>DFM Consultant (Design for Manufacturability)</h3>
+      <p> Identify issues early, reduce manufacturing costs, and strengthen product reliability.</p>
+      <hr>
+      <a href="#" class="learn-more">Learn More →</a>
+    </div>
 
-          <!-- Empty card to keep grid symmetric on desktop (optional) -->
-          <div class="service-card" aria-hidden="true" style="background: transparent; box-shadow: none; border-style: dashed;">
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="service-card">
+      <h3>CAD Workflow Optimization</h3>
+      <p>Cleaner models, smarter templates, and a streamlined workflow that frees your team’s time.</p>
+      <hr>
+      <a href="#" class="learn-more">Learn More →</a>
+    </div>
 
+    <div class="service-card">
+      <h3>Proof of Concept / Prototype Design</h3>
+      <p>Build confidence with early-stage prototypes that validate your direction before investing big.</p>
+      <hr>
+      <a href="#" class="learn-more">Learn More →</a>
+    </div>
+
+  </div>
+</section>
     <!-- OFFER: 10-10-10 AUDIT -->
     <section id="audit" class="offer">
       <div class="container offer__inner">
         <div>
           <div class="section__header">
-            <div class="section__eyebrow">Starting point</div>
             <h2 class="section__title">Start with a 10-10-10 Audit</h2>
           </div>
           <div class="offer__body">
             <p>
-              Not sure what needs fixing or where your design is getting held up? The 10-10-10 Audit
-              gives you a fast, structured assessment of your mechanical design, CAD setup, and
-              manufacturability risks.
+              If something feels off in your design—or you’re not sure why timelines keep slipping—the 10-10-10 Audit gives you instant clarity.
             </p>
             <p>
               You get ten insights, ten file checks, and ten clear recommendations that help you move
-              forward without guessing.
+              forward without guessing. You’ll know exactly what’s holding you back and what to fix before it costs you more time or budget.
             </p>
           </div>
           <a href="#contact" class="btn btn--primary" style="margin-top: 1.2rem;">
@@ -1583,58 +1961,180 @@ header .container.nav {
 <section id="process" class="process">
   <div class="container">
     <div class="section__header">
-      <div class="section__eyebrow">Process</div>
-      <h2 class="section__title">How I Work</h2>
-    </div>
 
+      <h2 class="section__title">Expert CAD Consulting in 4 steps</h2>
+    </div>
     <div class="process__grid" aria-label="Engagement steps">
       <article class="process-step">
         <div class="process-step__label">Step 1</div>
         <h3 class="process-step__title">Discovery</h3>
-        <p>We meet to discuss your project goals, constraints, and technical challenges.</p>
+        <p>We dig into your project, constraints, and goals to uncover the real blockers.</p>
       </article>
 
       <article class="process-step">
         <div class="process-step__label">Step 2</div>
         <h3 class="process-step__title">Diagnosis</h3>
-        <p>I review your design files, CAD structure, or workflow to identify issues slowing progress.</p>
+        <p>We analyze your models, workflows, and documentation to map out the root causes.</p>
       </article>
 
       <article class="process-step">
         <div class="process-step__label">Step 3</div>
         <h3 class="process-step__title">Design and Optimization</h3>
-        <p>I create or refine mechanical designs, CAD models, documentation, or manufacturability improvements.</p>
+        <p>We create or refine mechanical designs, CAD models, documentation, or manufacturability improvements.</p>
       </article>
 
       <article class="process-step">
         <div class="process-step__label">Step 4</div>
         <h3 class="process-step__title">Delivery</h3>
-        <p>You receive organized files, clean documentation, and clear next steps.</p>
+        <p>You walk away with updated models, recommendations, and next steps you can use immediately.</p>
       </article>
     </div>
   </div>
 </section>
 
 <!-- BENEFITS (now full-width) -->
-<section class="benefits">
-  <div class="container">
-    <div class="section__header">
-      <div class="section__eyebrow">Benefits</div>
-      <h2 class="section__title">Why you should hire Conception DJG Inc.</h2>
+<section class="benefits-section">
+  <div class="benefits-bg"></div>
+  <div class="benefits-content">
+
+    <h2 class="benefits-title">Why work with Conception DJG Inc.?</h2>
+
+    <div class="benefits-row">
+
+      <div class="benefit-card">
+        <img src="deep.png" alt="Icon symbolizing deep CAD engineering experience built on decades of mechanical design work"
+">
+        <p>Deep CAD engineering experience</p>
+         <span class="benefit-sub">Built on decades of real-world problem solving.</span>
+      </div>
+
+      <div class="benefit-card">
+        <img src="service.png" alt="Icon representing flexible CAD support available on demand for engineering teams">
+        <p>Flexible support</p>
+         <span class="benefit-sub">Available when you need help without long-term commitments.</span>
+      </div>
+
+      <div class="benefit-card">
+        <img src="environment.png" alt="Icon representing environmentally conscious mechanical design that reduces waste">
+        <p>Environmentally-conscious</p>
+          <span class="benefit-sub">Practical designs that reduce waste and extend product life.</span>
+      </div>
+
+      <div class="benefit-card">
+        <img src="efficient.png" alt="Icon representing efficient CAD modeling that speeds up manufacturing">
+        <p>Efficient design</p>
+         <span class="benefit-sub">Models that speed up manufacturing instead of slowing it down.</span>
+      </div>
+
+      <div class="benefit-card">
+        <img src="timelines.png" alt="Icon showing predictable design timelines with fewer revisions and faster approvals">
+        <p>More predictable timelines</p>
+          <span class="benefit-sub">Fewer revisions, less rework, and faster approvals.</span>
+      </div>
+
     </div>
-    <ul class="benefits-list">
-      <li>Fewer design iterations</li>
-      <li>Faster time-to-market</li>
-      <li>Manufacturable designs from day one</li>
-      <li>Practical solutions without unnecessary complexity</li>
-      <li>Clear communication and predictable timelines</li>
-      <li>Flexible support for small teams and growing companies</li>
-      <li>Deep CAD and mechanical engineering experience</li>
-    </ul>
+
   </div>
 </section>
 
+<section id="faq" class="faq-section">
+  <div class="container">
+    <div class="faq-header">
+      <h2 class="faq-title">Frequently Asked Questions</h2>
+    </div>
 
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What do mechanical design services include?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            Our mechanical design services cover 3D modeling, part and assembly design, material selection, 
+            tolerance analysis, and preparing models for manufacturing. The goal is simple: deliver designs 
+            that perform reliably, reduce rework, and move you from concept to prototype with fewer delays.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          How can 3D CAD modeling services improve my product development process?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            Our 3D CAD modeling services ensure your parts and assemblies are clean, accurate, and manufacturable. 
+            By removing unnecessary complexity and fixing stability issues in your CAD models, we reduce errors, 
+            speed up prototyping, and give your team a clearer workflow from early concepts to production.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What does a product development consultant do?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            As product development consultants, we turn early ideas into practical, manufacturable solutions. 
+            We evaluate requirements, build CAD models, assess risks, validate design decisions, and keep 
+            development aligned with performance, cost, and manufacturability goals.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Why is working with a DFM consultant important?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            A Design for Manufacturability consultant helps you avoid late-stage problems that slow production 
+            and inflate costs. We review geometry, materials, tolerances, and assembly methods early to reduce 
+            complexity, prevent rework, and keep timelines predictable.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          What is CAD workflow optimization and why does it matter?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>
+            CAD workflow optimization improves how your team creates, updates, and manages models. We clean 
+            feature trees, standardize templates, fix inconsistencies, and streamline the entire modeling process 
+            for faster, more consistent output across your engineering team.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA (now full-width) -->
+<section id="contact" class="cta" aria-labelledby="cta-heading">
+  <div class="container cta__content">
+    <div>
+      <h2 id="cta-heading" class="cta__title">Ready to Start Your Project?</h2>
+      <p class="cta__text">
+     Take the next step toward a design you can trust. Whether you need a full CAD overhaul or help validating your prototype, we're here to support your goals.
+      <div class="cta__btn-row">
+        <a href="#contact-form" class="btn btn--light">Book a Consultation</a>
+        <a href="mailto:info@conceptiondjg.com" class="btn btn--ghost" style="border-color: rgba(250,246,242,0.7); color:#FAF6F2;">
+          Email David
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
   </main>
 
@@ -1651,7 +2151,7 @@ header .container.nav {
             </div>
           </div>
           <p class="footer__brand-tagline">
-            Solve problems early, improve your CAD systems, and build products that work in the real world.
+        Build CAD systems that work in the real world.
           </p>
         </div>
 
@@ -1665,7 +2165,7 @@ header .container.nav {
         <div class="footer__links">
           <div class="footer__heading">Connect</div>
           <div class="footer__link">
-            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/david-gagnon-b4676019/" target="_blank" rel="noopener noreferrer">
               LinkedIn
             </a>
           </div>
@@ -1704,9 +2204,13 @@ header .container.nav {
         </p>
     </div>
 
-    <div class="cookie-actions">
-        <button id="cookie-accept" class="cookie-accept">Accept</button>
-    </div>
+   <div class="cookie-actions">
+    <button id="cookie-accept" class="cookie-accept">Accept</button>
+    <button id="cookie-decline" class="cookie-accept" style="background:#ccc; color:#000; margin-left: 0.5rem;">
+        Decline
+    </button>
+</div>
+
 </div>
 
 
@@ -1756,6 +2260,106 @@ header .container.nav {
         banner.style.display = "none";
     }
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const counters = document.querySelectorAll('.stat-number');
+  const section = document.querySelector('.impact-section'); // target section
+
+  let animated = false; // prevent double running
+
+  const animateCounters = () => {
+    counters.forEach(counter => {
+      let finalValue = counter.innerText.replace(/\D/g, "");
+      let suffix = counter.innerText.replace(/[0-9]/g, "");
+      let count = 0;
+
+      let duration = 9000; // SLOW, PREMIUM ANIMATION
+      let step = Math.ceil(finalValue / (duration / 16));
+
+      const update = () => {
+        count += step;
+        if (count < finalValue) {
+          counter.innerText = count + suffix;
+          requestAnimationFrame(update);
+        } else {
+          counter.innerText = finalValue + suffix;
+        }
+      };
+
+      update();
+    });
+  };
+
+  const observer = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !animated) {
+      animated = true;       // ensure it runs only once
+      animateCounters();
+      observer.disconnect();
+    }
+  }, { threshold: 0.4 });    // 40% of section must be visible
+
+  observer.observe(section);
+});
+</script>
+
+<script>
+  const navToggle = document.querySelector('.nav__toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  navToggle.addEventListener('click', () => {
+    const visible = mobileMenu.style.display === 'flex';
+    mobileMenu.style.display = visible ? 'none' : 'flex';
+  });
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const cards = document.querySelectorAll('.service-card');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.25
+  });
+
+  cards.forEach(card => observer.observe(card));
+});
+</script>
+
+<script>
+document.addEventListener("scroll", () => {
+  const header = document.querySelector("header");
+  
+  if (window.scrollY > 40) {
+    header.classList.add("header--shrink");
+  } else {
+    header.classList.remove("header--shrink");
+  }
+});
+</script>
+<script>
+document.querySelectorAll(".faq-question").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const item = btn.parentElement;
+
+    // close others
+    document.querySelectorAll(".faq-item").forEach(faq => {
+      if (faq !== item) faq.classList.remove("active");
+    });
+
+    // toggle this one
+    item.classList.toggle("active");
+  });
+});
+</script>
+
 
 </body>
 </html>
