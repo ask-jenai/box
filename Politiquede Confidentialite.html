@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Politique de Confidentialité | Conception DJG Inc.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Use same CSS + variables from main site -->
+  <style>
+    /* ----- ROOT + GLOBAL STYLES (copied from main site) ----- */
+    :root {
+      --color-primary: #10243E;
+      --color-secondary-1: #486581;
+      --color-secondary-2: #E96B3C;
+      --color-accent: #C4452F;
+      --color-bg: #FAF6F2;
+      --color-white: #ffffff;
+      --color-border: #dde1ea;
+      --color-muted: #7c8a9c;
+      --font-sans: "Work Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --max-width: 1120px;
+      --radius-lg: 16px;
+      --shadow-soft: 0 14px 40px rgba(0, 0, 0, 0.06);
+      --transition-fast: 0.18s ease-out;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background-color: var(--color-bg);
+      color: var(--color-primary);
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* HEADER copied from main site */
+    header {
+      background: var(--color-primary);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      padding: 0.75rem 0;
+      transition: padding 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    header.header--shrink {
+      padding: 0.65rem 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.75rem; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75em 1.75rem;
+    }
+
+    .nav__brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav__brand-main {
+      font-weight: 1000;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .nav__brand-sub {
+      font-weight: 600;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      font-size: 0.9rem;
+    }
+
+    .nav__link {
+      color: #ffffff;
+      transition: color 0.2s ease;
+      position: relative;
+      font-weight: 500;
+    }
+
+    .nav__link:hover { color: #C4452F !important; }
+
+    .nav__cta {
+      padding: 0.5rem 1.2rem;
+      border-radius: 999px;
+      background: var(--color-secondary-2);
+      color: white;
+      font-weight: 600;
+      border: none;
+    }
+
+    /* FOOTER copied exactly */
+    footer {
+      background: #0b1829;
+      color: rgba(250, 246, 242, 0.88);
+      padding: 2.3rem 0 2rem;
+      font-size: 0.85rem;
+    }
+
+    .footer__top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .footer__heading { font-weight: 600; margin-bottom: 0.4rem; }
+    .footer__link a { color: rgba(250, 246, 242, 0.85); }
+
+    /* --- PRIVACY CONTENT STYLE --- */
+    .privacy-wrapper {
+      background: #ffffff;
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 3rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    .privacy-wrapper h1,
+    .privacy-wrapper h2 {
+      color: var(--color-primary);
+      margin-top: 2rem;
+    }
+
+    .privacy-wrapper p, .privacy-wrapper li {
+      font-size: 1rem;
+      color: #334E68;
+    }
+
+    .privacy-wrapper ul { padding-left: 1.2rem; }
+
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <div class="nav__left">
+      <div class="nav__brand">
+        <span class="nav__brand-main">Conception DJG inc.</span>
+        <span class="nav__brand-sub">Mechanical design & CAD consulting</span>
+      </div>
+    </div>
+
+    <nav class="nav__links">
+      <a href="/" class="nav__link">Home</a>
+      <a href="/#services" class="nav__link">Services</a>
+      <a href="/#about" class="nav__link">About</a>
+      <a href="/#process" class="nav__link">Process</a>
+      <a href="/#contact" class="nav__cta">Book an Audit</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="privacy-wrapper">
+
+    <!-- ======================== -->
+    <!--   FRENCH VERSION FIRST   -->
+    <!-- ======================== -->
+    <h1>Politique de Confidentialité</h1>
+    <p><strong>Dernière mise à jour :</strong> {{date du jour}}</p>
+
+    <p>
+      Bienvenue chez <strong>Conception DJG Inc.</strong> (« nous », « notre », « nos »).
+      Votre confidentialité est importante pour nous. Cette politique explique comment
+      nous collectons, utilisons, stockons et protégeons vos renseignements personnels.
+    </p>
+
+    <h2>1. Qui sommes-nous ?</h2>
+    <p>
+      Conception DJG Inc.<br>
+      Basé au Canada.<br>
+      Vous pouvez nous contacter :  
+      <a href="mailto:info@conceptiondjg.com">info@conceptiondjg.com</a>
+    </p>
+
+    <h2>2. Renseignements que nous collectons</h2>
+    <h3>a) Fournis directement par vous</h3>
+    <ul>
+      <li>Nom</li>
+      <li>Adresse courriel</li>
+      <li>Nom de l’entreprise (optionnel)</li>
+      <li>Contenu de vos messages ou demandes</li>
+    </ul>
+
+    <p>Collectés lorsque vous :</p>
+    <ul>
+      <li>Remplissez un formulaire</li>
+      <li>Vous inscrivez à l’infolettre</li>
+      <li>Téléchargez un contenu</li>
+      <li>Nous contactez par courriel</li>
+    </ul>
+
+    <h3>b) Renseignements collectés automatiquement</h3>
+    <ul>
+      <li>Adresse IP</li>
+      <li>Type d’appareil et navigateur</li>
+      <li>Pages consultées</li>
+      <li>Temps passé sur le site</li>
+      <li>URL référent</li>
+    </ul>
+
+    <h3>c) Outils d'analyse</h3>
+    <ul>
+      <li>Google Analytics</li>
+      <li>Cookies de performance</li>
+      <li>Outils d’IA traitant du contenu anonymisé</li>
+    </ul>
+
+    <h2>3. Utilisation des renseignements</h2>
+    <ul>
+      <li>Répondre à vos demandes</li>
+      <li>Envoyer du contenu demandé</li>
+      <li>Gérer les communications marketing</li>
+      <li>Améliorer notre site</li>
+      <li>Comprendre l’usage du site</li>
+      <li>Offrir un soutien client</li>
+      <li>Assurer la sécurité du site</li>
+    </ul>
+
+    <p><strong>Nous ne vendons pas vos renseignements personnels.</strong></p>
+
+    <h2>4. Bases légales (RGPD)</h2>
+    <ul>
+      <li>Consentement</li>
+      <li>Exécution d’un contrat</li>
+      <li>Intérêt légitime</li>
+      <li>Obligation légale</li>
+    </ul>
+
+    <h2>5. Partage des renseignements</h2>
+    <ul>
+      <li>Google Workspace</li>
+      <li>Microsoft Services</li>
+      <li>HubSpot (si activé)</li>
+      <li>Google Analytics</li>
+      <li>Outils d’IA internes</li>
+    </ul>
+
+    <h2>6. Stockage et conservation</h2>
+    <p>Données stockées au Canada ou aux États-Unis et conservées selon les besoins légaux.</p>
+
+    <h2>7. Communications marketing</h2>
+    <p>Vous pouvez vous désabonner en tout temps.</p>
+
+    <h2>8. Cookies</h2>
+    <p>Notre site utilise des cookies essentiels, analytiques, de préférence et marketing.</p>
+
+    <h2>9. Vos droits</h2>
+    <p>Vous pouvez demander accès, correction, suppression, portabilité ou retirer votre consentement.</p>
+
+    <p>Contact : <a href="mailto:info@conceptiondjg.com">info@conceptiondjg.com</a></p>
+
+    <h2>10. Protection des données</h2>
+    <p>Nous appliquons des mesures techniques et administratives raisonnables.</p>
+
+    <h2>11. Transfert international</h2>
+    <p>Certains outils peuvent traiter vos données aux États-Unis.</p>
+
+    <h2>12. Mineurs</h2>
+    <p>Non destiné aux personnes de moins de 16 ans.</p>
+
+    <h2>13. Modifications</h2>
+    <p>La politique peut être mise à jour. La date sera ajustée.</p>
+
+    <h2>14. Contact</h2>
+    <p>📧 <a href="mailto:info@conceptiondjg.com">info@conceptiondjg.com</a></p>
+
+    <hr style="margin: 4rem 0; border: none; border-top: 1px solid #dde1ea;">
+
+    <!-- ======================== -->
+    <!--         ENGLISH          -->
+    <!-- ======================== -->
+
+    <h1>Privacy Policy</h1>
+    <p><strong>Last updated:</strong> {{date}}</p>
+
+    <h2>1. Who We Are</h2>
+    <p>
+      Conception DJG Inc.<br>
+      Operating in Canada.<br>
+      Contact: <a href="mailto:info@conceptiondjg.com">info@conceptiondjg.com</a>
+    </p>
+
+    <h2>2. Information We Collect</h2>
+    <h3>a) Information you provide</h3>
+    <ul>
+      <li>Name</li>
+      <li>Email address</li>
+      <li>Company name (optional)</li>
+      <li>Any information you send us</li>
+    </ul>
+
+    <h3>b) Automatically collected</h3>
+    <ul>
+      <li>IP address</li>
+      <li>Device and browser type</li>
+      <li>Pages viewed</li>
+      <li>Time on site</li>
+      <li>Referral URLs</li>
+    </ul>
+
+    <h3>c) Analytics tools</h3>
+    <ul>
+      <li>Google Analytics</li>
+      <li>Cookie-based tracking</li>
+      <li>AI tools processing anonymized text</li>
+    </ul>
+
+    <h2>3. How We Use Your Information</h2>
+    <ul>
+      <li>Responding to inquiries</li>
+      <li>Sending requested content</li>
+      <li>Marketing (if opted-in)</li>
+      <li>Improving site performance</li>
+      <li>Analytics</li>
+      <li>Security</li>
+    </ul>
+
+    <p><strong>We never sell personal information.</strong></p>
+
+    <h2>4. Legal Bases (GDPR)</h2>
+    <ul>
+      <li>Consent</li>
+      <li>Contract</li>
+      <li>Legitimate interest</li>
+      <li>Legal obligation</li>
+    </ul>
+
+    <h2>5. Sharing Information</h2>
+    <ul>
+      <li>Google Workspace</li>
+      <li>Microsoft</li>
+      <li>HubSpot</li>
+      <li>Analytics providers</li>
+      <li>Internal AI tools</li>
+    </ul>
+
+    <h2>6. Data Storage & Retention</h2>
+    <p>Stored securely in Canada or the United States.</p>
+
+    <h2>7. Marketing Communications</h2>
+    <p>You can unsubscribe anytime.</p>
+
+    <h2>8. Cookies</h2>
+    <p>We use essential, analytics, preference, and limited marketing cookies.</p>
+
+    <h2>9. Your Rights</h2>
+    <p>You may request access, correction, deletion, portability, or withdraw consent.</p>
+
+    <p>Contact: <a href="mailto:info@conceptiondjg.com">info@conceptiondjg.com</a></p>
+
+    <h2>10. Data Protection</h2>
+    <p>We use reasonable technical and administrative safeguards.</p>
+
+    <h2>11. International Transfers</h2>
+    <p>Some tools may process your information in the U.S.</p>
+
+    <h2>12. Children’s Privacy</h2>
+    <p>Not intended for individuals under 16.</p>
+
+    <h2>13. Changes</h2>
+    <p>We may update this policy periodically.</p>
+
+    <h2>14. Contact</h2>
+    <p>
+      📧 <a href="mailto:info@conceptiondjg.com">info@conceptiondjg.com</a><br>
+      🌍 Canada
+    </p>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <div class="footer__brand-logo">
+          <div>
+            <div class="nav__brand-main" style="color:#FAF6F2;">Conception DJG inc.</div>
+            <div class="nav__brand-sub" style="color:rgba(250,246,242,0.7);">
+              Mechanical design & CAD consulting
+            </div>
+          </div>
+        </div>
+        <p>Build CAD systems that work in the real world.</p>
+      </div>
+
+      <div class="footer__links">
+        <div class="footer__heading">Site</div>
+        <div class="footer__link"><a href="/">Home</a></div>
+        <div class="footer__link"><a href="/#services">Services</a></div>
+        <div class="footer__link"><a href="/#about">About</a></div>
+      </div>
+
+      <div class="footer__links">
+        <div class="footer__heading">Connect</div>
+        <div class="footer__link">
+          <a href="https://www.linkedin.com/in/david-gagnon-b4676019/" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="footer__legal">
+        <div class="footer__heading">Legal</div>
+        <div class="footer__link"><a href="/privacy-policy">Privacy Policy</a></div>
+        <div class="footer__link"><a href="/cookies">Cookie Settings</a></div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span id="year"></span> Conception DJG inc. All rights reserved.</span>
+      <span>Designed for clarity, manufacturability, and momentum.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
