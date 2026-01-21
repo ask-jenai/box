@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="robots" content="index, follow" />
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
   <meta charset="UTF-8" />
   <title>Mechanical Design & 3D CAD Services | Conception DJG Inc.</title>
   <meta name="description" content="Mechanical design services, 3D CAD modeling, DFM consulting, and CAD workflow optimization for founders, engineering managers, and manufacturing SMEs." />
@@ -270,6 +273,7 @@ header.header--shrink {
   background: #C4452F !important; /* underline also red */
 }
 
+
     .nav__link:hover::after,
     .nav__link:focus-visible::after {
       width: 18px;
@@ -303,20 +307,11 @@ header.header--shrink {
       display: none;
     }
 
-    #about {
-  scroll-margin-top: 120px;
-}
-
-#audit {
-  scroll-margin-top: 120px;
-}
-
     /* HERO */
 
     main {
       flex: 1;
     }
-    
 
 .mobile-menu {
   position: absolute;
@@ -1825,7 +1820,7 @@ header.header--shrink {
         <a href="#about" class="nav__link">About</a>
         <a href="#process" class="nav__link">Process</a>
         <a href="#contact" class="nav__link">Contact</a>
-        <a href="https://calendly.com/conceptiondjg" class="btn btn--primary">
+        <a href="#audit" class="nav__cta">Book an Audit</a>
       </nav>
 
       <!-- Simple mobile menu trigger (developer can wire up if needed) -->
@@ -1847,11 +1842,10 @@ header.header--shrink {
    
 <section id="hero" class="hero">
 
-  <video class="hero-video" autoplay muted playsinline loop>
-    <video class="hero-video" autoplay muted playsinline loop aria-label="Mechanical CAD modeling and engineering visuals"></video>
+<video class="hero-video" autoplay muted playsinline loop aria-label="Mechanical CAD modeling and engineering visuals">
+  <source src="hero.mp4" type="video/mp4">
+</video>
 
-    <source src="hero.mp4" type="video/mp4">
-  </video>
 
   <div class="container hero__inner">
     <div>
@@ -1864,8 +1858,10 @@ header.header--shrink {
   </p>
 
   <div class="hero__cta-row">
-    <a href="https://calendly.com/conceptiondjg" class=" btn--primary">Get a 10-10-10 design & CAD audit</a>
+    <a href="#audit" class="btn btn--primary">Get a free 10-10-10 design & CAD audit</a>
   </div>
+
+  <p class="hero__subtext">Ten checks. Ten insights. Clear next steps.</p>
 </div>
 
 </section>   <!-- end of hero -->
@@ -2012,7 +2008,7 @@ header.header--shrink {
           </div>
           <div class="offer__body">
             <p>
-              If something feels off in your design or you’re not sure why timelines keep slipping, the 10-10-10 Audit gives you instant clarity.
+              If something feels off in your design—or you’re not sure why timelines keep slipping—the 10-10-10 Audit gives you instant clarity.
             </p>
             <p>
               You get insights, file checks, and clear recommendations that help you move
@@ -2126,7 +2122,7 @@ header.header--shrink {
     <div class="testimonial-card">
 
       <div class="testimonial-avatar">
-        <img src="SF.jpeg" alt="Stéphane Fortin, Evlo (Hydro-Québec subsidiary)" />
+<img src="SF.jpeg" loading="lazy" alt="Stéphane Fortin, Evlo (Hydro-Québec subsidiary)">
       </div>
 
       <div class="testimonial-body">
@@ -2144,7 +2140,7 @@ header.header--shrink {
         <div class="testimonial-author">
           — Stéphane Fortin
           <span>Gestionnaire, développement électrique et mécanique<br>
-          Evlo (Filiale d’Hydro-Québec)</span>
+          Evlo (filiale d’Hydro-Québec)</span>
         </div>
       </div>
 
@@ -2240,31 +2236,19 @@ header.header--shrink {
 <!-- CTA (now full-width) -->
 <section id="contact" class="cta" aria-labelledby="cta-heading">
   <div class="container cta__content">
-
-    <h2 id="cta-heading" class="cta__title">
-      Ready to Start Your Project?
-    </h2>
-
-    <p class="cta__text">
-      Take the next step toward a design you can trust. Whether you need a full CAD overhaul or help validating your prototype, we're here to support your goals.
-    </p>
-
-    <!-- CTA buttons on their own row -->
-    <div class="cta__btn-row">
-      <a href="https://calendly.com/YOUR-CALENDLY-LINK" 
-         class="btn btn--light">
-        Book a Consultation
-      </a>
-
-      <a href="mailto:info@conceptiondjg.com" 
-         class="btn btn--ghost cta-email">
-        Email David
-      </a>
+    <div>
+      <h2 id="cta-heading" class="cta__title">Ready to Start Your Project?</h2>
+      <p class="cta__text">
+     Take the next step toward a design you can trust. Whether you need a full CAD overhaul or help validating your prototype, we're here to support your goals.
+      <div class="cta__btn-row">
+        <a href="#contact-form" class="btn btn--light">Book a Consultation</a>
+        <a href="mailto:info@conceptiondjg.com" class="btn btn--ghost" style="border-color: rgba(250,246,242,0.7); color:#FAF6F2;">
+          Email David
+        </a>
+      </div>
     </div>
-
   </div>
 </section>
-
 
   </main>
 
@@ -2324,14 +2308,13 @@ header.header--shrink {
     <button class="cookie-close" id="cookie-close">&times;</button>
 
     <div class="cookie-content">
-        <p>
-            This website stores cookies on your computer. These cookies are used to
-            collect information about how you interact with our website and allow us
-            to remember you. We use this information to improve and customize your
-            browsing experience and for analytics and metrics about our visitors.
-            To find out more about the cookies we use, see our 
-            <a href="#">Privacy Policy</a>.
-        </p>
+      <p>
+  This website uses cookies to ensure proper functionality and, with your consent,
+  to help us understand how visitors use the site so we can improve it.
+  You can accept or decline non-essential cookies at any time.
+  For more information, see our
+  <a href="/privacy-policy">Privacy Policy</a>.
+</p>
     </div>
 
    <div class="cookie-actions">
@@ -2373,23 +2356,7 @@ header.header--shrink {
     });
   })();
 </script>
-<script>
-    const banner = document.getElementById("cookie-banner");
-    const accept = document.getElementById("cookie-accept");
-    const closeBtn = document.getElementById("cookie-close");
 
-    function hideBanner() {
-        banner.style.display = "none";
-        localStorage.setItem("cookiesAccepted", "true");
-    }
-
-    accept.addEventListener("click", hideBanner);
-    closeBtn.addEventListener("click", hideBanner);
-
-    if (localStorage.getItem("cookiesAccepted") === "true") {
-        banner.style.display = "none";
-    }
-</script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
