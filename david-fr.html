@@ -1375,7 +1375,7 @@ header.header--shrink {
   background: #E96B3C; /* bright orange */
   color: #ffffff;
   text-align: center;
-  padding: 4rem 0;
+  padding: 5rem 0 6.5rem;
   position: relative;
   overflow: hidden;
 }
@@ -1405,9 +1405,27 @@ header.header--shrink {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 2.5rem; /* <-- THIS pushes buttons lower */
+  flex-wrap: wrap;
 }
 
+
+/* CTA-SPECIFIC BUTTON TWEAKS ONLY */
+.cta .btn {
+  font-size: 0.95rem;
+  padding: 0.9rem 1.6rem;
+}
+
+/* Outline style for email button */
+.btn--cta-outline {
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.8);
+  color: #ffffff;
+}
+
+.btn--cta-outline:hover {
+  background: rgba(255,255,255,0.12);
+}
 
 
     .btn--light {
@@ -1785,10 +1803,6 @@ header.header--shrink {
   text-align: center !important;
   max-width: 600px;
 }
-
-.cta__btn-row {
-  display:
-  /* FINAL FIX — FORCE SMALLER TEXT */
 
   /* FINAL CTA ONLY — does not affect other CTAs */
 .cta--final {
@@ -2221,20 +2235,28 @@ Qu’est-ce que l’optimisation des flux de travail en CAO et pourquoi est-ce i
 </section>
 
 <!-- CTA (now full-width) -->
+<!-- CTA (now full-width) -->
 <section id="contact" class="cta" aria-labelledby="cta-heading">
   <div class="container cta__content">
-    <div>
+    <div class="cta__copy">
       <h2 id="cta-heading" class="cta__title">Prêt à démarrer votre projet ?</h2>
+
       <p class="cta__text">
-   Passez à l’étape suivante avec une conception sur laquelle vous pouvez compter.
+        Passez à l’étape suivante avec une conception sur laquelle vous pouvez compter.
+      </p>
+
+      <div class="cta__btn-row">
         <a href="#contact-form" class="btn btn--light">Réserver une consultation</a>
-        <a href="mailto:info@conceptiondjg.com" class="btn btn--ghost" style="border-color: rgba(250,246,242,0.7); color:#FAF6F2;">
-         Écrire à David
+
+        <a href="mailto:info@conceptiondjg.com"
+           class="btn btn--ghost btn--cta-outline">
+          Écrire à David
         </a>
       </div>
     </div>
   </div>
 </section>
+
 
   </main>
 
