@@ -306,7 +306,13 @@ header.header--shrink {
     .nav__toggle {
       display: none;
     }
+#about {
+  scroll-margin-top: 120px;
+}
 
+#audit {
+  scroll-margin-top: 120px;
+}
     /* HERO */
 
     main {
@@ -1375,7 +1381,7 @@ header.header--shrink {
   background: #E96B3C; /* bright orange */
   color: #ffffff;
   text-align: center;
-  padding: 4rem 0;
+  padding: 5rem 0 6.5rem;
   position: relative;
   overflow: hidden;
 }
@@ -1405,9 +1411,27 @@ header.header--shrink {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 2.5rem; /* <-- THIS pushes buttons lower */
+  flex-wrap: wrap;
 }
 
+
+/* CTA-SPECIFIC BUTTON TWEAKS ONLY */
+.cta .btn {
+  font-size: 0.95rem;
+  padding: 0.9rem 1.6rem;
+}
+
+/* Outline style for email button */
+.btn--cta-outline {
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.8);
+  color: #ffffff;
+}
+
+.btn--cta-outline:hover {
+  background: rgba(255,255,255,0.12);
+}
 
 
     .btn--light {
@@ -1786,10 +1810,6 @@ header.header--shrink {
   max-width: 600px;
 }
 
-.cta__btn-row {
-  display:
-  /* FINAL FIX — FORCE SMALLER TEXT */
-
   /* FINAL CTA ONLY — does not affect other CTAs */
 .cta--final {
   padding: 5.5rem 0 7rem;
@@ -1857,7 +1877,7 @@ header.header--shrink {
   <div class="hero__eyebrow">Conception mécanique et expertise CAO</div>
   <h1 class="hero__title">Conception mécanique et accompagnement CAO pour des projets qui avancent</h1>
   <p class="hero__subtitle">
-   Nous aidons les équipes d’ingénierie, les PME manufacturières et les dirigeants à éliminer les problèmes de CAO, à réduire les reprises et à accélérer le passage du concept à la fabrication.
+   Nous venons en aide les équipes d’ingénierie, les PME manufacturières et les dirigeants à éliminer les problèmes de CAO, à réduire les reprises et à accélérer le passage du concept à la fabrication.
   </p>
 
   <div class="hero__cta-row">
@@ -1873,7 +1893,7 @@ header.header--shrink {
 
     <!-- Main Headline -->
     <h2 class="impact-headline">
-Optimisez vos flux de travail en CAO grâce à une expertise fiable en conception mécanique    </h2>
+Optimisez vos flux de travail en CAO grâce à une expertise éprouvée en conception mécanique.    </h2>
 
     <!-- Secondary Headline -->
     <h3 class="impact-subhead">
@@ -1914,17 +1934,17 @@ Optimisez vos flux de travail en CAO grâce à une expertise fiable en conceptio
           <h2 class="about__title">Votre partenaire en conception mécanique et en optimisation CAO</h2>
           <div class="about__body">
             <p>
-             Vous n’avez pas seulement besoin de modèles CAO. Vous avez besoin d’un partenaire qui comprend comment les produits se comportent en conditions réelles.
-Je suis David Gagnon, fondateur de Conception DJG inc. et concepteur mécanique senior comptant plus de vingt-cinq ans d’expérience terrain, spécialisé en conception mécanique, en modélisation CAO 3D, en DFM et en résolution de problématiques qui font perdre un temps précieux aux équipes.
+            Vous n’avez pas seulement besoin de modèles CAO. Vous avez besoin d’un partenaire qui comprend comment les produits se comportent sur le terrain.
             </p>
             <p>
-Les gestionnaires d’ingénierie font appel à mes services lorsque leurs équipes sont surchargées et prises dans des cycles de reprises.
-Les PME me contactent lorsque les échéanciers sont serrés et qu’elles ont besoin d’un soutien expert pour maintenir l’avancement des projets.
+Je m’appelle David Gagnon, fondateur de Conception DJG inc. et concepteur mécanique senior avec plus de 25 ans d’expérience terrain. Je me spécialise en conception mécanique, en modélisation CAO 3D, en DFM et en résolution de problèmes techniques qui font perdre du temps — et de l’énergie — aux équipes.
 </p>
             <p>
-Mon approche est pragmatique et axée sur les résultats : des modèles propres, des conceptions fabricables et des flux de travail capables de tenir la pression.
-L’objectif est simple : moins de surprises, moins de révisions et une progression constante du concept à la production.
-Mon rôle est de simplifier le vôtre et de contribuer concrètement au succès de vos projets.
+Les gestionnaires d’ingénierie font appel à moi lorsque leurs équipes sont surchargées et coincées dans des cycles de reprises. Les PME me contactent quand les échéanciers sont serrés et qu’un soutien expert est nécessaire pour garder les projets sur les rails.
+</p>
+<p>
+Mon approche est pragmatique et orientée résultats : des modèles propres, des conceptions fabricables et des flux de travail capables de tenir la pression. L’objectif est simple : moins de surprises, moins de révisions et une progression constante du concept à la production.
+Mon rôle est de simplifier le vôtre et de contribuer concrètement au succès de vos projets.    
 </p>
           </div>
           <div class="about__cta">
@@ -1954,14 +1974,14 @@ Mon rôle est de simplifier le vôtre et de contribuer concrètement au succès 
 
     <!-- ROW 1 -->
     <div class="service-card">
-      <h3>Services de conception mécanique</h3>
-      <p> De la conception initiale à la validation finale, nous développons des solutions mécaniques solides et adaptées à la fabrication, en éliminant les blocages qui ralentissent vos projets.</p>
+      <h3>Conception mécanique</h3>
+      <p>De la conception initiale à la validation finale, nous développons des solutions mécaniques solides et adaptées à la fabrication, en éliminant les blocages qui ralentissent les projets.</p>
       <hr>
       <a href="#" class="learn-more">En savoir plus →</a>
     </div>
 
     <div class="service-card">
-      <h3>Services de modélisation CAO 3D</h3>
+      <h3>Modélisation CAO 3D</h3>
       <p>Des modèles précis, stables et bien structurés, conçus pour réduire les erreurs, limiter les reprises et faciliter le passage à la fabrication.</p>
       <hr>
       <a href="#" class="learn-more">En savoir plus →</a>
@@ -1969,7 +1989,7 @@ Mon rôle est de simplifier le vôtre et de contribuer concrètement au succès 
 
     <div class="service-card">
       <h3>Services-conseils en développement de produits</h3>
-      <p>Un accompagnement clair et rigoureux pour vous aider à prendre les bonnes décisions techniques, du concept initial jusqu’au produit prêt à être fabriqué.</p>
+      <p>Un accompagnement clair et rigoureux pour vous aider à prendre les bonnes décisions techniques, du concept initial jusqu’au produit prêt pour la fabrication.</p>
       <hr>
       <a href="#" class="learn-more">En savoir plus →</a>
     </div>
@@ -1984,13 +2004,13 @@ Mon rôle est de simplifier le vôtre et de contribuer concrètement au succès 
 
     <div class="service-card">
       <h3>Optimisation des flux de travail en CAO</h3>
-      <p>Amélioration de la structure des fichiers, des gabarits et des méthodes de travail pour gagner du temps et assurer une meilleure cohérence entre les projets.</p>
+      <p>mélioration de la structure des fichiers, des gabarits et des méthodes de travail afin de gagner du temps et d’assurer une meilleure cohérence entre les projets.</p>
       <hr>
       <a href="#" class="learn-more">En savoir plus →</a>
     </div>
 
     <div class="service-card">
-      <h3>Conception de prototypes et preuves de concept</h3>
+      <h3>Prototypes et preuves de concept</h3>
       <p>Développement de prototypes fonctionnels pour valider rapidement les choix techniques et réduire les risques avant d’investir davantage.</p>
       <hr>
       <a href="#" class="learn-more">En savoir plus →</a>
@@ -2221,20 +2241,28 @@ Qu’est-ce que l’optimisation des flux de travail en CAO et pourquoi est-ce i
 </section>
 
 <!-- CTA (now full-width) -->
+<!-- CTA (now full-width) -->
 <section id="contact" class="cta" aria-labelledby="cta-heading">
   <div class="container cta__content">
-    <div>
+    <div class="cta__copy">
       <h2 id="cta-heading" class="cta__title">Prêt à démarrer votre projet ?</h2>
+
       <p class="cta__text">
-   Passez à l’étape suivante avec une conception sur laquelle vous pouvez compter.
+        Passez à l’étape suivante avec une conception sur laquelle vous pouvez compter.
+      </p>
+
+      <div class="cta__btn-row">
         <a href="#contact-form" class="btn btn--light">Réserver une consultation</a>
-        <a href="mailto:info@conceptiondjg.com" class="btn btn--ghost" style="border-color: rgba(250,246,242,0.7); color:#FAF6F2;">
-         Écrire à David
+
+        <a href="mailto:info@conceptiondjg.com"
+           class="btn btn--ghost btn--cta-outline">
+          Écrire à David
         </a>
       </div>
     </div>
   </div>
 </section>
+
 
   </main>
 
