@@ -1,1 +1,831 @@
-<iframe src="MilesFiona_Survey.html" width="100%" height="900" frameborder="0"></iframe>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Miles & Fiona — Community Survey</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  /* ── Brand Tokens ── */
+  :root {
+    --pink:        #E7B9C6;
+    --strawberry:  #DD716B;
+    --matcha:      #9FC76B;
+    --oatmilk:     #EEF2DD;
+    --espresso:    #A07D58;
+    --espresso-dk: #6B5038;
+    --cream:       #FAF8F3;
+    --text:        #2C1F14;
+    --text-muted:  #7A6152;
+    --border:      rgba(160,125,88,.18);
+    --radius:      14px;
+    --radius-sm:   8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: var(--espresso);
+    padding: 64px 24px 52px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(231,185,198,.22) 0%, transparent 70%),
+                radial-gradient(ellipse at 20% 80%, rgba(159,199,107,.14) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 7vw, 72px);
+    font-weight: 300;
+    color: var(--oatmilk);
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--pink);
+  }
+  .hero p {
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(238,242,221,.75);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .hero-paw {
+    margin-top: 32px;
+    font-size: 28px;
+    opacity: .5;
+  }
+
+  /* ── Layout ── */
+  .form-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* ── Progress ── */
+  .progress-bar {
+    height: 3px;
+    background: var(--border);
+    border-radius: 99px;
+    margin-bottom: 48px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--matcha), var(--strawberry));
+    border-radius: 99px;
+    width: 0%;
+    transition: width .4s ease;
+  }
+
+  /* ── Section ── */
+  .section {
+    display: none;
+    animation: fadeUp .4s ease both;
+  }
+  .section.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--strawberry);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 400;
+    color: var(--espresso-dk);
+    margin-bottom: 8px;
+    line-height: 1.15;
+  }
+  .section-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 36px;
+    line-height: 1.65;
+  }
+
+  /* ── Question Block ── */
+  .q-block { margin-bottom: 32px; }
+  .q-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .q-hint {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: -8px;
+    margin-bottom: 12px;
+  }
+
+  /* ── Radio / Checkbox Pills ── */
+  .pill-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pill-group input { display: none; }
+  .pill-group label {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 99px;
+    border: 1.5px solid var(--border);
+    background: #fff;
+    font-size: 13.5px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all .18s ease;
+    user-select: none;
+  }
+  .pill-group input:checked + label {
+    background: var(--espresso);
+    border-color: var(--espresso);
+    color: var(--oatmilk);
+  }
+  .pill-group label:hover {
+    border-color: var(--espresso);
+    color: var(--espresso);
+  }
+
+  /* ── Scale Grid ── */
+  .scale-group { display: flex; flex-direction: column; gap: 14px; }
+  .scale-row {
+    display: grid;
+    grid-template-columns: 180px 1fr auto;
+    align-items: center;
+    gap: 12px;
+  }
+  .scale-row-label { font-size: 13px; color: var(--text); }
+  .scale-row input[type=range] {
+    width: 100%;
+    accent-color: var(--matcha);
+    cursor: pointer;
+  }
+  .scale-row-val {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--espresso);
+    min-width: 24px;
+    text-align: center;
+  }
+
+  /* ── Single Range ── */
+  .single-range { display: flex; align-items: center; gap: 12px; }
+  .single-range input[type=range] { flex: 1; accent-color: var(--matcha); cursor: pointer; }
+  .single-range-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+  /* ── Textarea ── */
+  textarea {
+    width: 100%;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: #fff;
+    resize: vertical;
+    min-height: 90px;
+    outline: none;
+    transition: border-color .18s;
+  }
+  textarea:focus { border-color: var(--matcha); }
+
+  /* ── Divider ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 32px 0;
+  }
+
+  /* ── Concept Box ── */
+  .concept-box {
+    background: var(--oatmilk);
+    border-left: 3px solid var(--matcha);
+    border-radius: var(--radius-sm);
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--espresso-dk);
+    font-style: italic;
+  }
+
+  /* ── Nav ── */
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+  .btn {
+    padding: 12px 28px;
+    border-radius: 99px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .18s ease;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--espresso);
+    color: var(--oatmilk);
+  }
+  .btn-primary:hover { background: var(--espresso-dk); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1.5px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--espresso); color: var(--espresso); }
+  .btn:disabled { opacity: .35; cursor: not-allowed; transform: none !important; }
+
+  .step-indicator {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* ── Thank You ── */
+  .thankyou {
+    display: none;
+    text-align: center;
+    padding: 60px 24px;
+  }
+  .thankyou.active { display: block; animation: fadeUp .5s ease; }
+  .thankyou-icon { font-size: 52px; margin-bottom: 24px; }
+  .thankyou h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px;
+    font-weight: 300;
+    color: var(--espresso-dk);
+    margin-bottom: 12px;
+  }
+  .thankyou p { font-size: 15px; color: var(--text-muted); max-width: 420px; margin: 0 auto; line-height: 1.7; }
+
+  /* ── Status ── */
+  .submit-status {
+    font-size: 13px;
+    margin-top: 10px;
+    text-align: center;
+    color: var(--text-muted);
+    min-height: 20px;
+  }
+
+  @media (max-width: 520px) {
+    .scale-row { grid-template-columns: 120px 1fr auto; }
+    .hero { padding: 48px 20px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <p class="hero-eyebrow">Miles &amp; Fiona · Community Survey</p>
+  <h1>Tell us about<br/><em>you &amp; your dog.</em></h1>
+  <p>We're building something for dog parents who take this seriously. Help us build it right — your answers shape everything.</p>
+  <div class="hero-paw">🐾</div>
+</div>
+
+<div class="form-wrap">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+  <!-- ════════════════════════════════════
+       SECTION 1 · Qualification
+  ════════════════════════════════════ -->
+  <div class="section active" id="sec1">
+    <p class="section-label">Section 1 of 6</p>
+    <h2 class="section-title">Let's start with the basics.</h2>
+    <p class="section-subtitle">We don't filter to exclude — we filter to include the right people in the right community.</p>
+
+    <div class="q-block">
+      <p class="q-label">What is your age range?</p>
+      <div class="pill-group">
+        <input type="radio" name="ageRange" id="age1" value="Under 25"><label for="age1">Under 25</label>
+        <input type="radio" name="ageRange" id="age2" value="25–34"><label for="age2">25–34</label>
+        <input type="radio" name="ageRange" id="age3" value="35–44"><label for="age3">35–44</label>
+        <input type="radio" name="ageRange" id="age4" value="45–54"><label for="age4">45–54</label>
+        <input type="radio" name="ageRange" id="age5" value="55+"><label for="age5">55+</label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">What is your household income?</p>
+      <div class="pill-group">
+        <input type="radio" name="householdIncome" id="inc1" value="Under $60,000"><label for="inc1">Under $60,000</label>
+        <input type="radio" name="householdIncome" id="inc2" value="$60,000–$89,999"><label for="inc2">$60,000–$89,999</label>
+        <input type="radio" name="householdIncome" id="inc3" value="$90,000–$149,999"><label for="inc3">$90,000–$149,999</label>
+        <input type="radio" name="householdIncome" id="inc4" value="$150,000–$249,999"><label for="inc4">$150,000–$249,999</label>
+        <input type="radio" name="householdIncome" id="inc5" value="$250,000+"><label for="inc5">$250,000+</label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">Approximately how much do you spend on your dog per year?</p>
+      <div class="pill-group">
+        <input type="radio" name="annualDogSpend" id="sp1" value="Under $500"><label for="sp1">Under $500</label>
+        <input type="radio" name="annualDogSpend" id="sp2" value="$500–$1,000"><label for="sp2">$500–$1,000</label>
+        <input type="radio" name="annualDogSpend" id="sp3" value="$1,000–$2,000"><label for="sp3">$1,000–$2,000</label>
+        <input type="radio" name="annualDogSpend" id="sp4" value="$2,000–$5,000"><label for="sp4">$2,000–$5,000</label>
+        <input type="radio" name="annualDogSpend" id="sp5" value="$5,000+"><label for="sp5">$5,000+</label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">How far would you travel for premium dog services?</p>
+      <div class="pill-group">
+        <input type="radio" name="travelDistance" id="td1" value="Under 10 minutes"><label for="td1">Under 10 min</label>
+        <input type="radio" name="travelDistance" id="td2" value="10–20 minutes"><label for="td2">10–20 min</label>
+        <input type="radio" name="travelDistance" id="td3" value="20–40 minutes"><label for="td3">20–40 min</label>
+        <input type="radio" name="travelDistance" id="td4" value="40+ minutes"><label for="td4">40+ min</label>
+      </div>
+    </div>
+
+    <div class="nav">
+      <span></span>
+      <span class="step-indicator">1 / 6</span>
+      <button class="btn btn-primary" onclick="goTo(2)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       SECTION 2 · Grooming & Wellness
+  ════════════════════════════════════ -->
+  <div class="section" id="sec2">
+    <p class="section-label">Section 2 of 6</p>
+    <h2 class="section-title">Grooming &amp; wellness behavior.</h2>
+    <p class="section-subtitle">Tell us how you already care for your dog — no judgment, just data.</p>
+
+    <div class="q-block">
+      <p class="q-label">How often is your dog professionally groomed?</p>
+      <div class="pill-group">
+        <input type="radio" name="groomingFrequency" id="gf1" value="Never"><label for="gf1">Never</label>
+        <input type="radio" name="groomingFrequency" id="gf2" value="1–2 times/year"><label for="gf2">1–2× / year</label>
+        <input type="radio" name="groomingFrequency" id="gf3" value="Every 3–4 months"><label for="gf3">Every 3–4 months</label>
+        <input type="radio" name="groomingFrequency" id="gf4" value="Every 5–8 weeks"><label for="gf4">Every 5–8 weeks</label>
+        <input type="radio" name="groomingFrequency" id="gf5" value="Monthly"><label for="gf5">Monthly</label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">Do you also groom or bathe your dog at home?</p>
+      <div class="pill-group">
+        <input type="radio" name="homeGrooming" id="hg1" value="Yes, regularly"><label for="hg1">Yes, regularly</label>
+        <input type="radio" name="homeGrooming" id="hg2" value="Occasionally"><label for="hg2">Occasionally</label>
+        <input type="radio" name="homeGrooming" id="hg3" value="Never"><label for="hg3">Never</label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">Has your dog experienced any of the following?</p>
+      <p class="q-hint">Select all that apply</p>
+      <div class="pill-group">
+        <input type="checkbox" name="dogHealthIssues" id="dhi1" value="Skin allergies"><label for="dhi1">Skin allergies</label>
+        <input type="checkbox" name="dogHealthIssues" id="dhi2" value="Digestive issues"><label for="dhi2">Digestive issues</label>
+        <input type="checkbox" name="dogHealthIssues" id="dhi3" value="Dental issues"><label for="dhi3">Dental issues</label>
+        <input type="checkbox" name="dogHealthIssues" id="dhi4" value="Anxiety"><label for="dhi4">Anxiety</label>
+        <input type="checkbox" name="dogHealthIssues" id="dhi5" value="None"><label for="dhi5">None</label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">Have you ever paid for:</p>
+      <p class="q-hint">Select all that apply</p>
+      <div class="pill-group">
+        <input type="checkbox" name="paidServices" id="ps1" value="Raw/fresh food"><label for="ps1">Raw / fresh food</label>
+        <input type="checkbox" name="paidServices" id="ps2" value="Supplements"><label for="ps2">Supplements</label>
+        <input type="checkbox" name="paidServices" id="ps3" value="Dental cleaning"><label for="ps3">Dental cleaning</label>
+        <input type="checkbox" name="paidServices" id="ps4" value="Massage or bodywork"><label for="ps4">Massage / bodywork</label>
+        <input type="checkbox" name="paidServices" id="ps5" value="Alternative therapies"><label for="ps5">Alternative therapies</label>
+        <input type="checkbox" name="paidServices" id="ps6" value="Professional photoshoot"><label for="ps6">Professional photoshoot</label>
+        <input type="checkbox" name="paidServices" id="ps7" value="Training workshops"><label for="ps7">Training workshops</label>
+      </div>
+    </div>
+
+    <div class="nav">
+      <button class="btn btn-ghost" onclick="goTo(1)">← Back</button>
+      <span class="step-indicator">2 / 6</span>
+      <button class="btn btn-primary" onclick="goTo(3)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       SECTION 3 · Ingredient Awareness
+  ════════════════════════════════════ -->
+  <div class="section" id="sec3">
+    <p class="section-label">Section 3 of 6</p>
+    <h2 class="section-title">Ingredient awareness &amp; safety.</h2>
+    <p class="section-subtitle">How much does what's inside actually matter to you?</p>
+
+    <div class="q-block">
+      <p class="q-label">How often do you think about harmful ingredients in:</p>
+      <p class="q-hint">Drag each slider — 1 = Never, 10 = Very Often</p>
+      <div class="scale-group">
+        <div class="scale-row">
+          <span class="scale-row-label">Food &amp; treats</span>
+          <input type="range" min="1" max="10" value="5" id="awFood" oninput="updateVal('awFoodVal',this.value)">
+          <span class="scale-row-val" id="awFoodVal">5</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row-label">Toys</span>
+          <input type="range" min="1" max="10" value="5" id="awToys" oninput="updateVal('awToysVal',this.value)">
+          <span class="scale-row-val" id="awToysVal">5</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row-label">Grooming products</span>
+          <input type="range" min="1" max="10" value="5" id="awGroom" oninput="updateVal('awGroomVal',this.value)">
+          <span class="scale-row-val" id="awGroomVal">5</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row-label">Household cleaners</span>
+          <input type="range" min="1" max="10" value="5" id="awClean" oninput="updateVal('awCleanVal',this.value)">
+          <span class="scale-row-val" id="awCleanVal">5</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row-label">Accessories</span>
+          <input type="range" min="1" max="10" value="5" id="awAcc" oninput="updateVal('awAccVal',this.value)">
+          <span class="scale-row-val" id="awAccVal">5</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row-label">Fragrances</span>
+          <input type="range" min="1" max="10" value="5" id="awFrag" oninput="updateVal('awFragVal',this.value)">
+          <span class="scale-row-val" id="awFragVal">5</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">What is your level of knowledge about how ingredients impact your dog's health?</p>
+      <div class="single-range">
+        <span style="font-size:12px;color:var(--text-muted)">1</span>
+        <input type="range" min="1" max="10" value="5" id="ingKnow" oninput="updateVal('ingKnowVal',this.value)">
+        <span style="font-size:12px;color:var(--text-muted)">10</span>
+        <span class="scale-row-val" id="ingKnowVal" style="margin-left:4px">5</span>
+      </div>
+      <div class="single-range-labels"><span>Beginner</span><span>Expert</span></div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">How do you research dog wellness products?</p>
+      <p class="q-hint">Select all that apply</p>
+      <div class="pill-group">
+        <input type="checkbox" name="researchMethods" id="rm1" value="Veterinarian"><label for="rm1">Veterinarian</label>
+        <input type="checkbox" name="researchMethods" id="rm2" value="Pet nutritionist"><label for="rm2">Pet nutritionist</label>
+        <input type="checkbox" name="researchMethods" id="rm3" value="Dog trainers"><label for="rm3">Dog trainers</label>
+        <input type="checkbox" name="researchMethods" id="rm4" value="Social media"><label for="rm4">Social media</label>
+        <input type="checkbox" name="researchMethods" id="rm5" value="Google search"><label for="rm5">Google search</label>
+        <input type="checkbox" name="researchMethods" id="rm6" value="Influencers"><label for="rm6">Influencers</label>
+        <input type="checkbox" name="researchMethods" id="rm7" value="Word of mouth"><label for="rm7">Word of mouth</label>
+        <input type="checkbox" name="researchMethods" id="rm8" value="Brand websites"><label for="rm8">Brand websites</label>
+        <input type="checkbox" name="researchMethods" id="rm9" value="I don't research"><label for="rm9">I don't research</label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">How do you decide what brands to trust?</p>
+      <textarea id="brandTrust" placeholder="Tell us what earns your trust..."></textarea>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">Would you pay more for a product that guaranteed non-toxic, transparent ingredients?</p>
+      <div class="single-range">
+        <span style="font-size:12px;color:var(--text-muted)">1</span>
+        <input type="range" min="1" max="10" value="5" id="payMore" oninput="updateVal('payMoreVal',this.value)">
+        <span style="font-size:12px;color:var(--text-muted)">10</span>
+        <span class="scale-row-val" id="payMoreVal" style="margin-left:4px">5</span>
+      </div>
+      <div class="single-range-labels"><span>Definitely not</span><span>Absolutely yes</span></div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">How much more would you be willing to spend?</p>
+      <div class="pill-group">
+        <input type="radio" name="extraSpend" id="es1" value="$5"><label for="es1">$5</label>
+        <input type="radio" name="extraSpend" id="es2" value="$10"><label for="es2">$10</label>
+        <input type="radio" name="extraSpend" id="es3" value="$20"><label for="es3">$20</label>
+        <input type="radio" name="extraSpend" id="es4" value="Other"><label for="es4">Other</label>
+      </div>
+    </div>
+
+    <div class="nav">
+      <button class="btn btn-ghost" onclick="goTo(2)">← Back</button>
+      <span class="step-indicator">3 / 6</span>
+      <button class="btn btn-primary" onclick="goTo(4)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       SECTION 4 · Experience & Brand
+  ════════════════════════════════════ -->
+  <div class="section" id="sec4">
+    <p class="section-label">Section 4 of 6</p>
+    <h2 class="section-title">Experience &amp; brand alignment.</h2>
+    <p class="section-subtitle">What actually influences your decisions?</p>
+
+    <div class="q-block">
+      <p class="q-label">When choosing grooming or pet services, what matters most?</p>
+      <p class="q-hint">Rate each 0–10</p>
+      <div class="scale-group">
+        <div class="scale-row">
+          <span class="scale-row-label">Price</span>
+          <input type="range" min="0" max="10" value="5" oninput="updateVal('prPriceVal',this.value)">
+          <span class="scale-row-val" id="prPriceVal">5</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row-label">Location</span>
+          <input type="range" min="0" max="10" value="5" oninput="updateVal('prLocVal',this.value)">
+          <span class="scale-row-val" id="prLocVal">5</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row-label">Cleanliness</span>
+          <input type="range" min="0" max="10" value="5" oninput="updateVal('prCleanVal',this.value)">
+          <span class="scale-row-val" id="prCleanVal">5</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row-label">Brand aesthetic</span>
+          <input type="range" min="0" max="10" value="5" oninput="updateVal('prAesVal',this.value)">
+          <span class="scale-row-val" id="prAesVal">5</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row-label">Staff expertise</span>
+          <input type="range" min="0" max="10" value="5" oninput="updateVal('prExpVal',this.value)">
+          <span class="scale-row-val" id="prExpVal">5</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row-label">Holistic approach</span>
+          <input type="range" min="0" max="10" value="5" oninput="updateVal('prHolVal',this.value)">
+          <span class="scale-row-val" id="prHolVal">5</span>
+        </div>
+        <div class="scale-row">
+          <span class="scale-row-label">Reviews</span>
+          <input type="range" min="0" max="10" value="5" oninput="updateVal('prRevVal',this.value)">
+          <span class="scale-row-val" id="prRevVal">5</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">What dog brands do you gravitate toward?</p>
+      <textarea id="favouriteBrands" placeholder="e.g. Open Farm, Fromm, Wild One..."></textarea>
+    </div>
+
+    <div class="nav">
+      <button class="btn btn-ghost" onclick="goTo(3)">← Back</button>
+      <span class="step-indicator">4 / 6</span>
+      <button class="btn btn-primary" onclick="goTo(5)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       SECTION 5 · Concept + Community
+  ════════════════════════════════════ -->
+  <div class="section" id="sec5">
+    <p class="section-label">Section 5 of 6</p>
+    <h2 class="section-title">The concept.</h2>
+    <p class="section-subtitle">Read this carefully. We want your honest reaction.</p>
+
+    <div class="concept-box">
+      A boutique dog wellness spa offering premium grooming, holistic health services (massage, nutrition, naturopath), red light therapy, curated safe retail products, and workshops for dog parents — all in a design-forward space built for those who take their dog's wellbeing seriously.
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">How interested would you be in this concept?</p>
+      <div class="single-range">
+        <span style="font-size:12px;color:var(--text-muted)">1</span>
+        <input type="range" min="1" max="10" value="5" id="conceptInt" oninput="updateVal('conceptIntVal',this.value)">
+        <span style="font-size:12px;color:var(--text-muted)">10</span>
+        <span class="scale-row-val" id="conceptIntVal" style="margin-left:4px">5</span>
+      </div>
+      <div class="single-range-labels"><span>Not at all</span><span>Take my money</span></div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">Which services would you most likely use?</p>
+      <p class="q-hint">Select all that apply</p>
+      <div class="pill-group">
+        <input type="checkbox" name="servicesWouldUse" id="sw1" value="Premium grooming"><label for="sw1">Premium grooming</label>
+        <input type="checkbox" name="servicesWouldUse" id="sw2" value="Massage / bodywork"><label for="sw2">Massage / bodywork</label>
+        <input type="checkbox" name="servicesWouldUse" id="sw3" value="Nutrition consult"><label for="sw3">Nutrition consult</label>
+        <input type="checkbox" name="servicesWouldUse" id="sw4" value="Naturopath"><label for="sw4">Naturopath</label>
+        <input type="checkbox" name="servicesWouldUse" id="sw5" value="Red light therapy"><label for="sw5">Red light therapy</label>
+        <input type="checkbox" name="servicesWouldUse" id="sw6" value="Curated retail"><label for="sw6">Curated retail</label>
+        <input type="checkbox" name="servicesWouldUse" id="sw7" value="Workshops"><label for="sw7">Workshops</label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">Would you consider a paid membership that includes grooming priority booking, discounts, exclusive workshops, community events, and product perks?</p>
+      <div class="pill-group">
+        <input type="radio" name="membershipInterest" id="mi1" value="Yes"><label for="mi1">Yes</label>
+        <input type="radio" name="membershipInterest" id="mi2" value="Maybe"><label for="mi2">Maybe</label>
+        <input type="radio" name="membershipInterest" id="mi3" value="No"><label for="mi3">No</label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">What would feel like a reasonable monthly membership price?</p>
+      <textarea id="membershipPrice" placeholder="e.g. $29/month, $50, depends on what's included..." style="min-height:60px;"></textarea>
+    </div>
+
+    <div class="nav">
+      <button class="btn btn-ghost" onclick="goTo(4)">← Back</button>
+      <span class="step-indicator">5 / 6</span>
+      <button class="btn btn-primary" onclick="goTo(6)">Next →</button>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       SECTION 6 · Community
+  ════════════════════════════════════ -->
+  <div class="section" id="sec6">
+    <p class="section-label">Section 6 of 6</p>
+    <h2 class="section-title">Community belonging.</h2>
+    <p class="section-subtitle">This is where we find our people.</p>
+
+    <div class="q-block">
+      <p class="q-label">Would you be interested in:</p>
+      <p class="q-hint">Select all that apply</p>
+      <div class="pill-group">
+        <input type="checkbox" name="communityEvents" id="ce1" value="Dog parent wellness workshops"><label for="ce1">Dog parent wellness workshops</label>
+        <input type="checkbox" name="communityEvents" id="ce2" value="Educational ingredient workshops"><label for="ce2">Ingredient education</label>
+        <input type="checkbox" name="communityEvents" id="ce3" value="Community dog meet-ups"><label for="ce3">Community dog meet-ups</label>
+        <input type="checkbox" name="communityEvents" id="ce4" value="Charity or rescue events"><label for="ce4">Charity &amp; rescue events</label>
+      </div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">How important is being part of a like-minded dog parent community?</p>
+      <div class="single-range">
+        <span style="font-size:12px;color:var(--text-muted)">1</span>
+        <input type="range" min="1" max="10" value="5" id="commImp" oninput="updateVal('commImpVal',this.value)">
+        <span style="font-size:12px;color:var(--text-muted)">10</span>
+        <span class="scale-row-val" id="commImpVal" style="margin-left:4px">5</span>
+      </div>
+      <div class="single-range-labels"><span>Not important</span><span>Essential</span></div>
+    </div>
+
+    <div class="q-block">
+      <p class="q-label">What does being a "good dog parent" mean to you?</p>
+      <textarea id="goodDogParent" placeholder="Share what's in your heart..." style="min-height:120px;"></textarea>
+    </div>
+
+    <div class="nav">
+      <button class="btn btn-ghost" onclick="goTo(5)">← Back</button>
+      <span class="step-indicator">6 / 6</span>
+      <button class="btn btn-primary" id="submitBtn" onclick="submitForm()">Submit →</button>
+    </div>
+    <p class="submit-status" id="submitStatus"></p>
+  </div>
+
+  <!-- ════════════════════════════════════
+       THANK YOU
+  ════════════════════════════════════ -->
+  <div class="thankyou" id="thankyou">
+    <div class="thankyou-icon">🐾</div>
+    <h2>Thank you for being here.</h2>
+    <p>Your answers will shape this community from the ground up. We'll be in touch when Miles & Fiona is ready for you.</p>
+  </div>
+</div>
+
+<script>
+  // ── Replace with your deployed Apps Script Web App URL ──
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz8LVRBW8gkc4FyQVkNVDJWOvR7J0WF2PpYmTVItH8jQ-CLlj8GBXGKaNZL_B7VVc9I/exec";
+
+  let currentSection = 1;
+  const totalSections = 6;
+
+  function updateVal(id, val) {
+    document.getElementById(id).textContent = val;
+  }
+
+  function goTo(n) {
+    document.getElementById("sec" + currentSection).classList.remove("active");
+    currentSection = n;
+    document.getElementById("sec" + n).classList.add("active");
+    const pct = ((n - 1) / totalSections) * 100;
+    document.getElementById("progressFill").style.width = pct + "%";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function getChecked(name) {
+    return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(el => el.value);
+  }
+  function getRadio(name) {
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : "";
+  }
+
+  function collectData() {
+    return {
+      // S1
+      ageRange: getRadio("ageRange"),
+      householdIncome: getRadio("householdIncome"),
+      annualDogSpend: getRadio("annualDogSpend"),
+      travelDistance: getRadio("travelDistance"),
+      // S2
+      groomingFrequency: getRadio("groomingFrequency"),
+      homeGrooming: getRadio("homeGrooming"),
+      dogHealthIssues: getChecked("dogHealthIssues"),
+      paidServices: getChecked("paidServices"),
+      // S3
+      awarenessFood: document.getElementById("awFood").value,
+      awarenessToys: document.getElementById("awToys").value,
+      awarenessGrooming: document.getElementById("awGroom").value,
+      awarenessCleaners: document.getElementById("awClean").value,
+      awarenessAccessories: document.getElementById("awAcc").value,
+      awarenessFragrances: document.getElementById("awFrag").value,
+      ingredientKnowledge: document.getElementById("ingKnow").value,
+      researchMethods: getChecked("researchMethods"),
+      brandTrust: document.getElementById("brandTrust").value,
+      payMoreNonToxic: document.getElementById("payMore").value,
+      extraSpend: getRadio("extraSpend"),
+      // S4
+      priorityPrice: document.querySelector('[oninput="updateVal(\'prPriceVal\',this.value)"]')?.value || "",
+      priorityLocation: document.querySelector('[oninput="updateVal(\'prLocVal\',this.value)"]')?.value || "",
+      priorityCleanliness: document.querySelector('[oninput="updateVal(\'prCleanVal\',this.value)"]')?.value || "",
+      priorityAesthetic: document.querySelector('[oninput="updateVal(\'prAesVal\',this.value)"]')?.value || "",
+      priorityExpertise: document.querySelector('[oninput="updateVal(\'prExpVal\',this.value)"]')?.value || "",
+      priorityHolistic: document.querySelector('[oninput="updateVal(\'prHolVal\',this.value)"]')?.value || "",
+      priorityReviews: document.querySelector('[oninput="updateVal(\'prRevVal\',this.value)"]')?.value || "",
+      favouriteBrands: document.getElementById("favouriteBrands").value,
+      // S5
+      conceptInterest: document.getElementById("conceptInt").value,
+      servicesWouldUse: getChecked("servicesWouldUse"),
+      membershipInterest: getRadio("membershipInterest"),
+      membershipPrice: document.getElementById("membershipPrice").value,
+      // S6
+      communityEvents: getChecked("communityEvents"),
+      communityImportance: document.getElementById("commImp").value,
+      goodDogParent: document.getElementById("goodDogParent").value,
+    };
+  }
+
+  async function submitForm() {
+    const btn = document.getElementById("submitBtn");
+    const status = document.getElementById("submitStatus");
+    btn.disabled = true;
+    status.textContent = "Sending your responses...";
+
+    const data = collectData();
+
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      // no-cors means we can't read the response, assume success
+      document.getElementById("sec6").classList.remove("active");
+      document.getElementById("progressFill").style.width = "100%";
+      document.getElementById("thankyou").classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (err) {
+      status.textContent = "Something went wrong. Please try again.";
+      btn.disabled = false;
+    }
+  }
+</script>
+</body>
+</html>
