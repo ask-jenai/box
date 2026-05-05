@@ -3,7 +3,122 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JenAI – Human-First AI Marketing</title>
+
+<!-- SEO -->
+<title>JenAI – Human-First AI Marketing Consultant | Jen Watters</title>
+<meta name="description" content="JenAI helps B2B SaaS founders and marketing leaders build trust, move pipeline, and stop sounding like ChatGPT. Human-first AI marketing strategy, ghostwriting, and content systems.">
+<meta name="keywords" content="AI marketing consultant, human-first AI marketing, B2B SaaS content strategy, AI content strategy, ghostwriting, content diagnosis, authority content engine">
+<link rel="canonical" href="https://jenai.ca/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jenai.ca/">
+<meta property="og:title" content="JenAI – Human-First AI Marketing Consultant">
+<meta property="og:description" content="Your customers can smell AI-generated content from a mile away. Jen helps B2B founders show up in a way that earns attention, feels real, and actually converts.">
+<meta property="og:image" content="https://jenai.ca/jen.jpg">
+<meta property="og:locale" content="en_CA">
+<meta property="og:site_name" content="JenAI">
+
+<!-- Twitter/X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="JenAI – Human-First AI Marketing Consultant">
+<meta name="twitter:description" content="Your customers can smell AI-generated content from a mile away. Jen helps B2B founders show up in a way that earns attention, feels real, and actually converts.">
+<meta name="twitter:image" content="https://jenai.ca/jen.jpg">
+
+<!-- Schema.org JSON-LD for AEO (AI Engine Optimization) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://jenai.ca/#jen",
+      "name": "Jennifer Watters",
+      "jobTitle": "AI Marketing Consultant",
+      "description": "Human-first AI marketing consultant helping B2B SaaS founders build authority, move pipeline, and create content that earns trust. Based in Montréal, Quebec.",
+      "url": "https://jenai.ca",
+      "image": "https://jenai.ca/jen.jpg",
+      "sameAs": [
+        "https://www.linkedin.com/company/askjenai",
+        "https://www.tiktok.com/@ask.jenai",
+        "https://substack.com/@askjenai"
+      ],
+      "worksFor": {
+        "@id": "https://jenai.ca/#business"
+      },
+      "knowsAbout": ["AI marketing", "content strategy", "B2B SaaS marketing", "ghostwriting", "brand voice", "human-first AI", "content authority"]
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://jenai.ca/#business",
+      "name": "JenAI",
+      "description": "Human-first AI marketing consultancy. Helping B2B SaaS founders and marketing leaders build authority, move pipeline, and get real ROI from AI without losing what makes them different.",
+      "url": "https://jenai.ca",
+      "logo": "https://jenai.ca/jenailogo.png",
+      "image": "https://jenai.ca/jen.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Montréal",
+        "addressRegion": "Quebec",
+        "addressCountry": "CA"
+      },
+      "founder": { "@id": "https://jenai.ca/#jen" },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "JenAI Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "1 Hour Unslop Your Marketing",
+            "description": "A 1-hour call to humanize your marketing and pinpoint exactly where you're losing trust with customers."
+          },
+          {
+            "@type": "Offer",
+            "name": "Ghostwriting",
+            "description": "2 posts per week in your voice — human, relevant, and built around what your buyers actually care about."
+          },
+          {
+            "@type": "Offer",
+            "name": "Content Diagnosis + Strategy",
+            "description": "A full content strategy audit and rebuild based on what your real buyers are saying and what triggers them to buy."
+          },
+          {
+            "@type": "Offer",
+            "name": "ACE: Authority Content Engine",
+            "description": "A living content strategy trained on your brand voice that adapts to real-time signals and keeps getting better."
+          }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is this done-for-you or done-with-you?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Done-with-you. You bring the expertise and market knowledge. I bring the strategy, system, and execution layer." }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is JenAI for?",
+          "acceptedAnswer": { "@type": "Answer", "text": "B2B SaaS founders and marketing leaders at companies in the $5M–$20M ARR range with small teams who have invested in AI tools but aren't seeing pipeline movement." }
+        },
+        {
+          "@type": "Question",
+          "name": "How is JenAI different from a regular content agency?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Agencies produce output. JenAI builds systems. Everything produced is tied back to what actually drives pipeline — not vanity metrics." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to already be using AI tools?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. We start with strategy and build the right tools into the workflow — not the other way around." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
@@ -13,6 +128,49 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { overflow-x: hidden; }
   input::placeholder { color: rgba(255,255,255,0.55); }
+
+  /* ── MOBILE ─────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+
+    /* Nav: logo + CTA only */
+    .mob-nav { padding: 16px 24px !important; }
+    .mob-nav-links { display: none !important; }
+    .mob-nav-cta { padding: 8px 16px !important; font-size: 0.75rem !important; }
+    .mob-nav-cta-mobile { display: block !important; }
+
+    /* Hero */
+    .mob-hero { padding: 100px 24px 80px !important; }
+    .mob-hero h1 { font-size: clamp(2rem, 8vw, 2.8rem) !important; }
+
+    /* MeetJen: single column, no tilt */
+    .mob-meetjen-grid { grid-template-columns: 1fr !important; gap: 32px !important; padding: 0 24px !important; }
+    .mob-photo { transform: none !important; margin-top: -60px !important; }
+    .mob-photo img { height: 380px !important; }
+    .mob-meetjen-text { padding-top: 0 !important; }
+
+    /* Services */
+    .mob-services { padding: 64px 24px !important; }
+    .mob-services-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+    .mob-sticky { position: static !important; }
+
+    /* Testimonials */
+    .mob-testimonials { padding: 64px 24px !important; }
+
+    /* FAQ */
+    .mob-faq { padding: 64px 24px !important; }
+    .mob-faq-grid { grid-template-columns: 1fr !important; gap: 0 !important; }
+
+    /* Email */
+    .mob-email { padding: 60px 24px !important; }
+    .mob-email-form { flex-direction: column !important; }
+
+    /* Footer */
+    .mob-footer { grid-template-columns: 1fr !important; gap: 32px !important; padding: 40px 24px 32px !important; }
+    .mob-footer-bottom { flex-direction: column !important; gap: 8px !important; text-align: center !important; padding: 20px 24px !important; }
+
+    /* Shapes — hide on mobile, too distracting */
+    .mob-shapes { display: none !important; }
+  }
 </style>
 </head>
 <body>
@@ -110,7 +268,7 @@ function FloatingShapes() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
   return (
-    <div style={{ position:"fixed", inset:0, pointerEvents:"none", zIndex:3, overflow:"hidden" }}>
+    <div className="mob-shapes" style={{ position:"fixed", inset:0, pointerEvents:"none", zIndex:3, overflow:"hidden" }}>
       {SHAPES.map((s,i) => {
         const y = s.startY - scrollY * 0.25 - i * 8;
         return (
@@ -145,14 +303,16 @@ function WaveDivider() {
 
 function Nav() {
   return (
-    <nav style={{ position:"absolute", top:0, left:0, right:0, zIndex:100, display:"flex", alignItems:"center", justifyContent:"space-between", padding:"24px 48px" }}>
+    <nav className="mob-nav" style={{ position:"absolute", top:0, left:0, right:0, zIndex:100, display:"flex", alignItems:"center", justifyContent:"space-between", padding:"24px 48px" }}>
       <img src="jenailogo.png" alt="JenAI" style={{ height:78 }} />
-      <div style={{ display:"flex", gap:32, alignItems:"center" }}>
+      <div className="mob-nav-links" style={{ display:"flex", gap:32, alignItems:"center" }}>
         {["Services","FAQ"].map(l => (
           <a key={l} href={`#${l.toLowerCase()}`} style={{ color:"rgba(58,47,45,0.75)", textDecoration:"none", fontFamily:FONT_BODY, fontSize:"0.8rem", fontWeight:700, letterSpacing:"0.1em", textTransform:"uppercase" }}>{l}</a>
         ))}
-        <a href="https://calendly.com/jenniferawatters/45-min-meeting" target="_blank" style={{ background:C.cinnabar, color:"#FEFAF7", padding:"10px 24px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.8rem", fontWeight:700, textDecoration:"none" }}>Meet with Jen</a>
+        <a className="mob-nav-cta" href="https://calendly.com/jenniferawatters/45-min-meeting" target="_blank" style={{ background:C.cinnabar, color:"#FEFAF7", padding:"10px 24px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.8rem", fontWeight:700, textDecoration:"none" }}>Meet with Jen</a>
       </div>
+      {/* Mobile-only CTA */}
+      <a className="mob-nav-cta-mobile" href="https://calendly.com/jenniferawatters/45-min-meeting" target="_blank" style={{ display:"none", background:C.cinnabar, color:"#FEFAF7", padding:"8px 16px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.75rem", fontWeight:700, textDecoration:"none" }}>Meet with Jen</a>
     </nav>
   );
 }
@@ -168,7 +328,7 @@ function Hero() {
     return () => clearInterval(t);
   }, []);
   return (
-    <header style={{ minHeight:"100vh", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", textAlign:"center", padding:"140px 48px 100px", position:"relative", overflow:"hidden", background:C.linen }}>
+    <header className="mob-hero" style={{ minHeight:"100vh", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", textAlign:"center", padding:"140px 48px 100px", position:"relative", overflow:"hidden", background:C.linen }}>
       <div style={{ position:"absolute", inset:0, pointerEvents:"none", backgroundImage:"radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1.4px)", backgroundSize:"8px 8px" }} />
       <div style={{ position:"relative", zIndex:1, maxWidth:800 }}>
         <h1 style={{ fontFamily:FONT_DISPLAY, fontWeight:900, lineHeight:1.1, letterSpacing:"-0.02em", color:C.espresso, margin:0, fontSize:"clamp(2.4rem, 5.5vw, 5rem)" }}>
@@ -201,12 +361,11 @@ function MeetJen() {
           <path d="M0,25 C240,0 480,50 720,25 C960,0 1200,50 1440,25 L1440,50 L0,50 Z" fill={C.cinnabar}/>
         </svg>
       </div>
-      <div style={{ maxWidth:1100, margin:"0 auto", padding:"0 48px", display:"grid", gridTemplateColumns:"420px 1fr", gap:72, alignItems:"flex-start" }}>
-        {/* Photo pulls up over the waves — all within same section so no clipping */}
-        <div style={{ marginTop:-90, position:"relative", zIndex:10, transform:"rotate(-3deg)", transformOrigin:"bottom center" }}>
-          <img src="jen.jpg" alt="Jen" style={{ width:"100%", height:600, objectFit:"cover", objectPosition:"center top", borderRadius:20, display:"block", boxShadow:"0 24px 60px rgba(0,0,0,0.25)" }} />
+      <div className="mob-meetjen-grid" style={{ maxWidth:1100, margin:"0 auto", padding:"0 48px", display:"grid", gridTemplateColumns:"420px 1fr", gap:72, alignItems:"flex-start" }}>
+        <div className="mob-photo" style={{ marginTop:-90, position:"relative", zIndex:10, transform:"rotate(-3deg)", transformOrigin:"bottom center" }}>
+          <img src="jen.jpg" alt="Jen Watters — JenAI AI Marketing Consultant" style={{ width:"100%", height:600, objectFit:"cover", objectPosition:"center top", borderRadius:20, display:"block", boxShadow:"0 24px 60px rgba(0,0,0,0.25)" }} />
         </div>
-        <div style={{ paddingTop:80 }}>
+        <div className="mob-meetjen-text" style={{ paddingTop:80 }}>
           <h2 style={{ fontFamily:FONT_DISPLAY, fontWeight:700, fontSize:"clamp(1.8rem, 3vw, 2.6rem)", lineHeight:1.15, letterSpacing:"-0.02em", color:C.almond, marginBottom:28, marginTop:0 }}>
             Your AI content is repelling customers worse than cheap cologne on a first date.
           </h2>
@@ -222,11 +381,11 @@ function MeetJen() {
 function Services() {
   const [open, setOpen] = useState(null);
   return (
-    <section id="services" style={{ background:C.almond, padding:"96px 48px", position:"relative", zIndex:2 }}>
+    <section id="services" style={{ background:C.almond, padding:"96px 48px", position:"relative", zIndex:2 }} className="mob-services">
       <div style={{ maxWidth:1100, margin:"0 auto" }}>
         <h2 style={{ fontFamily:FONT_DISPLAY, fontWeight:700, fontSize:"clamp(2rem, 3vw, 3rem)", color:C.espresso, letterSpacing:"-0.02em", marginBottom:12, marginTop:0 }}>How JenAI can help</h2>
         <p style={{ fontSize:"1rem", color:"rgba(58,47,45,0.7)", lineHeight:1.65, marginBottom:48, maxWidth:540 }}>Your customers can smell AI-generated content from a mile away. I make sure your marketing doesn't stink, so the right people come to you.</p>
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:80, alignItems:"start" }}>
+        <div className="mob-services-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:80, alignItems:"start" }}>
           <div>
             {SERVICES.map((s,i) => (
               <div key={i} style={{ borderBottom:"1px solid rgba(58,47,45,0.12)" }}>
@@ -243,7 +402,7 @@ function Services() {
               </div>
             ))}
           </div>
-          <div style={{ background:C.espresso, borderRadius:16, padding:40, position:"sticky", top:40 }}>
+          <div className="mob-sticky" style={{ background:C.espresso, borderRadius:16, padding:40, position:"sticky", top:40 }}>
             <h3 style={{ fontFamily:FONT_DISPLAY, fontSize:"1.4rem", fontWeight:700, color:C.almond, lineHeight:1.3, marginBottom:16, marginTop:0 }}>Not sure where to start?</h3>
             <p style={{ fontSize:"0.875rem", color:"rgba(247,239,231,0.6)", lineHeight:1.6, marginBottom:28, fontWeight:300 }}>Most clients begin with the 1 Hour Unslop session. Fast, focused, and you leave knowing exactly what to fix.</p>
             <a href="https://calendly.com/jenniferawatters/45-min-meeting" target="_blank" style={{ display:"block", textAlign:"center", background:C.cinnabar, color:"#FEFAF7", padding:"15px 24px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.9rem", fontWeight:700, textDecoration:"none" }}>Book a 45-Min Call</a>
@@ -274,7 +433,7 @@ function Testimonials() {
 
   const t = TESTIMONIALS[idx];
   return (
-    <section style={{ background:C.espresso, padding:"80px 48px", textAlign:"center", position:"relative", overflow:"hidden", zIndex:2 }}>
+    <section className="mob-testimonials" style={{ background:C.espresso, padding:"80px 48px", textAlign:"center", position:"relative", overflow:"hidden", zIndex:2 }}>
       <div style={{ position:"absolute", top:-20, left:"50%", transform:"translateX(-50%)", fontFamily:FONT_DISPLAY, fontSize:"16rem", fontWeight:900, color:"rgba(219,62,29,0.06)", lineHeight:1, pointerEvents:"none", userSelect:"none" }}>"</div>
       <div style={{ fontSize:"0.7rem", fontWeight:700, letterSpacing:"0.18em", textTransform:"uppercase", color:"rgba(247,239,231,0.5)", marginBottom:24, position:"relative" }}>Word on the street is...</div>
       <div style={{ opacity:fading?0:1, transform:fading?"translateY(10px)":"translateY(0)", transition:"opacity 0.25s ease, transform 0.25s ease", maxWidth:700, margin:"0 auto", position:"relative" }}>
@@ -300,10 +459,10 @@ function FAQSection() {
   const [open, setOpen] = useState(null);
   const half = Math.ceil(FAQ.length/2);
   return (
-    <section id="faq" style={{ background:C.almond, padding:"96px 48px", position:"relative", zIndex:2 }}>
+    <section id="faq" className="mob-faq" style={{ background:C.almond, padding:"96px 48px", position:"relative", zIndex:2 }}>
       <div style={{ maxWidth:1100, margin:"0 auto" }}>
         <h2 style={{ fontFamily:FONT_DISPLAY, fontWeight:700, fontSize:"clamp(2rem, 3vw, 3rem)", color:C.espresso, letterSpacing:"-0.02em", marginBottom:48, marginTop:0 }}>Things people usually ask me.</h2>
-        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"0 64px" }}>
+        <div className="mob-faq-grid" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"0 64px" }}>
           {[FAQ.slice(0,half), FAQ.slice(half)].map((col,ci) => (
             <div key={ci}>
               {col.map((item,i) => {
@@ -345,13 +504,13 @@ function EmailSection() {
         <path d="M0,0 L1440,0 L1440,30 C1200,60 960,10 720,35 C480,60 240,10 0,40 Z" fill={C.almond}/>
         <path d="M0,40 C240,10 480,60 720,35 C960,10 1200,60 1440,30 L1440,60 L0,60 Z" fill={C.cinnabar}/>
       </svg>
-      <div style={{ padding:"60px 48px 80px", textAlign:"center", position:"relative" }}>
+      <div className="mob-email" style={{ padding:"60px 48px 80px", textAlign:"center", position:"relative" }}>
         <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width:600, height:600, borderRadius:"50%", background:"radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%)", pointerEvents:"none" }} />
         <h2 style={{ fontFamily:FONT_DISPLAY, fontWeight:900, color:"#FEFAF7", fontSize:"clamp(2rem, 3.5vw, 3rem)", lineHeight:1.1, marginBottom:8, letterSpacing:"-0.02em", position:"relative" }}>Special Edition</h2>
         <p style={{ fontSize:"1.1rem", color:"rgba(255,255,255,0.9)", marginBottom:8, fontWeight:300, fontStyle:"italic", position:"relative" }}>That your AI couldn't copy.</p>
         <p style={{ fontSize:"1rem", color:"rgba(255,255,255,0.75)", marginBottom:36, fontWeight:300, position:"relative" }}>A newsletter with real strategies and real examples every week to start building a trust-worthy brand.</p>
       {!done ? (
-        <div style={{ display:"flex", gap:12, maxWidth:480, margin:"0 auto", position:"relative" }}>
+        <div className="mob-email-form" style={{ display:"flex", gap:12, maxWidth:480, margin:"0 auto", position:"relative" }}>
           <input type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="your@email.com" onKeyDown={e=>e.key==="Enter"&&submit()} style={{ flex:1, background:"rgba(255,255,255,0.15)", border:"1px solid rgba(255,255,255,0.4)", borderRadius:999, padding:"14px 20px", fontFamily:FONT_BODY, fontSize:"0.9rem", color:"#FEFAF7", outline:"none" }} />
           <button onClick={submit} style={{ background:C.espresso, color:"#FEFAF7", border:"none", padding:"14px 24px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.875rem", fontWeight:700, cursor:"pointer", whiteSpace:"nowrap" }}>Subscribe →</button>
         </div>
@@ -367,7 +526,7 @@ function EmailSection() {
 function Footer() {
   return (
     <>
-      <footer style={{ background:C.espresso, padding:"56px 48px 40px", display:"grid", gridTemplateColumns:"2fr 1fr 1fr", gap:48, position:"relative", zIndex:2 }}>
+      <footer className="mob-footer" style={{ background:C.espresso, padding:"56px 48px 40px", display:"grid", gridTemplateColumns:"2fr 1fr 1fr", gap:48, position:"relative", zIndex:2 }}>
         <div>
           <img src="jenailogo.png" alt="JenAI" style={{ height:48, marginBottom:16, display:"block", filter:"none" }} />
           <p style={{ fontSize:"0.825rem", color:"rgba(247,239,231,0.4)", lineHeight:1.65, fontWeight:300, maxWidth:300, margin:0 }}>Human-first AI marketing consultancy. Helping B2B SaaS teams build authority, move pipeline, and get real ROI from AI.</p>
@@ -384,7 +543,7 @@ function Footer() {
           ))}
         </div>
       </footer>
-      <div style={{ padding:"24px 48px", borderTop:"1px solid rgba(247,239,231,0.06)", display:"flex", justifyContent:"space-between", background:C.espresso, position:"relative", zIndex:2 }}>
+      <div className="mob-footer-bottom" style={{ padding:"24px 48px", borderTop:"1px solid rgba(247,239,231,0.06)", display:"flex", justifyContent:"space-between", background:C.espresso, position:"relative", zIndex:2 }}>
         <p style={{ fontSize:"0.75rem", color:"rgba(247,239,231,0.3)", margin:0 }}>© 2025 JenAI. All rights reserved. Built with <span style={{ color:C.cinnabar }}>♥</span> in Montréal.</p>
         <p style={{ fontSize:"0.7rem", color:"rgba(247,239,231,0.2)", margin:0 }}>jenai.ca</p>
       </div>
