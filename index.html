@@ -192,7 +192,7 @@ const FONT_BODY = "'Lato', sans-serif";
 
 const ROTATING_PHRASES = [
   "connect with audiences.",
-  "build trust with customers.",
+  "build trust that sells.",
   "turn content into pipeline.",
   "stop sounding like ChatGPT.",
   "build authority that converts.",
@@ -201,18 +201,18 @@ const ROTATING_PHRASES = [
 const SERVICES = [
   {
     title: "Unslop Your Marketing in 1hr",
-    tag: "$100USD",
-    body: "Your customers are bouncing off your website faster than a superball. This is a 1-hour call where I'll share tips on how to humanize your marketing and help you pinpoint where you're losing trust with customers. You'll hang up with clear next steps on hot to fix so your customers don't run from bot stank.",
+    tag: "$100 USD",
+    body: "Your customers are bouncing off your website faster than a superball. In this 1-hour call, I’ll help you humanise your marketing and pinpoint where you’re losing trust. You’ll get clear next steps to fix the “bot stank” and keep customers sticking around",
   },
   {
     title: "Ghostwriting",
-    tag: "$700 USD",
-    body: "Ghostwriting so good your leads stop ghosting you. I write 2 posts a week that are human, relevant, and built around what your buyers care about. Ongoing optimization included so every week performs better than the last.",
+    tag: "$700 USD/month",
+    body: "Ghostwriting so good your leads stop ghosting you. I write 2 posts a week that are human, relevant, and built around what your buyers' language. Each week we tweak and optimise so your content keeps performing better.",
   },
   {
     title: "Content Diagnosis + Strategy",
         tag: "Ask for pricing",
-    body: "We create a strategy that builds content moving people toward a decision. The kind that actually brings you dough. We audit your messaging and positioning, then go deep on your customers — where they are, what triggers them to buy, and what language they use when nobody's watching. You walk away with a content framework built for your real buyers and a clear action plan you can execute immediately.",
+    body: "We’ll build a content strategy that moves people toward a decision... the kind that actually brings in dough. I audit your messaging and positioning, dig into your customers’ triggers and language, then deliver a content framework and action plan you can run with right away.",
   },
   {
     title: "ACE: Authority Content Engine",
@@ -226,8 +226,7 @@ const TESTIMONIALS = [
   { name: "Amanda Di Pancrazio", role: "Community-First Strategist", quote: "Jennifer was instrumental in helping myself and several teammates integrate AI workflows into our daily work. She consistently ensured that our marketing efforts were authentic, customer-validated." },
   { name: "April Robinson", role: "Global Marketing Leader", quote: "Jen is all heart. She brings genuine care and intention to everything she does, and it shows in the deep trust she builds with customers, teammates, and the broader community. She is customer-first in the truest sense." },
   { name: "Beth Greenberg", role: "Greenberg Consulting", quote: "She made excellent recommendations balanced with marketing insights to ensure I was pleased with the end result. Jennifer was open to making changes and utilized her strategic communication and analytics background to make improvements throughout the process." },
-  { name: "Kellina Powell", role: "International Speaker & Author", quote: "I really appreciated her human-first approach to AI marketing. She shared practical tips and helpful resources on how to leverage AI effectively while staying true to your brand voice. A great resource for businesses looking to save time and scale smarter." },
-];
+  ;
 
 const FAQ = [
   { q: "Is this done-for-you or done-with-you?", a: "Done-with-you. You bring the expertise and market knowledge. I bring the strategy, system, and execution layer. This isn't ghostwriting — it's building something that works because your voice is actually in it." },
@@ -332,7 +331,7 @@ function Hero() {
       <div style={{ position:"absolute", inset:0, pointerEvents:"none", backgroundImage:"radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1.4px)", backgroundSize:"8px 8px" }} />
       <div style={{ position:"relative", zIndex:1, maxWidth:800 }}>
         <h1 style={{ fontFamily:FONT_DISPLAY, fontWeight:900, lineHeight:1.1, letterSpacing:"-0.02em", color:C.espresso, margin:0, fontSize:"clamp(2.4rem, 5.5vw, 5rem)" }}>
-          <span style={{ display:"block" }}>Your human guide on AI,</span>
+          <span style={{ display:"block" }}>Your human guide,</span>
           <span style={{ display:"block" }}>here to help you</span>
           <span style={{ display:"block", color:C.cinnabar, opacity:fading?0:1, transform:fading?"translateY(-8px)":"translateY(0)", transition:"opacity 0.2s ease, transform 0.2s ease", minHeight:"1.15em" }}>
             {ROTATING_PHRASES[idx]}
@@ -367,10 +366,10 @@ function MeetJen() {
         </div>
         <div className="mob-meetjen-text" style={{ paddingTop:80 }}>
           <h2 style={{ fontFamily:FONT_DISPLAY, fontWeight:700, fontSize:"clamp(1.8rem, 3vw, 2.6rem)", lineHeight:1.15, letterSpacing:"-0.02em", color:C.almond, marginBottom:28, marginTop:0 }}>
-            Your AI content is repelling customers more than cheap cologne on a first date.
+            Your AI content is repelling customers faster than cheap cologne on a first date.
           </h2>
-          <p style={{ fontSize:"1rem", lineHeight:1.7, color:"rgba(247,239,231,0.88)", marginBottom:20 }}>I'm Jen, a Marketing Consultant for the AI era. Let's be honest, nobody wants to buy from a bot. They want to buy from a human, and AI is terrible at building trust.</p>
-          <p style={{ fontSize:"1rem", lineHeight:1.7, color:"rgba(247,239,231,0.88)", marginBottom:36 }}>I help founders build content that AI can't replicate because it's built on their personality, judgment, and their customers' language.</p>
+          <p style={{ fontSize:"1rem", lineHeight:1.7, color:"rgba(247,239,231,0.88)", marginBottom:20 }}>I'm Jen, a Marketing Consultant for the AI era. Let's be real, nobody wants to buy from a bot. They want to buy from a human, and AI is terrible at building trust.</p>
+          <p style={{ fontSize:"1rem", lineHeight:1.7, color:"rgba(247,239,231,0.88)", marginBottom:36 }}>I help founders create content that AI can't replicate because it's built on their personality, judgment, and their customers' language. Let’s make your content impossible to ignore, and even harder to copy.”</p>
           <a href="https://calendly.com/jenniferawatters/45-min-meeting" target="_blank" style={{ background:C.almond, color:C.espresso, padding:"15px 32px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.9rem", fontWeight:700, textDecoration:"none", display:"inline-block" }}>Talk to a human →</a>
         </div>
       </div>
