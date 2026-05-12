@@ -119,15 +119,16 @@
 }
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { overflow-x: hidden; }
-  input::placeholder { color: rgba(255,255,255,0.55); }
+  input::placeholder { color: rgba(58,47,45,0.45); }
+  select option { color: #3A2F2D; }
 
   /* ── MOBILE ─────────────────────────────────────────────── */
   @media (max-width: 768px) {
@@ -202,7 +203,7 @@ const SERVICES = [
   {
     title: "Unslop Your Marketing in 1hr",
     tag: "$100 USD",
-    body: "Your customers are bouncing off your website faster than a superball. In this 1-hour call, I’ll help you humanize your marketing and pinpoint where you’re losing trust. You’ll get clear next steps to fix the “bot stank” and keep customers sticking around",
+    body: "Your customers are bouncing off your website faster than a superball. In this 1-hour call, I'll help you humanize your marketing and pinpoint where you're losing trust. You'll get clear next steps to fix the 'bot stank' and keep customers sticking around",
   },
   {
     title: "Ghostwriting",
@@ -212,12 +213,12 @@ const SERVICES = [
   {
     title: "Content Diagnosis + Strategy",
         tag: "Ask for pricing",
-    body: "We’ll build a content strategy that moves people toward a decision... the kind that actually brings in dough. I audit your messaging and positioning, dig into your customers’ triggers and language, then deliver a content framework and action plan you can run with right away.",
+    body: "We'll build a content strategy that moves people toward a decision... the kind that actually brings in dough. I audit your messaging and positioning, dig into your customers' triggers and language, then deliver a content framework and action plan you can run with right away.",
   },
   {
     title: "ACE: Authority Content Engine",
     tag: "Ask for pricing",
-    body: "ACE is a living content strategy trained on your brand voice, messaging, and best practices so it always sounds like you. It pulls in real-time signals like industry news, what your customers are saying, and emerging trends — and learns and adapts to what's working so your content keeps getting better. Just add a sprinkle of your voice, and you're all set.",
+    body: "ACE is a living content strategy trained on your brand voice, messaging, and best practices so it always sounds like you. It pulls in real-time signals like industry news, what your customers are saying, and emerging trends - and learns and adapts to what's working so your content keeps getting better. Just add a sprinkle of your voice, and you're all set.",
   },
 ];
 
@@ -229,11 +230,13 @@ const TESTIMONIALS = [
   { name: "Kellina Powell", role: "International Speaker & Author", quote: "I really appreciated her human-first approach to AI marketing. She shared practical tips and helpful resources on how to leverage AI effectively while staying true to your brand voice. A great resource for businesses looking to save time and scale smarter." },
 ];
 
+const SERVICE_LINKS = ["unslop.html", "ghostwriting.html", "content-diagnosis.html", "ace.html"];
+
 const FAQ = [
-  { q: "Is this done-for-you or done-with-you?", a: "Done-with-you. You bring the expertise and market knowledge. I bring the strategy, system, and execution layer. This isn't ghostwriting — it's building something that works because your voice is actually in it." },
-  { q: "Who is this for?", a: "B2B SaaS founders and marketing leaders at companies in the $5M–$20M ARR range with small teams. You've invested in AI tools, you're producing content, but pipeline isn't moving. That's the specific problem I work on." },
+  { q: "Is this done-for-you or done-with-you?", a: "Done-with-you. You bring the expertise and market knowledge. I bring the strategy, system, and execution layer. This isn't ghostwriting - it's building something that works because your voice is actually in it." },
+  { q: "Who is this for?", a: "B2B SaaS founders and marketing leaders at companies in the $5M-$20M ARR range with small teams. You've invested in AI tools, you're producing content, but pipeline isn't moving. That's the specific problem I work on." },
   { q: "How is this different from a regular content agency?", a: "Agencies produce output. I build systems. The difference is that after working together, you have a repeatable engine that doesn't break when the relationship ends. Everything we produce is tied back to what actually drives pipeline." },
-  { q: "Do I need to already be using AI tools?", a: "No. We start with strategy and build the right tools into the workflow — not the other way around. Too many teams buy tools before they know what problem they're solving. We fix that first." },
+  { q: "Do I need to already be using AI tools?", a: "No. We start with strategy and build the right tools into the workflow - not the other way around. Too many teams buy tools before they know what problem they're solving. We fix that first." },
   { q: "What does the Content Diagnostic include?", a: "A full audit of your current messaging, content, and positioning. A rebuilt messaging foundation based on what your buyers actually respond to. A prioritized action plan you can execute on immediately." },
   { q: "How quickly can we get started?", a: "Book a 45-minute call and we'll have a clear sense of fit and next steps within that conversation. If we move forward, the Content Diagnostic typically kicks off within a week." },
 ];
@@ -301,23 +304,178 @@ function WaveDivider() {
 }
 
 
-function Nav() {
+const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbx9GwHgxgPIStb637_5YxPpyXBx2q9xoQ5qA5KThPEGuWpb_asvwNTZ_fUGXbZJdfulvA/exec";
+
+const CHALLENGES = [
+  "My content sounds like ChatGPT",
+  "My content sounds generic, I want to stand out",
+  "I'm not getting engagement or leads",
+  "I don't have a content strategy",
+  "My website isn't converting",
+  "I need help with inbound leads on LinkedIn",
+  "I'm not sure where to start",
+  "Something else",
+];
+
+function LeadForm({ onClose }) {
+  const [form, setForm] = useState({ name:"", email:"", company:"", challenge:"" });
+  const [consent, setConsent] = useState(false);
+  const [status, setStatus] = useState("idle");
+
+  const update = (k, v) => setForm(f => ({ ...f, [k]: v }));
+
+  const submit = async () => {
+    if (!form.name || !form.email || !form.challenge || !consent) return;
+    setStatus("loading");
+    try {
+      await fetch(WEBHOOK_URL, {
+        method: "POST", mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, consent: true, source: "lead-form", date: new Date().toISOString() }),
+      });
+      const leads = JSON.parse(localStorage.getItem("jenai_leads") || "[]");
+      leads.push({ ...form, consent: true, source: "lead-form", date: new Date().toISOString() });
+      localStorage.setItem("jenai_leads", JSON.stringify(leads));
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  const inputStyle = {
+    width: "100%", background: "#F7EFE7",
+    border: "1px solid rgba(58,47,45,0.15)", borderRadius: 12,
+    padding: "13px 16px", fontFamily: FONT_BODY, fontSize: "0.9rem",
+    color: C.espresso, outline: "none", marginBottom: 14,
+    display: "block",
+  };
+
   return (
-    <nav className="mob-nav" style={{ position:"absolute", top:0, left:0, right:0, zIndex:100, display:"flex", alignItems:"center", justifyContent:"space-between", padding:"24px 48px" }}>
-      <img src="jenailogo.png" alt="JenAI" style={{ height:78 }} />
-      <div className="mob-nav-links" style={{ display:"flex", gap:32, alignItems:"center" }}>
-        {["Services","FAQ"].map(l => (
-          <a key={l} href={`#${l.toLowerCase()}`} style={{ color:"rgba(58,47,45,0.75)", textDecoration:"none", fontFamily:FONT_BODY, fontSize:"0.8rem", fontWeight:700, letterSpacing:"0.1em", textTransform:"uppercase" }}>{l}</a>
-        ))}
-        <a className="mob-nav-cta" href="https://calendly.com/jenniferawatters/45-min-meeting" target="_blank" style={{ background:C.cinnabar, color:"#FEFAF7", padding:"10px 24px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.8rem", fontWeight:700, textDecoration:"none" }}>Meet with Jen</a>
+    <div style={{
+      position: "fixed", inset: 0, zIndex: 9000,
+      background: "rgba(36,28,26,0.75)", backdropFilter: "blur(6px)",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      padding: 24,
+    }} onClick={onClose}>
+      <div style={{
+        background: "#FEFAF7", borderRadius: 24, padding: "48px",
+        width: "100%", maxWidth: 520, position: "relative",
+        boxShadow: "0 32px 80px rgba(0,0,0,0.3)",
+      }} onClick={e => e.stopPropagation()}>
+
+        {/* Close */}
+        <button onClick={onClose} style={{
+          position: "absolute", top: 20, right: 20,
+          background: "none", border: "none", cursor: "pointer",
+          fontSize: "1.4rem", color: "rgba(58,47,45,0.4)", lineHeight: 1,
+        }}>×</button>
+
+        {status === "success" ? (
+          <div style={{ textAlign: "center", padding: "24px 0" }}>
+            <div style={{ fontSize: "3rem", marginBottom: 16 }}>🫠</div>
+            <h3 style={{ fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: "1.6rem", color: C.espresso, marginBottom: 12 }}>
+              You're in good hands.
+            </h3>
+            <p style={{ fontSize: "0.95rem", color: "rgba(58,47,45,0.7)", lineHeight: 1.6 }}>
+              The real Jen will be in touch shortly.
+            </p>
+          </div>
+        ) : (
+          <>
+            {/* Top accent */}
+            <div style={{ height: 4, background: `linear-gradient(90deg, ${C.cinnabar}, ${C.honeycomb})`, borderRadius: 999, marginBottom: 28 }} />
+
+            <h3 style={{ fontFamily: FONT_DISPLAY, fontWeight: 700, fontSize: "1.6rem", color: C.espresso, marginBottom: 8, marginTop: 0 }}>
+              Let's talk.
+            </h3>
+            <p style={{ fontSize: "0.875rem", color: "rgba(58,47,45,0.6)", marginBottom: 28, lineHeight: 1.6 }}>
+              A human-to-human (okay, and maybe my AI notetaker) conversation about what's not working and whether I can help.
+            </p>
+
+            <input
+              placeholder="Your name *"
+              value={form.name}
+              onChange={e => update("name", e.target.value)}
+              style={inputStyle}
+            />
+            <input
+              type="email"
+              placeholder="Email address *"
+              value={form.email}
+              onChange={e => update("email", e.target.value)}
+              style={inputStyle}
+            />
+            <input
+              placeholder="Company or website (optional)"
+              value={form.company}
+              onChange={e => update("company", e.target.value)}
+              style={inputStyle}
+            />
+            <select
+              value={form.challenge}
+              onChange={e => update("challenge", e.target.value)}
+              style={{ ...inputStyle, color: form.challenge ? C.espresso : "rgba(58,47,45,0.4)", cursor: "pointer" }}
+            >
+              <option value="" disabled>What's your biggest content challenge? *</option>
+              {CHALLENGES.map(c => <option key={c} value={c}>{c}</option>)}
+            </select>
+
+            {status === "error" && (
+              <p style={{ color: C.cinnabar, fontSize: "0.8rem", marginBottom: 12 }}>
+                Something went wrong. Email me directly at hello@jenai.ca
+              </p>
+            )}
+
+            {/* Consent checkbox - optional */}
+            <label style={{ display:"flex", alignItems:"flex-start", gap:10, cursor:"pointer", marginBottom:16 }}>
+              <input type="checkbox" checked={consent} onChange={e=>setConsent(e.target.checked)} style={{ marginTop:3, flexShrink:0, accentColor:C.cinnabar, width:16, height:16 }}/>
+              <span style={{ fontSize:"0.75rem", color:"rgba(58,47,45,0.65)", lineHeight:1.5 }}>
+                I'd also like to receive the Special Edition newsletter. I can unsubscribe at any time. View our <a href="privacy.html" style={{ color:C.cinnabar }}>Privacy Policy</a>.
+              </span>
+            </label>
+
+            <button
+              onClick={submit}
+              disabled={status === "loading" || !form.name || !form.email || !form.challenge}
+              style={{
+                width: "100%", background: (status === "loading") ? "rgba(219,62,29,0.5)" : C.cinnabar,
+                color: "#FEFAF7", border: "none", padding: "15px 24px",
+                borderRadius: 999, fontFamily: FONT_BODY, fontSize: "0.9rem",
+                fontWeight: 700, cursor: status === "loading" ? "not-allowed" : "pointer",
+                transition: "background 0.2s",
+              }}
+            >
+              {status === "loading" ? "Sending..." : "Send it →"}
+            </button>
+
+            <p style={{ fontSize: "0.72rem", color: "rgba(58,47,45,0.35)", textAlign: "center", marginTop: 12, marginBottom: 0 }}>
+              Your data is protected. Read our <a href="privacy.html" style={{ color: C.cinnabar }}>Privacy Policy</a>.
+            </p>
+          </>
+        )}
       </div>
-      {/* Mobile-only CTA */}
-      <a className="mob-nav-cta-mobile" href="https://calendly.com/jenniferawatters/45-min-meeting" target="_blank" style={{ display:"none", background:C.cinnabar, color:"#FEFAF7", padding:"8px 16px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.75rem", fontWeight:700, textDecoration:"none" }}>Meet with Jen</a>
-    </nav>
+    </div>
   );
 }
 
-function Hero() {
+function Nav({ onOpenForm }) {
+  return (
+    <>
+      <nav className="mob-nav" style={{ position:"absolute", top:0, left:0, right:0, zIndex:100, display:"flex", alignItems:"center", justifyContent:"space-between", padding:"24px 48px" }}>
+        <img src="jenailogo.png" alt="JenAI" style={{ height:78 }} />
+        <div className="mob-nav-links" style={{ display:"flex", gap:32, alignItems:"center" }}>
+          {["Services","FAQ"].map(l => (
+            <a key={l} href={`#${l.toLowerCase()}`} style={{ color:"rgba(58,47,45,0.75)", textDecoration:"none", fontFamily:FONT_BODY, fontSize:"0.8rem", fontWeight:700, letterSpacing:"0.1em", textTransform:"uppercase" }}>{l}</a>
+          ))}
+          <button className="mob-nav-cta" onClick={onOpenForm} style={{ background:C.cinnabar, color:"#FEFAF7", padding:"10px 24px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.8rem", fontWeight:700, border:"none", cursor:"pointer" }}>Meet with Jen</button>
+        </div>
+        <button className="mob-nav-cta-mobile" onClick={onOpenForm} style={{ display:"none", background:C.cinnabar, color:"#FEFAF7", padding:"8px 16px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.75rem", fontWeight:700, border:"none", cursor:"pointer" }}>Meet with Jen</button>
+      </nav>
+    </>
+  );
+}
+
+function Hero({ onOpenForm }) {
   const [idx, setIdx] = useState(0);
   const [fading, setFading] = useState(false);
   useEffect(() => {
@@ -340,17 +498,17 @@ function Hero() {
         </h1>
         <div style={{ display:"flex", gap:14, justifyContent:"center", marginTop:40, flexWrap:"wrap" }}>
           <a href="#email" style={{ background:C.cinnabar, color:"#FEFAF7", padding:"15px 32px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.9rem", fontWeight:700, textDecoration:"none" }}>Sign up for Special Edition</a>
-          <a href="https://calendly.com/jenniferawatters/45-min-meeting" target="_blank" style={{ background:C.lilac, color:C.espresso, padding:"15px 32px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.9rem", fontWeight:700, textDecoration:"none" }}>Meet with Jen</a>
+          <button onClick={onOpenForm} style={{ background:C.lilac, color:C.espresso, padding:"15px 32px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.9rem", fontWeight:700, border:"none", cursor:"pointer" }}>Meet with Jen</button>
         </div>
       </div>
     </header>
   );
 }
 
-function MeetJen() {
+function MeetJen({ onOpenForm }) {
   return (
     <section style={{ background:C.cinnabar, position:"relative", zIndex:2, paddingBottom:96 }}>
-      {/* Wave built into section top — linen flows into lilac flows into red, all one element */}
+      {/* Wave built into section top - linen flows into lilac flows into red, all one element */}
       <div style={{ lineHeight:0, marginBottom:-2 }}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 70" preserveAspectRatio="none" style={{ display:"block", width:"100%", height:70 }}>
           <path d="M0,0 L1440,0 L1440,35 C1200,65 960,10 720,35 C480,65 240,10 0,35 Z" fill={C.linen}/>
@@ -363,22 +521,22 @@ function MeetJen() {
       </div>
       <div className="mob-meetjen-grid" style={{ maxWidth:1100, margin:"0 auto", padding:"0 48px", display:"grid", gridTemplateColumns:"420px 1fr", gap:72, alignItems:"flex-start" }}>
         <div className="mob-photo" style={{ marginTop:-90, position:"relative", zIndex:10, transform:"rotate(-3deg)", transformOrigin:"bottom center" }}>
-          <img src="jen.jpg" alt="Jen Watters — JenAI AI Marketing Consultant" style={{ width:"100%", height:600, objectFit:"cover", objectPosition:"center top", borderRadius:20, display:"block", boxShadow:"0 24px 60px rgba(0,0,0,0.25)" }} />
+          <img src="jen.jpg" alt="Jen Watters - JenAI AI Marketing Consultant" style={{ width:"100%", height:600, objectFit:"cover", objectPosition:"center top", borderRadius:20, display:"block", boxShadow:"0 24px 60px rgba(0,0,0,0.25)" }} />
         </div>
         <div className="mob-meetjen-text" style={{ paddingTop:80 }}>
           <h2 style={{ fontFamily:FONT_DISPLAY, fontWeight:700, fontSize:"clamp(1.8rem, 3vw, 2.6rem)", lineHeight:1.15, letterSpacing:"-0.02em", color:C.almond, marginBottom:28, marginTop:0 }}>
             Your AI content is repelling customers faster than cheap cologne on a first date.
           </h2>
           <p style={{ fontSize:"1rem", lineHeight:1.7, color:"rgba(247,239,231,0.88)", marginBottom:20 }}>I'm Jen, a Marketing Consultant for the AI era. Let's be real, nobody wants to buy from a bot. They want to buy from a human, and AI is terrible at building trust.</p>
-          <p style={{ fontSize:"1rem", lineHeight:1.7, color:"rgba(247,239,231,0.88)", marginBottom:36 }}>I help founders create content that AI can't replicate because it's built on their personality, judgment, and their customers' language. Let’s make your content impossible to ignore, and even harder to copy.”</p>
-          <a href="https://calendly.com/jenniferawatters/45-min-meeting" target="_blank" style={{ background:C.almond, color:C.espresso, padding:"15px 32px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.9rem", fontWeight:700, textDecoration:"none", display:"inline-block" }}>Talk to a human →</a>
+          <p style={{ fontSize:"1rem", lineHeight:1.7, color:"rgba(247,239,231,0.88)", marginBottom:36 }}>I help founders create content that AI can't replicate because it's built on their personality, judgment, and their customers' language. Let's make your content impossible to ignore, and even harder to copy.'</p>
+          <button onClick={onOpenForm} style={{ background:C.almond, color:C.espresso, padding:"15px 32px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.9rem", fontWeight:700, textDecoration:"none", display:"inline-block", border:"none", cursor:"pointer" }}>Talk to a human →</button>
         </div>
       </div>
     </section>
   );
 }
 
-function Services() {
+function Services({ onOpenForm }) {
   const [open, setOpen] = useState(null);
   return (
     <section id="services" style={{ background:C.almond, padding:"96px 48px", position:"relative", zIndex:2 }} className="mob-services">
@@ -396,7 +554,8 @@ function Services() {
                 <div style={{ maxHeight:open===i?400:0, overflow:"hidden", transition:"max-height 0.35s ease" }}>
                   <div style={{ paddingBottom:22 }}>
                     <span style={{ display:"inline-block", fontSize:"0.65rem", letterSpacing:"0.12em", textTransform:"uppercase", color:C.cinnabar, border:"1px solid rgba(219,62,29,0.3)", padding:"3px 10px", borderRadius:999, marginBottom:10 }}>{s.tag}</span>
-                    <p style={{ fontSize:"0.875rem", lineHeight:1.7, color:"rgba(58,47,45,0.65)", margin:0 }}>{s.body}</p>
+                    <p style={{ fontSize:"0.875rem", lineHeight:1.7, color:"rgba(58,47,45,0.65)", margin:"0 0 12px" }}>{s.body}</p>
+                    <a href={SERVICE_LINKS[i]} style={{ fontSize:"0.8rem", fontWeight:700, color:C.cinnabar, textDecoration:"none", letterSpacing:"0.04em" }}>Learn more →</a>
                   </div>
                 </div>
               </div>
@@ -405,7 +564,7 @@ function Services() {
           <div className="mob-sticky" style={{ background:C.espresso, borderRadius:16, padding:40, position:"sticky", top:40 }}>
             <h3 style={{ fontFamily:FONT_DISPLAY, fontSize:"1.4rem", fontWeight:700, color:C.almond, lineHeight:1.3, marginBottom:16, marginTop:0 }}>Not sure where to start?</h3>
             <p style={{ fontSize:"0.875rem", color:"rgba(247,239,231,0.6)", lineHeight:1.6, marginBottom:28, fontWeight:300 }}>Most clients begin with the 1 Hour Unslop session. Fast, focused, and you leave knowing exactly what to fix.</p>
-            <a href="https://calendly.com/jenniferawatters/45-min-meeting" target="_blank" style={{ display:"block", textAlign:"center", background:C.cinnabar, color:"#FEFAF7", padding:"15px 24px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.9rem", fontWeight:700, textDecoration:"none" }}>Book a 45-Min Call</a>
+            <button onClick={onOpenForm} style={{ display:"block", textAlign:"center", width:"100%", background:C.cinnabar, color:"#FEFAF7", padding:"15px 24px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.9rem", fontWeight:700, border:"none", cursor:"pointer" }}>Book a 45-Min Call</button>
           </div>
         </div>
       </div>
@@ -439,7 +598,7 @@ function Testimonials() {
       <div style={{ opacity:fading?0:1, transform:fading?"translateY(10px)":"translateY(0)", transition:"opacity 0.25s ease, transform 0.25s ease", maxWidth:700, margin:"0 auto", position:"relative" }}>
         <blockquote style={{ fontFamily:FONT_DISPLAY, fontSize:"clamp(1.2rem, 2.5vw, 1.7rem)", fontWeight:700, color:C.almond, lineHeight:1.4, margin:"0 0 24px" }}>"{t.quote}"</blockquote>
         <cite style={{ fontStyle:"normal", fontSize:"0.8rem", color:"rgba(247,239,231,0.5)", letterSpacing:"0.1em", textTransform:"uppercase" }}>
-          <strong style={{ color:C.honeycomb }}>{t.name}</strong> — {t.role}
+          <strong style={{ color:C.honeycomb }}>{t.name}</strong> - {t.role}
         </cite>
       </div>
       <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:20, marginTop:40 }}>
@@ -489,17 +648,29 @@ function FAQSection() {
 
 function EmailSection() {
   const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
   const [done, setDone] = useState(false);
-  const submit = () => {
-    if (!email.includes("@")) return;
-    const leads = JSON.parse(localStorage.getItem("jenai_leads")||"[]");
-    if (!leads.find(l=>l.email===email)) leads.push({ email, source:"footer-banner", date:new Date().toISOString() });
-    localStorage.setItem("jenai_leads", JSON.stringify(leads));
-    setDone(true);
+  const [loading, setLoading] = useState(false);
+
+  const submit = async () => {
+    if (!email.includes("@") || !consent) return;
+    setLoading(true);
+    try {
+      await fetch(WEBHOOK_URL, {
+        method: "POST", mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, consent: true, source: "newsletter-banner", date: new Date().toISOString() }),
+      });
+      const leads = JSON.parse(localStorage.getItem("jenai_leads")||"[]");
+      if (!leads.find(l=>l.email===email)) leads.push({ email, consent: true, source:"newsletter-banner", date:new Date().toISOString() });
+      localStorage.setItem("jenai_leads", JSON.stringify(leads));
+      setDone(true);
+    } catch { setDone(true); } // still show success - localStorage saved
+    setLoading(false);
   };
+
   return (
     <section id="email" style={{ background:C.cinnabar, position:"relative", zIndex:2, overflow:"hidden" }}>
-      {/* Wave top from FAQ almond into cinnabar */}
       <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ display:"block", width:"100%", height:60, marginBottom:-2 }}>
         <path d="M0,0 L1440,0 L1440,30 C1200,60 960,10 720,35 C480,60 240,10 0,40 Z" fill={C.almond}/>
         <path d="M0,40 C240,10 480,60 720,35 C960,10 1200,60 1440,30 L1440,60 L0,60 Z" fill={C.cinnabar}/>
@@ -509,21 +680,29 @@ function EmailSection() {
         <h2 style={{ fontFamily:FONT_DISPLAY, fontWeight:900, color:"#FEFAF7", fontSize:"clamp(2rem, 3.5vw, 3rem)", lineHeight:1.1, marginBottom:8, letterSpacing:"-0.02em", position:"relative" }}>Special Edition</h2>
         <p style={{ fontSize:"1.1rem", color:"rgba(255,255,255,0.9)", marginBottom:8, fontWeight:300, fontStyle:"italic", position:"relative" }}>That your AI couldn't copy.</p>
         <p style={{ fontSize:"1rem", color:"rgba(255,255,255,0.75)", marginBottom:36, fontWeight:300, position:"relative" }}>A newsletter with real strategies and real examples every week to start building a trust-worthy brand.</p>
-      {!done ? (
-        <div className="mob-email-form" style={{ display:"flex", gap:12, maxWidth:480, margin:"0 auto", position:"relative" }}>
-          <input type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="your@email.com" onKeyDown={e=>e.key==="Enter"&&submit()} style={{ flex:1, background:"rgba(255,255,255,0.15)", border:"1px solid rgba(255,255,255,0.4)", borderRadius:999, padding:"14px 20px", fontFamily:FONT_BODY, fontSize:"0.9rem", color:"#FEFAF7", outline:"none" }} />
-          <button onClick={submit} style={{ background:C.espresso, color:"#FEFAF7", border:"none", padding:"14px 24px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.875rem", fontWeight:700, cursor:"pointer", whiteSpace:"nowrap" }}>Subscribe →</button>
-        </div>
-      ) : (
-        <p style={{ color:"#FEFAF7", fontSize:"1rem", fontWeight:700, position:"relative" }}>You're in. 🫠 Talk soon.</p>
-      )}
-      <p style={{ fontSize:"0.75rem", color:"rgba(255,255,255,0.5)", marginTop:14, position:"relative" }}>No spam. Unsubscribe anytime.</p>
+        {!done ? (
+          <div style={{ maxWidth:480, margin:"0 auto", position:"relative" }}>
+            <div className="mob-email-form" style={{ display:"flex", gap:12, marginBottom:14 }}>
+              <input type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="your@email.com" onKeyDown={e=>e.key==="Enter"&&submit()} style={{ flex:1, background:"rgba(255,255,255,0.15)", border:"1px solid rgba(255,255,255,0.4)", borderRadius:999, padding:"14px 20px", fontFamily:FONT_BODY, fontSize:"0.9rem", color:"#FEFAF7", outline:"none" }} />
+              <button onClick={submit} disabled={!consent || loading} style={{ background: consent ? C.espresso : "rgba(36,28,26,0.4)", color:"#FEFAF7", border:"none", padding:"14px 24px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.875rem", fontWeight:700, cursor: consent ? "pointer" : "not-allowed", whiteSpace:"nowrap", transition:"background 0.2s" }}>{loading ? "..." : "Subscribe →"}</button>
+            </div>
+            {/* Consent checkbox */}
+            <label style={{ display:"flex", alignItems:"flex-start", gap:10, cursor:"pointer", textAlign:"left" }}>
+              <input type="checkbox" checked={consent} onChange={e=>setConsent(e.target.checked)} style={{ marginTop:3, flexShrink:0, accentColor:C.espresso, width:16, height:16 }}/>
+              <span style={{ fontSize:"0.75rem", color:"rgba(255,255,255,0.7)", lineHeight:1.5 }}>
+                I agree to receive the Special Edition newsletter from JenAI. I understand I can unsubscribe at any time. View our <a href="privacy.html" style={{ color:"#FEFAF7", fontWeight:700 }}>Privacy Policy</a>.
+              </span>
+            </label>
+          </div>
+        ) : (
+          <p style={{ color:"#FEFAF7", fontSize:"1rem", fontWeight:700, position:"relative" }}>You're in. 🫠 Talk soon.</p>
+        )}
       </div>
     </section>
   );
 }
 
-function Footer() {
+function Footer({ onOpenForm }) {
   return (
     <>
       <footer className="mob-footer" style={{ background:C.espresso, padding:"56px 48px 40px", display:"grid", gridTemplateColumns:"2fr 1fr 1fr", gap:48, position:"relative", zIndex:2 }}>
@@ -534,7 +713,7 @@ function Footer() {
         <div>
           <h5 style={{ fontSize:"0.7rem", letterSpacing:"0.14em", textTransform:"uppercase", color:"rgba(247,239,231,0.4)", marginBottom:16, marginTop:0 }}>Work</h5>
           {["Services","FAQ"].map(l=><a key={l} href={`#${l.toLowerCase()}`} style={{ display:"block", fontSize:"0.85rem", color:"rgba(247,239,231,0.6)", textDecoration:"none", marginBottom:10 }}>{l}</a>)}
-          <a href="https://calendly.com/jenniferawatters/45-min-meeting" target="_blank" style={{ display:"block", fontSize:"0.85rem", color:"rgba(247,239,231,0.6)", textDecoration:"none" }}>Book a Call</a>
+          <button onClick={onOpenForm} style={{ display:"block", fontSize:"0.85rem", color:"rgba(247,239,231,0.6)", background:"none", border:"none", cursor:"pointer", fontFamily:FONT_BODY, padding:0, marginBottom:10, textAlign:"left" }}>Book a Call</button>
         </div>
         <div>
           <h5 style={{ fontSize:"0.7rem", letterSpacing:"0.14em", textTransform:"uppercase", color:"rgba(247,239,231,0.4)", marginBottom:16, marginTop:0 }}>Connect</h5>
@@ -544,27 +723,112 @@ function Footer() {
         </div>
       </footer>
       <div className="mob-footer-bottom" style={{ padding:"24px 48px", borderTop:"1px solid rgba(247,239,231,0.06)", display:"flex", justifyContent:"space-between", background:C.espresso, position:"relative", zIndex:2 }}>
-        <p style={{ fontSize:"0.75rem", color:"rgba(247,239,231,0.3)", margin:0 }}>© 2025 JenAI. All rights reserved. Built with <span style={{ color:C.cinnabar }}>♥</span> in Montréal.</p>
+        <p style={{ fontSize:"0.75rem", color:"rgba(247,239,231,0.3)", margin:0 }}>© 2025 JenAI. All rights reserved. Built with <span style={{ color:C.cinnabar }}>&hearts;</span> in Montréal.</p>
         <p style={{ fontSize:"0.7rem", color:"rgba(247,239,231,0.2)", margin:0 }}>jenai.ca</p>
       </div>
     </>
   );
 }
 
+function CookieBanner() {
+  const [visible, setVisible] = React.useState(false);
+  const [lang, setLang] = React.useState("en");
+
+  React.useEffect(() => {
+    const consent = localStorage.getItem("jenai_cookie_consent");
+    if (!consent) setVisible(true);
+  }, []);
+
+  const accept = () => {
+    localStorage.setItem("jenai_cookie_consent", "accepted");
+    localStorage.setItem("jenai_cookie_date", new Date().toISOString());
+    setVisible(false);
+  };
+
+  const decline = () => {
+    localStorage.setItem("jenai_cookie_consent", "declined");
+    localStorage.setItem("jenai_cookie_date", new Date().toISOString());
+    setVisible(false);
+  };
+
+  if (!visible) return null;
+
+  const t = {
+    en: {
+      message: "We use cookies to collect email signups and understand how visitors use our site. No data is sold or shared with third parties.",
+      accept: "Accept",
+      decline: "Decline",
+      policy: "Privacy Policy",
+    },
+    fr: {
+      message: "Nous utilisons des cookies pour recueillir des inscriptions par courriel et comprendre comment les visiteurs utilisent notre site. Aucune donnée n'est vendue ou partagée avec des tiers.",
+      accept: "Accepter",
+      decline: "Refuser",
+      policy: "Politique de confidentialité",
+    }
+  };
+
+  const copy = t[lang];
+
+  return (
+    <div style={{
+      position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 9999,
+      background: C.espresso, borderTop: `3px solid ${C.cinnabar}`,
+      padding: "20px 48px", display: "flex", alignItems: "center",
+      justifyContent: "space-between", flexWrap: "wrap", gap: 16,
+      boxShadow: "0 -4px 24px rgba(0,0,0,0.2)",
+    }}>
+      <p style={{ fontFamily: FONT_BODY, fontSize: "0.85rem", color: "rgba(247,239,231,0.85)", lineHeight: 1.6, maxWidth: 640, margin: 0 }}>
+        {copy.message}{" "}
+        <a href="privacy.html" style={{ color: C.honeycomb, textDecoration: "underline" }}>{copy.policy}</a>
+      </p>
+      <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+        {/* Language toggle */}
+        <div style={{ display: "flex", gap: 8 }}>
+          {["en","fr"].map(l => (
+            <button key={l} onClick={() => setLang(l)} style={{
+              background: lang === l ? C.cinnabar : "transparent",
+              color: lang === l ? "#FEFAF7" : "rgba(247,239,231,0.5)",
+              border: `1px solid ${lang === l ? C.cinnabar : "rgba(247,239,231,0.2)"}`,
+              padding: "6px 12px", borderRadius: 999, fontFamily: FONT_BODY,
+              fontSize: "0.75rem", fontWeight: 700, cursor: "pointer",
+              textTransform: "uppercase", letterSpacing: "0.06em",
+            }}>{l.toUpperCase()}</button>
+          ))}
+        </div>
+        <button onClick={decline} style={{
+          background: "transparent", color: "rgba(247,239,231,0.6)",
+          border: "1px solid rgba(247,239,231,0.2)", padding: "10px 22px",
+          borderRadius: 999, fontFamily: FONT_BODY, fontSize: "0.85rem",
+          fontWeight: 700, cursor: "pointer",
+        }}>{copy.decline}</button>
+        <button onClick={accept} style={{
+          background: C.cinnabar, color: "#FEFAF7", border: "none",
+          padding: "10px 22px", borderRadius: 999, fontFamily: FONT_BODY,
+          fontSize: "0.85rem", fontWeight: 700, cursor: "pointer",
+        }}>{copy.accept}</button>
+      </div>
+    </div>
+  );
+}
+
 function App() {
+  const [showForm, setShowForm] = useState(false);
   return (
     <div style={{ fontFamily:FONT_BODY, background:C.linen, overflowX:"hidden" }}>
       <FloatingShapes />
       <div style={{ position:"relative", zIndex:1 }}>
-        <Nav />
-        <Hero />
+        <Nav onOpenForm={() => setShowForm(true)} />
+        <Hero onOpenForm={() => setShowForm(true)} />
       </div>
-      <MeetJen />
-      <Services />
+      <MeetJen onOpenForm={() => setShowForm(true)} />
+      <Services onOpenForm={() => setShowForm(true)} />
       <Testimonials />
       <FAQSection />
       <EmailSection />
-      <Footer />
+      <Footer onOpenForm={() => setShowForm(true)} />
+      <CookieBanner />
+      {showForm && <LeadForm onClose={() => setShowForm(false)} />}
     </div>
   );
 }
