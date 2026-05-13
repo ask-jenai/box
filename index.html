@@ -503,14 +503,14 @@ function Hero({ onOpenForm }) {
       <div style={{ position:"absolute", inset:0, pointerEvents:"none", backgroundImage:"radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1.4px)", backgroundSize:"8px 8px" }} />
       <div style={{ position:"relative", zIndex:1, maxWidth:800 }}>
         <h1 style={{ fontFamily:FONT_DISPLAY, fontWeight:900, lineHeight:1.1, letterSpacing:"-0.02em", color:C.espresso, margin:0, fontSize:"clamp(2.4rem, 5.5vw, 5rem)" }}>
-          <span style={{ display:"block" }}>Your human guide,</span>
+          <span style={{ display:"block" }}>Your marketing guide,</span>
           <span style={{ display:"block" }}>here to help you</span>
           <span style={{ display:"block", color:C.cinnabar, opacity:fading?0:1, transform:fading?"translateY(-8px)":"translateY(0)", transition:"opacity 0.2s ease, transform 0.2s ease", minHeight:"1.15em" }}>
             {ROTATING_PHRASES[idx]}
           </span>
         </h1>
         <div style={{ display:"flex", gap:14, justifyContent:"center", marginTop:40, flexWrap:"wrap" }}>
-          <a href="#email" style={{ background:C.cinnabar, color:"#FEFAF7", padding:"15px 32px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.9rem", fontWeight:700, textDecoration:"none" }}>Sign up for Slop Slayern</a>
+          <a href="#email" style={{ background:C.cinnabar, color:"#FEFAF7", padding:"15px 32px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.9rem", fontWeight:700, textDecoration:"none" }}>Sign up for Slop Slayer</a>
           <button onClick={onOpenForm} style={{ background:C.lilac, color:C.espresso, padding:"15px 32px", borderRadius:999, fontFamily:FONT_BODY, fontSize:"0.9rem", fontWeight:700, border:"none", cursor:"pointer" }}>Meet with Jen</button>
         </div>
       </div>
