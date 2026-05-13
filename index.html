@@ -208,17 +208,17 @@ const SERVICES = [
   {
     title: "Ghostwriting",
     tag: "$700 USD/month",
-    body: "Ghostwriting so good your leads stop ghosting you. I write 2 posts a week that are human, relevant, and built around what your buyers' language. Each week we tweak and optimise so your content keeps performing better.",
+    body: "Ghostwriting so good your leads stop ghosting you. I write 2 posts a week that are human, relevant, and built around your buyers' language. Each week we tweak and optimize so your content keeps performing better.",
   },
   {
     title: "Content Diagnosis + Strategy",
         tag: "Ask for pricing",
-    body: "We'll build a content strategy that moves people toward a decision... the kind that actually brings in dough. I audit your messaging and positioning, dig into your customers' triggers and language, then deliver a content framework and action plan you can run with right away.",
+    body: "We'll build a content strategy that moves people toward a decision. I'm talking the kind that actually brings in revenue. I audit your messaging and positioning, dig into your customers' buying triggers and language, then deliver a content framework and action plan you can run with right away.",
   },
   {
     title: "ACE: Authority Content Engine",
     tag: "Ask for pricing",
-    body: "ACE is a living content strategy trained on your brand voice, messaging, and best practices so it always sounds like you. It pulls in real-time signals like industry news, what your customers are saying, and emerging trends - and learns and adapts to what's working so your content keeps getting better. Just add a sprinkle of your voice, and you're all set.",
+    body: "ACE is a living content strategy trained on your brand voice, messaging, and best practices so it always sounds like you. It pulls in real-time signals like industry news, what your customers are saying, and emerging trends, and it learns and adapts to what's working so your content keeps getting better.",
   },
 ];
 
@@ -233,7 +233,7 @@ const TESTIMONIALS = [
 const SERVICE_LINKS = ["unslop.html", "ghostwriting.html", "content-diagnosis.html", "ace.html"];
 
 const FAQ = [
-  { q: "Is this done-for-you or done-with-you?", a: "Done-with-you. You bring the expertise and market knowledge. I bring the strategy, system, and execution layer. This isn't ghostwriting - it's building something that works because your voice is actually in it." },
+  { q: "Is this done-for-you or done-with-you?", a: "Depends which service! The 1-Hour Unslop is basically me roasting your marketing (kindly). Ghostwriting is done-for-you - you talk, I write, you post. Content Diagnosis and ACE are done-with-you - your brain, your voice, my system. Think of it less like hiring a vendor and more like getting a strategic co-conspirator who also happens to write really well." },
   { q: "Who is this for?", a: "B2B SaaS founders and marketing leaders at companies in the $5M-$20M ARR range with small teams. You've invested in AI tools, you're producing content, but pipeline isn't moving. That's the specific problem I work on." },
   { q: "How is this different from a regular content agency?", a: "Agencies produce output. I build systems. The difference is that after working together, you have a repeatable engine that doesn't break when the relationship ends. Everything we produce is tied back to what actually drives pipeline." },
   { q: "Do I need to already be using AI tools?", a: "No. We start with strategy and build the right tools into the workflow - not the other way around. Too many teams buy tools before they know what problem they're solving. We fix that first." },
@@ -265,20 +265,33 @@ function Shape({ type, color, size }) {
 
 function FloatingShapes() {
   const [scrollY, setScrollY] = useState(0);
+  const [gone, setGone] = useState({});
   useEffect(() => {
     const fn = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", fn, { passive:true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
+  const handleClick = (i) => {
+    setGone(g => ({ ...g, [i]: "bouncing" }));
+    setTimeout(() => setGone(g => ({ ...g, [i]: "gone" })), 500);
+  };
   return (
     <div className="mob-shapes" style={{ position:"fixed", inset:0, pointerEvents:"none", zIndex:3, overflow:"hidden" }}>
       {SHAPES.map((s,i) => {
+        if (gone[i] === "gone") return null;
         const y = s.startY - scrollY * 0.25 - i * 8;
+        const bouncing = gone[i] === "bouncing";
         return (
-          <div key={i} style={{
-            position:"absolute", left:s.x, top:y,
-            transform:`rotate(${scrollY * 0.05 + i * 18}deg)`,
-            transition:"top 0.05s linear",
+          <div key={i} onClick={() => handleClick(i)} style={{
+            position:"absolute", left:s.x,
+            top: bouncing ? y - 400 : y,
+            transform:`rotate(${bouncing ? 540 : scrollY * 0.05 + i * 18}deg) scale(${bouncing ? 0.2 : 1})`,
+            opacity: bouncing ? 0 : 1,
+            transition: bouncing
+              ? "top 0.5s cubic-bezier(0.55,-0.5,0.8,0.6), transform 0.5s ease, opacity 0.4s ease"
+              : "top 0.05s linear",
+            pointerEvents:"all",
+            cursor:"pointer",
           }}>
             <Shape {...s} />
           </div>
@@ -555,7 +568,6 @@ function Services({ onOpenForm }) {
                   <div style={{ paddingBottom:22 }}>
                     <span style={{ display:"inline-block", fontSize:"0.65rem", letterSpacing:"0.12em", textTransform:"uppercase", color:C.cinnabar, border:"1px solid rgba(219,62,29,0.3)", padding:"3px 10px", borderRadius:999, marginBottom:10 }}>{s.tag}</span>
                     <p style={{ fontSize:"0.875rem", lineHeight:1.7, color:"rgba(58,47,45,0.65)", margin:"0 0 12px" }}>{s.body}</p>
-                    <a href={SERVICE_LINKS[i]} style={{ fontSize:"0.8rem", fontWeight:700, color:C.cinnabar, textDecoration:"none", letterSpacing:"0.04em" }}>Learn more →</a>
                   </div>
                 </div>
               </div>
@@ -677,9 +689,9 @@ function EmailSection() {
       </svg>
       <div className="mob-email" style={{ padding:"60px 48px 80px", textAlign:"center", position:"relative" }}>
         <div style={{ position:"absolute", top:"50%", left:"50%", transform:"translate(-50%,-50%)", width:600, height:600, borderRadius:"50%", background:"radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%)", pointerEvents:"none" }} />
-        <h2 style={{ fontFamily:FONT_DISPLAY, fontWeight:900, color:"#FEFAF7", fontSize:"clamp(2rem, 3.5vw, 3rem)", lineHeight:1.1, marginBottom:8, letterSpacing:"-0.02em", position:"relative" }}>Special Edition</h2>
-        <p style={{ fontSize:"1.1rem", color:"rgba(255,255,255,0.9)", marginBottom:8, fontWeight:300, fontStyle:"italic", position:"relative" }}>That your AI couldn't copy.</p>
-        <p style={{ fontSize:"1rem", color:"rgba(255,255,255,0.75)", marginBottom:36, fontWeight:300, position:"relative" }}>A newsletter with real strategies and real examples every week to start building a trust-worthy brand.</p>
+        <h2 style={{ fontFamily:FONT_DISPLAY, fontWeight:900, color:"#FEFAF7", fontSize:"clamp(2rem, 3.5vw, 3rem)", lineHeight:1.1, marginBottom:8, letterSpacing:"-0.02em", position:"relative" }}>Slop Slayer Newsletter</h2>
+        
+        <p style={{ fontSize:"1rem", color:"rgba(255,255,255,0.75)", marginBottom:36, fontWeight:300, position:"relative" }}>A newsletter with real-life strategies and examples every week to start building a trustworthy brand.</p>
         {!done ? (
           <div style={{ maxWidth:480, margin:"0 auto", position:"relative" }}>
             <div className="mob-email-form" style={{ display:"flex", gap:12, marginBottom:14 }}>
@@ -713,6 +725,8 @@ function Footer({ onOpenForm }) {
         <div>
           <h5 style={{ fontSize:"0.7rem", letterSpacing:"0.14em", textTransform:"uppercase", color:"rgba(247,239,231,0.4)", marginBottom:16, marginTop:0 }}>Work</h5>
           {["Services","FAQ"].map(l=><a key={l} href={`#${l.toLowerCase()}`} style={{ display:"block", fontSize:"0.85rem", color:"rgba(247,239,231,0.6)", textDecoration:"none", marginBottom:10 }}>{l}</a>)}
+          <a href="privacy.html" style={{ display:"block", fontSize:"0.85rem", color:"rgba(247,239,231,0.6)", textDecoration:"none", marginBottom:10 }}>Privacy Policy</a>
+          <a href="terms.html" style={{ display:"block", fontSize:"0.85rem", color:"rgba(247,239,231,0.6)", textDecoration:"none", marginBottom:10 }}>Terms of Service</a>
           <button onClick={onOpenForm} style={{ display:"block", fontSize:"0.85rem", color:"rgba(247,239,231,0.6)", background:"none", border:"none", cursor:"pointer", fontFamily:FONT_BODY, padding:0, marginBottom:10, textAlign:"left" }}>Book a Call</button>
         </div>
         <div>
@@ -723,7 +737,7 @@ function Footer({ onOpenForm }) {
         </div>
       </footer>
       <div className="mob-footer-bottom" style={{ padding:"24px 48px", borderTop:"1px solid rgba(247,239,231,0.06)", display:"flex", justifyContent:"space-between", background:C.espresso, position:"relative", zIndex:2 }}>
-        <p style={{ fontSize:"0.75rem", color:"rgba(247,239,231,0.3)", margin:0 }}>© 2025 JenAI. All rights reserved. Built with <span style={{ color:C.cinnabar }}>&hearts;</span> in Montréal.</p>
+        <p style={{ fontSize:"0.75rem", color:"rgba(247,239,231,0.3)", margin:0 }}>© 2026 JenAI. All rights reserved. Built with <span style={{ color:C.cinnabar }}>&hearts;</span> in Montréal.</p>
         <p style={{ fontSize:"0.7rem", color:"rgba(247,239,231,0.2)", margin:0 }}>jenai.ca</p>
       </div>
     </>
