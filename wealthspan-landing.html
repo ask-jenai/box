@@ -129,6 +129,17 @@ body {
 .ws-soc:hover { color: var(--gold); }
 .ws-soc:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
+.ws-form { max-width: 520px; margin: 44px auto 0; text-align: left; }
+.ws-form label { display: block; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); margin: 22px 0 8px; }
+.ws-input {
+  width: 100%; background: var(--ink); border: 1px solid #3A3A3C; color: var(--bone);
+  font-family: 'Work Sans', sans-serif; font-size: 16px; padding: 12px 14px; box-sizing: border-box;
+}
+.ws-input:focus { outline: none; border-color: var(--gold); }
+.ws-radio { display: flex; align-items: baseline; gap: 10px; margin: 10px 0; font-size: 15.5px; color: var(--bone); cursor: pointer; text-transform: none; letter-spacing: 0; }
+.ws-radio input { accent-color: var(--gold); }
+.ws-radio span em { color: var(--gray); font-style: normal; }
+
 
 blockquote { margin: 18px 0 0; font-size: 15.5px; font-style: italic; }
 
@@ -153,7 +164,7 @@ blockquote { margin: 18px 0 0; font-size: 15.5px; font-style: italic; }
 <!-- ========== 1. HERO (VIDEO) ========== -->
 <section class="ws-hero">
   <video class="ws-hero-video" autoplay muted loop playsinline preload="auto" poster="">
-    <source src="hero-ws.mp4" type="video/mp4" />
+    <source src="hero.mp4" type="video/mp4" />
   </video>
   <div class="ws-hero-grad"></div>
   <div class="ws-wrap ws-hero-content">
@@ -161,7 +172,7 @@ blockquote { margin: 18px 0 0; font-size: 15.5px; font-style: italic; }
       <div class="ws-eyebrow">Go to Strength · Go to Market</div>
       <h1 class="ws-display" style="font-size:clamp(52px,7vw,88px);">You've been making withdrawals without depositing for years.</h1>
       <p style="margin-top:28px;max-width:500px;color:var(--bone);font-size:17px;">
-        Wealthspan Strength is a life affirming performance system for professionals and growth-conscious people who have decided, in the second half of their lives, that care for SELF is the number one priority, without which everything else can quickly become less important. Barbell strength and business performance, coupled with discipline and a Buddhist (cause and effect) mindset, programmed together, one weekly deposit at a time.
+        Wealthspan Strength is a life affirming performance system for professionals and growth-conscious people who have decided that care for SELF is a number one priority. Barbell strength and business performance, when coupled with discipline and a Buddhist (cause and effect) mindset, is a combined force for positive transformation.
       </p>
       <div style="margin-top:36px;">
         <a href="#book" class="ws-btn">Book a targeting call</a>
@@ -191,7 +202,7 @@ blockquote { margin: 18px 0 0; font-size: 15.5px; font-style: italic; }
         Motivation is a mood. Capacity is an asset. Your output in business runs on the same engine as your output in the gym: the body and nervous system underneath it. When that engine is underpowered, your work is capped no matter how good your strategy is.
       </p>
       <p style="margin-top:18px;color:var(--gray);">
-        Wealthspan Strength applies one principle to both sides of your life: progressive overload. In the gym, you add small amounts of weight to a schedule and your body adapts. In your pipeline, you add small amounts of disciplined pressure on a schedule and your business adapts. Same math. Same account. Deposits compound; missed weeks compound too.
+        Wealthspan Strength applies one principle to both sides of your life: progressive overload. In the gym, you add small amounts of weight to a schedule and your body adapts. In your pipeline, you add small amounts of disciplined pressure on a schedule and your business adapts. <strong style="color:var(--bone);font-weight:600;">Same math. Same account. Deposits compound; missed weeks compound too.</strong>
       </p>
     </div>
     <figure class="ws-figure">
@@ -397,9 +408,31 @@ blockquote { margin: 18px 0 0; font-size: 15.5px; font-style: italic; }
     <h2 class="ws-display" style="font-size:clamp(44px,6vw,76px);margin:24px auto 0;max-width:760px;">Build capacity. Start this week.</h2>
     <p class="ws-muted" style="max-width:520px;margin:22px auto 0;">One call. We map your targets on all fronts, and you decide if the program fits. Bring your numbers.</p>
     <p style="color:var(--gold);font-size:22px;letter-spacing:0.3em;margin-top:26px;">STRENGTH ON ALL FRONTS</p>
-    <div style="margin-top:36px;">
-      <a href="mailto:champagne.denis@gmail.com" class="ws-btn" style="font-size:22px;padding:16px 44px;">Book your targeting call</a>
-    </div>
+    <!-- Point action at your form endpoint (e.g. Formspree) before launch -->
+    <form class="ws-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <label for="f-name">Name</label>
+      <input class="ws-input" id="f-name" name="name" type="text" required />
+
+      <label for="f-email">Email</label>
+      <input class="ws-input" id="f-email" name="email" type="email" required />
+
+      <label>Which area interests you most?</label>
+      <label class="ws-radio"><input type="radio" name="area" value="BODY" required /> <span><strong>BODY</strong> <em>— physical strength and capacity</em></span></label>
+      <label class="ws-radio"><input type="radio" name="area" value="BUDDHA" /> <span><strong>BUDDHA</strong> <em>— inner strength and direction</em></span></label>
+      <label class="ws-radio"><input type="radio" name="area" value="BUSINESS" /> <span><strong>BUSINESS</strong> <em>— professional strength and execution</em></span></label>
+      <label class="ws-radio"><input type="radio" name="area" value="THE WHOLE TRIAD" /> <span><strong>THE WHOLE TRIAD</strong></span></label>
+      <label class="ws-radio"><input type="radio" name="area" value="Not sure yet" /> <span><strong>I am not sure yet</strong></span></label>
+
+      <label for="f-msg">Is there anything you would like me to know? <span style="text-transform:none;letter-spacing:0;">(Optional)</span></label>
+      <textarea class="ws-input" id="f-msg" name="message" rows="3"></textarea>
+
+      <div style="text-align:center;margin-top:30px;">
+        <button type="submit" class="ws-btn" style="font-size:20px;padding:15px 40px;">START A CONVERSATION</button>
+        <p class="ws-muted" style="font-size:13px;margin-top:14px;">Your information will remain private.</p>
+        <p style="color:var(--gold);font-size:14px;letter-spacing:0.3em;margin-top:6px;">PEACE</p>
+        <p class="ws-muted" style="font-size:14px;margin-top:22px;">Prefer to book directly? <a href="https://calendly.com/denis-lotus/30min" target="_blank" rel="noopener" style="color:var(--gold);">Grab 30 minutes on the calendar</a>.</p>
+      </div>
+    </form>
     <div style="margin-top:32px;display:flex;justify-content:center;gap:22px;">
       <a class="ws-soc" href="https://www.linkedin.com/in/denis-champagne/" target="_blank" rel="noopener" aria-label="Denis Champagne on LinkedIn">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 8.8v11.2H3.2V8.8h3.3zM4.8 3.5a1.95 1.95 0 110 3.9 1.95 1.95 0 010-3.9zM20.8 13.6v6.4h-3.3v-5.9c0-1.4-.5-2.4-1.8-2.4-1 0-1.6.7-1.8 1.3-.1.2-.1.6-.1.9v6.1h-3.3s.04-9.9 0-11.2h3.3v1.6c.4-.7 1.2-1.7 3-1.7 2.2 0 4 1.4 4 4.9z"/></svg>
