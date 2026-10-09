@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wealthspan Strength — Bâtissez votre capacité</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+:root {
+  --gold: #C9A227;
+  --gold-dim: #8F7519;
+  --ink: #0B0B0C;
+  --panel: #141416;
+  --bone: #EDEAE2;
+  --gray: #9B978E;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--bone);
+  font-family: 'Work Sans', sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+.ws-wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+
+.ws-hero { position: relative; min-height: 86vh; display: flex; align-items: center; overflow: hidden; }
+.ws-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.ws-hero-grad {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(11,11,12,0.95) 0%, rgba(11,11,12,0.85) 28%, rgba(11,11,12,0.35) 52%, rgba(11,11,12,0) 72%),
+              linear-gradient(0deg, rgba(11,11,12,0.85) 0%, rgba(11,11,12,0) 24%);
+}
+.ws-hero-content { position: relative; z-index: 1; width: 100%; padding-top: 96px; padding-bottom: 96px; }
+.ws-section { padding: 88px 0; border-top: 1px solid #1E1E20; }
+.ws-tint { background: var(--panel); }
+
+.ws-display {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  line-height: 0.95;
+  color: var(--bone);
+  margin: 0;
+}
+.ws-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.ws-label { font-size: 12px; letter-spacing: 0.18em; }
+.ws-muted { color: var(--gray); }
+
+.ws-btn {
+  display: inline-block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 0.08em;
+  padding: 14px 34px;
+  background: var(--gold);
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--gold);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.ws-btn:hover { background: transparent; color: var(--gold); }
+.ws-btn:focus-visible { outline: 2px solid var(--bone); outline-offset: 3px; }
+.ws-btn-ghost { background: transparent; color: var(--bone); border: 1px solid #3A3A3C; }
+.ws-btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+.ws-grid { display: grid; gap: 28px; }
+@media (min-width: 760px) {
+  .ws-grid-2 { grid-template-columns: 1fr 1fr; }
+  .ws-grid-3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+.ws-card { background: var(--ink); border: 1px solid #242426; padding: 32px 28px; }
+.ws-tint .ws-card { background: #101012; }
+.ws-rule { border: none; border-top: 1px solid #242426; margin: 0; }
+.ws-scroll { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 18px; margin-top: 48px; -webkit-overflow-scrolling: touch; scrollbar-color: #3A3A3C var(--ink); }
+.ws-scroll > .ws-card { flex: 0 0 360px; max-width: 80vw; scroll-snap-align: start; }
+.ws-scroll:not(.ws-manual) { scroll-snap-type: none; }
+.ws-scroll::-webkit-scrollbar { height: 6px; }
+.ws-scroll::-webkit-scrollbar-track { background: #1E1E20; }
+.ws-scroll::-webkit-scrollbar-thumb { background: #3A3A3C; }
+.ws-scroll::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+.ws-ledger { margin-top: 44px; border: 1px solid #242426; }
+.ws-ledger-row { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #242426; }
+.ws-ledger-row:last-child { border-bottom: none; }
+.ws-ledger-cell { padding: 18px 22px; font-size: 15.5px; }
+.ws-ledger-cell.debit { color: var(--gray); border-right: 1px solid #242426; }
+
+.ws-faq { border-bottom: 1px solid #242426; }
+.ws-faq-q {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-top: 1px solid #242426;
+  color: var(--bone);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 0.03em;
+  padding: 20px 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ws-faq-q:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.ws-faq-q svg { flex-shrink: 0; margin-left: 16px; transition: transform 0.15s; }
+.ws-faq-item.open .ws-faq-q svg { transform: rotate(45deg); }
+.ws-faq-a { display: none; padding: 0 4px 24px; color: var(--gray); max-width: 720px; }
+.ws-faq-item.open .ws-faq-a { display: block; }
+
+.ws-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 64px; line-height: 1; color: var(--gold); }
+
+.ws-figure { margin: 0; }
+.ws-imgbox {
+  aspect-ratio: 4/5;
+  background: var(--panel);
+  border: 1px solid #242426;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ws-figcap { font-size: 11px; margin-top: 10px; letter-spacing: 0.1em; color: var(--gray); }
+.ws-soc { color: var(--gray); display: inline-flex; padding: 4px; transition: color 0.15s ease; }
+.ws-soc:hover { color: var(--gold); }
+.ws-soc:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+.ws-form { max-width: 520px; margin: 44px auto 0; text-align: left; }
+.ws-form label { display: block; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); margin: 22px 0 8px; }
+.ws-input {
+  width: 100%; background: var(--ink); border: 1px solid #3A3A3C; color: var(--bone);
+  font-family: 'Work Sans', sans-serif; font-size: 16px; padding: 12px 14px; box-sizing: border-box;
+}
+.ws-input:focus { outline: none; border-color: var(--gold); }
+.ws-radio { display: flex; align-items: baseline; gap: 10px; margin: 10px 0; font-size: 15.5px; color: var(--bone); cursor: pointer; text-transform: none; letter-spacing: 0; }
+.ws-radio input { accent-color: var(--gold); }
+.ws-radio span em { color: var(--gray); font-style: normal; }
+
+.ws-modal { position: fixed; inset: 0; z-index: 100; display: none; }
+.ws-modal.open { display: block; }
+.ws-modal-backdrop { position: absolute; inset: 0; background: rgba(11,11,12,0.82); }
+.ws-modal-panel {
+  position: relative; max-width: 600px; margin: 5vh auto; max-height: 90vh; overflow-y: auto;
+  background: var(--panel); border: 1px solid #2A2A2C; border-top: 2px solid var(--gold);
+  padding: 40px 36px 32px; box-sizing: border-box;
+}
+.ws-modal-close { position: absolute; top: 14px; right: 14px; background: none; border: none; color: var(--gray); cursor: pointer; padding: 6px; }
+.ws-modal-close:hover { color: var(--gold); }
+.ws-modal-close:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.ws-modal .ws-form { max-width: none; }
+body.ws-no-scroll { overflow: hidden; }
+@media (max-width: 640px) { .ws-modal-panel { margin: 0; max-height: 100vh; min-height: 100vh; padding: 56px 20px 32px; } }
+
+
+blockquote { margin: 18px 0 0; font-size: 15.5px; font-style: italic; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ws-btn, .ws-faq-q svg { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<header style="position:sticky;top:0;z-index:60;background:rgba(11,11,12,0.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #1E1E20;">
+  <div class="ws-wrap" style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px;">
+    <div class="ws-display" style="font-size:26px;">WEALT<span style="color:var(--gold);">H</span>SPAN</div>
+    <div style="display:flex;align-items:center;gap:22px;">
+      <div style="font-size:12px;letter-spacing:0.15em;display:flex;gap:10px;"><a href="index.html" style="color:var(--gray);text-decoration:none;">EN</a> <span style="color:#3A3A3C;">·</span> <span style="color:var(--gold);">FR</span> <span style="color:#3A3A3C;">·</span> <a href="index-es.html" style="color:var(--gray);text-decoration:none;">ES</a></div>
+      <a href="#book" class="ws-btn ws-open-form" style="font-size:16px;padding:9px 22px;">Réserver un appel</a>
+    </div>
+  </div>
+</header>
+
+<!-- ========== 1. HERO (VIDEO) ========== -->
+<section class="ws-hero">
+  <video class="ws-hero-video" autoplay muted loop playsinline preload="auto" poster="hero-poster.jpg">
+    <source src="hero-ws.mp4" type="video/mp4" />
+  </video>
+  <div class="ws-hero-grad"></div>
+  <div class="ws-wrap ws-hero-content">
+    <div style="max-width:520px;">
+      <div class="ws-eyebrow">Go to Strength · Go to Market</div>
+      <h1 class="ws-display" style="font-size:clamp(52px,7vw,88px);">Vous faites des retraits sans jamais déposer depuis des années.</h1>
+      <p style="margin-top:28px;max-width:500px;color:var(--bone);font-size:17px;">
+        Wealthspan Strength est un système de performance affirmant la vie, pour les professionnels et les gens en croissance qui ont décidé que prendre soin de SOI est une priorité numéro un. La force au barbell et la performance d'affaires, lorsqu'elles s'unissent à la discipline et à un état d'esprit bouddhiste (cause et effet), forment une force combinée de transformation positive.
+      </p>
+      <div style="margin-top:36px;">
+        <a href="#book" class="ws-btn ws-open-form">Réservez votre appel de ciblage</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 2. PROBLEM ========== -->
+<section class="ws-section ws-tint">
+  <div class="ws-wrap">
+    <h2 class="ws-display" style="font-size:clamp(38px,4.5vw,56px);max-width:700px;">Ce que vous remarquez</h2>
+    <div class="ws-grid ws-grid-3" style="margin-top:48px;">
+      <div class="ws-card"><p style="margin:0;">Vous vous êtes retrouvé à bout de souffle dans un escalier que vous montiez deux marches à la fois. Vous n'avez rien dit et pris l'ascenseur le lendemain.</p></div>
+      <div class="ws-card"><p style="margin:0;">Vos chiffres plafonnent depuis trois trimestres. Vous étiez excellent là-dedans avant. Maintenant, le brouillard de 14 h gruge la partie de la journée où les ventes se concluaient.</p></div>
+      <div class="ws-card"><p style="margin:0;">Quelque part en chemin, vous avez accepté le déclin comme prix du succès. Personne ne vous a facturé ça. Vous vous êtes porté volontaire.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 3. SOLUTION INTRO ========== -->
+<section class="ws-section">
+  <div class="ws-wrap ws-grid ws-grid-2" style="align-items:center;gap:56px;">
+    <div>
+      <h2 class="ws-display" style="font-size:clamp(40px,5vw,64px);">Il vous faut de la capacité, pas de la motivation.</h2>
+      <p style="margin-top:28px;font-size:19px;">
+        La motivation, c'est une humeur. La capacité, c'est un actif. Votre rendement en affaires roule sur le même moteur que votre rendement au gym : le corps et le système nerveux en dessous. Quand ce moteur manque de puissance, votre travail plafonne, peu importe la qualité de votre stratégie.
+      </p>
+      <p style="margin-top:18px;color:var(--gray);">
+        Wealthspan Strength applique un seul principe aux deux côtés de votre vie : la surcharge progressive. Au gym, vous ajoutez un peu de poids selon un horaire et votre corps s'adapte. Dans votre pipeline, vous ajoutez un peu de pression disciplinée selon un horaire et vos affaires s'adaptent. <strong style="color:var(--bone);font-weight:600;">Même calcul. Même compte. Les dépôts se cumulent; les semaines manquées aussi.</strong>
+      </p>
+    </div>
+    <figure class="ws-figure">
+      <img src="wealthspan-client.jpg" alt="Client Wealthspan sous la barre" style="width:100%;aspect-ratio:4/5;object-fit:cover;border:1px solid #242426;display:block;" />
+    </figure>
+  </div>
+</section>
+
+<!-- ========== 4. PILLARS ========== -->
+<section class="ws-section ws-tint">
+  <div class="ws-wrap">
+    <div class="ws-eyebrow">Ce qu'il y a dedans</div>
+    <h2 class="ws-display" style="font-size:clamp(38px,4.5vw,56px);">Trois programmes pour bâtir votre capacité.</h2>
+    <div class="ws-grid ws-grid-3" style="margin-top:48px;">
+      <div class="ws-card">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="1.6" stroke-linecap="square"><line x1="2" y1="12" x2="22" y2="12"/><rect x="4" y="7" width="2.6" height="10" fill="#C9A227" stroke="none"/><rect x="17.4" y="7" width="2.6" height="10" fill="#C9A227" stroke="none"/><rect x="7.4" y="9" width="2" height="6" fill="#8F7519" stroke="none"/><rect x="14.6" y="9" width="2" height="6" fill="#8F7519" stroke="none"/></svg>
+        <h3 class="ws-display" style="font-size:30px;margin-top:20px;">Corps</h3>
+        <p class="ws-muted" style="margin-top:12px;font-size:15.5px;">
+          Un entraînement au barbell bâti autour des quatre grands mouvements : squat, soulevé de terre, développé couché, développé militaire. La force, c'est votre réserve d'énergie. Entraînez-la et le brouillard de 14 h se lève, le sommeil se creuse, et votre cerveau en profite directement, parce que soulever lourd nourrit le système nerveux qui fait rouler votre pensée. Trois séances par semaine, programmées dans une feuille partagée, coachées par Denis dès le premier jour.
+        </p>
+      </div>
+      <div class="ws-card">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="#C9A227" stroke="none"/></svg>
+        <h3 class="ws-display" style="font-size:30px;margin-top:20px;">Affaires</h3>
+        <p class="ws-muted" style="margin-top:12px;font-size:15.5px;">
+          La capacité en affaires, c'est encaisser les coups et continuer d'exécuter : le client qui disparaît, le trimestre difficile, la paie du vendredi qui fait peur. Le coaching roule sur la méthode TEAMMS, en commençant par le ciblage jusqu'à ce que votre portrait soit parfaitement clair, parce que sans clarté, pas d'exécution. Ensuite, on bâtit un rythme de prospection hebdomadaire qui tient sous pression.
+        </p>
+      </div>
+      <div class="ws-card">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="1.6" stroke-linecap="square"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/><line x1="12" y1="2" x2="12" y2="4.6" stroke="#8F7519"/></svg>
+        <h3 class="ws-display" style="font-size:30px;margin-top:20px;">Bouddha</h3>
+        <p class="ws-muted" style="margin-top:12px;font-size:15.5px;">
+          L'état d'esprit sous les deux autres. Cause et effet : les dépôts que vous faites aujourd'hui décident de la personne qui se présentera l'an prochain. Tiré des deux décennies et demie de pratique bouddhiste quotidienne de Denis, offert comme philosophie de travail, jamais comme recrutement. Un appel par semaine, un suivi quotidien, et des questions qui gardent la tête claire quand la pression arrive.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 5. BEFORE / AFTER ========== -->
+<section class="ws-section">
+  <div class="ws-wrap">
+    <div class="ws-eyebrow">Avant et après</div>
+    <h2 class="ws-display" style="font-size:clamp(38px,4.5vw,56px);">Vous aujourd'hui vs un meilleur vous</h2>
+    <div class="ws-ledger">
+      <div class="ws-ledger-row" style="background:var(--panel);">
+        <div class="ws-ledger-cell debit ws-label" style="color:var(--gray);">VOUS AUJOURD'HUI</div>
+        <div class="ws-ledger-cell ws-label" style="color:var(--gold);">UN MEILLEUR VOUS</div>
+      </div>
+      <div class="ws-ledger-row"><div class="ws-ledger-cell debit">Le brouillard de 14 h traverse vos après-midis.</div><div class="ws-ledger-cell">Vous fermez des conversations difficiles à 16 h la tête claire.</div></div>
+      <div class="ws-ledger-row"><div class="ws-ledger-cell debit">La prospection arrive quand ça vous tente.</div><div class="ws-ledger-cell">La prospection roule sur un rythme hebdomadaire que vous ne renégociez pas.</div></div>
+      <div class="ws-ledger-row"><div class="ws-ledger-cell debit">Une glissade sur la glace, c'est six semaines dans le plâtre.</div><div class="ws-ledger-cell">Une glissade sur la glace, c'est se relever, sacrer un coup, et continuer à marcher.</div></div>
+      <div class="ws-ledger-row"><div class="ws-ledger-cell debit">Le sommeil, c'est ce qui reste quand le stress a gagné.</div><div class="ws-ledger-cell">Vous vous entraînez, vous mangez vos protéines, et vous dormez comme si c'était votre travail.</div></div>
+      <div class="ws-ledger-row"><div class="ws-ledger-cell debit">Votre quota vous regarde de l'autre bout de la pièce.</div><div class="ws-ledger-cell">Vous connaissez votre cadence face aux cibles chaque semaine.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 10. BIO ========== -->
+<section class="ws-section ws-tint">
+  <div class="ws-wrap ws-grid ws-grid-2" style="align-items:center;gap:56px;">
+    <div>
+      <img src="denis-gym.jpg" alt="Denis Champagne au rack de squat" style="width:100%;aspect-ratio:4/5;object-fit:cover;border:1px solid #242426;display:block;" />
+    </div>
+    <div>
+      <div class="ws-eyebrow">Votre coach</div>
+      <h2 class="ws-display" style="font-size:clamp(40px,5vw,60px);">Denis Champagne</h2>
+      <p style="margin-top:24px;">Je suis entrepreneur depuis 36 ans. La phrase impressionne, jusqu'à ce qu'on sache ce qu'il y a dedans.</p>
+      <p class="ws-muted" style="margin-top:16px;">Une faillite. Des paies qui ne passaient pas pendant que mon personnel attendait. Une mise à pied d'un poste de vice-président, deux mois avant l'arrivée de ma femme au Canada. Je me suis rebâti chaque fois.</p>
+      <p class="ws-muted" style="margin-top:16px;">Les gens me demandent mon secret. Ils s'attendent à une routine matinale avec de l'eau citronnée. Mon secret pèse 450 livres.</p>
+      <p class="ws-muted" style="margin-top:16px;">Je soulève lourd chaque semaine, à 67 ans. Pas pour le miroir. Pour la capacité. La barre m'a appris ce que les affaires ne disent jamais tout haut : le poids se fiche de vos excuses. Chaque répétition est un dépôt. Chaque semaine manquée, un retrait. Cause et effet, sans exception.</p>
+      <p class="ws-muted" style="margin-top:16px;">Ce principe a rebâti mon corps. Il a rebâti mes revenus. Il fonctionne sur tout ce que vous visez avec. La faillite a pris mon argent. Ma capacité est restée. C'est comme ça que je suis revenu.</p>
+      <p class="ws-muted" style="margin-top:16px;">Vous pouvez faire pareil. Passez sous la barre. Réglez l'état d'esprit. Bâtissez la capacité, et les objectifs cessent d'être des souhaits. Un client a commencé à soulever à 76 ans. À 77, il est tombé durement sur un trottoir et s'est relevé comme s'il avait accroché un lacet. Voilà ce qu'une année de dépôts achète.</p>
+      <p style="margin-top:16px;color:var(--gold);">Qu'est-ce que vous déposez cette semaine?</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 6. PROCESS ========== -->
+<section class="ws-section ws-tint" id="how">
+  <div class="ws-wrap">
+    <div class="ws-eyebrow">Comment ça fonctionne</div>
+    <h2 class="ws-display" style="font-size:clamp(38px,4.5vw,56px);">Quatre étapes, dans l'ordre.</h2>
+    <div class="ws-grid ws-grid-2" style="margin-top:48px;">
+      <div class="ws-card" style="display:flex;gap:24px;">
+        <div class="ws-display" style="color:var(--gold);font-size:44px;line-height:1;">01</div>
+        <div>
+          <h3 class="ws-display" style="font-size:28px;">Appel de ciblage</h3>
+          <p class="ws-muted" style="margin-top:10px;font-size:15.5px;">Une conversation. Où vous êtes, où sont les chiffres, ce qui glisse et pourquoi. On creuse jusqu'à ce que le portrait soit clair sur les deux fronts, parce que la clarté vient avant tout programme. Ensuite vous DÉCIDEZ : une vraie DÉCISION, sans hésiter, comme les vrais champions.</p>
+        </div>
+      </div>
+      <div class="ws-card" style="display:flex;gap:24px;">
+        <div class="ws-display" style="color:var(--gold);font-size:44px;line-height:1;">02</div>
+        <div>
+          <h3 class="ws-display" style="font-size:28px;">Votre programme</h3>
+          <p class="ws-muted" style="margin-top:10px;font-size:15.5px;">Vous recevez une seule feuille partagée : vos mouvements, vos charges, vos temps de repos, plus vos cibles de vente et les actions hebdomadaires qui les font bouger. Vous n'avez jamais à deviner ce que la journée demande.</p>
+        </div>
+      </div>
+      <div class="ws-card" style="display:flex;gap:24px;">
+        <div class="ws-display" style="color:var(--gold);font-size:44px;line-height:1;">03</div>
+        <div>
+          <h3 class="ws-display" style="font-size:28px;">Coaching hebdomadaire</h3>
+          <p class="ws-muted" style="margin-top:10px;font-size:15.5px;">Un appel fixe avec Denis chaque semaine. On revoit les chiffres, on ajuste les charges, on travaille les obstacles. Entre les appels, vous êtes au gym deux ou trois fois, alors le plan reste entre vos mains six jours sur sept.</p>
+        </div>
+      </div>
+      <div class="ws-card" style="display:flex;gap:24px;">
+        <div class="ws-display" style="color:var(--gold);font-size:44px;line-height:1;">04</div>
+        <div>
+          <h3 class="ws-display" style="font-size:28px;">Mesurer et gérer</h3>
+          <p class="ws-muted" style="margin-top:10px;font-size:15.5px;">Les charges, les protéines, le sommeil, les conversations ouvertes, les défis et occasions de la semaine. Les chiffres nous disent quoi changer, les résultats nous disent ce qu'on a accompli. Quand la vie s'en mêle (voyages, salons, un mois difficile), le programme plie sans casser, comme le bambou.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 7. PROOF ========== -->
+<section class="ws-section">
+  <div class="ws-wrap">
+    <div class="ws-eyebrow">À propos du coach</div>
+    <h2 class="ws-display" style="font-size:clamp(38px,4.5vw,56px);max-width:720px;">Denis ne vend pas une théorie. Il en soulève la preuve.</h2>
+    <div class="ws-grid ws-grid-3" style="margin-top:48px;">
+      <div>
+        <div class="ws-stat-num">36 ANS</div>
+        <p class="ws-muted" style="margin-top:10px;font-size:15px;">À diriger des entreprises avec du personnel et une paie sur la ligne, et à coacher des vendeurs, des équipes de vente et des opérations de revenus à travers le quotidien.</p>
+      </div>
+      <div>
+        <div class="ws-stat-num">200+</div>
+        <p class="ws-muted" style="margin-top:10px;font-size:15px;">Clients servis en 36 ans à diriger des entreprises et à coacher des vendeurs, des équipes de vente et des opérations de revenus vers leur meilleur. Le bilan existait bien avant la marque.</p>
+      </div>
+      <div>
+        <div class="ws-stat-num">450 LB</div>
+        <p class="ws-muted" style="margin-top:10px;font-size:15px;">Le soulevé de terre de travail de Denis, tiré cinq répétitions, en tant que grand-père. Programmé de la même façon que vos premières 95 livres le seront.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 8. TESTIMONIALS ========== -->
+<section class="ws-section ws-tint">
+  <div class="ws-wrap">
+    <div class="ws-eyebrow">Ce que les clients disent</div>
+    <h2 class="ws-display" style="font-size:clamp(38px,4.5vw,56px);">Dans leurs mots</h2>
+    <img src="wealthspan-client2.jpg" alt="Clients Wealthspan à l'entraînement" style="width:100%;max-width:820px;aspect-ratio:3014/2243;object-fit:cover;border:1px solid #242426;display:block;margin:40px auto 0;" />
+    <div class="ws-scroll">
+      <figure class="ws-card" style="margin:0;">
+        <svg width="26" height="20" viewBox="0 0 26 20" fill="#8F7519" aria-hidden="true"><path d="M0 20V10.4C0 4.2 3.6 0.6 10 0v4.4c-3 .5-4.6 2.2-4.8 5H10V20H0zm16 0V10.4C16 4.2 19.6 0.6 26 0v4.4c-3 .5-4.6 2.2-4.8 5H26V20H16z"/></svg>
+        <blockquote>Il y a quelques années, je me sentais physiquement fragile et je voulais faire quelque chose. En parlant avec Denis, il m'a parlé de la musculation pour bâtir du muscle. Il m'a montré les bonnes techniques et la bonne forme, il m'a encouragé, et j'ai commencé à soulever des poids. J'ai dans les 75 ans et je tiens la routine assez bien, depuis deux ou trois ans. Un jour, je marchais dans la rue et je suis tombé, très fort. J'ai atterri sur l'épaule, je me suis relevé, et rien n'était blessé. En touchant mon épaule, j'ai compris que le muscle que j'avais bâti, surtout dans le haut du corps, m'avait vraiment sauvé. Normalement, je suis certain que je me serais cassé bien des choses. Là, même pas de douleur. J'étais sincèrement surpris. J'attribue ça au muscle bâti, et aux encouragements de Denis à continuer. J'apprécie vraiment ses conseils et ses techniques précises. Ça m'a évité bien des ennuis.</blockquote>
+        <figcaption style="margin-top:20px;font-size:12px;letter-spacing:0.1em;color:var(--gold);">Tom H</figcaption>
+      </figure>
+      <figure class="ws-card" style="margin:0;">
+        <svg width="26" height="20" viewBox="0 0 26 20" fill="#8F7519" aria-hidden="true"><path d="M0 20V10.4C0 4.2 3.6 0.6 10 0v4.4c-3 .5-4.6 2.2-4.8 5H10V20H0zm16 0V10.4C16 4.2 19.6 0.6 26 0v4.4c-3 .5-4.6 2.2-4.8 5H26V20H16z"/></svg>
+        <blockquote>En matière de développement de la force, Denis est extrêmement compétent. Il est méticuleux et sait enseigner les aspects techniques de chaque mouvement en détail, tout en restant un coach motivant et bienveillant. Je recommande fortement Denis à quiconque veut améliorer sa force musculaire.</blockquote>
+        <figcaption style="margin-top:20px;font-size:12px;letter-spacing:0.1em;color:var(--gold);">Daniel T</figcaption>
+      </figure>
+      <figure class="ws-card" style="margin:0;">
+        <svg width="26" height="20" viewBox="0 0 26 20" fill="#8F7519" aria-hidden="true"><path d="M0 20V10.4C0 4.2 3.6 0.6 10 0v4.4c-3 .5-4.6 2.2-4.8 5H10V20H0zm16 0V10.4C16 4.2 19.6 0.6 26 0v4.4c-3 .5-4.6 2.2-4.8 5H26V20H16z"/></svg>
+        <blockquote>J'ai eu l'occasion de travailler avec Denis en force et conditionnement, particulièrement pour raffiner ma technique au développé couché, au squat, au développé militaire et au soulevé de terre. Denis possède une vaste connaissance et une capacité exceptionnelle à la transmettre. Grâce à ses explications claires, ses corrections et son attention aux détails, j'ai mieux compris chaque mouvement et nettement amélioré ma technique. Ce que j'ai le plus apprécié, c'est sa passion pour son domaine et son souci sincère des gens. On voit qu'il aime vraiment ce qu'il fait et qu'il tient à partager ses connaissances pour aider ceux qu'il coache à progresser. Ce fut une expérience formidable. Denis est un excellent coach avec une belle personnalité, et je le recommande sans hésitation.</blockquote>
+        <figcaption style="margin-top:20px;font-size:12px;letter-spacing:0.1em;color:var(--gold);">Mehdi A</figcaption>
+      </figure>
+      <figure class="ws-card" style="margin:0;">
+        <svg width="26" height="20" viewBox="0 0 26 20" fill="#8F7519" aria-hidden="true"><path d="M0 20V10.4C0 4.2 3.6 0.6 10 0v4.4c-3 .5-4.6 2.2-4.8 5H10V20H0zm16 0V10.4C16 4.2 19.6 0.6 26 0v4.4c-3 .5-4.6 2.2-4.8 5H26V20H16z"/></svg>
+        <blockquote>J'ai commencé à travailler avec Denis juste au moment où je me lançais à mon compte, quand tout semblait incertain. Je ne me suis jamais sentie aussi forte ni aussi sûre de moi. Bâtir ma force et régler mon état d'esprit m'a donné la capacité de faire grandir mon entreprise et d'en prendre plus que je ne le croyais possible.</blockquote>
+        <figcaption style="margin-top:20px;font-size:12px;letter-spacing:0.1em;color:var(--gold);">Jennifer W</figcaption>
+      </figure>
+      <figure class="ws-card" style="margin:0;">
+        <svg width="26" height="20" viewBox="0 0 26 20" fill="#8F7519" aria-hidden="true"><path d="M0 20V10.4C0 4.2 3.6 0.6 10 0v4.4c-3 .5-4.6 2.2-4.8 5H10V20H0zm16 0V10.4C16 4.2 19.6 0.6 26 0v4.4c-3 .5-4.6 2.2-4.8 5H26V20H16z"/></svg>
+        <blockquote>J'ai commencé à m'entraîner avec Denis et, en quelques séances seulement, j'ai gagné en force et en confiance. Un grand avantage a été de comprendre comment l'entraînement en force agit sur mes muscles et mes os; tout était expliqué si clairement. Denis est un grand motivateur qui partage ses propres expériences. Il m'a aidée à découvrir l'amour de la musculation et du fait de devenir plus forte! Merci, Denis!</blockquote>
+        <figcaption style="margin-top:20px;font-size:12px;letter-spacing:0.1em;color:var(--gold);">Jaimie G</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 11. FAQ ========== -->
+<section class="ws-section">
+  <div class="ws-wrap">
+    <div class="ws-eyebrow">Les questions qu'on pose vraiment</div>
+    <h2 class="ws-display" style="font-size:clamp(38px,4.5vw,56px);margin-bottom:36px;">FAQ</h2>
+    <div class="ws-faq">
+      <div class="ws-faq-item open">
+        <button class="ws-faq-q" aria-expanded="true"><span>Je n'ai jamais touché à un barbell.</span><svg width="16" height="16" viewBox="0 0 16 16" stroke="#C9A227" stroke-width="1.6"><line x1="8" y1="2" x2="8" y2="14"/><line x1="2" y1="8" x2="14" y2="8"/></svg></button>
+        <div class="ws-faq-a">La plupart des clients non plus. Vous commencez avec ce que votre gym offre, machines incluses, et vous progressez vers le barbell à mesure que votre technique et votre confiance se bâtissent. Denis coache les premières séances avec vous, en personne à Montréal ou par vidéo partout ailleurs.</div>
+      </div>
+      <div class="ws-faq-item">
+        <button class="ws-faq-q" aria-expanded="false"><span>Suis-je trop vieux pour commencer?</span><svg width="16" height="16" viewBox="0 0 16 16" stroke="#C9A227" stroke-width="1.6"><line x1="8" y1="2" x2="8" y2="14"/><line x1="2" y1="8" x2="14" y2="8"/></svg></button>
+        <div class="ws-faq-a">Denis guide et coache des clients jusqu'à la fin de la soixante-dizaine. La charge est programmée selon où vous êtes maintenant, puis montée par petits paliers. Le risque, c'est de rester faible, pas de s'entraîner.</div>
+      </div>
+      <div class="ws-faq-item">
+        <button class="ws-faq-q" aria-expanded="false"><span>Je n'ai pas le temps pour ça.</span><svg width="16" height="16" viewBox="0 0 16 16" stroke="#C9A227" stroke-width="1.6"><line x1="8" y1="2" x2="8" y2="14"/><line x1="2" y1="8" x2="14" y2="8"/></svg></button>
+        <div class="ws-faq-a">Alors il vous en faudra pour vous occuper de vos problèmes de santé avec les années. Deux à trois séances par semaine, environ 75 minutes chacune, sur un programme auquel vous n'avez pas à penser. Vous entrez, la feuille vous dit les mouvements, la charge et le repos. Le travail de vente s'intègre au travail que vous faites déjà.</div>
+      </div>
+      <div class="ws-faq-item">
+        <button class="ws-faq-q" aria-expanded="false"><span>Est-ce un cours?</span><svg width="16" height="16" viewBox="0 0 16 16" stroke="#C9A227" stroke-width="1.6"><line x1="8" y1="2" x2="8" y2="14"/><line x1="2" y1="8" x2="14" y2="8"/></svg></button>
+        <div class="ws-faq-a">Non. C'est un cheminement d'affirmation de soi vers une meilleure existence. Vous avez un appel par semaine avec Denis, un programme qui change à mesure que vous changez, et quelqu'un qui remarque quand vous dérivez. Rien ici n'est une bibliothèque de vidéos que vous abandonnerez à la troisième semaine.</div>
+      </div>
+      <div class="ws-faq-item">
+        <button class="ws-faq-q" aria-expanded="false"><span>On commence par les affaires ou par le corps?</span><svg width="16" height="16" viewBox="0 0 16 16" stroke="#C9A227" stroke-width="1.6"><line x1="8" y1="2" x2="8" y2="14"/><line x1="2" y1="8" x2="14" y2="8"/></svg></button>
+        <div class="ws-faq-a">Vous choisissez. Certains veulent régler le pipeline d'abord, d'autres veulent passer sous la barre. Le premier appel établit vos cibles sur les deux fronts, puis on met les étapes en ordre. L'un ou l'autre devient la CAUSE des EFFETS.</div>
+      </div>
+      <div class="ws-faq-item">
+        <button class="ws-faq-q" aria-expanded="false"><span>Qu'est-ce que vous suivez, concrètement?</span><svg width="16" height="16" viewBox="0 0 16 16" stroke="#C9A227" stroke-width="1.6"><line x1="8" y1="2" x2="8" y2="14"/><line x1="2" y1="8" x2="14" y2="8"/></svg></button>
+        <div class="ws-faq-a">La progression sur les quatre mouvements. Les protéines. Le sommeil. L'activité de prospection, les conversations ouvertes et la cadence face à votre quota. Les chiffres ne mentent pas, ni sur la plateforme ni dans le pipeline.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 12. FOOTER / FINAL CTA ========== -->
+<section id="book" style="background:var(--panel);border-top:1px solid var(--gold-dim);padding:96px 0 60px;">
+  <div class="ws-wrap" style="text-align:center;">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#C9A227" stroke-width="1.6" stroke-linecap="square"><rect x="4" y="3" width="16" height="18"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="13" y2="16"/></svg>
+    <h2 class="ws-display" style="font-size:clamp(44px,6vw,76px);margin:24px auto 0;max-width:760px;">Bâtissez votre capacité. Commencez cette semaine.</h2>
+    <p class="ws-muted" style="max-width:520px;margin:22px auto 0;">Un appel. On trace vos cibles sur tous les fronts, et vous décidez si le programme vous convient. Apportez vos chiffres.</p>
+    <p style="color:var(--gold);font-size:22px;letter-spacing:0.3em;margin-top:26px;">LA FORCE SUR TOUS LES FRONTS</p>
+    <div style="margin-top:36px;">
+      <a href="#book" class="ws-btn ws-open-form" style="font-size:22px;padding:16px 44px;">Réservez votre appel de ciblage</a>
+    </div>
+    <div style="margin-top:32px;display:flex;justify-content:center;gap:22px;">
+      <a class="ws-soc" href="https://www.linkedin.com/in/denis-champagne/" target="_blank" rel="noopener" aria-label="Denis Champagne sur LinkedIn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 8.8v11.2H3.2V8.8h3.3zM4.8 3.5a1.95 1.95 0 110 3.9 1.95 1.95 0 010-3.9zM20.8 13.6v6.4h-3.3v-5.9c0-1.4-.5-2.4-1.8-2.4-1 0-1.6.7-1.8 1.3-.1.2-.1.6-.1.9v6.1h-3.3s.04-9.9 0-11.2h3.3v1.6c.4-.7 1.2-1.7 3-1.7 2.2 0 4 1.4 4 4.9z"/></svg>
+      </a>
+      <a class="ws-soc" href="https://www.facebook.com/denis.champagne" target="_blank" rel="noopener" aria-label="Denis Champagne sur Facebook">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21.5v-7.4h2.5l.4-2.9h-2.9V9.3c0-.85.24-1.43 1.46-1.43h1.55V5.3c-.27-.04-1.19-.12-2.26-.12-2.24 0-3.77 1.37-3.77 3.88v2.16H8v2.9h2.47v7.4h3.03z"/></svg>
+      </a>
+      <a class="ws-soc" href="https://www.instagram.com/denischampagne/" target="_blank" rel="noopener" aria-label="Denis Champagne sur Instagram">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="4.6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.1" cy="6.9" r="1.1" fill="currentColor" stroke="none"/></svg>
+      </a>
+    </div>
+    <hr class="ws-rule" style="margin:72px 0 28px;">
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <div class="ws-display" style="font-size:20px;">WEALT<span style="color:var(--gold);">H</span>SPAN</div>
+      <div class="ws-muted" style="font-size:12px;letter-spacing:0.1em;">
+        <a href="privacy-ws.html#fr" style="color:var(--gray);text-decoration:none;">Politique de confidentialité</a> ·
+        <a href="cookies-ws.html#fr" style="color:var(--gray);text-decoration:none;">Politique de témoins</a> ·
+        © 2026 WEALTHSPAN STRENGTH
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LEAD FORM MODAL ========== -->
+<div id="lead-modal" class="ws-modal" aria-hidden="true">
+  <div class="ws-modal-backdrop" data-close></div>
+  <div class="ws-modal-panel" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
+    <button class="ws-modal-close" type="button" aria-label="Fermer" data-close>
+      <svg width="18" height="18" viewBox="0 0 18 18" stroke="currentColor" stroke-width="1.8"><line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/></svg>
+    </button>
+    <div class="ws-eyebrow" style="margin-bottom:10px;">Appel de ciblage</div>
+    <h2 id="lead-modal-title" class="ws-display" style="font-size:clamp(34px,4vw,44px);">Commencer une conversation</h2>
+    <div id="lead-form-wrap">
+    <form class="ws-form" style="margin-top:8px;" id="lead-form" action="https://formspree.io/f/xkjnkvav" method="POST">
+      <input type="hidden" name="_subject" value="New Wealthspan lead (FR)" />
+      <label for="f-name">Nom</label>
+      <input class="ws-input" id="f-name" name="name" type="text" required />
+
+      <label for="f-email">Courriel</label>
+      <input class="ws-input" id="f-email" name="email" type="email" required />
+
+      <label>Quel volet vous intéresse le plus?</label>
+      <label class="ws-radio"><input type="radio" name="area" value="BODY" required /> <span><strong>CORPS</strong> <em>— force et capacité physiques</em></span></label>
+      <label class="ws-radio"><input type="radio" name="area" value="BUDDHA" /> <span><strong>BOUDDHA</strong> <em>— force intérieure et direction</em></span></label>
+      <label class="ws-radio"><input type="radio" name="area" value="BUSINESS" /> <span><strong>AFFAIRES</strong> <em>— force professionnelle et exécution</em></span></label>
+      <label class="ws-radio"><input type="radio" name="area" value="THE WHOLE TRIAD" /> <span><strong>LA TRIADE AU COMPLET</strong></span></label>
+      <label class="ws-radio"><input type="radio" name="area" value="Not sure yet" /> <span><strong>Je ne sais pas encore</strong></span></label>
+
+      <label for="f-msg">Y a-t-il quelque chose que vous aimeriez me dire? <span style="text-transform:none;letter-spacing:0;">(Facultatif)</span></label>
+      <textarea class="ws-input" id="f-msg" name="message" rows="3"></textarea>
+
+      <div style="text-align:center;margin-top:30px;">
+        <button type="submit" class="ws-btn" style="font-size:20px;padding:15px 40px;">COMMENCER UNE CONVERSATION</button>
+        <p class="ws-muted" style="font-size:13px;margin-top:14px;">Vos renseignements resteront privés.</p>
+        <p style="color:var(--gold);font-size:14px;letter-spacing:0.3em;margin-top:6px;">PAIX</p>
+      </div>
+    </form>
+    </div>
+    <div id="lead-thanks" style="display:none;text-align:center;padding:32px 0 8px;">
+      <p style="font-size:18px;color:var(--bone);margin:0;">Bien reçu. Denis lit chaque message lui-même et vous répondra.</p>
+      <p style="color:var(--gold);font-size:14px;letter-spacing:0.3em;margin-top:14px;">PAIX</p>
+      <p class="ws-muted" style="font-size:14px;margin-top:22px;">Vous voulez fixer un moment tout de suite? <a href="https://calendly.com/denis-lotus/30min" target="_blank" rel="noopener" style="color:var(--gold);">Prenez 30 minutes au calendrier</a>.</p>
+    </div>
+  </div>
+</div>
+
+
+<script>
+document.querySelectorAll('.ws-faq-q').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var item = btn.parentElement;
+    var wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.ws-faq-item').forEach(function (el) {
+      el.classList.remove('open');
+      el.querySelector('.ws-faq-q').setAttribute('aria-expanded', 'false');
+    });
+    if (!wasOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+
+// ---- Testimonials auto-scroll ----
+(function () {
+  var row = document.querySelector('.ws-scroll');
+  if (!row || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var speed = 0.5;          // pixels per frame (~30px/s)
+  var paused = false;
+  var resumeTimer = null;
+  var raf = null;
+  function tick() {
+    if (!paused) {
+      if (row.scrollLeft + row.clientWidth >= row.scrollWidth - 1) {
+        row.scrollLeft = 0;  // loop back to the first card
+      } else {
+        row.scrollLeft += speed;
+      }
+    }
+    raf = requestAnimationFrame(tick);
+  }
+  function pause() { paused = true; row.classList.add('ws-manual'); clearTimeout(resumeTimer); }
+  function resumeLater() { clearTimeout(resumeTimer); resumeTimer = setTimeout(function () { paused = false; row.classList.remove('ws-manual'); }, 4000); }
+  row.addEventListener('mouseenter', pause);
+  row.addEventListener('mouseleave', resumeLater);
+  row.addEventListener('touchstart', pause, { passive: true });
+  row.addEventListener('touchend', resumeLater);
+  row.addEventListener('focusin', pause);
+  row.addEventListener('focusout', resumeLater);
+  row.addEventListener('wheel', function () { pause(); resumeLater(); }, { passive: true });
+  // only run while the row is on screen
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { if (!raf) raf = requestAnimationFrame(tick); }
+        else if (raf) { cancelAnimationFrame(raf); raf = null; }
+      });
+    }, { threshold: 0.1 }).observe(row);
+  } else {
+    raf = requestAnimationFrame(tick);
+  }
+})();
+
+// ---- Lead form modal ----
+(function () {
+  var modal = document.getElementById('lead-modal');
+  var form = document.getElementById('lead-form');
+  var wrap = document.getElementById('lead-form-wrap');
+  var thanks = document.getElementById('lead-thanks');
+  var lastFocus = null;
+
+  function openModal(e) {
+    if (e) e.preventDefault();
+    lastFocus = document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('ws-no-scroll');
+    var first = modal.querySelector('input[type="text"]');
+    if (first) first.focus();
+  }
+  function closeModal() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('ws-no-scroll');
+    if (lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('.ws-open-form').forEach(function (el) { el.addEventListener('click', openModal); });
+  modal.querySelectorAll('[data-close]').forEach(function (el) { el.addEventListener('click', closeModal); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = 'ENVOI\u2026';
+    fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+      .then(function (r) {
+        if (r.ok) { wrap.style.display = 'none'; thanks.style.display = 'block'; form.reset(); }
+        else { throw new Error('bad status'); }
+      })
+      .catch(function () {
+        btn.disabled = false; btn.textContent = 'COMMENCER UNE CONVERSATION';
+        alert('Une erreur est survenue lors de l\'envoi. Écrivez directement à Denis : champagne.denis@gmail.com.');
+      });
+  });
+})();
+</script>
+
+
+<!-- Cookie consent: stores choice in ws_consent for 6 months; GA4 loads only on "Accept" -->
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;background:#141416;border-top:1px solid #2A2A2C;padding:16px 24px;display:none;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;z-index:50;">
+  <p style="margin:0;font-size:13.5px;color:var(--gray);max-width:560px;">
+    On utilise un témoin essentiel pour retenir votre choix, et Google Analytics, seulement si vous acceptez, pour compter les visites. Les détails sont dans notre <a href="cookies-ws.html#fr" style="color:var(--gold);">politique de témoins</a>.
+  </p>
+  <div style="display:flex;gap:10px;">
+    <button id="cookie-essential" class="ws-btn ws-btn-ghost" style="font-size:15px;padding:8px 18px;">Essentiels seulement</button>
+    <button id="cookie-accept" class="ws-btn" style="font-size:15px;padding:8px 22px;">Accepter</button>
+  </div>
+</div>
+<script>
+(function () {
+  var GA_ID = 'G-XXXXXXXXXX'; // <-- replace with Denis's GA4 Measurement ID
+  var banner = document.getElementById('cookie-banner');
+  function getConsent() { var m = document.cookie.match(/(?:^|; )ws_consent=([^;]*)/); return m ? m[1] : null; }
+  function setConsent(v) { document.cookie = 'ws_consent=' + v + '; max-age=' + (60*60*24*180) + '; path=/; SameSite=Lax'; }
+  function loadGA() {
+    if (GA_ID.indexOf('XXXX') !== -1) return; // not configured yet
+    var sc = document.createElement('script'); sc.async = true;
+    sc.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID; document.head.appendChild(sc);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date()); gtag('config', GA_ID, { anonymize_ip: true });
+  }
+  var c = getConsent();
+  if (c === 'all') { loadGA(); }
+  else if (c === null) { banner.style.display = 'flex'; }
+  document.getElementById('cookie-accept').addEventListener('click', function () { setConsent('all'); banner.style.display = 'none'; loadGA(); });
+  document.getElementById('cookie-essential').addEventListener('click', function () { setConsent('essential'); banner.style.display = 'none'; });
+})();
+</script>
+
+</body>
+</html>
