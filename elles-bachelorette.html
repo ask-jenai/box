@@ -1,0 +1,520 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Desert Crew Before I Do</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout: photo hero, then flat pastel color blocks stacked edge to edge. Big arches and half-moons sit behind the content. Tiny tracked labels, soft serif titles, rounded sans everywhere else. Single light theme by choice. */
+:root {
+  color-scheme: light;
+  --cream: #FBF3E7;
+  --paper: #FFFCF7;
+  --pink: #FFC0C8;
+  --blush: #FFDDE1;
+  --cloud: #DCB0A3;
+  --coral: #E89B8E;
+  --mustard: #D8AE54;
+  --honey: #E9C77A;
+  --sand: #DEBC8B;
+  --wren: #49433C;
+  --wren-soft: #6E665D;
+  --line: #EBDDCB;
+  --font-display: "Young Serif", "Iowan Old Style", Georgia, serif;
+  --font-body: "Nunito", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --gutter: clamp(16px, 5vw, 4rem);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--wren); font-family: var(--font-body); font-size: 17px; line-height: 1.6; margin: 0; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--coral); outline-offset: 3px; border-radius: 4px; }
+img { max-width: 100%; display: block; }
+
+/* Type */
+.label { font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; font-size: 0.72rem; margin: 0; }
+h1, h2, .display { font-family: var(--font-display); font-weight: 400; line-height: 1.05; margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(2.2rem, 6vw, 3.6rem); }
+h3 { font-family: var(--font-body); font-weight: 800; font-size: 1.15rem; margin: 0; line-height: 1.3; }
+.tag { font-weight: 700; font-size: clamp(1.35rem, 3.2vw, 1.9rem); line-height: 1.3; color: var(--coral); margin: 0; max-width: 24ch; }
+.copy { max-width: 46ch; margin: 0; }
+.muted { color: var(--wren-soft); }
+
+/* Buttons */
+.btn { display: inline-block; font: inherit; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.7rem; padding: 0.8rem 1.4rem; border-radius: 3px; border: 0; background: var(--blush); color: var(--wren); text-decoration: none; cursor: pointer; transition: transform 0.15s; }
+.btn:hover { transform: translateY(-2px); }
+.btn.gold { background: var(--mustard); }
+.btn.dark { background: var(--wren); color: var(--cream); }
+.btn.line { background: transparent; box-shadow: inset 0 0 0 2px var(--wren); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+/* Menu */
+.menu-btn { position: fixed; top: calc(env(safe-area-inset-top, 0px) + 1rem); right: 1rem; z-index: 30; width: 3rem; height: 3rem; border-radius: 50%; border: 0; background: var(--cream); display: grid; place-content: center; gap: 5px; cursor: pointer; padding: 0; box-shadow: 0 2px 10px rgba(73,67,60,0.15); }
+.menu-btn span { display: block; width: 1.3rem; height: 3px; border-radius: 3px; background: var(--coral); transition: transform 0.2s, opacity 0.2s; }
+.menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+.menu { position: fixed; top: calc(env(safe-area-inset-top, 0px) + 4.5rem); right: 1rem; z-index: 30; width: min(17rem, calc(100vw - 2rem)); max-height: calc(100svh - 6rem); overflow-y: auto; background: var(--paper); border-radius: 1rem; padding: 0.75rem; box-shadow: 0 10px 30px rgba(73,67,60,0.18); }
+.menu a { display: block; padding: 0.65rem 0.9rem; border-radius: 0.5rem; text-decoration: none; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; font-size: 0.72rem; }
+.menu a:hover, .menu a:focus-visible { background: var(--blush); }
+
+/* Hero (kept) */
+.hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; padding: 3rem var(--gutter) 3.5rem; color: #FFF6EC; overflow: hidden; }
+.hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 38% 62%; }
+.hero-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(30,22,18,0.78) 0%, rgba(30,22,18,0.4) 42%, rgba(30,22,18,0.04) 75%), linear-gradient(270deg, rgba(30,22,18,0.4) 0%, rgba(30,22,18,0) 55%); }
+.hero-text { position: relative; z-index: 2; margin-left: auto; text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 0.9rem; }
+.hero .label { color: var(--pink); }
+h1 { font-size: clamp(3rem, 11vw, 6.8rem); color: #FFF6EC; }
+h1 span { display: block; white-space: nowrap; }
+.hero .dates { font-family: var(--font-display); font-size: clamp(1.3rem, 3.5vw, 1.9rem); color: var(--honey); margin: 0; }
+
+/* Blocks */
+.block { position: relative; overflow: hidden; padding: clamp(4rem, 9vw, 7rem) var(--gutter); min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
+.block > * { position: relative; z-index: 1; }
+.inner { width: 100%; max-width: 68rem; margin-inline: auto; }
+.cream { background: var(--cream); }
+.pinkblock { background: var(--pink); }
+.goldblock { background: var(--mustard); }
+.cloudblock { background: var(--cloud); }
+.darkblock { background: var(--wren); color: var(--cream); }
+.darkblock .muted { color: #D9CFC1; }
+
+/* Shapes (decorative, behind content) */
+.shape { position: absolute; z-index: 0; pointer-events: none; }
+.arch { border-radius: 50% 50% 0 0 / 100% 100% 0 0; }
+.half-down { border-radius: 0 0 50% 50% / 0 0 100% 100%; }
+.circle { border-radius: 50%; }
+.quarter { border-radius: 100% 0 0 0; }
+
+/* Head of each block */
+.head { display: grid; gap: 0.75rem; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+.head.center { text-align: center; justify-items: center; }
+.head .label { color: var(--coral); }
+.goldblock .head .label, .cloudblock .head .label, .pinkblock .head .label { color: var(--wren); }
+.darkblock .head .label { color: var(--pink); }
+
+/* Numbered trio */
+.trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem 2rem; }
+.num { font-family: var(--font-display); font-size: clamp(2.6rem, 6vw, 3.6rem); line-height: 1; color: var(--pink); -webkit-text-stroke: 1.5px var(--coral); display: block; margin-bottom: 0.4rem; }
+.trio .label { color: var(--wren); margin-bottom: 0.4rem; }
+.trio .big { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.15; margin: 0; }
+
+/* Day cards */
+.days { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+.day { background: var(--paper); border-radius: 4px; overflow: hidden; min-width: 0; box-shadow: 0 10px 30px rgba(73,67,60,0.08); }
+.day-top { padding: 1.5rem 1.4rem 1.1rem; background: var(--top); position: relative; overflow: hidden; }
+.day-top::after { content: ""; position: absolute; right: -2rem; top: -2rem; width: 7rem; height: 7rem; border-radius: 50%; background: rgba(255,252,247,0.4); }
+.day-top .label { color: var(--wren); }
+.day-top .display { font-size: 2rem; margin-top: 0.2rem; position: relative; }
+.day.fri { --top: var(--honey); } .day.sat { --top: var(--pink); } .day.sun { --top: var(--cloud); }
+.day dl { margin: 0; padding: 0.6rem 1.4rem 1.2rem; }
+.slot { padding-block: 0.8rem; border-bottom: 1px solid var(--line); }
+.slot:last-child { border-bottom: 0; }
+.slot dt { font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.62rem; color: var(--coral); }
+.slot dd { margin: 0.15rem 0 0; overflow-wrap: anywhere; }
+.slot dd strong { font-weight: 800; }
+.slot dd a { text-decoration: none; border-bottom: 2px solid var(--pink); }
+.slot dd a:hover { border-color: var(--coral); }
+.slot dd small { display: block; color: var(--wren-soft); font-size: 0.9rem; }
+.status { display: inline-block; margin-top: 0.35rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; font-size: 0.6rem; padding: 0.15rem 0.55rem; border-radius: 99px; background: var(--blush); }
+.status.on { background: var(--honey); }
+.status.tbd { background: var(--cream); box-shadow: inset 0 0 0 1.5px var(--sand); }
+.keyrow { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin: 0 0 2rem; }
+.keyrow .status { margin-top: 0; }
+.monday { margin-top: 2rem; text-align: center; max-width: 40ch; margin-inline: auto; }
+
+/* House */
+.split { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(1.5rem, 5vw, 4rem); align-items: center; }
+.photo { position: relative; margin: 0; }
+.photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; position: relative; z-index: 1; }
+.photo::before { content: ""; position: absolute; left: -1.5rem; bottom: -1.5rem; width: 60%; height: 55%; background: var(--pink); border-radius: 50% 50% 0 0 / 100% 100% 0 0; }
+.photo::after { content: ""; position: absolute; right: -1.2rem; top: -1.2rem; width: 5rem; height: 5rem; background: var(--mustard); border-radius: 50%; }
+.facts { display: grid; gap: 1.1rem; margin: 1.5rem 0; }
+.fact { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: 1rem; align-items: baseline; padding-bottom: 0.9rem; border-bottom: 1px solid var(--line); }
+.fact .label { color: var(--coral); }
+.fact b { font-weight: 800; font-size: 1.05rem; }
+
+/* Cards */
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+.card { background: var(--paper); color: var(--wren); border-radius: 4px; padding: 1.5rem 1.5rem 1.4rem; min-width: 0; }
+.card .label { color: var(--coral); margin-bottom: 0.4rem; }
+.card p { margin: 0.3rem 0 0; overflow-wrap: anywhere; }
+.card .time { font-family: var(--font-display); font-size: 1.3rem; margin-top: 0.3rem; }
+.card .muted { color: var(--wren-soft); }
+
+.cards.photos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.day-img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
+.card h3 a { text-decoration: none; border-bottom: 2px solid var(--pink); }
+.card h3 a:hover { border-color: var(--coral); }
+.card.has-photo { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+.card-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.card-body { padding: 1.25rem 1.4rem 1.3rem; }
+.card-body .muted:empty { display: none; }
+
+/* Tables */
+.tablewrap { overflow-x: auto; background: var(--paper); border-radius: 4px; }
+table { border-collapse: collapse; width: 100%; min-width: 30rem; }
+th, td { text-align: left; padding: 0.85rem 1rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; font-size: 0.65rem; color: var(--coral); }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 800; }
+
+/* Wear */
+.pack-photo img { aspect-ratio: 1 / 1; }
+.wear { align-items: center; }
+.outfits { list-style: none; margin: 0.75rem 0 0; padding: 0; display: grid; gap: 0; }
+.outfits li { display: grid; gap: 0.15rem; padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
+.outfits li:last-child { border-bottom: 0; }
+.outfits b { font-weight: 800; }
+.outfits span { color: var(--wren-soft); }
+.wear { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(1.5rem, 5vw, 4rem); align-items: start; }
+.swatches { display: flex; flex-wrap: wrap; gap: 1.2rem 1.6rem; margin: 1rem 0 1.8rem; }
+.sw { display: grid; justify-items: center; gap: 0.4rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.6rem; }
+.sw i { width: 3.2rem; height: 3.2rem; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 1px rgba(73,67,60,0.12); }
+.pack { list-style: none; margin: 0.75rem 0 0; padding: 0; display: grid; gap: 0.5rem; }
+.pack label { display: flex; align-items: flex-start; gap: 0.8rem; padding: 0.8rem 1rem; background: var(--paper); border-radius: 4px; cursor: pointer; }
+.pack input { width: 1.25rem; height: 1.25rem; margin: 0.2rem 0 0; accent-color: var(--coral); flex: none; }
+.pack input:checked + span { text-decoration: line-through; color: var(--wren-soft); }
+
+.pantyblock { background-color: var(--cream); background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22240%22%20height%3D%22200%22%20viewBox%3D%220%200%20240%20200%22%3E%0A%3Cg%20fill%3D%22none%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22%3E%0A%3Cpath%20d%3D%22M20%2030h90v10c-10%2024-26%2036-45%2050-19-14-35-26-45-50z%22%20stroke%3D%22%23E89B8E%22%20fill%3D%22%23FFC0C8%22%2F%3E%0A%3Cpath%20d%3D%22M20%2030h90%22%20stroke%3D%22%23E89B8E%22%2F%3E%0A%3Cpath%20d%3D%22M130%20120h90v10c-10%2024-26%2036-45%2050-19-14-35-26-45-50z%22%20stroke%3D%22%23D8AE54%22%20fill%3D%22%23E9C77A%22%20transform%3D%22rotate%28-12%20175%20150%29%22%2F%3E%0A%3Cpath%20d%3D%22M140%2020c6-14%2024-14%2030%200%206-14%2024-14%2030%200%200%2016-30%2036-30%2036s-30-20-30-36z%22%20stroke%3D%22%23E89B8E%22%20fill%3D%22%23FFDDE1%22%2F%3E%0A%3Cpath%20d%3D%22M30%20130c6-14%2024-14%2030%200%206-14%2024-14%2030%200%200%2016-30%2036-30%2036s-30-20-30-36z%22%20stroke%3D%22%23DCB0A3%22%20fill%3D%22%23FBF3E7%22%20transform%3D%22rotate%2810%2060%20150%29%22%2F%3E%0A%3C%2Fg%3E%3C%2Fsvg%3E"); background-size: 240px 200px; }
+.pantyblock::before { content: ""; position: absolute; inset: 0; background: rgba(251,243,231,0.55); z-index: 0; }
+.boxes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
+.panty-card { background: var(--pink); border-radius: 4px; padding: clamp(1.5rem, 4vw, 2.5rem); min-width: 0; box-shadow: 0 10px 30px rgba(73,67,60,0.08); }
+.panty-card .head { margin-bottom: 1rem; }
+.panty-card h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; counter-reset: step; }
+.steps li { position: relative; padding-left: 2.6rem; }
+.steps li::before { content: counter(step, decimal-leading-zero); counter-increment: step; position: absolute; left: 0; top: 0.15em; font-family: var(--font-display); font-size: 1.1rem; color: var(--coral); }
+
+/* Lists */
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.1rem; counter-reset: item; }
+.list li { position: relative; padding-left: 2.6rem; max-width: 52ch; overflow-wrap: anywhere; }
+.list li::before { content: counter(item, decimal-leading-zero); counter-increment: item; position: absolute; left: 0; top: 0.15em; font-family: var(--font-display); font-size: 1.1rem; color: var(--coral); }
+.list b { font-weight: 800; }
+.cols { columns: 2 22rem; column-gap: 3rem; display: block; }
+.cols li { break-inside: avoid; margin-bottom: 1.1rem; }
+
+/* Playlist */
+.player { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1.5rem; align-items: center; max-width: 36rem; margin: 0 auto; background: var(--paper); border-radius: 4px; padding: 1.5rem; text-align: left; }
+.badge { width: 7.5rem; height: 7.5rem; animation: turn 18s linear infinite; }
+.badge text { font-family: var(--font-body); font-weight: 800; font-size: 11.5px; letter-spacing: 0.22em; text-transform: uppercase; fill: var(--wren); }
+@keyframes turn { to { transform: rotate(360deg); } }
+.player .display { font-size: 1.5rem; }
+
+/* Vibes: disco ball photo as the background, content kept to the left so the ball stays clear */
+.vibes { background: #F6C9CF url("disco-elle.jpg") no-repeat right center / cover; justify-content: center; }
+.vibes .inner { max-width: 68rem; }
+.vibes .head, .vibes .player { max-width: 30rem; margin-left: 0; }
+.vibes .player { background: rgba(255,252,247,0.92); }
+@media (max-width: 52rem) {
+  .vibes { background-position: 72% bottom; background-size: cover; justify-content: flex-start; padding-bottom: 50vw; }
+  .vibes .head, .vibes .player { max-width: none; }
+}
+
+/* Closing */
+.closing { font-family: var(--font-display); font-size: clamp(2rem, 6vw, 3.2rem); color: var(--pink); text-align: center; margin: 3rem 0 0; }
+
+/* Footer */
+.foot { position: relative; min-height: 70svh; display: flex; align-items: center; justify-content: center; padding: 3rem var(--gutter) 3.5rem; overflow: hidden; }
+.foot-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+.foot-shade { position: absolute; inset: 0; background: rgba(30,22,18,0.28); }
+.foot-text { position: relative; z-index: 1; text-align: center; display: grid; gap: 0.6rem; }
+.foot-text .label { color: var(--pink); }
+.foot-text .closing { margin: 0; color: #FFF6EC; text-shadow: 0 2px 18px rgba(30,22,18,0.45); }
+.foot-dates { margin: 0; font-family: var(--font-display); font-size: clamp(1.1rem, 3vw, 1.5rem); color: var(--honey); text-shadow: 0 2px 12px rgba(30,22,18,0.45); }
+
+/* Modal */
+.modal { position: fixed; inset: 0; z-index: 40; display: flex; align-items: center; justify-content: center; padding: 1rem; background: rgba(73,67,60,0.55); }
+.modal-card { position: relative; width: 100%; max-width: 44rem; max-height: calc(100svh - 2rem); overflow-y: auto; background: var(--cream); border-radius: 6px; padding: 2.5rem clamp(1.25rem, 4vw, 2.5rem) 2rem; }
+.modal-x { position: absolute; top: 0.8rem; right: 0.8rem; width: 2.5rem; height: 2.5rem; border-radius: 50%; border: 0; background: var(--wren); color: var(--pink); font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0; }
+.modal .head { margin-bottom: 1.5rem; }
+.modal .list { gap: 0.9rem; }
+
+@media (max-width: 52rem) {
+  .trio, .days, .split, .cards, .cards.photos, .wear, .boxes { grid-template-columns: minmax(0, 1fr); }
+  .trio { gap: 2rem; }
+  .fact { grid-template-columns: 5.5rem minmax(0, 1fr); }
+  .photo img { aspect-ratio: 4 / 3; }
+  .player { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; }
+  .cols { columns: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .badge { animation: none; }
+}
+</style>
+
+<button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span></span><span></span><span></span></button>
+<nav class="menu" id="menu" aria-label="Sections" hidden>
+  <a href="#top">Welcome</a>
+  <a href="#weekend">The Itinerary</a>
+  <a href="#stay">The house</a>
+  <a href="#eat">Where we're eating</a>
+  <a href="#wear">What to pack</a>
+  <a href="#rules">House rules</a>
+  <a href="#vibes">Playlist</a>
+</nav>
+
+<header class="hero" id="top">
+  <img class="hero-img" src="hero-elle.jpg" alt="A mirrored disco ball resting in the desert at night under a crescent moon">
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="hero-text">
+    <h1><span>Desert Crew</span> <span>Before I Do</span></h1>
+    <p class="dates">Elle's Bachelorette | Nov 6–9 | Sedona, Arizona</p>
+    <a class="btn gold" href="#weekend">Saddle up, ladies</a>
+  </div>
+</header>
+
+<main>
+
+<section class="block pinkblock" id="weekend">
+  <div class="shape arch" style="left:50%; transform:translateX(-50%); top:0; width:min(60rem, 120vw); height:min(30rem, 60vw); background:var(--cloud)"></div>
+  <div class="shape circle" style="left:-4rem; bottom:4rem; width:10rem; height:10rem; background:var(--blush)"></div>
+  <div class="inner">
+    <div class="head center">
+      <h2>The Itinerary</h2>
+      <p class="copy" style="max-width:62ch">A weekend full of desert views, good food, and trouble. Here's the plan to celebrate our beautiful bride to be!</p>
+    </div>
+    <div class="days">
+      <article class="day fri">
+        <img class="day-img" src="jacuzzi-elle.jpg" alt="Hot tub at sunset with red rock cliffs behind" loading="lazy">
+        <div class="day-top"><p class="label">Nov 6</p><p class="display">Friday</p></div>
+        <dl>
+          <div class="slot"><dt>Breakfast</dt><dd><strong>On your own</strong></dd></div>
+          <div class="slot"><dt>Morning</dt><dd><strong>Land in Phoenix</strong><small>Find the crew at the pickup point</small></dd></div>
+          <div class="slot"><dt>Lunch</dt><dd><strong>TBD</strong></dd></div>
+          <div class="slot"><dt>Afternoon</dt><dd><strong>Pickup with group transport at 2 pm</strong><small>About 2 hours to Sedona</small></dd></div>
+          <div class="slot"><dt>Dinner</dt><dd><strong>Broome &amp; Orchard</strong><small>5:30 pm</small></dd></div>
+          <div class="slot"><dt>Night</dt><dd><strong>Welcome night at the house</strong><small>Games and drinks at the house.</small></dd></div>
+        </dl>
+      </article>
+      <article class="day sat">
+        <img class="day-img" src="redrock-elle.jpg" alt="Cathedral Rock reflected in a pool of water on red sandstone" loading="lazy">
+        <div class="day-top"><p class="label">Nov 7</p><p class="display">Saturday</p></div>
+        <dl>
+          <div class="slot"><dt>Breakfast</dt><dd><strong>Breakfast at the house</strong></dd></div>
+          <div class="slot"><dt>Morning</dt><dd><strong>Yoga and hike, Red Rock State Park</strong><small>9 am- 12 pm, with a 60-minute yoga</small></dd></div>
+          <div class="slot"><dt>Lunch</dt><dd><strong>Mesa Grill Sedona</strong><small>1 pm</small></dd></div>
+          <div class="slot"><dt>Afternoon</dt><dd><strong>Pool, nap, get gussied up</strong></dd></div>
+          <div class="slot"><dt>Dinner</dt><dd><strong>SaltRock Southwest Kitchen</strong><small>5:15 pm</small></dd></div>
+          <div class="slot"><dt>Night</dt><dd><strong>Paint the town</strong><small>Bar night out</small></dd></div>
+        </dl>
+      </article>
+      <article class="day sun">
+        <img class="day-img" src="jeep-elle.jpg" alt="Two pink Jeeps parked on red rock" loading="lazy">
+        <div class="day-top"><p class="label">Nov 8</p><p class="display">Sunday</p></div>
+        <dl>
+          <div class="slot"><dt>Breakfast</dt><dd><strong>Breakfast at the house</strong></dd></div>
+          <div class="slot"><dt>Morning</dt><dd><strong>Pink Jeep tour</strong><small>10 am, about 2 hours</small></dd></div>
+          <div class="slot"><dt>Lunch</dt><dd><strong>TBD</strong></dd></div>
+          <div class="slot"><dt>Afternoon</dt><dd><strong>Shopping</strong><small>TBD</small></dd></div>
+          <div class="slot"><dt>Dinner</dt><dd><strong>The Vault Uptown</strong><small>5:30 pm</small></dd></div>
+          <div class="slot"><dt>Night</dt><dd><strong>Last night in, pack up</strong><small>Final games</small></dd></div>
+        </dl>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="block cream" id="stay">
+  <div class="shape half-down" style="right:-2rem; top:0; width:14rem; height:7rem; background:var(--honey)"></div>
+  <div class="inner split">
+    <figure class="photo">
+      <img src="house-elle.jpg" alt="Covered stone patio with a long dining table and bench, looking out at red rock formations at sunset" loading="lazy">
+    </figure>
+    <div>
+      <div class="head">
+        <h2>Our home for the weekend</h2>
+        <p class="copy">50 Pinon Court, Sedona, AZ 86336</p>
+        <p class="copy">Hosted by VacayAZ, with self check-in by keypad. Covered stone patio, one long table for the whole crew, a garden and the red rocks right out back.</p>
+      </div>
+      <div class="facts">
+        <div class="fact"><p class="label">Check-in</p><b>After 4:00 pm Friday</b></div>
+        <div class="fact"><p class="label">Checkout</p><b>Before 10:00 am Monday</b></div>
+        <div class="fact"><p class="label">Quiet hours</p><b>After 9:00 pm</b></div>
+      </div>
+      <div class="btn-row">
+        <a class="btn gold" href="https://www.google.com/maps/search/?api=1&amp;query=50%20Pinon%20Court%2C%20Sedona%2C%20AZ%2086336" target="_blank" rel="noopener">Open in Google Maps</a>
+        <button class="btn" type="button" data-open-rules>House rules</button>
+        <a class="btn line" href="https://www.airbnb.com/l/JKQRE8JL" target="_blank" rel="noopener">Airbnb</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block goldblock" id="eat">
+  <div class="shape circle" style="left:-7rem; top:-7rem; width:20rem; height:20rem; background:var(--honey)"></div>
+  <div class="shape arch" style="right:-2rem; bottom:0; width:14rem; height:7rem; background:var(--cloud)"></div>
+  <div class="inner">
+    <div class="head center">
+      <h2>Grub and good views</h2>
+    </div>
+    <div class="cards photos">
+      <div class="card has-photo">
+        <img class="card-img" src="broome-elle.jpg" alt="Restaurant patio tables with stone pillars and red rock views" loading="lazy">
+        <div class="card-body">
+          <p class="label">Friday dinner</p>
+          <h3><a href="https://broomeandorchardaz.com/" target="_blank" rel="noopener">Broome &amp; Orchard</a></h3>
+          <p class="time">5:30 pm</p>
+          <p>101 N State Route 89A, Ste F29, Sedona</p>
+          <p class="muted">(928) 282-2713</p>
+        </div>
+      </div>
+      <div class="card has-photo">
+        <img class="card-img" src="saltrock-elle.jpg" alt="SaltRock patio tables with heaters and red rock cliffs behind" loading="lazy">
+        <div class="card-body">
+          <p class="label">Saturday dinner</p>
+          <h3><a href="https://www.amararesort.com/eat-drink/saltrock" target="_blank" rel="noopener">SaltRock Southwest Kitchen</a></h3>
+          <p class="time">5:15 pm</p>
+          <p>100 Amara Lane, Sedona</p>
+          <p class="muted">(928) 340-8803</p>
+        </div>
+      </div>
+      <div class="card has-photo">
+        <img class="card-img" src="vault-elle.jpg" alt="The Vault Uptown rooftop patio with orange umbrellas and red rock views" loading="lazy">
+        <div class="card-body">
+          <p class="label">Sunday dinner</p>
+          <h3><a href="https://www.thevaultuptown.com/" target="_blank" rel="noopener">The Vault Uptown</a></h3>
+          <p class="time">5:30 pm</p>
+          <p>361 Forest Rd, Ste E, Sedona</p>
+          <p class="muted">(928) 203-5462</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block cream" id="wear">
+  <div class="shape half-down" style="left:-3rem; top:0; width:16rem; height:8rem; background:var(--pink)"></div>
+  <div class="shape quarter" style="right:0; bottom:0; width:12rem; height:12rem; background:var(--blush)"></div>
+  <div class="inner">
+    <div class="head">
+      <h2>Pack your bags, girlies</h2>
+      <p class="copy" style="max-width:62ch">A packing list to get you ready for adventure. Bring pink clothes for the Jeep tour and night out if it's already in your closet.</p>
+    </div>
+    <div class="wear">
+      <figure class="photo pack-photo">
+        <img src="pack-elle.jpg" alt="A pink suitcase in the desert at sunset with a sequin wrap, silk slip and sunglasses" loading="lazy">
+      </figure>
+      <div>
+        <p class="copy" style="margin-top:0.6rem">Early November in Sedona is sunny by day and cold by night: around 60–65°F (16–18°C) in the afternoon, down to 35–40°F (2–4°C) after dark.</p>
+        <ul class="pack" id="pack">
+          <li><label><input type="checkbox" data-k="layers"><span>Layers for cold desert mornings and nights</span></label></li>
+          <li><label><input type="checkbox" data-k="shoes"><span>Hiking shoes for the red rocks</span></label></li>
+          <li><label><input type="checkbox" data-k="yoga"><span>Yoga clothes</span></label></li>
+          <li><label><input type="checkbox" data-k="jeep"><span>Adventure appropriate outfit for the Pink Jeep tour</span></label></li>
+          <li><label><input type="checkbox" data-k="swim"><span>Swimsuit for the hot tub</span></label></li>
+          <li><label><input type="checkbox" data-k="dinner"><span>3 dinner outfits</span></label></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block vibes" id="vibes">
+  <div class="inner">
+    <div class="head">
+      <h2>Bring the vibes</h2>
+      <p class="copy">Make it one we can dance to.</p>
+    </div>
+    <div class="player">
+      <svg class="badge" viewBox="0 0 120 120" aria-hidden="true">
+        <defs><path id="ring" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1 -88 0"/></defs>
+        <circle cx="60" cy="60" r="58" fill="#FFC0C8"/>
+        <circle cx="60" cy="60" r="22" fill="#D8AE54"/>
+        <text><textPath href="#ring">Desert crew · before i do · </textPath></text>
+      </svg>
+      <div>
+        <p class="display">Elle's Bachelorette 2026</p>
+        <p class="muted" style="margin:0.2rem 0 1rem">By Jen W</p>
+        <a class="btn dark" href="https://open.spotify.com/playlist/6oaR8Op9cqbyShRCQCPas8" target="_blank" rel="noopener">Add to the playlist</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <img class="foot-img" src="footer-elle.jpg" alt="Cathedral Rock at sunset, reflected in a pool of water on red sandstone">
+  <div class="foot-shade" aria-hidden="true"></div>
+  <div class="foot-text">
+    <p class="closing">See you in the desert.</p>
+    <p class="foot-dates">November 6–9, 2026</p>
+  </div>
+</footer>
+
+</main>
+
+<div class="modal" id="rules" role="dialog" aria-modal="true" aria-labelledby="rules-title" hidden>
+  <div class="modal-card">
+    <button class="modal-x" id="rules-close" type="button" aria-label="Close house rules">×</button>
+    <div class="head">
+      <h2 id="rules-title">House rules</h2>
+      <p class="copy">Straight from the VacayAZ listing and rental agreement. Give them a read before we ride.</p>
+    </div>
+    <ul class="list">
+      <li><b>Quiet after 9 pm.</b> Noise meters on site tattle to the host, so keep the music and games to a respectful roar.</li>
+      <li><b>No tape on walls or ceilings.</b> The balloon arch and backdrop have to stand on their own.</li>
+      <li><b>No smoking anywhere on the property.</b> The fee is $500.</li>
+      <li><b>No cannabis of any kind.</b> The stay can be cancelled with no refund.</li>
+      <li><b>No parties or large gatherings</b> without host approval, and no more guests than the listing allows.</li>
+      <li><b>No pets.</b></li>
+      <li><b>Cameras.</b> There may be security cameras outside, likely a doorbell camera at the front door. The host can see who comes and goes.</li>
+      <li><b>Report damage within 1 hour of check-in.</b> After that the house counts as in good condition, and guests are charged for any damage during the stay.</li>
+      <li><b>Checkout by 10 am.</b> Leave the house broom clean with everything packed. Items left behind cost $25 plus shipping.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+(function () {
+  var boxes = document.querySelectorAll('#pack input');
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem('elle-pack') || '{}'); } catch (e) {}
+  boxes.forEach(function (b) {
+    b.checked = !!saved[b.dataset.k];
+    b.addEventListener('change', function () {
+      saved[b.dataset.k] = b.checked;
+      try { localStorage.setItem('elle-pack', JSON.stringify(saved)); } catch (e) {}
+    });
+  });
+})();
+(function () {
+  var btn = document.getElementById('menu-btn');
+  var menu = document.getElementById('menu');
+  if (!btn || !menu) return;
+  function setOpen(open) {
+    menu.hidden = !open;
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function (e) { e.stopPropagation(); setOpen(menu.hidden); });
+  menu.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+  document.addEventListener('click', function (e) { if (!menu.hidden && !menu.contains(e.target)) setOpen(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+})();
+(function () {
+  var modal = document.getElementById('rules');
+  var closeBtn = document.getElementById('rules-close');
+  if (!modal || !closeBtn) return;
+  var last = null;
+  function openRules(e) {
+    if (e) e.preventDefault();
+    last = document.activeElement;
+    modal.hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  function closeRules() {
+    modal.hidden = true;
+    document.documentElement.style.overflow = '';
+    if (last && last.focus) last.focus();
+  }
+  document.querySelectorAll('[data-open-rules], a[href="#rules"]').forEach(function (el) {
+    el.addEventListener('click', openRules);
+  });
+  closeBtn.addEventListener('click', closeRules);
+  modal.addEventListener('click', function (e) { if (e.target === modal) closeRules(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeRules(); });
+})();
+</script>
+
+</body></html>
